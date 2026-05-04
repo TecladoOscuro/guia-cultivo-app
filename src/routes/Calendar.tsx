@@ -105,8 +105,19 @@ export default function Calendar() {
     return map;
   }, [cultivations]);
 
+  const visibleEvents = useMemo(() => {
+    const visibleCultIds = new Set(
+      cultivations
+        .filter((c) => c.status === "active" || c.status === "planning")
+        .map((c) => c.id),
+    );
+    return events.filter(
+      (e) => e.cultivationId == null || visibleCultIds.has(e.cultivationId),
+    );
+  }, [events, cultivations]);
+
   const sxEvents = useMemo(() => {
-    return events.map((e) => {
+    return visibleEvents.map((e) => {
       const date = toPlainDate(e.scheduledDate);
       return {
         id: String(e.id),
@@ -117,7 +128,7 @@ export default function Calendar() {
         description: e.description,
       };
     });
-  }, [events]);
+  }, [visibleEvents]);
 
   const calendar = useCalendarApp({
     views: [createViewMonthGrid(), createViewWeek(), createViewDay(), createViewMonthAgenda()],
@@ -166,7 +177,7 @@ export default function Calendar() {
         </button>
       </div>
 
-      {events.length === 0 ? (
+      {visibleEvents.length === 0 ? (
         <div className="p-8 text-center border border-border rounded">
           <p className="text-text-muted">Sin eventos. Crea un cultivo en ➕ Nuevo o un evento manual con el botón de arriba.</p>
         </div>
