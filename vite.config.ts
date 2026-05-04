@@ -29,6 +29,8 @@ export default defineConfig({
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
         navigateFallback: "/guia-cultivo-app/index.html",
+        skipWaiting: true,
+        clientsClaim: true,
       },
     }),
   ],
