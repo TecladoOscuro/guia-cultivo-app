@@ -1,94 +1,106 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
-import { format, isToday, isPast, startOfDay } from "date-fns";
+import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
+import {
+  createViewMonthGrid,
+  createViewWeek,
+  createViewDay,
+  createViewMonthAgenda,
+} from "@schedule-x/calendar";
+import { createEventsServicePlugin } from "@schedule-x/events-service";
+import { createCurrentTimePlugin } from "@schedule-x/current-time";
+import "@schedule-x/theme-default/dist/index.css";
 import { db } from "../lib/db";
 import { completeEvent } from "../lib/cultivationActions";
 import type { AppEvent, Cultivation } from "../types";
 
+const PALETTE = [
+  { id: "p1", colorName: "p1", lightColors: { main: "#52b788", container: "#1a3322", onContainer: "#d8e0e6" }, darkColors: { main: "#52b788", container: "#1a3322", onContainer: "#d8e0e6" } },
+  { id: "p2", colorName: "p2", lightColors: { main: "#8a6240", container: "#3d2810", onContainer: "#f5e6d0" }, darkColors: { main: "#8a6240", container: "#3d2810", onContainer: "#f5e6d0" } },
+  { id: "p3", colorName: "p3", lightColors: { main: "#9070b8", container: "#2e1f3d", onContainer: "#e8d8ee" }, darkColors: { main: "#9070b8", container: "#2e1f3d", onContainer: "#e8d8ee" } },
+  { id: "p4", colorName: "p4", lightColors: { main: "#e88a6a", container: "#3d1f10", onContainer: "#fde8d8" }, darkColors: { main: "#e88a6a", container: "#3d1f10", onContainer: "#fde8d8" } },
+  { id: "p5", colorName: "p5", lightColors: { main: "#74a8d8", container: "#1a2a3d", onContainer: "#d8e8f5" }, darkColors: { main: "#74a8d8", container: "#1a2a3d", onContainer: "#d8e8f5" } },
+];
+
+function formatLocal(d: Date, withTime = false): string {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  const date = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  if (!withTime) return date;
+  return `${date} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export default function Calendar() {
-  const [filterCultivo, setFilterCultivo] = useState<number | "all">("all");
   const [selectedEvent, setSelectedEvent] = useState<AppEvent | null>(null);
-
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
-  const events = useLiveQuery(async () => {
-    const all = await db.events.toArray();
-    return all.sort((a, b) => a.scheduledDate.getTime() - b.scheduledDate.getTime());
-  }, []) ?? [];
+  const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
 
-  const filtered = events.filter(
-    (e) => filterCultivo === "all" || e.cultivationId === filterCultivo
-  );
+  const eventsService = useMemo(() => createEventsServicePlugin(), []);
 
-  const grouped = groupByDay(filtered);
+  const calendars = useMemo(() => {
+    const map: Record<string, typeof PALETTE[0]> = {};
+    cultivations.forEach((c, idx) => {
+      const palette = PALETTE[idx % PALETTE.length];
+      if (c.id !== undefined) {
+        map[`cult-${c.id}`] = { ...palette, id: `cult-${c.id}` };
+      }
+    });
+    return map;
+  }, [cultivations]);
+
+  const sxEvents = useMemo(() => {
+    return events.map((e) => ({
+      id: String(e.id),
+      title: `${e.emoji} ${e.title}`,
+      start: formatLocal(e.scheduledDate),
+      end: formatLocal(e.scheduledDate),
+      calendarId: `cult-${e.cultivationId}`,
+      description: e.description,
+      _appEvent: e,
+    }));
+  }, [events]);
+
+  const calendar = useCalendarApp({
+    views: [createViewMonthGrid(), createViewWeek(), createViewDay(), createViewMonthAgenda()],
+    defaultView: "month-grid",
+    locale: "es-ES",
+    firstDayOfWeek: 1,
+    isDark: true,
+    events: sxEvents,
+    calendars,
+    plugins: [eventsService, createCurrentTimePlugin()],
+    callbacks: {
+      onEventClick(e) {
+        const id = Number(e.id);
+        const ev = events.find((x) => x.id === id);
+        if (ev) setSelectedEvent(ev);
+      },
+    },
+  });
+
+  // Update events on change
+  useEffect(() => {
+    if (!eventsService) return;
+    eventsService.set(sxEvents as never);
+  }, [sxEvents, eventsService]);
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-4">📅 Calendario</h1>
 
-      <div className="flex gap-2 mb-4 flex-wrap">
-        <button
-          onClick={() => setFilterCultivo("all")}
-          className={`px-3 py-1 text-xs rounded border ${
-            filterCultivo === "all"
-              ? "bg-accent text-bg border-accent font-bold"
-              : "border-border hover:border-accent"
-          }`}
-        >
-          Todos ({events.length})
-        </button>
-        {cultivations.map((c) => (
-          <button
-            key={c.id}
-            onClick={() => setFilterCultivo(c.id!)}
-            className={`px-3 py-1 text-xs rounded border ${
-              filterCultivo === c.id
-                ? "bg-accent text-bg border-accent font-bold"
-                : "border-border hover:border-accent"
-            }`}
-          >
-            {c.name}
-          </button>
-        ))}
-      </div>
-
-      {filtered.length === 0 ? (
+      {events.length === 0 ? (
         <div className="p-8 text-center border border-border rounded">
           <p className="text-text-muted">Sin eventos. Crea un cultivo en ➕ Nuevo.</p>
         </div>
       ) : (
-        <div className="grid gap-4">
-          {grouped.map(({ date, dayEvents }) => (
-            <div key={date.toISOString()}>
-              <div
-                className={`text-xs font-bold mb-2 ${
-                  isToday(date)
-                    ? "text-accent"
-                    : isPast(date) && !isToday(date)
-                      ? "text-text-muted"
-                      : "text-text-bright"
-                }`}
-              >
-                {isToday(date) ? "HOY · " : ""}
-                {format(date, "EEEE d MMMM yyyy", { locale: es })}
-              </div>
-              <div className="grid gap-2">
-                {dayEvents.map((e) => (
-                  <EventRow
-                    key={e.id}
-                    event={e}
-                    cultivation={cultivations.find((c) => c.id === e.cultivationId)}
-                    onClick={() => setSelectedEvent(e)}
-                  />
-                ))}
-              </div>
-            </div>
-          ))}
+        <div className="sx-wrapper" style={{ height: "calc(100vh - 200px)", minHeight: 500 }}>
+          <ScheduleXCalendar calendarApp={calendar} />
         </div>
       )}
 
       {selectedEvent && (
-        <EventModal
+        <EventDetailModal
           event={selectedEvent}
           cultivation={cultivations.find((c) => c.id === selectedEvent.cultivationId)}
           onClose={() => setSelectedEvent(null)}
@@ -102,45 +114,7 @@ export default function Calendar() {
   );
 }
 
-function EventRow({
-  event,
-  cultivation,
-  onClick,
-}: {
-  event: AppEvent;
-  cultivation?: Cultivation;
-  onClick: () => void;
-}) {
-  const isOverdue =
-    isPast(event.scheduledDate) && !isToday(event.scheduledDate) && event.status === "pending";
-  const isDone = event.status === "done";
-  return (
-    <button
-      onClick={onClick}
-      className={`text-left p-3 border rounded transition flex items-center gap-3 w-full ${
-        isDone
-          ? "border-border opacity-50"
-          : isOverdue
-            ? "border-error hover:border-error"
-            : "border-border hover:border-accent"
-      }`}
-    >
-      <span className="text-2xl">{event.emoji}</span>
-      <div className="flex-1 min-w-0">
-        <div className={`text-sm font-bold ${isDone ? "line-through" : "text-text-bright"}`}>
-          {event.title}
-        </div>
-        <div className="text-xs text-text-muted truncate">
-          {cultivation?.name ?? "?"} · {event.type}
-          {isOverdue && " · ⚠️ atrasado"}
-          {isDone && " · ✅ hecho"}
-        </div>
-      </div>
-    </button>
-  );
-}
-
-function EventModal({
+function EventDetailModal({
   event,
   cultivation,
   onClose,
@@ -192,27 +166,11 @@ function EventModal({
               ✅ Marcar como hecho
             </button>
           )}
-          <button
-            onClick={onClose}
-            className="px-4 py-2 border border-border rounded hover:border-accent"
-          >
+          <button onClick={onClose} className="px-4 py-2 border border-border rounded hover:border-accent">
             Cerrar
           </button>
         </div>
       </div>
     </div>
   );
-}
-
-function groupByDay(events: AppEvent[]) {
-  const map = new Map<string, AppEvent[]>();
-  for (const e of events) {
-    const key = startOfDay(e.scheduledDate).toISOString();
-    if (!map.has(key)) map.set(key, []);
-    map.get(key)!.push(e);
-  }
-  return Array.from(map.entries()).map(([iso, dayEvents]) => ({
-    date: new Date(iso),
-    dayEvents,
-  }));
 }
