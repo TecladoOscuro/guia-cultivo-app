@@ -244,7 +244,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
           <div>
             <div className="text-xs text-text-muted mb-1">Mediciones (pH, temp, etc)</div>
             {observations.map((o, i) => (
-              <div key={i} className="flex gap-2 mb-1">
+              <div key={i} className="flex gap-2 mb-1 min-w-0">
                 <input
                   value={o.key}
                   onChange={(e) => {
@@ -253,7 +253,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
                     setObservations(next);
                   }}
                   placeholder="pH"
-                  className="bg-bg-3 border border-border rounded px-2 py-1 text-xs flex-1"
+                  className="bg-bg-3 border border-border rounded px-2 py-1 text-xs flex-1 min-w-0"
                 />
                 <input
                   value={o.value}
@@ -263,7 +263,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
                     setObservations(next);
                   }}
                   placeholder="6.5"
-                  className="bg-bg-3 border border-border rounded px-2 py-1 text-xs flex-1"
+                  className="bg-bg-3 border border-border rounded px-2 py-1 text-xs flex-1 min-w-0"
                 />
               </div>
             ))}

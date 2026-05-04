@@ -32,7 +32,7 @@ function NumInput({ label, value, onChange, unit }: { label: string; value: stri
         type="number"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+        className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
       />
     </label>
   );
@@ -72,7 +72,7 @@ function DoseByWeightCalc() {
           <select
             value={doseLvl}
             onChange={(e) => setDoseLvl(e.target.value as typeof doseLvl)}
-            className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+            className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
           >
             <option value="micro">Microdosis (0.1-0.3g)</option>
             <option value="low">Baja (0.5-1g)</option>

@@ -45,9 +45,6 @@ export default function Harvests() {
                       {format(h.date, "PP", { locale: es })}
                     </div>
                   </div>
-                  {h.quality && (
-                    <div className="text-xs text-accent">{"⭐".repeat(h.quality)}</div>
-                  )}
                 </div>
                 <div className="text-xs text-text-muted">
                   {h.weightWet !== undefined && `Fresco: ${h.weightWet}g · `}
@@ -75,7 +72,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
   const [type, setType] = useState("flush_1");
   const [weightWet, setWeightWet] = useState("");
   const [weightDry, setWeightDry] = useState("");
-  const [quality, setQuality] = useState(3);
+  const quality = 3;
   const [notes, setNotes] = useState("");
   const [createProduct, setCreateProduct] = useState(true);
   const [busy, setBusy] = useState(false);
@@ -172,22 +169,6 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
               />
             </label>
           </div>
-          <label className="grid gap-1">
-            <span className="text-xs text-text-muted">Calidad</span>
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setQuality(n)}
-                  aria-label={`Calidad ${n} de 5`}
-                  aria-pressed={n <= quality}
-                  className={`px-3 py-1 ${n <= quality ? "text-accent" : "text-text-muted"}`}
-                >
-                  ⭐
-                </button>
-              ))}
-            </div>
-          </label>
           <label className="grid gap-1">
             <span className="text-xs text-text-muted">Notas catador</span>
             <textarea

@@ -100,7 +100,6 @@ export default function Sessions() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      {s.rating && <div className="text-xs text-accent">{"⭐".repeat(s.rating)}</div>}
                       <button
                         onClick={async () => {
                           if (!s.id) return;
@@ -144,7 +143,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
   const [setting, setSetting] = useState("");
   const [notesPre, setNotesPre] = useState("");
   const [notesPost, setNotesPost] = useState("");
-  const [rating, setRating] = useState(3);
+  const rating = 3;
   const [busy, setBusy] = useState(false);
 
   const product = products.find((p) => p.id === productId);
@@ -262,22 +261,6 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
               rows={3}
               className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
-          </label>
-          <label className="grid gap-1">
-            <span className="text-xs text-text-muted">Rating</span>
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setRating(n)}
-                  aria-label={`Rating ${n} de 5`}
-                  aria-pressed={n <= rating}
-                  className={`px-3 py-1 ${n <= rating ? "text-accent" : "text-text-muted"}`}
-                >
-                  ⭐
-                </button>
-              ))}
-            </div>
           </label>
           <div className="text-xs text-warn">
             ⚠️ Ventana tolerancia: {tolerance} días tras esta sesión

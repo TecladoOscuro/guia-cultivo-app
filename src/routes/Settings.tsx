@@ -399,7 +399,7 @@ export default function Settings() {
                 <select
                   value={remindHours}
                   onChange={(e) => onChangeRemindHours(Number(e.target.value))}
-                  className="bg-bg-3 border border-border rounded px-2 py-1 text-text-bright"
+                  className="bg-bg-3 border border-border rounded px-2 py-1 text-text-bright shrink-0"
                 >
                   <option value={0.25}>15 min</option>
                   <option value={0.5}>30 min</option>
@@ -435,7 +435,7 @@ export default function Settings() {
               value={workerUrl}
               onChange={(e) => setWorkerUrlState(e.target.value)}
               placeholder="https://guia-cultivo-push.tu-usuario.workers.dev"
-              className="w-full bg-bg-3 border border-border rounded px-3 text-text-bright mb-2"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright mb-2"
             />
             <div className="flex flex-wrap gap-2">
               {pushSubscribed ? (
