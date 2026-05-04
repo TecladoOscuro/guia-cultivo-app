@@ -1,8 +1,215 @@
+import { useState } from "react";
+import { useLiveQuery } from "dexie-react-hooks";
+import { db } from "../lib/db";
+import { getStockAvailable } from "../lib/stockPipeline";
+import type { Stock as StockType, StockCategory } from "../types";
+
+const categories: StockCategory[] = [
+  "semilla",
+  "esqueje",
+  "equipo",
+  "fungible",
+  "nutriente",
+  "producto_final",
+];
+
 export default function Stock() {
+  const [showForm, setShowForm] = useState(false);
+  const [editing, setEditing] = useState<StockType | null>(null);
+
+  const stocks = useLiveQuery(() => db.stock.toArray(), []) ?? [];
+  const reservations = useLiveQuery(
+    () => db.stockReservations.where("status").equals("reserved").toArray(),
+    []
+  ) ?? [];
+  const available = useLiveQuery(() => getStockAvailable(), []) ?? {};
+
+  const reservedByKey: Record<string, number> = {};
+  reservations.forEach((r) => {
+    reservedByKey[r.stockKey] = (reservedByKey[r.stockKey] ?? 0) + r.qty;
+  });
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-text-bright mb-4">📦 Stock</h1>
-      <p className="text-text-muted">Pendiente. Stub generado en Fase 0.</p>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold text-text-bright">📦 Stock</h1>
+        <button
+          onClick={() => {
+            setEditing(null);
+            setShowForm(true);
+          }}
+          className="px-3 py-2 bg-accent text-bg rounded font-bold text-sm"
+        >
+          ➕ Añadir
+        </button>
+      </div>
+
+      {stocks.length === 0 ? (
+        <div className="p-8 text-center border border-border rounded">
+          <p className="text-text-muted">Sin stock. Añade items manualmente o cómpralos desde shopping list.</p>
+        </div>
+      ) : (
+        <div className="grid gap-2">
+          {stocks.map((s) => {
+            const reserved = reservedByKey[s.key] ?? 0;
+            const free = available[s.key] ?? s.qty;
+            return (
+              <button
+                key={s.id}
+                onClick={() => {
+                  setEditing(s);
+                  setShowForm(true);
+                }}
+                className="text-left p-3 border border-border rounded hover:border-accent transition flex justify-between items-center gap-3"
+              >
+                <div className="flex-1 min-w-0">
+                  <div className="font-bold text-text-bright">{s.name}</div>
+                  <div className="text-xs text-text-muted">
+                    {s.category} · key: {s.key}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="text-sm font-bold text-text-bright">
+                    {s.qty}{s.unit}
+                  </div>
+                  {reserved > 0 && (
+                    <div className="text-xs text-warn">
+                      {reserved}{s.unit} reservado · libre: {free}{s.unit}
+                    </div>
+                  )}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {showForm && (
+        <StockForm
+          initial={editing}
+          onClose={() => setShowForm(false)}
+        />
+      )}
     </div>
+  );
+}
+
+function StockForm({
+  initial,
+  onClose,
+}: {
+  initial: StockType | null;
+  onClose: () => void;
+}) {
+  const [key, setKey] = useState(initial?.key ?? "");
+  const [name, setName] = useState(initial?.name ?? "");
+  const [category, setCategory] = useState<StockCategory>(initial?.category ?? "fungible");
+  const [qty, setQty] = useState(String(initial?.qty ?? 0));
+  const [unit, setUnit] = useState(initial?.unit ?? "ud");
+  const [notes, setNotes] = useState(initial?.notes ?? "");
+
+  const onSave = async () => {
+    const data: Omit<StockType, "id"> = {
+      key,
+      name,
+      category,
+      qty: parseFloat(qty),
+      unit,
+      notes,
+      addedAt: initial?.addedAt ?? new Date(),
+    };
+    if (initial?.id) {
+      await db.stock.update(initial.id, data);
+    } else {
+      await db.stock.add(data as StockType);
+    }
+    onClose();
+  };
+
+  const onDelete = async () => {
+    if (!initial?.id) return;
+    if (!confirm(`Borrar ${initial.name}?`)) return;
+    await db.stock.delete(initial.id);
+    onClose();
+  };
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50"
+      onClick={onClose}
+    >
+      <div
+        className="bg-bg-2 border border-border rounded-lg p-6 max-w-md w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-lg font-bold text-text-bright mb-4">
+          {initial ? "Editar" : "Añadir"} stock
+        </h2>
+        <div className="grid gap-3">
+          <Field label="Key (canonical, ej. perlita)" value={key} onChange={setKey} />
+          <Field label="Nombre" value={name} onChange={setName} />
+          <label className="grid gap-1">
+            <span className="text-xs text-text-muted">Categoría</span>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value as StockCategory)}
+              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+            >
+              {categories.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Cantidad" value={qty} onChange={setQty} type="number" />
+            <Field label="Unidad" value={unit} onChange={setUnit} />
+          </div>
+          <Field label="Notas (opcional)" value={notes} onChange={setNotes} />
+        </div>
+        <div className="flex justify-between gap-2 mt-4">
+          <div>
+            {initial && (
+              <button onClick={onDelete} className="px-3 py-2 border border-error text-error rounded text-sm">
+                Borrar
+              </button>
+            )}
+          </div>
+          <div className="flex gap-2">
+            <button onClick={onClose} className="px-3 py-2 border border-border rounded">
+              Cancelar
+            </button>
+            <button onClick={onSave} className="px-3 py-2 bg-accent text-bg rounded font-bold">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  value,
+  onChange,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+}) {
+  return (
+    <label className="grid gap-1">
+      <span className="text-xs text-text-muted">{label}</span>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+      />
+    </label>
   );
 }

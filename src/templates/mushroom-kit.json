@@ -1,0 +1,249 @@
+{
+  "id": "mushroom-kit",
+  "name": "Setas Psilocybe — Kit",
+  "emoji": "🍄",
+  "category": "hongo",
+  "version": 1,
+  "totalDuration": { "days": 55 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=mushroom&mode=kit",
+  "theme": { "primary": "#8a6240", "bg": "#0f0c08" },
+
+  "phases": [
+    { "id": "compra_kit", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_kit" },
+    { "id": "setup_kit", "name": "Preparación", "emoji": "📦", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "setup_kit" },
+    { "id": "incubacion_kit", "name": "Incubación", "emoji": "🔮", "startDayOffset": 1, "endDayOffset": 14, "wikiPhase": "incubacion_kit" },
+    { "id": "fructificacion_kit", "name": "Fructificación", "emoji": "🍄", "startDayOffset": 14, "endDayOffset": 25, "wikiPhase": "fructificacion_kit" },
+    { "id": "cosecha_kit", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 21, "endDayOffset": 50, "wikiPhase": "cosecha_kit" },
+    { "id": "secado_kit", "name": "Secado", "emoji": "🌬️", "startDayOffset": 50, "endDayOffset": 55, "wikiPhase": "secado_kit" }
+  ],
+
+  "events": [
+    {
+      "id": "kit_setup",
+      "title": "🔮 Iniciar incubación: colocar pan en cámara",
+      "emoji": "🔮",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "Coloca el pan de micelio en la cámara SGFC con perlita húmeda. Temperatura 24-26°C, humedad 90%+. Sin luz directa.",
+      "checklistInline": [
+        "Lavar manos + esterilizar cámara con alcohol 70%",
+        "Hidratar perlita hasta húmeda no encharcada",
+        "Colocar pan sin tocar la base",
+        "Registrar fecha + foto inicial"
+      ],
+      "expectedSignals": [
+        "Sin contaminación visible (verde, negro, peludo) en el pan",
+        "Olor neutro/champiñón (no a podrido)"
+      ],
+      "warningIf": [
+        "Manchas verdes/azules → Trichoderma → desechar lote",
+        "Líquido amarillo → contaminación bacteriana"
+      ],
+      "wikiPhase": "setup_kit",
+      "notify": true
+    },
+    {
+      "id": "kit_first_pinheads",
+      "title": "🔍 Chequeo: ¿aparecen primordios?",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "offsetDays": 14,
+      "durationMin": 10,
+      "description": "Revisa el pan: pequeñas bolitas blancas (primordios/pinheads) deberían aparecer. Si no en día 18-20 → ajustar humedad/luz indirecta.",
+      "checklistInline": [
+        "Foto del estado",
+        "Verificar humedad cámara",
+        "Confirmar luz indirecta 6-12h/día activada"
+      ],
+      "expectedSignals": [
+        "Primordios = bolitas blancas tamaño cabeza alfiler",
+        "Sin contaminación visible"
+      ],
+      "warningIf": [
+        "Sin primordios día 21 → revisar condiciones",
+        "Aborts (primordios marrones que no crecen) → humedad demasiado baja"
+      ],
+      "wikiPhase": "fructificacion_kit",
+      "notify": true
+    },
+    {
+      "id": "kit_first_harvest",
+      "title": "✂️ Primera cosecha (flush 1)",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 21,
+      "durationMin": 30,
+      "description": "Cosechar setas con técnica giro-tirón ANTES de que el velo se rompa (velo = membrana bajo el sombrero). Pesar fresco. 10-25g esperado.",
+      "checklistInline": [
+        "Cosechar TODAS las setas maduras (incluso las pequeñas)",
+        "Técnica giro-tirón: rotar suave + tirar",
+        "Pesar peso fresco antes de poner a secar"
+      ],
+      "expectedSignals": [
+        "Velo intacto = momento ideal cosecha",
+        "Velo roto = ya esporó, peor potencia"
+      ],
+      "wikiPhase": "cosecha_kit",
+      "notify": true
+    },
+    {
+      "id": "kit_cold_shock",
+      "title": "❄️ Cold shock + reposo entre flushes",
+      "emoji": "❄️",
+      "type": "preparation",
+      "offsetDays": 22,
+      "durationMin": 5,
+      "description": "Tras cosecha: meter pan en frigorífico 12h (cold shock) → vuelve a cámara con perlita rehidratada. Estimula próximo flush.",
+      "wikiPhase": "cosecha_kit",
+      "notify": true
+    },
+    {
+      "id": "kit_final_dry",
+      "title": "🌬️ Secado cracker dry",
+      "emoji": "🌬️",
+      "type": "preparation",
+      "offsetDays": 50,
+      "durationMin": 60,
+      "description": "Tras última cosecha: presecado 24h aire ambiente + sílica gel desecador 24h. Test cracker dry: setas se quiebran sin doblar.",
+      "checklistInline": [
+        "Presecado 24h aire ambiente con ventilador suave",
+        "Pasar a desecador con sílica gel 24h",
+        "Test cracker dry: doblar → debe quebrarse",
+        "Pesar peso seco final",
+        "Guardar bolsa hermética + sílica + congelador"
+      ],
+      "warningIf": [
+        "Setas flexibles = aún mojadas → 12h más sílica",
+        "Calor >50°C destruye psilocibina — NUNCA horno"
+      ],
+      "wikiPhase": "secado_kit",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "kit_nebulizar",
+      "title": "💧 Nebulizar cámara",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 50,
+      "cadence": { "everyDays": 1, "notes": "2-3 sprays paredes cámara, NO directo al pan" },
+      "description": "Mantener humedad 90%+ nebulizando paredes de la cámara. NO mojar el pan directamente (riesgo bacteriano).",
+      "consumes": [
+        { "stockKey": "agua_destilada", "qty": 20, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "fructificacion_kit",
+      "notify": false
+    },
+    {
+      "id": "kit_fae",
+      "title": "🌬️ FAE (intercambio aire)",
+      "emoji": "🌬️",
+      "type": "monitoring",
+      "startDayOffset": 14,
+      "endDayOffset": 50,
+      "cadence": { "everyDays": 1, "notes": "Abanicar cámara 30s, 2-3x al día durante fructificación" },
+      "description": "Las setas necesitan O₂. Sin FAE → CO₂ acumulado → setas alargadas y débiles. Abanica con tapa o periódico 30s.",
+      "wikiPhase": "fructificacion_kit",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "kit_setas_completo",
+      "name": "Kit Psilocybe (pan + cámara + perlita + spray)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "30-50€",
+      "source": "internet",
+      "notes": "Vendedores etnobotánicos UE: Avalon, ethnopharm, World Seed Supply. Cepas: Golden Teacher (fácil), Mazatapec (resistente), B+ (rápida).",
+      "wikiPhase": "compra_kit"
+    },
+    {
+      "key": "agua_destilada",
+      "name": "Agua destilada (para nebulizar)",
+      "qty": 2,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "1-2€",
+      "source": "tienda_fisica",
+      "notes": "Supermercado. Agua del grifo NO (cloro). Embotellada mineral OK pero destilada mejor."
+    },
+    {
+      "key": "alcohol_70",
+      "name": "Alcohol isopropílico 70%",
+      "qty": 250,
+      "unit": "ml",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Farmacia. Para esterilizar cámara + manos."
+    },
+    {
+      "key": "silica_gel",
+      "name": "Sílica gel desecante",
+      "qty": 200,
+      "unit": "g",
+      "category": "importante",
+      "approxPrice": "5-10€",
+      "source": "internet",
+      "notes": "Para secado cracker dry final. Reutilizable secando en horno 100°C 1h."
+    },
+    {
+      "key": "termohigrometro",
+      "name": "Termo-higrómetro digital",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "8-15€",
+      "source": "internet",
+      "notes": "Para verificar 24-26°C + 90% humedad. Útil pero no imprescindible."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "esterilizar_camara",
+      "title": "Esterilizar cámara con alcohol 70%",
+      "description": "Limpia cámara + manos + zona trabajo antes de abrir kit. Cualquier contaminación = lote perdido.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "espacio_listo",
+      "title": "Reservar espacio 24-26°C oscuro",
+      "description": "Armario/closet sin luz directa, temp constante. NO baño (humedad excesiva externa). NO cocina (vapores).",
+      "blocking": true,
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "preparar_perlita",
+      "title": "Hidratar perlita",
+      "description": "Verter agua destilada en perlita hasta húmeda no encharcada. Tocar y debe sentirse húmeda sin gotear.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "leer_guia",
+      "title": "Leer guía wiki: setup_kit",
+      "description": "Revisa wiki sección 'Preparación' para refrescar técnica giro-tirón, identificación primordios, contaminación.",
+      "blocking": false,
+      "estimatedMinutes": 15
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "kit_setas_completo", "qty": 1, "unit": "ud", "trigger": "once", "description": "1 kit por cultivo" },
+    { "stockKey": "agua_destilada", "qty": 1500, "unit": "ml", "trigger": "once", "description": "~30ml/día × 50 días nebulizado" },
+    { "stockKey": "alcohol_70", "qty": 50, "unit": "ml", "trigger": "once", "description": "Esterilización inicial + ocasional" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "flushes",
+  "produces": { "kind": "seta_psilocybe_seca", "unit": "g" }
+}
