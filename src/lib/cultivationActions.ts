@@ -32,7 +32,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     templateId: input.templateId,
     name: input.name,
     startDate: input.startDate,
-    status: "planning",
+    status: "active", // directo activo. prep checklist es recordatorio, no bloquea
     notes: input.notes,
     customParams: input.customParams,
     createdAt: new Date(),

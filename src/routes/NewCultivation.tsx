@@ -172,6 +172,9 @@ export default function NewCultivation() {
               );
             })}
           </div>
+          <div className="p-3 border border-accent/40 bg-accent/5 rounded text-xs">
+            ℹ️ Al confirmar: cultivo se crea en estado <strong>activo</strong>, eventos se generan en el calendario, y el stock necesario queda <strong>reservado</strong> (no consumido aún — solo se descuenta al marcar evento "✅ Hecho").
+          </div>
           <div className="flex gap-2 mt-2">
             <button
               onClick={() => setStep("details")}
@@ -184,7 +187,7 @@ export default function NewCultivation() {
               disabled={creating}
               className="px-4 py-2 bg-accent text-bg rounded font-bold disabled:opacity-50"
             >
-              {creating ? "Creando..." : "Confirmar y crear cultivo"}
+              {creating ? "Creando..." : "🚀 Crear y empezar"}
             </button>
           </div>
         </section>

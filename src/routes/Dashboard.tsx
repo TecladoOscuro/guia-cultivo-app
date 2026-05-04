@@ -262,7 +262,7 @@ function EmptyState() {
       <div className="text-6xl mb-4">🌱</div>
       <h1 className="text-2xl font-bold text-text-bright mb-2">Bienvenido a Guía Cultivo</h1>
       <p className="text-text-muted mb-6 max-w-md mx-auto">
-        Gestiona tus cultivos caseros: calendario auto-generado, stock, planning, journal y sesiones. Todo en tu dispositivo.
+        Gestor de cultivos caseros. Calendario, stock, journal, sesiones. Todo en tu dispositivo, sin tracking.
       </p>
       <Link
         to="/new"
@@ -270,19 +270,29 @@ function EmptyState() {
       >
         🚀 Empezar primer cultivo
       </Link>
-      <div className="mt-8 grid sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-left text-sm">
-        <div className="p-3 border border-border rounded">
-          <div className="font-bold text-text-bright mb-1">1️⃣ Elige tipo</div>
-          <div className="text-text-muted text-xs">Setas, cannabis, cactus, hidromiel...</div>
+
+      <div className="mt-10 max-w-2xl mx-auto text-left">
+        <h2 className="text-base font-bold text-text-bright mb-3 text-center">📖 Cómo usar la app</h2>
+        <div className="grid gap-3">
+          <Step n="1" title="Crea cultivo" desc="➕ Nuevo → elige tipo (setas, cannabis, hidromiel...) → fecha inicio. App genera calendario completo + lista compras + stock reservado." />
+          <Step n="2" title="Compra lo que falte" desc="🛒 Compras → marca como comprado lo que adquieras → entra a tu stock automáticamente." />
+          <Step n="3" title="Sigue el calendario" desc="📅 Calendario → cada día tienes eventos: regar, fertilizar, monitorizar. Click → modal con instrucciones detalladas. Marca '✅ Hecho' cuando completes." />
+          <Step n="4" title="Documenta progreso" desc="📔 Journal → foto + nota diaria opcional para ver evolución. 📸 Timelapse compara fotos." />
+          <Step n="5" title="Cosecha" desc="✂️ Cosechas → registra peso + calidad. Auto-crea entrada en 🫙 Inventario." />
+          <Step n="6" title="Si algo va mal" desc="🔍 Diagnóstico → flowchart con preguntas → causas + acciones. Si quieres parar el cultivo: menú ⋮ en Dashboard → '⚠️ Abortar'." />
         </div>
-        <div className="p-3 border border-border rounded">
-          <div className="font-bold text-text-bright mb-1">2️⃣ Confirma</div>
-          <div className="text-text-muted text-xs">Stock check + fecha inicio. Eventos generados auto.</div>
-        </div>
-        <div className="p-3 border border-border rounded">
-          <div className="font-bold text-text-bright mb-1">3️⃣ Sigue calendario</div>
-          <div className="text-text-muted text-xs">Cada día qué hacer. Marca hecho. App lleva el resto.</div>
-        </div>
+      </div>
+    </div>
+  );
+}
+
+function Step({ n, title, desc }: { n: string; title: string; desc: string }) {
+  return (
+    <div className="p-3 border border-border rounded flex gap-3">
+      <div className="text-2xl font-bold text-accent shrink-0">{n}</div>
+      <div>
+        <div className="font-bold text-text-bright text-sm">{title}</div>
+        <div className="text-xs text-text-muted">{desc}</div>
       </div>
     </div>
   );

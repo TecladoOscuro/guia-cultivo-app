@@ -335,11 +335,30 @@ export default function Settings() {
       </Section>
 
       <Section title="🔔 Notificaciones">
+        <div className="p-3 border border-warn rounded mb-3 bg-warn/5">
+          <div className="text-sm font-bold text-warn mb-1">⏳ Funcionalidad PARCIAL</div>
+          <div className="text-xs text-text-muted">
+            <strong>Funciona</strong>: notif locales con app abierta + badge counter persistente cuando app cerrada.
+            <br />
+            <strong>NO funciona</strong>: notif background fiables iPhone con app cerrada (iOS suspende SW).
+            <br />
+            Para notif background reliable iPhone: deploy CF Worker (~10 min, gratis).{" "}
+            <a
+              href="https://github.com/TecladoOscuro/guia-cultivo-app/tree/main/worker"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent underline"
+            >
+              Instrucciones aquí
+            </a>
+            . Pendiente acción manual.
+          </div>
+        </div>
         <div className="grid gap-3">
           <div className="p-3 border border-border rounded">
             <div className="flex justify-between items-center mb-2">
               <div>
-                <div className="font-bold text-text-bright text-sm">Notificaciones de eventos</div>
+                <div className="font-bold text-text-bright text-sm">Notif locales (foreground + badge)</div>
                 <div className="text-xs text-text-muted">
                   {notifPerm === "granted"
                     ? "✅ permiso concedido"

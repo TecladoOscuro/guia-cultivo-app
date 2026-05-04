@@ -31,7 +31,7 @@ export default function Stock() {
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-2">
         <h1 className="text-2xl font-bold text-text-bright">📦 Stock</h1>
         <button
           onClick={() => {
@@ -42,6 +42,10 @@ export default function Stock() {
         >
           ➕ Añadir
         </button>
+      </div>
+      <div className="p-3 border border-border bg-bg-2 rounded text-xs text-text-muted mb-4">
+        ℹ️ <strong>Reservado</strong> = comprometido a un cultivo activo (aún no consumido). <strong>Libre</strong> = lo que puedes usar para nuevos cultivos.
+        El stock real solo decrementa cuando marcas un evento como "✅ Hecho" en el calendario.
       </div>
 
       {stocks.length === 0 ? (
