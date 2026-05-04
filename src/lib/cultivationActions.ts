@@ -112,6 +112,63 @@ export async function startCultivation(cultivationId: number) {
   refreshAllNotifications();
 }
 
+export async function completeCultivation(cultivationId: number) {
+  // Cancel notif eventos pendientes
+  const pendingEvents = await db.events
+    .where({ cultivationId })
+    .and((e) => e.status === "pending")
+    .toArray();
+  for (const e of pendingEvents) {
+    if (e.id) cancelEventNotification(e.id);
+  }
+
+  await db.cultivations.update(cultivationId, {
+    status: "completed",
+    endedAt: new Date(),
+  });
+  await releasePending(cultivationId);
+  await db.history.add({
+    cultivationId,
+    action: "cultivo.complete",
+    payload: {},
+    timestamp: new Date(),
+  });
+  refreshAllNotifications();
+}
+
+export async function reactivateCultivation(cultivationId: number) {
+  await db.cultivations.update(cultivationId, {
+    status: "active",
+    endedAt: undefined,
+  });
+  await db.history.add({
+    cultivationId,
+    action: "cultivo.reactivate",
+    payload: {},
+    timestamp: new Date(),
+  });
+  refreshAllNotifications();
+}
+
+export async function deleteCultivationFully(cultivationId: number) {
+  // Cancel notif eventos
+  const events = await db.events.where({ cultivationId }).toArray();
+  for (const e of events) {
+    if (e.id) cancelEventNotification(e.id);
+  }
+  // Borrar todos los datos del cultivo
+  await db.events.where({ cultivationId }).delete();
+  await db.shoppingList.where({ cultivationId }).delete();
+  await db.prepChecklists.where({ cultivationId }).delete();
+  await db.journal.where({ cultivationId }).delete();
+  await db.harvests.where({ cultivationId }).delete();
+  await db.product.where({ cultivationId }).delete();
+  await db.stockReservations.where({ cultivationId }).delete();
+  await db.history.where({ cultivationId }).delete();
+  await db.cultivations.delete(cultivationId);
+  refreshAllNotifications();
+}
+
 export async function abortCultivation(cultivationId: number) {
   // Cancel notif de eventos pendientes
   const pendingEvents = await db.events

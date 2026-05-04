@@ -5,7 +5,7 @@ import { addDays, format, isToday, isPast, isWithinInterval, differenceInDays } 
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
 import { calculateCapacity } from "../lib/stockPipeline";
-import { listAvailableTemplates } from "../lib/cultivationActions";
+import { listAvailableTemplates, abortCultivation, completeCultivation } from "../lib/cultivationActions";
 import { getTemplate } from "../templates";
 import { detectConflicts, suggestNextCultivo, type Conflict } from "../lib/planningConflicts";
 import type { CapacityResult } from "../lib/stockPipeline";
@@ -91,9 +91,97 @@ export default function Dashboard() {
         <PlanningWidget />
       </Section>
 
+      <HistorySection cultivations={cultivations} />
+
       <Section title="📊 Capacidad por template">
         <CapacityWidget />
       </Section>
+    </div>
+  );
+}
+
+function HistorySection({ cultivations }: { cultivations: Cultivation[] }) {
+  const [open, setOpen] = useState(false);
+  const history = cultivations.filter((c) => c.status === "completed" || c.status === "aborted");
+
+  if (history.length === 0) return null;
+
+  return (
+    <section className="mb-6">
+      <button
+        onClick={() => setOpen(!open)}
+        className="text-sm font-bold text-text-bright uppercase tracking-wide flex items-center gap-2"
+      >
+        <span>{open ? "▼" : "▶"}</span>
+        <span>📜 Histórico ({history.length})</span>
+      </button>
+      {open && (
+        <div className="grid gap-2 mt-2">
+          {history.map((c) => (
+            <HistoryCard key={c.id} cultivation={c} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}
+
+function HistoryCard({ cultivation }: { cultivation: Cultivation }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const onReactivate = async () => {
+    if (!cultivation.id) return;
+    if (!confirm(`Reactivar "${cultivation.name}"?`)) return;
+    const { reactivateCultivation } = await import("../lib/cultivationActions");
+    await reactivateCultivation(cultivation.id);
+    setMenuOpen(false);
+  };
+
+  const onDelete = async () => {
+    if (!cultivation.id) return;
+    if (!confirm(`⚠️ BORRAR PERMANENTEMENTE "${cultivation.name}"?\n\nElimina TODOS los datos: eventos, journal, fotos, cosechas, sesiones. Irreversible.`)) return;
+    if (!confirm("¿Seguro? Esta acción no se puede deshacer.")) return;
+    const { deleteCultivationFully } = await import("../lib/cultivationActions");
+    await deleteCultivationFully(cultivation.id);
+    setMenuOpen(false);
+  };
+
+  return (
+    <div className="p-3 border border-border rounded opacity-70 flex justify-between items-start gap-2">
+      <div className="flex-1 min-w-0">
+        <div className="font-bold text-text-bright text-sm">{cultivation.name}</div>
+        <div className="text-xs text-text-muted">
+          {cultivation.status === "completed" ? "✅ Completado" : "⚠️ Abortado"}
+          {cultivation.endedAt && ` · ${format(cultivation.endedAt, "PP", { locale: es })}`}
+        </div>
+      </div>
+      <div className="relative">
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-text-muted hover:text-accent text-lg px-2"
+        >
+          ⋮
+        </button>
+        {menuOpen && (
+          <>
+            <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
+            <div className="absolute right-0 top-full mt-1 z-20 bg-bg-2 border border-border rounded shadow-lg min-w-[180px]">
+              <button
+                onClick={onReactivate}
+                className="block w-full text-left px-3 py-2 text-sm text-success hover:bg-bg-3"
+              >
+                🔄 Reactivar
+              </button>
+              <button
+                onClick={onDelete}
+                className="block w-full text-left px-3 py-2 text-sm text-error hover:bg-bg-3"
+              >
+                🗑️ Borrar permanente
+              </button>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -252,6 +340,22 @@ function CultivoCard({
     }
   }
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const onAbort = async () => {
+    if (!cultivation.id) return;
+    if (!confirm(`¿Abortar cultivo "${cultivation.name}"?\n\nLibera reservas de stock pendientes. Datos se conservan (puedes ver en histórico).`)) return;
+    await abortCultivation(cultivation.id);
+    setMenuOpen(false);
+  };
+
+  const onComplete = async () => {
+    if (!cultivation.id) return;
+    if (!confirm(`¿Marcar "${cultivation.name}" como completado?\n\nLibera reservas pendientes. Útil cuando ya cosechaste y todo OK.`)) return;
+    await completeCultivation(cultivation.id);
+    setMenuOpen(false);
+  };
+
   return (
     <div className="p-4 border border-border rounded">
       <div className="flex justify-between items-start mb-2 gap-2">
@@ -264,12 +368,58 @@ function CultivoCard({
             {done}/{total} eventos
           </div>
         </div>
-        <Link
-          to={`/calendar?cult=${cultivation.id}`}
-          className="text-xs text-text-muted hover:text-accent"
-        >
-          Ver →
-        </Link>
+        <div className="relative">
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-text-muted hover:text-accent text-lg px-2"
+            aria-label="Menú cultivo"
+          >
+            ⋮
+          </button>
+          {menuOpen && (
+            <>
+              <div className="fixed inset-0 z-10" onClick={() => setMenuOpen(false)} />
+              <div className="absolute right-0 top-full mt-1 z-20 bg-bg-2 border border-border rounded shadow-lg min-w-[180px]">
+                <Link
+                  to={`/calendar?cult=${cultivation.id}`}
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-bg-3"
+                >
+                  📅 Ver eventos
+                </Link>
+                <Link
+                  to="/journal"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-bg-3"
+                >
+                  📔 Journal
+                </Link>
+                <Link
+                  to="/harvests"
+                  onClick={() => setMenuOpen(false)}
+                  className="block px-3 py-2 text-sm hover:bg-bg-3"
+                >
+                  ✂️ Cosechar
+                </Link>
+                <hr className="border-border my-1" />
+                {cultivation.status === "active" && (
+                  <button
+                    onClick={onComplete}
+                    className="block w-full text-left px-3 py-2 text-sm text-success hover:bg-bg-3"
+                  >
+                    ✅ Marcar completado
+                  </button>
+                )}
+                <button
+                  onClick={onAbort}
+                  className="block w-full text-left px-3 py-2 text-sm text-warn hover:bg-bg-3"
+                >
+                  ⚠️ Abortar cultivo
+                </button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="mt-2 h-1.5 bg-bg-3 rounded overflow-hidden mb-3">
