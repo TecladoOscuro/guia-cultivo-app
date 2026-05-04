@@ -4,13 +4,13 @@ Companion PWA para la [wiki Guía Cultivo](https://tecladooscuro.github.io/guia-
 
 ## 🌐 Acceso
 
-**URL app**: https://tecladooscuro.github.io/guia-cultivo-app/dashboard
+**URL app**: https://tecladooscuro.github.io/guia-cultivo-app/
 
 **URL wiki (fuente educativa)**: https://tecladooscuro.github.io/guia-cultivo/
 
 ## 📱 Instalar en iPhone
 
-1. Abre [la URL](https://tecladooscuro.github.io/guia-cultivo-app/dashboard) en Safari
+1. Abre [la URL](https://tecladooscuro.github.io/guia-cultivo-app/) en Safari
 2. Compartir → Añadir a pantalla de inicio
 3. Abre desde icono home (modo standalone)
 4. Concede permiso de notificaciones (requiere iOS 16.4+)
