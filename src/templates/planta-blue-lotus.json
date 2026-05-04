@@ -1,0 +1,40 @@
+{
+  "id": "planta-blue-lotus",
+  "name": "Blue Lotus (Nymphaea caerulea)",
+  "emoji": "🪷",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=blue_lotus",
+  "theme": { "primary": "#7eb8d4", "bg": "#0a1018" },
+  "phases": [
+    { "id": "compra_lotus", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_lotus", "name": "Cultivo acuático", "emoji": "🪷", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "blue_lotus" }
+  ],
+  "events": [
+    { "id": "plantar_lotus", "title": "🪷 Plantar tubérculo Blue Lotus en estanque/cuba", "emoji": "🪷", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Tubérculo en sustrato lodoso al fondo de cuba/estanque 30-60cm profundidad. Agua a 20-28°C. Sol pleno. Cubrir tubérculo con sustrato pero no entero (debe brotar).", "checklistInline": ["Cuba/estanque exterior 50L+ o interior con luz", "Sustrato lodoso al fondo", "Agua sin cloro (reposar 24h)", "Profundidad agua 30-60cm sobre tubérculo"], "wikiPhase": "blue_lotus", "notify": true },
+    { "id": "primera_floracion", "title": "🌸 Primera floración (mes 3-5)", "emoji": "🌸", "type": "milestone", "offsetDays": 90, "durationMin": 30, "description": "Flores azul-violeta emergen del agua. Cosechar flores frescas o secar a sombra. Producción continua hasta otoño en condiciones óptimas.", "wikiPhase": "blue_lotus", "notify": false },
+    { "id": "primera_cosecha_lotus", "title": "✂️ Cosecha flores", "emoji": "✂️", "type": "harvest", "offsetDays": 120, "durationMin": 30, "description": "Cortar flores recién abiertas. Secar a sombra ventilada 1-2 semanas. Conservar en frasco oscuro.", "wikiPhase": "blue_lotus", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "rellenar_agua", "title": "💧 Rellenar agua estanque", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 365, "cadence": { "everyDays": 7 }, "description": "Verificar nivel agua semanalmente. Reponer evaporación con agua sin cloro.", "wikiPhase": "blue_lotus", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "tuberculo_lotus", "name": "Tubérculo Nymphaea caerulea", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-30€", "source": "internet", "notes": "Vendedores plantas acuáticas o etnobotánicos UE.", "wikiPhase": "compra_plantas" },
+    { "key": "cuba_acuatica", "name": "Cuba/estanque 50-100L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-100€", "source": "tienda_fisica" },
+    { "key": "sustrato_acuatico", "name": "Sustrato lodoso plantas acuáticas (5kg)", "qty": 5, "unit": "kg", "category": "esencial", "approxPrice": "10-20€" },
+    { "key": "agua_sin_cloro", "name": "Agua sin cloro", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_acuatico", "title": "Espacio para cuba 50L+ con sol", "description": "Exterior soleado o interior con luz pleno. Estable 20-28°C agua.", "blocking": true, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "tuberculo_lotus", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "cuba_acuatica", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acuatico", "qty": 3, "unit": "kg", "trigger": "once" },
+    { "stockKey": "agua_sin_cloro", "qty": 80, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "flores",
+  "produces": { "kind": "blue_lotus_flores", "unit": "g" }
+}

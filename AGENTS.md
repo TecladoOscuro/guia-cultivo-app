@@ -5,6 +5,7 @@ Documento principal para humanos + IAs trabajando en este repo. Lee esto antes d
 **🚨 Lee también:**
 - [STATUS.md](STATUS.md) — qué está hecho y qué falta (mantener actualizado)
 - [docs/ux-flow.md](docs/ux-flow.md) — comportamiento UX intencional
+- [docs/web-push-setup.md](docs/web-push-setup.md) — guía CF Worker (doc-only, opt-in si quieres push background reliable iOS)
 
 ## Propósito
 

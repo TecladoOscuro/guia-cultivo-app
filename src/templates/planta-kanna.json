@@ -1,0 +1,40 @@
+{
+  "id": "planta-kanna",
+  "name": "Kanna (Sceletium tortuosum)",
+  "emoji": "🌵",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=kanna",
+  "theme": { "primary": "#bda3d4", "bg": "#10081a" },
+  "phases": [
+    { "id": "compra_kanna", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_kanna", "name": "Cultivo", "emoji": "🌵", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "kanna" }
+  ],
+  "events": [
+    { "id": "plantar_kanna", "title": "🌵 Plantar Kanna", "emoji": "🌵", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Suculenta sudafricana. Sustrato MUY drenado tipo cactus + perlita. Sol pleno. Riego ESPACIADO (Kanna tolera muchísimo la sequía). Crecimiento rápido — fácil para principiantes.", "wikiPhase": "kanna", "notify": true },
+    { "id": "primera_cosecha_kanna", "title": "✂️ Primera cosecha (4-6 meses)", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 30, "description": "Cortar tallos + hojas. Posible fermentar tradicional 4-8 días en bolsa cerrada (mesembrina aumenta). O secar a sombra directo.", "wikiPhase": "kanna", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_kanna", "title": "💧 Riego Kanna (espaciado)", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 365, "cadence": { "everyDays": 10, "volumeMl": "100-200", "notes": "Esperar SUSTRATO COMPLETAMENTE seco" }, "description": "Como cactus: regar solo cuando sustrato totalmente seco. Sequía mejor que exceso.", "consumes": [{ "stockKey": "agua_riego", "qty": 150, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "kanna", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_kanna", "name": "Esqueje Sceletium tortuosum", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-30€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_5L", "name": "Maceta 5L con drenaje", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_cactus", "name": "Sustrato cactus + perlita", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 10, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "sol_kanna", "title": "Sol pleno mediterráneo", "description": "Kanna ama sol intenso. Resiste sequía. Mediterráneo perfecto.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "drenaje_kanna", "title": "Maceta con drenaje extremo", "description": "NUNCA encharcar. Mejor seca que mojada.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_kanna", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_cactus", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_riego", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "tallos_hojas",
+  "produces": { "kind": "kanna_seca", "unit": "g" }
+}

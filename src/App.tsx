@@ -14,6 +14,7 @@ import Calculators from "./routes/Calculators";
 import Genetics from "./routes/Genetics";
 import Stats from "./routes/Stats";
 import Diagnostic from "./routes/Diagnostic";
+import Timelapse from "./routes/Timelapse";
 import NewCultivation from "./routes/NewCultivation";
 import Settings from "./routes/Settings";
 
@@ -32,6 +33,7 @@ const navItems = [
   { to: "/genetics", emoji: "🧬", label: "Genética" },
   { to: "/stats", emoji: "📊", label: "Stats" },
   { to: "/diagnostic", emoji: "🔍", label: "Diagnóstico" },
+  { to: "/timelapse", emoji: "📸", label: "Timelapse" },
   { to: "/settings", emoji: "⚙️", label: "Ajustes" },
 ];
 
@@ -115,6 +117,7 @@ function App() {
           <Route path="/genetics" element={<Genetics />} />
           <Route path="/stats" element={<Stats />} />
           <Route path="/diagnostic" element={<Diagnostic />} />
+          <Route path="/timelapse" element={<Timelapse />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>

@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
-import { exportAll, downloadJSON, importAll, factoryReset } from "../lib/exportImport";
+import {
+  exportAll,
+  downloadJSON,
+  importAll,
+  factoryReset,
+  encryptPayload,
+  decryptPayload,
+  downloadEncrypted,
+  isEncryptedPayload,
+} from "../lib/exportImport";
 import {
   getNotifEnabled,
   setNotifEnabled,
@@ -74,13 +83,51 @@ export default function Settings() {
     }
   };
 
+  const onExportEncrypted = async () => {
+    const password = prompt("Password para encriptar (mínimo 8 caracteres):");
+    if (!password || password.length < 8) {
+      setMsg({ type: "err", text: "Password debe tener al menos 8 caracteres" });
+      return;
+    }
+    const confirm2 = prompt("Repite el password para confirmar:");
+    if (password !== confirm2) {
+      setMsg({ type: "err", text: "Los passwords no coinciden" });
+      return;
+    }
+    setBusy(true);
+    try {
+      const payload = await exportAll();
+      const encrypted = await encryptPayload(payload, password);
+      downloadEncrypted(encrypted);
+      setMsg({ type: "ok", text: "Backup encriptado descargado. Guarda el password — sin él no podrás recuperar." });
+    } catch (e) {
+      setMsg({ type: "err", text: `Error: ${e instanceof Error ? e.message : String(e)}` });
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const onImportClick = () => fileRef.current?.click();
 
   const onImportFile = async (file: File, mode: "replace" | "merge") => {
     setBusy(true);
     try {
       const text = await file.text();
-      const payload = JSON.parse(text);
+      let payload = JSON.parse(text);
+      if (isEncryptedPayload(payload)) {
+        const pwd = prompt("Backup encriptado. Introduce el password:");
+        if (!pwd) {
+          setBusy(false);
+          return;
+        }
+        try {
+          payload = await decryptPayload(payload, pwd);
+        } catch (e) {
+          setMsg({ type: "err", text: e instanceof Error ? e.message : String(e) });
+          setBusy(false);
+          return;
+        }
+      }
       const result = await importAll(payload, mode);
       if (result.ok) {
         setMsg({ type: "ok", text: `Datos importados (${mode}). Recarga si no ves cambios.` });
@@ -171,14 +218,21 @@ export default function Settings() {
             disabled={busy}
             className="px-4 py-2 bg-accent text-bg rounded font-bold text-sm disabled:opacity-50"
           >
-            ⬇️ Exportar backup JSON
+            ⬇️ Exportar JSON
+          </button>
+          <button
+            onClick={onExportEncrypted}
+            disabled={busy}
+            className="px-4 py-2 border border-accent text-accent rounded text-sm hover:bg-accent/10 disabled:opacity-50"
+          >
+            🔒 Exportar encriptado
           </button>
           <button
             onClick={onImportClick}
             disabled={busy}
             className="px-4 py-2 border border-border rounded text-sm hover:border-accent disabled:opacity-50"
           >
-            ⬆️ Importar backup
+            ⬆️ Importar (auto-detecta)
           </button>
           <input
             ref={fileRef}

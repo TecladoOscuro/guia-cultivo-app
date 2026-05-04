@@ -1,0 +1,39 @@
+{
+  "id": "planta-damiana",
+  "name": "Damiana (Turnera diffusa)",
+  "emoji": "🌿",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 270 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=damiana",
+  "theme": { "primary": "#a8c468", "bg": "#10180a" },
+  "phases": [
+    { "id": "compra_damiana", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_damiana", "name": "Cultivo", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 270, "wikiPhase": "damiana" }
+  ],
+  "events": [
+    { "id": "plantar_damiana", "title": "🌿 Plantar Damiana", "emoji": "🌿", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Maceta 5-10L. Sustrato bien drenado (Damiana NO tolera encharcamiento). Sol pleno o parcial. 18-30°C ideal. Tolera sequía moderada — más fácil que Salvia.", "wikiPhase": "damiana", "notify": true },
+    { "id": "primera_cosecha_damiana", "title": "✂️ Primera cosecha hojas", "emoji": "✂️", "type": "harvest", "offsetDays": 180, "durationMin": 30, "description": "Cuando planta tenga 40-50cm con varias ramas. Cortar puntas con hojas. Secar a sombra 1-2 semanas. Florece pequeñas flores amarillas.", "wikiPhase": "damiana", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_damiana", "title": "💧 Riego Damiana", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 270, "cadence": { "everyDays": 5, "volumeMl": "200-400", "notes": "Esperar sustrato seco antes regar" }, "description": "Riego espaciado. Damiana tolera sequía. Mejor un poco seco que encharcado.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "damiana", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_damiana", "name": "Esqueje Damiana enraizado", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-30€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_10L", "name": "Maceta 5-10L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "sustrato_drenante", "name": "Sustrato bien drenado + arena", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "sol_damiana", "title": "Sol pleno o parcial", "description": "Damiana ama sol. Balcón sur ideal.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_damiana", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_10L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 8, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_riego", "qty": 20, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "damiana_hojas", "unit": "g" }
+}

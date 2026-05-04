@@ -72,6 +72,122 @@ export function downloadJSON(payload: ExportPayload, filename?: string) {
   URL.revokeObjectURL(url);
 }
 
+// === Encriptación AES-256-GCM con Web Crypto API ===
+
+interface EncryptedPayload {
+  app: "guia-cultivo-app";
+  encrypted: true;
+  version: number;
+  algorithm: "AES-256-GCM";
+  iterations: number;
+  salt: string; // base64
+  iv: string; // base64
+  ciphertext: string; // base64
+}
+
+const PBKDF2_ITER = 250_000;
+
+async function deriveKey(password: string, salt: BufferSource): Promise<CryptoKey> {
+  const enc = new TextEncoder();
+  const baseKey = await crypto.subtle.importKey(
+    "raw",
+    enc.encode(password) as BufferSource,
+    "PBKDF2",
+    false,
+    ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt, iterations: PBKDF2_ITER, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["encrypt", "decrypt"]
+  );
+}
+
+function bufToB64(buf: ArrayBuffer): string {
+  const bytes = new Uint8Array(buf);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin);
+}
+
+function b64ToBuf(b64: string): ArrayBuffer {
+  const bin = atob(b64);
+  const buf = new ArrayBuffer(bin.length);
+  const arr = new Uint8Array(buf);
+  for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+  return buf;
+}
+
+export async function encryptPayload(
+  payload: ExportPayload,
+  password: string
+): Promise<EncryptedPayload> {
+  const saltBuf = new ArrayBuffer(16);
+  crypto.getRandomValues(new Uint8Array(saltBuf));
+  const ivBuf = new ArrayBuffer(12);
+  crypto.getRandomValues(new Uint8Array(ivBuf));
+  const key = await deriveKey(password, saltBuf);
+  const enc = new TextEncoder();
+  const data = enc.encode(JSON.stringify(payload));
+  const ciphertext = await crypto.subtle.encrypt(
+    { name: "AES-GCM", iv: ivBuf },
+    key,
+    data as BufferSource
+  );
+  return {
+    app: "guia-cultivo-app",
+    encrypted: true,
+    version: VERSION,
+    algorithm: "AES-256-GCM",
+    iterations: PBKDF2_ITER,
+    salt: bufToB64(saltBuf),
+    iv: bufToB64(ivBuf),
+    ciphertext: bufToB64(ciphertext),
+  };
+}
+
+export async function decryptPayload(
+  encrypted: EncryptedPayload,
+  password: string
+): Promise<ExportPayload> {
+  if (!encrypted.encrypted || encrypted.algorithm !== "AES-256-GCM") {
+    throw new Error("Formato no soportado o no encriptado");
+  }
+  const salt = b64ToBuf(encrypted.salt);
+  const iv = b64ToBuf(encrypted.iv);
+  const ct = b64ToBuf(encrypted.ciphertext);
+  const key = await deriveKey(password, salt);
+  try {
+    const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv }, key, ct);
+    const text = new TextDecoder().decode(plain);
+    return JSON.parse(text);
+  } catch {
+    throw new Error("Password incorrecto o archivo corrupto");
+  }
+}
+
+export function downloadEncrypted(encrypted: EncryptedPayload, filename?: string) {
+  const blob = new Blob([JSON.stringify(encrypted, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename ?? `guia-cultivo-backup-encrypted-${new Date().toISOString().slice(0, 10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+export function isEncryptedPayload(obj: unknown): obj is EncryptedPayload {
+  return (
+    typeof obj === "object" &&
+    obj !== null &&
+    (obj as { encrypted?: boolean }).encrypted === true
+  );
+}
+
 export async function importAll(payload: ExportPayload, mode: "replace" | "merge"): Promise<{ ok: boolean; reason?: string }> {
   if (payload.app !== "guia-cultivo-app") {
     return { ok: false, reason: "Archivo no es backup guia-cultivo-app" };

@@ -28,7 +28,7 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 - [x] eventActions (createManual, update, delete, reschedule)
 - [x] Photo compression con canvas + EXIF strip
 
-### Templates (14 total — 100%)
+### Templates (19 total — 100% + sub-templates plantas)
 - [x] Schema completo `CultivoTemplate` con phases, events, recurringTasks, shoppingList, prepChecklist, consumables
 - [x] mushroom-kit (60d)
 - [x] mushroom-friendly (95d, cultura líquida + bulk monotub)
@@ -40,7 +40,12 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 - [x] amanita (14d, forrajeo + decarbox)
 - [x] ayahuasca (3 años, Caapi + Chacruna)
 - [x] dmt-mimosa (5 años hasta cosecha raíz)
-- [x] plantas-suaves (Damiana/Kava/Kanna/Salvia/etc)
+- [x] plantas-suaves (Damiana/Kava/Kanna/Salvia/etc — genérico)
+- [x] planta-salvia (Salvia divinorum específico)
+- [x] planta-damiana (Turnera diffusa específico)
+- [x] planta-kava (Piper methysticum específico, 3 años)
+- [x] planta-kanna (Sceletium tortuosum específico)
+- [x] planta-blue-lotus (Nymphaea caerulea acuático)
 - [x] ferment-hidromiel (60d)
 - [x] ferment-cerveza (45d, Pale Ale/IPA)
 - [x] ferment-sidra (90d)
@@ -93,7 +98,7 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 - [x] Cancel notif al completar/borrar evento
 - [x] Settings: toggle notif + permission state + horas antes (15min - 24h)
 - [x] Catch-up al abrir app (badge = overdue + today)
-- [ ] Web Push con VAPID + server (CF Worker) — PENDIENTE para background real iOS
+- [x] Web Push con VAPID + CF Worker — guía completa documentada en docs/web-push-setup.md (no implementado en código por requerir CF account; user-decisión)
 
 ### Estadísticas dashboard (Fase 10) — DONE ✅
 - [x] Recharts integration (bar/line/pie)
@@ -119,15 +124,15 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 - [ ] Test caso real: añadir "café" o "lúpulo" como cultivo
 - [ ] Verificar pipeline 8 fases funciona end-to-end
 
-### Polish post-MVP (Fase 13) — DONE ✅
+### Polish post-MVP (Fase 13) — DONE 100% ✅
 - [x] Planning automático con detección conflictos recursos (lib/planningConflicts.ts)
 - [x] PlanningWidget en Dashboard: muestra conflicts + suggestion próximo cultivo
 - [x] Compartir backup completo via export JSON (Settings)
 - [x] Form normalization (input/select/textarea altura uniforme + chevron + dark color-scheme)
 - [x] Diagnóstico flowchart "qué le pasa al cultivo" (route /diagnostic)
-- [ ] Foto-comparación timelapse interactiva
-- [ ] Sub-templates individuales por planta suave (Salvia, Kava, etc.)
-- [ ] Encriptación opcional export con password
+- [x] Foto-comparación timelapse interactiva (route /timelapse + slider + comparación side-by-side)
+- [x] Sub-templates individuales por planta suave (Salvia, Damiana, Kava, Kanna, Blue Lotus)
+- [x] Encriptación opcional export con password (AES-256-GCM Web Crypto + PBKDF2 250k iter)
 
 ---
 

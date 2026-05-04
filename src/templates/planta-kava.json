@@ -1,0 +1,41 @@
+{
+  "id": "planta-kava",
+  "name": "Kava (Piper methysticum)",
+  "emoji": "🌴",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1095 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=kava",
+  "theme": { "primary": "#7eb88c", "bg": "#0a1814" },
+  "phases": [
+    { "id": "compra_kava", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_kava", "name": "Cultivo (3 años)", "emoji": "🌴", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "kava" }
+  ],
+  "events": [
+    { "id": "plantar_kava", "title": "🌴 Plantar Kava", "emoji": "🌴", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Esqueje en maceta 30L. Sustrato rico húmedo bien drenado. Tropical: 20-30°C, humedad 70%+. INTERIOR obligatorio en España (no tolera <15°C). Sombra parcial.", "checklistInline": ["Maceta GRANDE 30L+ desde inicio (raíces extensas)", "Humedad ambiental alta", "Sin sol directo intenso"], "warningIf": ["Frío <15°C = muere", "Sol directo intenso = quema hojas grandes"], "wikiPhase": "kava", "notify": true },
+    { "id": "primera_cosecha_kava", "title": "✂️ Primera cosecha raíces (año 3)", "emoji": "✂️", "type": "harvest", "offsetDays": 1095, "durationMin": 240, "description": "Año 3-4: cosechar raíces. Excavar parcial (cortar 30-50% raíces, dejar resto + replantar para regenerar). Lavar, cortar, secar a sombra 2-4 semanas.", "wikiPhase": "kava", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_kava", "title": "💧 Riego Kava (frecuente)", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1095, "cadence": { "everyDays": 2, "volumeMl": "500-1500" }, "description": "Riego frecuente. Sustrato siempre húmedo. Pulverizar hojas para humedad ambiental.", "consumes": [{ "stockKey": "agua_filtrada", "qty": 800, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "kava", "notify": false },
+    { "id": "fert_kava", "title": "🌱 Fertilizar mensual", "emoji": "🌱", "type": "feeding", "startDayOffset": 30, "endDayOffset": 1095, "cadence": { "everyDays": 30 }, "description": "NPK equilibrado mensual. Solo primavera/verano.", "wikiPhase": "kava", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_kava", "name": "Esqueje Kava noble (Piper methysticum)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Kava noble (no tudei = posible hepatotóxico). Variedades: Borogu, Mahakea para principiantes.", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_30L", "name": "Maceta 30L+", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "sustrato_rico", "name": "Sustrato rico orgánico", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "agua_filtrada", "name": "Agua filtrada", "qty": 500, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "interior_calido", "title": "Interior cálido año redondo (>15°C)", "description": "Kava NO tolera frío. Cuarto cálido o invernadero.", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "humedad_kava", "title": "Sistema humedad >70%", "description": "Humidificador imprescindible.", "blocking": true, "estimatedMinutes": 20 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_kava", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_30L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_rico", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_filtrada", "qty": 200, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "raices",
+  "produces": { "kind": "kava_raiz_seca", "unit": "g" }
+}

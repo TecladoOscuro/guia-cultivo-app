@@ -1,0 +1,41 @@
+{
+  "id": "planta-salvia",
+  "name": "Salvia divinorum",
+  "emoji": "🍃",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=salvia",
+  "theme": { "primary": "#9070b8", "bg": "#0f0a1a" },
+  "phases": [
+    { "id": "compra_salvia", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_salvia", "name": "Cultivo", "emoji": "🍃", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "salvia" }
+  ],
+  "events": [
+    { "id": "plantar_salvia", "title": "🍃 Plantar esqueje Salvia divinorum", "emoji": "🍃", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Esqueje enraizado en sustrato húmedo. Maceta 5L. Sombra parcial + humedad alta (>70%) + 20-25°C. NO sol directo. Salvia es delicada — el cultivo más exigente de plantas suaves.", "checklistInline": ["Sustrato bien drenado pero retentivo", "Sombra parcial (NO sol directo)", "Cubrir maceta con bolsa transparente primeros días para alta humedad", "Pulverizar hojas diario"], "warningIf": ["Sol directo = hojas quemadas inmediato", "Sustrato seco = planta muere rápido", "Frío <15°C = paralización crecimiento"], "wikiPhase": "salvia", "notify": true },
+    { "id": "primera_cosecha_salvia", "title": "✂️ Primera cosecha hojas (mes 6+)", "emoji": "✂️", "type": "harvest", "offsetDays": 180, "durationMin": 30, "description": "Cuando planta tenga 30-40cm con varias ramas. Cortar hojas maduras (más oscuras). NO desnudar planta. Hojas frescas para masticación tradicional o secar a sombra.", "wikiPhase": "salvia", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_salvia", "title": "💧 Riego Salvia (humedad alta)", "emoji": "💧", "type": "watering", "startDayOffset": 3, "endDayOffset": 365, "cadence": { "everyDays": 2, "volumeMl": "100-300", "notes": "Mantener sustrato siempre HÚMEDO. Pulverizar hojas." }, "description": "Riego frecuente. Sustrato no debe secar. Humedad ambiental 70%+. Pulverizar diario.", "consumes": [{ "stockKey": "agua_filtrada", "qty": 200, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "salvia", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_salvia", "name": "Esqueje Salvia divinorum enraizado", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Vendedores especializados etnobotánica. Variedades: Bunk, Hofmann, Wasson.", "wikiPhase": "compra_plantas" },
+    { "key": "humidificador", "name": "Humidificador ambiental", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "20-40€", "notes": "Salvia exige >70% humedad ambiental. Bandejas agua + pulverizado funciona pero humidificador mucho mejor." },
+    { "key": "maceta_5L", "name": "Maceta 5L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_universal", "name": "Sustrato universal + perlita", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "agua_filtrada", "name": "Agua filtrada", "qty": 50, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "sombra_humedad", "title": "Espacio sombra parcial + 20-25°C constante", "description": "Salvia necesita sombra. NUNCA sol directo. Temperatura estable.", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "humedad_70", "title": "Sistema mantener humedad 70%+", "description": "Humidificador o bandejas agua + pulverizado diario.", "blocking": true, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_salvia", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_filtrada", "qty": 30, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "salvia_hojas", "unit": "g" }
+}

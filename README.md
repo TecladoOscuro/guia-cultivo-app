@@ -17,23 +17,26 @@ Companion PWA para la [wiki Guía Cultivo](https://tecladooscuro.github.io/guia-
 
 Mismo flujo en Android (Chrome → menú → Instalar app).
 
-## ✨ Funcionalidades actuales
+## ✨ Funcionalidades
 
 | Sección | Qué hace |
 |---------|----------|
-| 🏠 **Dashboard** | Stats cultivos activos · eventos hoy/atrasados/próximos · capacity widget (cuántos cultivos puedes hacer con tu stock) |
-| 📅 **Calendario** | Vista mes/semana/día/agenda (Schedule-X). Eventos coloreados por cultivo. Click → modal con descripción + deep link wiki + marcar hecho |
-| ➕ **Nuevo cultivo** | Wizard 3 pasos: tipo → datos → preflight stock check. Genera eventos + shopping + checklist |
-| 🛒 **Compras** | Lista auto-generada por cultivo. Cross-check stock. Marcar comprado → entra a stock |
-| ✅ **Preparación** | Checklist pre-cultivo con items blocking. Botón "Iniciar cultivo" cuando ready |
-| 📦 **Stock** | CRUD materiales. Reservas blandas por cultivo. Stock libre vs reservado |
-| 📔 **Journal** | Foto + nota + observaciones (pH, temp). Compresión cliente. EXIF stripped |
-| ✂️ **Cosechas** | Form peso fresco/seco, calidad, notas catador. Auto-crea entrada inventario |
-| 🫙 **Inventario** | Producto cosechado agrupado por kind. Decrementa al consumir en sesión |
-| 🌌 **Sesiones** | Tracker dosis/método/setting. Ventanas tolerancia automáticas (14d setas, 42d mescalina, 28d aya, 1d DMT, 7d amanita) |
-| 🧮 **Calculadoras** | Fresco→seco · Dosis por peso · ABV homebrew · Decarbox cannabis |
-| 🧬 **Genética** | Library semillas/esquejes/esporadas. Vendor, lineage, caducidad |
-| ⚙️ **Ajustes** | (placeholder — próxima fase) |
+| 🏠 **Dashboard** | Empty state + stats · cultivos cards con next-action contextual · capacity widget · planning conflicts · sugerencias próximo cultivo |
+| 📅 **Calendario** | Schedule-X (Google Cal style) mes/semana/día/agenda · drag-drop reagendar · click → modal CRUD evento · deep link wiki |
+| ➕ **Nuevo cultivo** | Wizard 3 pasos · 19 templates · preflight stock check con override |
+| 🛒 **Compras** | Lista auto + cross-check stock · marcar comprado/revertir · auto-stock |
+| ✅ **Preparación** | Checklist pre-cultivo + blocking items + override warning |
+| 📦 **Stock** | CRUD + reservas blandas + libre vs reservado |
+| 📔 **Journal** | Foto comprimida + nota + observaciones + mood |
+| ✂️ **Cosechas** | Form completo · auto-crea producto inventario |
+| 🫙 **Inventario** | Producto cosechado · decrementa al consumir |
+| 🌌 **Sesiones** | Dosis tracker · ventanas tolerancia auto (14d setas, 42d mescalina, etc) |
+| 🧮 **Calculadoras** | Fresco→seco · Dosis/peso · ABV · Decarbox |
+| 🧬 **Genética** | Library semillas/esquejes con caducidad |
+| 📊 **Stats** | 5 gráficos recharts: cultivos status · cosechas por kind · timeline · eventos · sesiones |
+| 🔍 **Diagnóstico** | Flowchart interactivo "qué le pasa": cannabis/setas/cactus/ferment con causas + fixes |
+| 📸 **Timelapse** | Slider fotos journal cronológico + comparación side-by-side |
+| ⚙️ **Ajustes** | Resumen · backup JSON · backup encriptado AES-256 · import auto-detect · notif toggle · factory reset |
 
 ## 🔄 Auto-update
 
@@ -101,14 +104,10 @@ Workspace VSCode: `guia-cultivo.code-workspace` (en directorio padre con ambos r
 
 ## 📋 Estado funcional
 
-✅ **MVP completo + extras**: 14 templates · Calendar Schedule-X · Stock + capacity · Shopping · Prep · Journal foto · Cosechas · Inventario · Sesiones + tolerancia · 4 calculadoras · Genética · 5 gráficos stats · Notificaciones locales · Badge counter · Auto-update PWA · Export/import backup · Factory reset · Detección conflictos planning
+✅ **TODO IMPLEMENTADO**: 19 templates · 16 routes · Calendar Schedule-X drag-drop · Stock + capacity + reservas · Shopping con revertir · Prep con override · Journal foto + EXIF strip · Cosechas → producto · Sesiones + tolerancia 5 sustancias · 4 calculadoras · Genética · 5 gráficos stats recharts · Diagnóstico flowchart 4 categorías · Timelapse slider + comparación · Notif locales + badge counter · Auto-update PWA polling 60s · Export JSON + AES-256 encrypted · Import auto-detect · Factory reset · Planning conflicts + sugerencias próximo cultivo · Form normalization · Safe-area iOS
 
-📋 **Pendiente** (post-MVP):
-- Web Push real con VAPID + Cloudflare Worker (background reliable iOS)
-- Diagnóstico flowchart "qué le pasa al cultivo"
-- Foto-comparación timelapse interactiva
-- Sub-templates por planta suave individual
-- Encriptación opcional export con password
+📚 **Doc-only opt-in**:
+- [Web Push background reliable iOS](docs/web-push-setup.md) — guía completa CF Worker + VAPID. NO implementado por requerir CF account user-side; catch-up + badge cubre 80% casos.
 
 ## ⚖️ Licencia
 
