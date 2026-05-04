@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -64,9 +65,24 @@ export default function Calendar() {
   const [selectedEvent, setSelectedEvent] = useState<AppEvent | null>(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editing, setEditing] = useState<AppEvent | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
+
+  // Si URL trae ?event=ID, abrir modal automaticamente al cargar eventos
+  useEffect(() => {
+    const eid = searchParams.get("event");
+    if (!eid || events.length === 0) return;
+    const ev = events.find((x) => x.id === Number(eid));
+    if (ev) {
+      setSelectedEvent(ev);
+      // Limpiar param para que recargas no reabran
+      const next = new URLSearchParams(searchParams);
+      next.delete("event");
+      setSearchParams(next, { replace: true });
+    }
+  }, [events, searchParams, setSearchParams]);
 
   const eventsService = useMemo(() => createEventsServicePlugin(), []);
   const dragDrop = useMemo(() => createDragAndDropPlugin(), []);

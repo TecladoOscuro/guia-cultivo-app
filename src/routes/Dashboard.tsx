@@ -144,7 +144,7 @@ function EventList({
         return (
           <Link
             key={e.id}
-            to={`/calendar`}
+            to={`/calendar?event=${e.id}`}
             className="block p-3 border border-border rounded hover:border-accent text-sm"
           >
             <div className="flex justify-between gap-2">
