@@ -21,6 +21,7 @@ export default function NewCultivation() {
   const [notes, setNotes] = useState("");
   const [stockCheck, setStockCheck] = useState<StockCheck | null>(null);
   const [creating, setCreating] = useState(false);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const templates = listAvailableTemplates();
 
@@ -40,6 +41,7 @@ export default function NewCultivation() {
   const onConfirm = async () => {
     if (!template) return;
     setCreating(true);
+    setErrMsg(null);
     try {
       const result = await createCultivation({
         templateId: template.id,
@@ -48,6 +50,12 @@ export default function NewCultivation() {
         notes,
       });
       navigate(`/calendar?highlight=${result.cultivationId}`);
+    } catch (e) {
+      setErrMsg(
+        e instanceof Error
+          ? e.message
+          : `No se pudo crear el cultivo: ${String(e)}`,
+      );
     } finally {
       setCreating(false);
     }
@@ -57,6 +65,11 @@ export default function NewCultivation() {
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-1">➕ Nuevo cultivo</h1>
       <Stepper current={step} />
+      {errMsg && (
+        <div className="mt-3 p-3 border border-error rounded text-xs text-error bg-error/10">
+          {errMsg}
+        </div>
+      )}
 
       {step === "template" && (
         <section className="grid gap-3 mt-4">

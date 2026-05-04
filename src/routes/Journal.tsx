@@ -139,6 +139,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [observations, setObservations] = useState<{ key: string; value: string }[]>([]);
   const [busy, setBusy] = useState(false);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const onPhotoChange = async (file: File | null) => {
     if (!file) {
@@ -155,6 +156,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
   const onSave = async () => {
     if (cultivationId === "" || !note.trim()) return;
     setBusy(true);
+    setErrMsg(null);
     try {
       await db.journal.add({
         cultivationId: cultivationId as number,
@@ -164,6 +166,8 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
         observations: observations.filter((o) => o.key.trim() && o.value.trim()),
       } as JournalEntry);
       onClose();
+    } catch (e) {
+      setErrMsg(e instanceof Error ? e.message : String(e));
     } finally {
       setBusy(false);
     }
@@ -179,6 +183,11 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold text-text-bright mb-4">Nueva entrada</h2>
+        {errMsg && (
+          <div className="p-2 mb-3 border border-error rounded text-xs text-error bg-error/10">
+            {errMsg}
+          </div>
+        )}
         <div className="grid gap-3">
           <label className="grid gap-1">
             <span className="text-xs text-text-muted">Cultivo</span>

@@ -121,6 +121,8 @@ function StockForm({
   const [qty, setQty] = useState(String(initial?.qty ?? 0));
   const [unit, setUnit] = useState(initial?.unit ?? "ud");
   const [notes, setNotes] = useState(initial?.notes ?? "");
+  const [busy, setBusy] = useState(false);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const effectiveKey = isEditing
     ? initial!.key
@@ -136,21 +138,35 @@ function StockForm({
   const onSave = async () => {
     if (!name.trim()) return;
     if (!effectiveKey) return;
-    const data: Omit<StockType, "id"> = {
-      key: effectiveKey,
-      name,
-      category,
-      qty: parseFloat(qty),
-      unit,
-      notes,
-      addedAt: initial?.addedAt ?? new Date(),
-    };
-    if (initial?.id) {
-      await db.stock.update(initial.id, data);
-    } else {
-      await db.stock.add(data as StockType);
+    setBusy(true);
+    setErrMsg(null);
+    try {
+      const data: Omit<StockType, "id"> = {
+        key: effectiveKey,
+        name,
+        category,
+        qty: parseFloat(qty),
+        unit,
+        notes,
+        addedAt: initial?.addedAt ?? new Date(),
+      };
+      if (initial?.id) {
+        await db.stock.update(initial.id, data);
+      } else {
+        await db.stock.add(data as StockType);
+      }
+      onClose();
+    } catch (e) {
+      setErrMsg(
+        e instanceof Error
+          ? e.message.includes("ConstraintError")
+            ? "Ya existe stock con ese identificador. Usa un nombre distinto o edita el existente."
+            : e.message
+          : String(e),
+      );
+    } finally {
+      setBusy(false);
     }
-    onClose();
   };
 
   const onDelete = async () => {
@@ -178,6 +194,11 @@ function StockForm({
         <h2 className="text-lg font-bold text-text-bright mb-4">
           {initial ? "Editar" : "Añadir"} stock
         </h2>
+        {errMsg && (
+          <div className="p-2 mb-3 border border-error rounded text-xs text-error bg-error/10">
+            {errMsg}
+          </div>
+        )}
         <div className="grid gap-3">
           <Field label="Nombre" value={name} onChange={onNameChange} placeholder="Ej: Perlita 5L" />
           <label className="grid gap-1">
@@ -233,10 +254,10 @@ function StockForm({
             </button>
             <button
               onClick={onSave}
-              disabled={!name.trim() || !effectiveKey}
+              disabled={busy || !name.trim() || !effectiveKey}
               className="px-3 py-2 bg-accent text-bg rounded font-bold disabled:opacity-50"
             >
-              Guardar
+              {busy ? "Guardando..." : "Guardar"}
             </button>
           </div>
         </div>

@@ -88,23 +88,34 @@ function GeneticsForm({ initial, onClose }: { initial: Genetics | null; onClose:
     initial?.expiresAt ? new Date(initial.expiresAt).toISOString().slice(0, 10) : ""
   );
   const [notes, setNotes] = useState(initial?.notes ?? "");
+  const [busy, setBusy] = useState(false);
+  const [errMsg, setErrMsg] = useState<string | null>(null);
 
   const onSave = async () => {
-    const data: Omit<Genetics, "id"> = {
-      kind,
-      name,
-      vendor: vendor || undefined,
-      lineage: lineage || undefined,
-      acquiredAt: new Date(acquiredAt),
-      expiresAt: expiresAt ? new Date(expiresAt) : undefined,
-      notes: notes || undefined,
-    };
-    if (initial?.id) {
-      await db.genetics.update(initial.id, data);
-    } else {
-      await db.genetics.add(data as Genetics);
+    if (!name.trim()) return;
+    setBusy(true);
+    setErrMsg(null);
+    try {
+      const data: Omit<Genetics, "id"> = {
+        kind,
+        name,
+        vendor: vendor || undefined,
+        lineage: lineage || undefined,
+        acquiredAt: new Date(acquiredAt),
+        expiresAt: expiresAt ? new Date(expiresAt) : undefined,
+        notes: notes || undefined,
+      };
+      if (initial?.id) {
+        await db.genetics.update(initial.id, data);
+      } else {
+        await db.genetics.add(data as Genetics);
+      }
+      onClose();
+    } catch (e) {
+      setErrMsg(e instanceof Error ? e.message : String(e));
+    } finally {
+      setBusy(false);
     }
-    onClose();
   };
 
   const onDelete = async () => {
@@ -129,13 +140,18 @@ function GeneticsForm({ initial, onClose }: { initial: Genetics | null; onClose:
         <h2 className="text-lg font-bold text-text-bright mb-4">
           {initial ? "Editar" : "Añadir"} entrada genética
         </h2>
+        {errMsg && (
+          <div className="p-2 mb-3 border border-error rounded text-xs text-error bg-error/10">
+            {errMsg}
+          </div>
+        )}
         <div className="grid gap-3">
           <label className="grid gap-1">
             <span className="text-xs text-text-muted">Tipo</span>
             <select
               value={kind}
               onChange={(e) => setKind(e.target.value as Genetics["kind"])}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               {KINDS.map((k) => (
                 <option key={k} value={k}>{k}</option>
@@ -155,7 +171,7 @@ function GeneticsForm({ initial, onClose }: { initial: Genetics | null; onClose:
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={2}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
         </div>
@@ -171,10 +187,10 @@ function GeneticsForm({ initial, onClose }: { initial: Genetics | null; onClose:
             <button onClick={onClose} className="px-3 py-2 border border-border rounded">Cancelar</button>
             <button
               onClick={onSave}
-              disabled={!name.trim()}
+              disabled={busy || !name.trim()}
               className="px-3 py-2 bg-accent text-bg rounded font-bold disabled:opacity-50"
             >
-              Guardar
+              {busy ? "Guardando..." : "Guardar"}
             </button>
           </div>
         </div>
@@ -201,7 +217,7 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+        className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
       />
     </label>
   );
