@@ -1,0 +1,47 @@
+name: Sync templates from wiki
+
+on:
+  repository_dispatch:
+    types: [wiki-updated]
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout wiki repo
+        uses: actions/checkout@v4
+        with:
+          repository: TecladoOscuro/guia-cultivo
+          path: wiki
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run extractor
+        run: node scripts/extract-templates.js wiki/src src/templates
+      - name: Detect changes
+        id: diff
+        run: |
+          if git diff --quiet src/templates; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      - name: Create PR if changed
+        if: steps.diff.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: wiki-sync-${{ github.run_id }}
+          title: "Auto-sync: templates from wiki update"
+          body: |
+            Auto-generated PR from wiki sync workflow.
+
+            Review JSON diff carefully — affects calendar/events generation in app.
+
+            Trigger: ${{ github.event_name }}
+          commit-message: "chore: sync templates from wiki"
