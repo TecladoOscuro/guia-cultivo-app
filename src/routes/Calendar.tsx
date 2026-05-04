@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { Temporal } from "@js-temporal/polyfill";
 import { ScheduleXCalendar, useCalendarApp } from "@schedule-x/react";
 import {
   createViewMonthGrid,
@@ -24,11 +25,12 @@ const PALETTE = [
   { id: "p5", colorName: "p5", lightColors: { main: "#74a8d8", container: "#1a2a3d", onContainer: "#d8e8f5" }, darkColors: { main: "#74a8d8", container: "#1a2a3d", onContainer: "#d8e8f5" } },
 ];
 
-function formatLocal(d: Date, withTime = false): string {
-  const pad = (n: number) => String(n).padStart(2, "0");
-  const date = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
-  if (!withTime) return date;
-  return `${date} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+function toPlainDate(d: Date): Temporal.PlainDate {
+  return Temporal.PlainDate.from({
+    year: d.getFullYear(),
+    month: d.getMonth() + 1,
+    day: d.getDate(),
+  });
 }
 
 export default function Calendar() {
@@ -50,15 +52,17 @@ export default function Calendar() {
   }, [cultivations]);
 
   const sxEvents = useMemo(() => {
-    return events.map((e) => ({
-      id: String(e.id),
-      title: `${e.emoji} ${e.title}`,
-      start: formatLocal(e.scheduledDate),
-      end: formatLocal(e.scheduledDate),
-      calendarId: `cult-${e.cultivationId}`,
-      description: e.description,
-      _appEvent: e,
-    }));
+    return events.map((e) => {
+      const date = toPlainDate(e.scheduledDate);
+      return {
+        id: String(e.id),
+        title: `${e.emoji} ${e.title}`,
+        start: date,
+        end: date,
+        calendarId: `cult-${e.cultivationId}`,
+        description: e.description,
+      };
+    });
   }, [events]);
 
   const calendar = useCalendarApp({
