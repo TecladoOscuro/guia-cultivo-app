@@ -119,13 +119,15 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 - [ ] Test caso real: añadir "café" o "lúpulo" como cultivo
 - [ ] Verificar pipeline 8 fases funciona end-to-end
 
-### Polish post-MVP (Fase 13)
+### Polish post-MVP (Fase 13) — DONE ✅
 - [x] Planning automático con detección conflictos recursos (lib/planningConflicts.ts)
+- [x] PlanningWidget en Dashboard: muestra conflicts + suggestion próximo cultivo
 - [x] Compartir backup completo via export JSON (Settings)
-- [x] Form normalization (input/select/textarea altura uniforme)
-- [ ] Diagnóstico flowchart "qué le pasa al cultivo"
+- [x] Form normalization (input/select/textarea altura uniforme + chevron + dark color-scheme)
+- [x] Diagnóstico flowchart "qué le pasa al cultivo" (route /diagnostic)
 - [ ] Foto-comparación timelapse interactiva
 - [ ] Sub-templates individuales por planta suave (Salvia, Kava, etc.)
+- [ ] Encriptación opcional export con password
 
 ---
 

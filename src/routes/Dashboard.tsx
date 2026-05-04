@@ -6,6 +6,8 @@ import { es } from "date-fns/locale";
 import { db } from "../lib/db";
 import { calculateCapacity } from "../lib/stockPipeline";
 import { listAvailableTemplates } from "../lib/cultivationActions";
+import { getTemplate } from "../templates";
+import { detectConflicts, suggestNextCultivo, type Conflict } from "../lib/planningConflicts";
 import type { CapacityResult } from "../lib/stockPipeline";
 import type { Cultivation, AppEvent } from "../types";
 
@@ -85,9 +87,83 @@ export default function Dashboard() {
         </Link>
       </Section>
 
+      <Section title="🎯 Planning automático">
+        <PlanningWidget />
+      </Section>
+
       <Section title="📊 Capacidad por template">
         <CapacityWidget />
       </Section>
+    </div>
+  );
+}
+
+function PlanningWidget() {
+  const [conflicts, setConflicts] = useState<Conflict[]>([]);
+  const [suggestion, setSuggestion] = useState<{ templateId: string; reason: string } | null>(null);
+  const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
+  const reservations = useLiveQuery(() => db.stockReservations.toArray(), []) ?? [];
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const c = await detectConflicts();
+      const s = await suggestNextCultivo();
+      if (!cancelled) {
+        setConflicts(c);
+        setSuggestion(s);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [cultivations, reservations]);
+
+  return (
+    <div className="grid gap-2">
+      {conflicts.length === 0 ? (
+        <div className="p-3 border border-success/40 rounded text-sm text-success">
+          ✅ Sin conflictos detectados
+        </div>
+      ) : (
+        conflicts.map((c, i) => (
+          <div
+            key={i}
+            className={`p-3 border rounded text-sm ${
+              c.severity === "critical"
+                ? "border-error text-error"
+                : c.severity === "warn"
+                  ? "border-warn text-warn"
+                  : "border-border text-text-muted"
+            }`}
+          >
+            <div className="font-bold">
+              {c.severity === "critical" ? "❌" : c.severity === "warn" ? "⚠️" : "ℹ️"} {c.message}
+            </div>
+            {c.date && (
+              <div className="text-xs mt-1">
+                {format(c.date, "PPPP", { locale: es })}
+              </div>
+            )}
+          </div>
+        ))
+      )}
+
+      {suggestion && (() => {
+        const t = getTemplate(suggestion.templateId);
+        if (!t) return null;
+        return (
+          <Link
+            to="/new"
+            className="p-3 border border-accent/40 bg-accent/5 rounded text-sm hover:border-accent transition"
+          >
+            <div className="font-bold text-accent">
+              💡 Sugerencia: {t.emoji} {t.name}
+            </div>
+            <div className="text-xs text-text-muted mt-1">{suggestion.reason}</div>
+          </Link>
+        );
+      })()}
     </div>
   );
 }
