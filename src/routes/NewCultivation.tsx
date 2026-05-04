@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   createCultivation,
@@ -9,6 +9,16 @@ import type { CultivoTemplate } from "../types";
 import type { StockCheck } from "../lib/stockPipeline";
 
 type Step = "template" | "details" | "preflight";
+type CategoryFilter = CultivoTemplate["category"] | "all";
+
+const CATEGORY_LABELS: Record<CultivoTemplate["category"] | "all", string> = {
+  all: "Todos",
+  planta: "🌿 Planta",
+  hongo: "🍄 Hongo",
+  fermento: "🍯 Fermento",
+  etnobotanica: "🪷 Etnobotánica",
+  toxicas: "☠️ Tóxicas",
+};
 
 export default function NewCultivation() {
   const navigate = useNavigate();
@@ -22,8 +32,24 @@ export default function NewCultivation() {
   const [stockCheck, setStockCheck] = useState<StockCheck | null>(null);
   const [creating, setCreating] = useState(false);
   const [errMsg, setErrMsg] = useState<string | null>(null);
+  const [search, setSearch] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("all");
 
-  const templates = listAvailableTemplates();
+  const allTemplates = listAvailableTemplates();
+
+  const availableCategories = useMemo(() => {
+    const cats = new Set(allTemplates.map((t) => t.category));
+    return ["all", ...Array.from(cats)] as CategoryFilter[];
+  }, [allTemplates]);
+
+  const templates = useMemo(() => {
+    const q = search.toLowerCase();
+    return allTemplates.filter((t) => {
+      const matchesCategory = categoryFilter === "all" || t.category === categoryFilter;
+      const matchesSearch = !q || t.name.toLowerCase().includes(q) || t.emoji.includes(q);
+      return matchesCategory && matchesSearch;
+    });
+  }, [allTemplates, search, categoryFilter]);
 
   const onChooseTemplate = (t: CultivoTemplate) => {
     setTemplate(t);
@@ -73,10 +99,44 @@ export default function NewCultivation() {
 
       {step === "template" && (
         <section className="grid gap-3 mt-4">
-          <p className="text-text-muted">Elige tipo de cultivo:</p>
+          {/* Search */}
+          <input
+            type="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="🔍 Buscar cultivo..."
+            className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright placeholder:text-text-muted"
+            aria-label="Buscar cultivo"
+          />
+
+          {/* Category filters */}
+          <div className="flex flex-wrap gap-2">
+            {availableCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setCategoryFilter(cat)}
+                className={`px-3 py-1 text-xs rounded border transition ${
+                  categoryFilter === cat
+                    ? "border-accent bg-accent/10 text-accent font-bold"
+                    : "border-border text-text-muted hover:border-accent/50"
+                }`}
+                aria-pressed={categoryFilter === cat}
+              >
+                {CATEGORY_LABELS[cat]}
+              </button>
+            ))}
+          </div>
+
+          {/* Results count */}
+          <p className="text-xs text-text-muted">
+            {templates.length} de {allTemplates.length} cultivolos
+            {search && ` · "${search}"`}
+            {categoryFilter !== "all" && ` · ${CATEGORY_LABELS[categoryFilter]}`}
+          </p>
+
           {templates.length === 0 ? (
-            <div className="p-4 border border-border rounded">
-              No hay templates registrados. Añade alguno en src/templates/.
+            <div className="p-4 border border-border rounded text-text-muted text-sm">
+              Sin resultados. Prueba con otra búsqueda o categoría.
             </div>
           ) : (
             templates.map((t) => (
@@ -85,10 +145,15 @@ export default function NewCultivation() {
                 onClick={() => onChooseTemplate(t)}
                 className="text-left p-4 border border-border rounded hover:border-accent transition"
               >
-                <div className="text-lg font-bold text-text-bright">
-                  {t.emoji} {t.name}
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-lg font-bold text-text-bright">
+                    {t.emoji} {t.name}
+                  </div>
+                  <span className="text-xs px-2 py-0.5 border border-border rounded text-text-muted shrink-0 mt-0.5">
+                    {CATEGORY_LABELS[t.category] ?? t.category}
+                  </span>
                 </div>
-                <div className="text-xs text-text-muted">
+                <div className="text-xs text-text-muted mt-1">
                   {t.totalDuration.days} días · {t.events.length} eventos · {t.recurringTasks.length} tareas recurrentes · {t.consumables.length} consumibles
                 </div>
               </button>

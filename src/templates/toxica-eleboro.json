@@ -1,0 +1,34 @@
+{
+  "id": "toxica-eleboro",
+  "name": "Eléboro negro (Helleborus niger)",
+  "emoji": "❄️",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 3650 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=eleboro",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_eleboro", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "eleboro" },
+    { "id": "cultivo_eleboro", "name": "Cultivo", "emoji": "❄️", "startDayOffset": 0, "endDayOffset": 3650, "wikiPhase": "eleboro" }
+  ],
+  "events": [
+    { "id": "plantar_eleboro", "title": "❄️ Plantar Eléboro negro", "emoji": "❄️", "type": "milestone", "offsetDays": 0, "durationMin": 25, "description": "⚠️ TIER ROJO — helleborina, ranunculósidos. Savia fresca: irritante severo piel/ojos. GUANTES. Planta perenne longeva (10-15 años). Semisombra, suelo calizo drenado. Florece en invierno (dic-feb). Conocida como 'cura de la locura' en Grecia antigua.", "wikiPhase": "eleboro", "notify": true },
+    { "id": "floracion_invierno_eleboro", "title": "❄️ Floración invernal (dic-feb)", "emoji": "❄️", "type": "milestone", "offsetDays": 365, "durationMin": 10, "description": "Flores blancas/rosadas bajo la nieve. Espectacular en jardín invernal. Sépalos persisten y se tornan verdes tras la fecundación.", "wikiPhase": "eleboro", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_eleboro", "title": "💧 Riego Eléboro", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 3650, "cadence": { "everyDays": 10, "volumeMl": "200-400", "notes": "Moderado. Más en verano caluroso. Muy resistente" }, "description": "Riego moderado. Una vez establecido, muy resistente a condiciones adversas.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "eleboro", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "planta_eleboro", "name": "Planta Helleborus niger (vivero)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-20€", "source": "vivero", "wikiPhase": "eleboro" },
+    { "key": "sustrato_calizo", "name": "Sustrato calizo bien drenado", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo (savia irrita mucho)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "guantes_savia_eleboro", "title": "⚠️ Savia fresca = irritante severo piel/ojos", "description": "NUNCA tocar ojos tras manipular eléboro sin lavarse manos. Savia provoca dermatitis de contacto y posiblemente ampollas en mucosas. Guantes siempre al podar/trasplantar.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "sustrato_calizo", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": false
+}

@@ -44,6 +44,18 @@ import plantaEstramonio from "./planta-estramonio.json";
 import fermentHidromiel from "./ferment-hidromiel.json";
 import fermentCerveza from "./ferment-cerveza.json";
 import fermentSidra from "./ferment-sidra.json";
+import toxicaBrugmansia from "./toxica-brugmansia.json";
+import toxicaAdelfa from "./toxica-adelfa.json";
+import toxicaDedalera from "./toxica-dedalera.json";
+import toxicaAconito from "./toxica-aconito.json";
+import toxicaCicuta from "./toxica-cicuta.json";
+import toxicaRicino from "./toxica-ricino.json";
+import toxicaColchico from "./toxica-colchico.json";
+import toxicaTejo from "./toxica-tejo.json";
+import toxicaLirioValle from "./toxica-lirio-valle.json";
+import toxicaEleboro from "./toxica-eleboro.json";
+import toxicaVeratrum from "./toxica-veratrum.json";
+import toxicaLaureola from "./toxica-laureola.json";
 
 export const templates: Record<string, CultivoTemplate> = {
   "mushroom-kit": mushroomKit as CultivoTemplate,
@@ -91,6 +103,18 @@ export const templates: Record<string, CultivoTemplate> = {
   "ferment-hidromiel": fermentHidromiel as CultivoTemplate,
   "ferment-cerveza": fermentCerveza as CultivoTemplate,
   "ferment-sidra": fermentSidra as CultivoTemplate,
+  "toxica-brugmansia": toxicaBrugmansia as CultivoTemplate,
+  "toxica-adelfa": toxicaAdelfa as CultivoTemplate,
+  "toxica-dedalera": toxicaDedalera as CultivoTemplate,
+  "toxica-aconito": toxicaAconito as CultivoTemplate,
+  "toxica-cicuta": toxicaCicuta as CultivoTemplate,
+  "toxica-ricino": toxicaRicino as CultivoTemplate,
+  "toxica-colchico": toxicaColchico as CultivoTemplate,
+  "toxica-tejo": toxicaTejo as CultivoTemplate,
+  "toxica-lirio-valle": toxicaLirioValle as CultivoTemplate,
+  "toxica-eleboro": toxicaEleboro as CultivoTemplate,
+  "toxica-veratrum": toxicaVeratrum as CultivoTemplate,
+  "toxica-laureola": toxicaLaureola as CultivoTemplate,
 };
 
 export function getTemplate(id: string): CultivoTemplate | undefined {

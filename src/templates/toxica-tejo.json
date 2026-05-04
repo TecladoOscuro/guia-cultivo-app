@@ -1,0 +1,34 @@
+{
+  "id": "toxica-tejo",
+  "name": "Tejo (Taxus baccata)",
+  "emoji": "🌲",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 1825 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=tejo",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_tejo", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "tejo" },
+    { "id": "cultivo_tejo", "name": "Cultivo", "emoji": "🌲", "startDayOffset": 0, "endDayOffset": 1825, "wikiPhase": "tejo" }
+  ],
+  "events": [
+    { "id": "plantar_tejo", "title": "🌲 Plantar Tejo", "emoji": "🌲", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO — taxina A y B. Toda la planta excepto arilo rojo. Esqueje o planta de vivero. Tolera sombra intensa. Crecimiento muy lento. Árbol de 2000+ años. PELIGROSO PARA CABALLOS/GANADO. Bayas rojas (arilos) atractivas para niños — semilla dentro es tóxica.", "wikiPhase": "tejo", "notify": true },
+    { "id": "primeras_bayas_tejo", "title": "🔴 Primeras bayas rojas", "emoji": "🔴", "type": "milestone", "offsetDays": 1460, "durationMin": 15, "description": "Arilos rojos maduros (otoño). Arilo = NO tóxico. Semilla dentro = MUY tóxica. Advertir a niños: si tragan semilla masticada → urgencias.", "wikiPhase": "tejo", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_tejo", "title": "💧 Riego Tejo", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 730, "cadence": { "everyDays": 14, "volumeMl": "500-800", "notes": "Resistente una vez establecido. Primeros 2 años riego regular." }, "description": "Riego regular primeros 2 años. Después muy resistente.", "consumes": [{ "stockKey": "agua_riego", "qty": 600, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "tejo", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "planta_tejo", "name": "Planta Taxus baccata (vivero)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-30€", "source": "vivero", "wikiPhase": "tejo" },
+    { "key": "sustrato_drenante", "name": "Sustrato bien drenado", "qty": 20, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_seguros", "name": "Guantes para poda", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_tejo", "title": "⚠️ NO dar podas a caballos/ganado — taxina letal", "description": "Accidente veterinario frecuente. Podas en bolsa residuos (no compost, no campo pastoreo). Bayas: avisar niños que la semilla negra dentro es tóxica aunque el arilo rojo no lo sea.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "sustrato_drenante", "qty": 20, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": false
+}

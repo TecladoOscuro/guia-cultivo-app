@@ -126,7 +126,7 @@ export interface CultivoTemplate {
   harvestable?: boolean;
   harvestType?: string;
   produces?: { kind: string; unit: string };
-  category: "planta" | "hongo" | "fermento" | "etnobotanica";
+  category: "planta" | "hongo" | "fermento" | "etnobotanica" | "toxicas";
 }
 
 // === Persisted ===

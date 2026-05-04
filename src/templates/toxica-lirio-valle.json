@@ -1,0 +1,35 @@
+{
+  "id": "toxica-lirio-valle",
+  "name": "Lirio del Valle (Convallaria majalis)",
+  "emoji": "🤍",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=lirio_valle",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_lirio_valle", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "lirio_valle" },
+    { "id": "cultivo_lirio_valle", "name": "Cultivo", "emoji": "🤍", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "lirio_valle" }
+  ],
+  "events": [
+    { "id": "plantar_lirio_valle", "title": "🤍 Plantar Lirio del Valle", "emoji": "🤍", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO — convalatoxina (glucósido cardiaco). EL AGUA DEL JARRÓN TAMBIÉN ES TÓXICA. Rizoma en sombra húmeda. BCN: zona norte umbrosa. Prefiere humedad. Florece abril-mayo con perfume intenso.", "wikiPhase": "lirio_valle", "notify": true },
+    { "id": "floracion_lirio_valle", "title": "🤍 Floración perfumada (abril-mayo)", "emoji": "🤍", "type": "milestone", "offsetDays": 210, "durationMin": 10, "description": "Flores blancas campanuladas, perfume exquisito. Bayas rojas en verano. GUANTES al cortar flores. El agua del jarrón es tóxica.", "wikiPhase": "lirio_valle", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_lirio_valle", "title": "💧 Riego Lirio del Valle", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 365, "cadence": { "everyDays": 4, "volumeMl": "200-400", "notes": "Suelo húmedo constante. No tolera sequía" }, "description": "Humedad constante. Planta de bosque templado.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "lirio_valle", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "rizoma_lirio_valle", "name": "Rizomas Convallaria majalis", "qty": 5, "unit": "ud", "category": "esencial", "approxPrice": "8-15€", "source": "internet", "wikiPhase": "lirio_valle" },
+    { "key": "sustrato_humifero", "name": "Sustrato húmedo rico en humus", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 80, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_lirio_valle", "title": "⚠️ Agua del jarrón también tóxica — etiquetar", "description": "Convalatoxina pasa al agua al cortar flores. Intoxicaciones por beber o confundir el agua. Bayas rojas atractivas para niños. Etiquetar recipientes con flores cortadas.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "rizoma_lirio_valle", "qty": 5, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_humifero", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": false
+}

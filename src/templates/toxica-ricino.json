@@ -1,0 +1,35 @@
+{
+  "id": "toxica-ricino",
+  "name": "Ricino (Ricinus communis)",
+  "emoji": "🔴",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=ricino",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_ricino", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "ricino" },
+    { "id": "cultivo_ricino", "name": "Cultivo", "emoji": "🔴", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "ricino" }
+  ],
+  "events": [
+    { "id": "plantar_ricino", "title": "🔴 Sembrar Ricino", "emoji": "🔴", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO MAX — ricina en semillas (toxina más potente conocida). Semilla directa o en interiror y trasplantar. Sol pleno, sustrato drenado, riego moderado. Crecimiento MUY rápido (2-3m en una temporada en BCN). Hojas ornamentales rojas/verdes. SEMILLAS: guardar bajo llave, NUNCA accesibles.", "wikiPhase": "ricino", "notify": true },
+    { "id": "frutas_ricino", "title": "🔴 Frutos espinosos — gestión semillas", "emoji": "🔴", "type": "milestone", "offsetDays": 90, "durationMin": 30, "description": "⚠️ Frutos espinosos maduran → semillas tóxicas. OPCIONES: (a) eliminar frutos antes de madurar; (b) guardar semillas en recipiente etiquetado VENENO+RICINA bajo llave; (c) proteger zona si hay niños. Semillas ornamentales muy atractivas para niños.", "wikiPhase": "ricino", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_ricino", "title": "💧 Riego Ricino", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 5, "volumeMl": "500-800", "notes": "Moderado. No encharcamiento" }, "description": "Riego moderado. Sustrato bien drenado.", "consumes": [{ "stockKey": "agua_riego", "qty": 600, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "ricino", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_ricino", "name": "Semillas Ricinus communis", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-5€", "source": "internet", "wikiPhase": "ricino" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo + caja cerrada semillas", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "semillas_ricino_seguras", "title": "⚠️ Plan para gestión semillas ANTES de plantar", "description": "Ricina en semillas = toxina más potente conocida (natural). 3-5 semillas masticadas letal para niño. Decidir ANTES: (a) eliminar frutos, (b) guardar bajo llave. NUNCA dejar semillas accesibles.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_ricino", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 15, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": false
+}

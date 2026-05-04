@@ -1,0 +1,32 @@
+{
+  "id": "toxica-veratrum",
+  "name": "Veratrum album (Eléboro blanco)",
+  "emoji": "⛰️",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 1095 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=veratrum",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_veratrum", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "veratrum" },
+    { "id": "cultivo_veratrum", "name": "Cultivo", "emoji": "⛰️", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "veratrum" }
+  ],
+  "events": [
+    { "id": "plantar_veratrum", "title": "⛰️ Plantar Veratrum album", "emoji": "⛰️", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO MAX — protoveratrina. CONFUSIÓN MORTAL con genciana (misma zona, aspecto similar). Planta de alta montaña: suelo húmedo, zona norte/fría. GUANTES. Rizoma o semilla (estratificación fría 3-4 meses). Florece año 2-3. Nunca cerca de huerto.", "wikiPhase": "veratrum", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_veratrum", "title": "💧 Riego Veratrum", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1095, "cadence": { "everyDays": 5, "volumeMl": "400-600", "notes": "Suelo húmedo constante. Planta de montaña" }, "description": "Suelo húmedo constante. Planta de alta montaña, no tolera sequía.", "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "veratrum", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "rizoma_veratrum", "name": "Rizoma o semillas Veratrum album", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "veratrum" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo gruesos", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 150, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_veratrum_genciana", "title": "⚠️ NUNCA cerca de genciana — confusión mortal", "description": "Rizomas y hojas jóvenes de Veratrum = parecidos a genciana (Gentiana lutea). Intoxicaciones mortales documentadas en Alpes y Pirineos. AISLAR COMPLETAMENTE de cualquier umbelífera o genciana. Etiqueta permanente visible.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "rizoma_veratrum", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}

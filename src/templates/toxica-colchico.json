@@ -1,0 +1,33 @@
+{
+  "id": "toxica-colchico",
+  "name": "Cólquico (Colchicum autumnale)",
+  "emoji": "🌸",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=colchico",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_colchico", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "colchico" },
+    { "id": "cultivo_colchico", "name": "Cultivo", "emoji": "🌸", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "colchico" }
+  ],
+  "events": [
+    { "id": "plantar_colchico", "title": "🌸 Plantar Cólquico", "emoji": "🌸", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO — colchicina (veneno huso mitótico). Cormo en agosto para floración otoñal. Suelo drenado, sol/semisombra. GUANTES. El cormo se confunde con cebolla — ETIQUETAR inmediatamente. Flores sin hojas en otoño.", "wikiPhase": "colchico", "notify": true },
+    { "id": "floracion_otonal", "title": "🌸 Floración otoñal (sept-nov)", "emoji": "🌸", "type": "milestone", "offsetDays": 45, "durationMin": 10, "description": "Flores lila/blancas saliendo directamente del suelo SIN hojas. Muy inusual y decorativo. Las hojas aparecerán en primavera.", "wikiPhase": "colchico", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_colchico", "title": "💧 Riego Cólquico", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 365, "cadence": { "everyDays": 10, "volumeMl": "200-400", "notes": "Moderado. No encharcamiento. Reducir en latencia veraniega" }, "description": "Riego moderado. Ciclo: flores otoño → hojas primavera → latencia verano.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "colchico", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "cormo_colchico", "name": "Cormos Colchicum autumnale", "qty": 3, "unit": "ud", "category": "esencial", "approxPrice": "5-12€", "source": "internet", "wikiPhase": "colchico" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 50, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_colchico_cebolla", "title": "⚠️ Etiqueta VENENO en cormos — NO confundir con cebolla", "description": "Cormos de Cólquico = parecidos a cebollas pequeñas. Hojas = parecidas a ajo silvestre. AISLAR del huerto y etiquetar desde el día 1. Colchicina: fallo multiorgánico diferido (2-7 días — la víctima cree haberse recuperado).", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "cormo_colchico", "qty": 3, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}

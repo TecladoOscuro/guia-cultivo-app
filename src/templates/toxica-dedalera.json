@@ -1,0 +1,35 @@
+{
+  "id": "toxica-dedalera",
+  "name": "Dedalera (Digitalis purpurea)",
+  "emoji": "💜",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=dedalera",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_dedalera", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "dedalera" },
+    { "id": "cultivo_dedalera", "name": "Cultivo", "emoji": "💜", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "dedalera" }
+  ],
+  "events": [
+    { "id": "plantar_dedalera", "title": "💜 Sembrar Dedalera", "emoji": "💜", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO — glucósidos digitálicos. Bienal: roseta año 1, flor espectacular año 2. Semilla en verano, sombra/semisombra, suelo ácido húmedo. GUANTES. Fuente histórica de digoxina (medicamento cardiaco).", "wikiPhase": "dedalera", "notify": true },
+    { "id": "floracion_dedalera", "title": "💜 Floración espectacular", "emoji": "💜", "type": "milestone", "offsetDays": 420, "durationMin": 15, "description": "Año 2: espiga floral 1-2m con flores tubulares púrpura. Auto-siembra agresivamente. Después de florecer la planta madre muere pero quedan miles de semillas.", "wikiPhase": "dedalera", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_dedalera", "title": "💧 Riego Dedalera", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 730, "cadence": { "everyDays": 5, "volumeMl": "300-500", "notes": "Suelo siempre ligeramente húmedo" }, "description": "Suelo húmedo constante. No encharcamiento.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "dedalera", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_dedalera", "name": "Semillas Digitalis purpurea", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-5€", "source": "internet", "wikiPhase": "dedalera" },
+    { "key": "sustrato_acido", "name": "Sustrato ácido con humus", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 150, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_dedalera", "title": "⚠️ Etiqueta VENENO — NO confundir con borraja", "description": "Hojas de dedalera se confunden con borraja antes de florecer. Ambas aterciopeladas. Etiquetar desde el principio. Fuente de digoxina cardiaca — no automedicalización.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_dedalera", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acido", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": false
+}

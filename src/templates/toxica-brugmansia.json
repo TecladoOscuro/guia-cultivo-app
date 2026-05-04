@@ -1,0 +1,39 @@
+{
+  "id": "toxica-brugmansia",
+  "name": "Brugmansia (Floripondio)",
+  "emoji": "🎺",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=brugmansia",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_brugmansia", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "brugmansia" },
+    { "id": "cultivo_brugmansia", "name": "Cultivo", "emoji": "🎺", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "brugmansia" }
+  ],
+  "events": [
+    { "id": "plantar_brugmansia", "title": "🎺 Plantar Brugmansia", "emoji": "🎺", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO — tropanos (atropina, escopolamina). Esqueje en agua 3-6 sem o semilla (lenta). Macetón 25L, sustrato rico, sol pleno/semisombra. BCN: exterior, aguanta hasta -2°C. GUANTES siempre. Etiqueta VENENO visible.", "wikiPhase": "brugmansia", "notify": true },
+    { "id": "primera_floracion_brugmansia", "title": "🌸 Primera floración", "emoji": "🌸", "type": "milestone", "offsetDays": 90, "durationMin": 15, "description": "Primeras flores trompeta colgantes — espectaculares. NO manipular sin guantes. Olor intenso por la noche (puede causar mareo en espacio cerrado). Ventilación obligatoria.", "wikiPhase": "brugmansia", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_brugmansia", "title": "💧 Riego Brugmansia", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 365, "cadence": { "everyDays": 3, "volumeMl": "800-1500", "notes": "Bebe mucho en verano. Reducir invierno." }, "description": "Riego abundante en crecimiento. No encharcar — drenaje importante.", "consumes": [{ "stockKey": "agua_riego", "qty": 1000, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "brugmansia", "notify": false },
+    { "id": "abono_brugmansia", "title": "🌱 Abono Brugmansia", "emoji": "🌱", "type": "feeding", "startDayOffset": 14, "endDayOffset": 270, "cadence": { "everyDays": 14, "notes": "NPK balanceado en crecimiento/floración" }, "description": "Fertilizante NPK cada 2 semanas durante temporada activa.", "consumes": [], "wikiPhase": "brugmansia", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_brugmansia", "name": "Esqueje o semillas Brugmansia", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-20€", "source": "internet", "wikiPhase": "brugmansia" },
+    { "key": "maceta_25L", "name": "Macetón 25L+", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "sustrato_rico", "name": "Sustrato rico universal", "qty": 25, "unit": "L", "category": "esencial", "approxPrice": "15-20€" },
+    { "key": "guantes_seguros", "name": "Guantes de nitrilo gruesos", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "fertilizante_npk", "name": "Fertilizante NPK líquido", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_brugmansia", "title": "⚠️ Etiqueta VENENO visible + ubicación segura", "description": "TIER ROJO tropano. Toda la planta tóxica. Flores atractivas — peligrosa para niños/mascotas. En espacio privado con acceso controlado. Cartel 'NO TOCAR — VENENO' visible.", "blocking": true, "estimatedMinutes": 10 },
+    { "id": "guantes_disponibles", "title": "Guantes de nitrilo siempre disponibles", "description": "Nunca manipular sin guantes. La savia/pollen puede absorber escopolamina.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "sustrato_rico", "qty": 25, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "toxica-cicuta",
+  "name": "Cicuta (Conium maculatum)",
+  "emoji": "💀",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=cicuta",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_cicuta", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "cicuta" },
+    { "id": "cultivo_cicuta", "name": "Cultivo", "emoji": "💀", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "cicuta" }
+  ],
+  "events": [
+    { "id": "plantar_cicuta", "title": "💀 Sembrar Cicuta", "emoji": "💀", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO MAX — coniina. Parálisis ascendente (mató a Sócrates). Umbelífera que se confunde con perejil/zanahoria silvestre. Semilla directa en suelo húmedo. GUANTES. Bienal: roseta año 1, flor año 2. Tallo con manchas púrpura + olor ratón.", "wikiPhase": "cicuta", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_cicuta", "title": "💧 Riego Cicuta", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 730, "cadence": { "everyDays": 5, "volumeMl": "300-500", "notes": "Suelo húmedo, riberas. Auto-siembra" }, "description": "Prefiere suelo húmedo. En condiciones óptimas crece sola y se auto-siembra agresivamente.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "cicuta", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_cicuta", "name": "Semillas Conium maculatum", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-5€", "source": "internet", "wikiPhase": "cicuta" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_cicuta", "title": "⚠️ Etiqueta VENENO + aislar de huerto comestible", "description": "Se confunde con perejil y zanahoria silvestre. NUNCA plantar cerca de umbelíferas comestibles. Etiquetar claramente. La planta del veneno de Sócrates — coniina paraliza neuromuscular.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_cicuta", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}

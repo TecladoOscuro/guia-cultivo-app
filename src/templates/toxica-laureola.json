@@ -1,0 +1,36 @@
+{
+  "id": "toxica-laureola",
+  "name": "Laureola (Daphne mezereum)",
+  "emoji": "🫐",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 1825 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=laureola",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_laureola", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "laureola" },
+    { "id": "cultivo_laureola", "name": "Cultivo", "emoji": "🫐", "startDayOffset": 0, "endDayOffset": 1825, "wikiPhase": "laureola" }
+  ],
+  "events": [
+    { "id": "plantar_laureola", "title": "🫐 Plantar Laureola", "emoji": "🫐", "type": "milestone", "offsetDays": 0, "durationMin": 25, "description": "⚠️ TIER ROJO — dafnetoxina, mezerein. Savia = VESICANTE (ampollas en piel). Bayas rojas = muy tóxicas (12 bayas letal adulto). Planta de semisombra, suelo calizo drenado. Flores fragantes en invierno. GUANTES SIEMPRE — savia provoca ampollas.", "wikiPhase": "laureola", "notify": true },
+    { "id": "floracion_invernal_laureola", "title": "🌸 Flores invernales perfumadas", "emoji": "🌸", "type": "milestone", "offsetDays": 365, "durationMin": 10, "description": "Flores rosas en ramas desnudas antes de las hojas (diciembre-febrero). Fragancia intensa. Bayas rojas/anaranjadas en verano — PELIGRO niños.", "wikiPhase": "laureola", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_laureola", "title": "💧 Riego Laureola", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 1825, "cadence": { "everyDays": 7, "volumeMl": "300-500", "notes": "Moderado. No encharcamiento." }, "description": "Riego moderado. Crecimiento lento.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "laureola", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "planta_laureola", "name": "Planta Daphne mezereum (vivero)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-20€", "source": "vivero", "wikiPhase": "laureola" },
+    { "key": "sustrato_calizo_drenado", "name": "Sustrato calizo bien drenado", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "guantes_nitrilo", "name": "Guantes nitrilo (savia vesicante)", "qty": 2, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "savia_vesicante_laureola", "title": "⚠️ Savia vesicante — ampollas graves en piel/ojos", "description": "Dafnetoxina vesicante potente. Contacto ocular → posible ceguera. Lavar con agua abundante inmediatamente. Guantes nitrilo siempre. NO manipular sin protección.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "bayas_laureola", "title": "⚠️ Bayas rojas — peligro niños (12 bayas = letal adulto)", "description": "Las bayas son extremadamente atractivas y extremadamente tóxicas. Ardor inmediato actúa como disuasor pero no siempre. No cultivar en jardines con acceso de niños pequeños.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "sustrato_calizo_drenado", "qty": 10, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_nitrilo", "qty": 2, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}

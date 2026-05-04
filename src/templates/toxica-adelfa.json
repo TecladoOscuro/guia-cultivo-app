@@ -1,0 +1,34 @@
+{
+  "id": "toxica-adelfa",
+  "name": "Adelfa (Nerium oleander)",
+  "emoji": "🌺",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=adelfa",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_adelfa", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "adelfa" },
+    { "id": "cultivo_adelfa", "name": "Cultivo", "emoji": "🌺", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "adelfa" }
+  ],
+  "events": [
+    { "id": "plantar_adelfa", "title": "🌺 Plantar Adelfa", "emoji": "🌺", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO — oleandrina (glucósido cardiaco). Toda la planta incluido HUMO al quemar. Esqueje en agua, macetón o suelo. Sol pleno, riego moderado. Muy resistente. GUANTES. NO quemar podas.", "wikiPhase": "adelfa", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_adelfa", "title": "💧 Riego Adelfa", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 365, "cadence": { "everyDays": 7, "volumeMl": "300-600", "notes": "Resistente a la sequía una vez establecida" }, "description": "Riego moderado. Extremadamente resistente a sequía.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "adelfa", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_adelfa", "name": "Esqueje o planta Adelfa", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "vivero", "wikiPhase": "adelfa" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "etiqueta_adelfa", "title": "⚠️ Etiqueta VENENO + NO quemar podas nunca", "description": "Toda la planta + humo = tóxicos. Intoxicaciones frecuentes en España. Peligrosa para mascotas. Tijeras dedicadas exclusivamente a ella. Residuos en bolsa, no compost.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "sustrato_drenante", "qty": 10, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": false
+}
