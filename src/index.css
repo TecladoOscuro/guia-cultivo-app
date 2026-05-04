@@ -50,3 +50,17 @@ button {
 input, textarea, select {
   font-family: inherit;
 }
+
+/* Schedule-X overrides para que eventos sean clickables visualmente */
+.sx__event,
+.sx__month-grid-cell-events__event,
+.sx__time-grid-event,
+.sx__date-grid-event {
+  cursor: pointer !important;
+}
+.sx__event:hover,
+.sx__month-grid-cell-events__event:hover,
+.sx__time-grid-event:hover,
+.sx__date-grid-event:hover {
+  filter: brightness(1.15);
+}

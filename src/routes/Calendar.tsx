@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import { format } from "date-fns";
@@ -70,6 +70,13 @@ export default function Calendar() {
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
 
+  // Refs para que callbacks de Schedule-X (capturados 1 vez en useCalendarApp)
+  // lean siempre la última lista de eventos, no closures stale.
+  const eventsRef = useRef(events);
+  useEffect(() => {
+    eventsRef.current = events;
+  }, [events]);
+
   // Si URL trae ?event=ID, abrir modal automaticamente al cargar eventos
   useEffect(() => {
     const eid = searchParams.get("event");
@@ -124,7 +131,7 @@ export default function Calendar() {
     callbacks: {
       onEventClick(e) {
         const id = Number(e.id);
-        const ev = events.find((x) => x.id === id);
+        const ev = eventsRef.current.find((x) => x.id === id);
         if (ev) setSelectedEvent(ev);
       },
       async onEventUpdate(updatedEvent) {

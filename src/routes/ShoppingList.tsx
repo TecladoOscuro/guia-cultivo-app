@@ -37,6 +37,24 @@ export default function ShoppingList() {
     }
   };
 
+  const revertPurchased = async (item: ShoppingItem) => {
+    if (item.id === undefined) return;
+    if (!confirm(`Revertir "${item.name}" a pendiente?\n\nEl stock añadido se descontará.`)) return;
+    await db.shoppingList.update(item.id, {
+      status: "pending",
+      purchasedAt: undefined,
+    });
+    const existing = stocks.find((s) => s.key === item.itemKey);
+    if (existing?.id !== undefined) {
+      const newQty = Math.max(0, existing.qty - item.qty);
+      if (newQty === 0) {
+        await db.stock.delete(existing.id);
+      } else {
+        await db.stock.update(existing.id, { qty: newQty });
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-4">🛒 Lista de compras</h1>
@@ -72,18 +90,19 @@ export default function ShoppingList() {
                 {items.map((it) => {
                   const cult = cultivations.find((c) => c.id === it.cultivationId);
                   const haveStock = stocks.find((s) => s.key === it.itemKey);
+                  const isPurchased = it.status === "purchased";
                   return (
                     <div
                       key={it.id}
-                      className={`p-3 border rounded ${
-                        it.status === "purchased" ? "border-border opacity-70" : "border-border"
+                      className={`p-3 border rounded transition ${
+                        isPurchased ? "border-success/40 bg-success/5" : "border-border"
                       }`}
                     >
                       <div className="flex justify-between items-start gap-3">
                         <div className="flex-1 min-w-0">
                           <div
                             className={`text-sm font-bold ${
-                              it.status === "purchased" ? "line-through" : "text-text-bright"
+                              isPurchased ? "line-through text-text-muted" : "text-text-bright"
                             }`}
                           >
                             {it.name}
@@ -95,13 +114,27 @@ export default function ShoppingList() {
                           {it.notes && (
                             <div className="text-xs text-text-muted mt-1">{it.notes}</div>
                           )}
+                          {isPurchased && it.purchasedAt && (
+                            <div className="text-xs text-success mt-1">
+                              ✅ Comprado {new Date(it.purchasedAt).toLocaleDateString("es-ES")}
+                            </div>
+                          )}
                         </div>
-                        {it.status === "pending" && (
+                        {isPurchased ? (
+                          <button
+                            onClick={() => revertPurchased(it)}
+                            className="px-3 py-2 border border-border rounded text-xs whitespace-nowrap hover:border-warn hover:text-warn transition"
+                            title="Revertir compra (desmarcar y descontar stock)"
+                          >
+                            ↩️ Revertir
+                          </button>
+                        ) : (
                           <button
                             onClick={() => markPurchased(it)}
-                            className="px-3 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap"
+                            className="px-3 py-2 bg-success text-bg rounded text-xs font-bold whitespace-nowrap hover:brightness-110 transition active:scale-95"
+                            title="Marcar como comprado (añade al stock)"
                           >
-                            ✅ Comprado
+                            🛒 Marcar comprado
                           </button>
                         )}
                       </div>
