@@ -1,0 +1,34 @@
+{
+  "id": "toxica-curare",
+  "name": "Curare (Strychnos toxifera)",
+  "emoji": "🏹",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=curare",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_curare", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "curare" },
+    { "id": "cultivo_curare", "name": "Cultivo", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "curare" }
+  ],
+  "events": [
+    { "id": "plantar_curare", "title": "🏹 Plantar Strychnos toxifera", "emoji": "🏹", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "LIANA AMAZÓNICA — TUBOCURARINA (bloqueante neuromuscular, solo tóxica vía parenteral)\n\n📋 CONDICIONES PREVIAS OBLIGATORIAS\n• Invernadero climatizado o cuarto de cultivo tropical con:\n  — Temperatura: >20°C constante todo el año (ideal 25–32°C)\n  — Humedad relativa: 70–85%\n  — Sin corrientes de aire frío\n• Sin estas condiciones, la planta muere en pocas semanas\n\n🌱 SUSTRATO Y CONTENEDOR\n• Sustrato: turboso tropical — 50% turba + 30% perlita + 20% mantillo bien descompuesto\n• Maceta inicial: 5–10L para plántula; ir escalando según crecimiento\n• Suelo del invernadero: zona de tierra enriquecida si se dispone de ello\n• Necesita soporte/espaldera desde el principio para que trepe\n\n💧 RIEGO Y HUMEDAD\n• Riego frecuente (cada 2 días) — sustrato nunca completamente seco\n• Humidificador o pulverización foliar 2x/día es ideal\n• Agua blanda (lluvia o filtrada) — el agua de cal perjudica a largo plazo\n\n📅 CRONOGRAMA DE CRECIMIENTO\n• Meses 1–6: establecimiento lento, crecimiento radicular\n• Meses 6–18: liana empieza a crepar y crecer notablemente\n• Años 2–5: crecimiento vigoroso si condiciones óptimas\n• Floración: necesita planta madura (5+ años), rara en invernadero\n\n🌿 MANTENIMIENTO\n• Limpiar hojas viejas; guiar los tallos trepadores hacia la espaldera\n• Abono foliar con fertilizante tropical cada 3–4 semanas\n• Controlar plagas (cochinilla, araña roja — habitual en invernaderos)\n\n⚠️ NOTAS SEGURIDAD\n• Tubocurarina = solo tóxica vía intravenosa/intramuscular\n• Contacto con planta y manipulación: guantes estándar suficientes\n• Interés principalmente etnobotánico y de coleccionismo científico", "wikiPhase": "curare", "notify": true },
+    { "id": "establecida_curare", "title": "🌿 Liana establecida — año 2", "emoji": "🌿", "type": "milestone", "offsetDays": 365, "durationMin": 15, "description": "Con condiciones tropicales mantenidas, la liana debería estar creciendo con vigor.\n\n🌿 EVALUACIÓN AÑO 2\n• Liana con múltiples tallos, hojas ovaladas lustrosas, trepando activamente\n• Si el crecimiento es lento: revisar temperatura (¿baja de 20°C por las noches?), humedad y sustrato\n• Instalar espaldera más alta si la ha superado — puede crecer metros por año\n\n🔍 PROBLEMAS COMUNES\n• Hojas amarillas: falta de nitrógeno o riego insuficiente\n• Hojas marrones en puntas: humedad ambiental baja; aumentar pulverizaciones\n• Crecimiento muy lento: temperatura insuficiente o luz escasa\n• Plagas: araña roja (puntos blancos en hojas) → tratar con aceite de neem\n\n📝 DOCUMENTAR\n• Fotografiar mensualmente el crecimiento — útil para ajustar condiciones\n• Medir tallo principal: indica salud general de la planta", "wikiPhase": "curare", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_curare", "title": "💧 Riego + humedad", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 730, "cadence": { "everyDays": 2, "notes": "Liana tropical — humedad alta constante" }, "description": "Manglar tropical — alta humedad constante obligatoria.\n\n• Riego suelo: cada 2 días, mantener sustrato húmedo pero no encharcado\n• Pulverización foliar: 2x/día (mañana y tarde) directamente en hojas\n• Humedad ambiental objetivo: 70–85% — medir con higrómetro\n• Agua: blanda o de lluvia (el cloro del grifo perjudica a largo plazo)\n• Temperatura del agua: nunca fría — usar agua a temperatura ambiente del invernadero\n• Señal de sequía: hojas que caen o se enrollan ligeramente\n• Si la humedad baja del 60%: añadir bandeja con agua y grava bajo la maceta", "consumes": [], "wikiPhase": "curare", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semillas_strychnos", "name": "Semillas Strychnos toxifera / Chondrodendron tomentosum", "qty": 1, "unit": "sobre", "category": "esencial", "approxPrice": "10-25€", "source": "jardin_botanico", "wikiPhase": "curare" },
+    { "key": "invernadero_tropical", "name": "Invernadero climatizado o espacio tropical interior", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "100-500€" },
+    { "key": "sustrato_tropical", "name": "Sustrato tropical húmedo (turboso)", "qty": 20, "unit": "L", "category": "esencial", "approxPrice": "15-20€" },
+    { "key": "humidificador", "name": "Humidificador", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€" },
+    { "key": "guantes_nitrilo", "name": "Guantes de nitrilo", "qty": 1, "unit": "caja", "category": "esencial", "approxPrice": "12-18€" }
+  ],
+  "prepChecklist": [
+    { "id": "tropical_setup", "title": "Espacio tropical estable ≥20°C todo el año", "description": "Sin esta condición la liana no sobrevive. Invernadero, cuarto de cultivo o espacio muy cálido.", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "curare_educacion", "title": "Leer sección completa wiki: Curare", "description": "Mecanismo tubocurarina, historia amazónica, uso médico moderno. Coleccionismo educativo.", "blocking": false, "estimatedMinutes": 15 }
+  ],
+  "consumables": [],
+  "harvestable": false
+}

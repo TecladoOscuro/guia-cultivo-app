@@ -1,0 +1,33 @@
+{
+  "id": "toxica-calabar-bean",
+  "name": "Calabar Bean (Physostigma venenosum)",
+  "emoji": "🫘",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=calabar_bean",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_calabar", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "calabar_bean" },
+    { "id": "cultivo_calabar", "name": "Cultivo", "emoji": "🫘", "startDayOffset": 0, "endDayOffset": 365, "wikiPhase": "calabar_bean" }
+  ],
+  "events": [
+    { "id": "plantar_calabar", "title": "🫘 Plantar Physostigma venenosum", "emoji": "🫘", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "LEGUMINOSA TROPICAL — FISOSTIGMINA (inhibidor AChE; el mismo compuesto es hoy antídoto de tropanos)\n\n📋 CONDICIONES OBLIGATORIAS\n• Invernadero climatizado o cuarto tropical con:\n  — Temperatura: 22–32°C constante (mínimo absoluto: 18°C)\n  — Humedad: >70% constante\n  — Sin corrientes de aire frío\n• Sin invernadero tropical: no viable en España continental\n\n🌱 GERMINACIÓN Y PLANTACIÓN\n• Semillas grandes marrón-rojizas brillantes (2–3cm)\n• Escarificar ligeramente con lija en el lado opuesto al hilum\n• Remojo en agua tibia 24h antes de sembrar\n• Siembra: a 3–4cm de profundidad, sustrato turboso caliente\n• Temperatura germinación: 25–30°C (usar estera calefactora si necesario)\n• Germinación: 10–21 días\n\n☀️ SUSTRATO Y SOPORTE\n• Sustrato: 60% turba + 30% perlita + 10% mantillo descompuesto\n• Maceta inicial: 10–15L; enredadera necesita macetón de 30–40L cuando crece\n• Soporte obligatorio desde el principio: espaldera, cañas o tela de gallinero\n• La enredadera puede alcanzar varios metros en condiciones tropicales\n\n💧 RIEGO Y HUMEDAD\n• Suelo constantemente húmedo — manglar tropical del Golfo de Guinea\n• Riego: cada 2 días + pulverización foliar diaria\n• Agua blanda preferible; el cloro excesivo daña a largo plazo\n• Humidificador recomendado para mantener >70% HR\n\n📅 CRONOGRAMA\n• Meses 1–3: establecimiento, crecimiento lento\n• Meses 3–9: enredadera empieza a trepar activamente\n• Años 2–3: planta bien establecida, follaje denso\n• Floración y vainas: necesita varios años y condiciones óptimas\n\n⚠️ SEGURIDAD\n• GUANTES NITRILO siempre — fisostigmina se absorbe por piel y mucosas\n• Semillas: parte más concentrada; guardar bajo llave\n• Dato histórico: usada en ordalías tribales en Nigeria (Esere nut)", "wikiPhase": "calabar_bean", "notify": true },
+    { "id": "establecida_calabar", "title": "🌿 Enredadera establecida", "emoji": "🌿", "type": "milestone", "offsetDays": 180, "durationMin": 15, "description": "Enredadera establecida y creciendo con buenas condiciones tropicales.\n\n🌿 EVALUACIÓN ESTADO\n• Múltiples brotes trepadores con hojas trifoliadas características\n• Tallos volviéndose semilenosos en la base\n• Si el crecimiento es pobre: revisar temperatura y humedad (los dos factores críticos)\n\n🔧 AJUSTES SOPORTE\n• Revisar que la espaldera sea suficientemente alta y resistente\n• Guiar los tallos trepadores manualmente si se desvían\n• Añadir soporte horizontal si la enredadera empieza a ramificarse lateralmente\n\n🌱 MANTENIMIENTO ACTIVO\n• Abono foliar con fertilizante tropical cada 3–4 semanas\n• Retirar hojas viejas o dañadas (GUANTES)\n• Controlar plagas: araña roja y cochinilla — tratar con jabón potásico o neem\n• Trasplantar a maceta más grande si raíces salen por los drenajes", "wikiPhase": "calabar_bean", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_calabar", "title": "💧 Riego + humedad alta", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 365, "cadence": { "everyDays": 2, "notes": "Manglar tropical — alta humedad constante" }, "description": "Manglar tropical — suelo húmedo y humedad ambiental alta constante.\n\n• Riego suelo: cada 2 días, mantener sustrato húmedo (no encharcado)\n• Pulverización foliar: cada día (mañana idealmente)\n• Humedad objetivo: >70% — verificar con higrómetro\n• Agua blanda o de lluvia preferible\n• En verano con calor: puede necesitar riego diario + pulverización 2x/día\n• Señal de sequía: hojas que caen o se marchitan\n• Señal de encharcamiento: raíces oscuras al inspeccionar, olor a podrido\n• Bandeja con agua+grava bajo la maceta ayuda a mantener humedad ambiental", "consumes": [], "wikiPhase": "calabar_bean", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semillas_calabar", "name": "Semillas Physostigma venenosum (Calabar bean)", "qty": 1, "unit": "sobre", "category": "esencial", "approxPrice": "8-20€", "source": "jardin_botanico_especializado", "wikiPhase": "calabar_bean" },
+    { "key": "sustrato_turboso", "name": "Sustrato turboso tropical húmedo", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_nitrilo_calabar", "name": "Guantes nitrilo gruesos", "qty": 1, "unit": "caja", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "tutor_enredadera", "name": "Tutor/espaldera para enredadera", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" }
+  ],
+  "prepChecklist": [
+    { "id": "fisostigmina_info", "title": "Leer sección wiki completa: Calabar Bean", "description": "Historia de la ordalia africana, fisostigmina como antídoto tropanos, revolución glaucoma y Alzheimer. Planta con historia médica fascinante.", "blocking": false, "estimatedMinutes": 15 },
+    { "id": "invernadero_calabar", "title": "Invernadero tropical listo ≥20°C constante", "description": "Ecosistema manglar tropical — sin condiciones adecuadas no sobrevive en España continental.", "blocking": true, "estimatedMinutes": 20 }
+  ],
+  "consumables": [],
+  "harvestable": false
+}

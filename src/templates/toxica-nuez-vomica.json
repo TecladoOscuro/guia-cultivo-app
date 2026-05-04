@@ -1,0 +1,33 @@
+{
+  "id": "toxica-nuez-vomica",
+  "name": "Nuez Vómica (Strychnos nux-vomica)",
+  "emoji": "⚡",
+  "category": "toxicas",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=toxicas&phase=nuez_vomica",
+  "theme": { "primary": "#c82050", "bg": "#0a0005" },
+  "phases": [
+    { "id": "compra_nuez", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "nuez_vomica" },
+    { "id": "cultivo_nuez", "name": "Cultivo", "emoji": "🌳", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "nuez_vomica" }
+  ],
+  "events": [
+    { "id": "plantar_nuez", "title": "⚡ Plantar Strychnos nux-vomica", "emoji": "⚡", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "⚠️ ESTRICNINA EN SEMILLAS — ANTAGONISTA GLICINA → TETANIA CON CONCIENCIA PRESERVADA\n\n📋 CONDICIONES PREVIAS\n• Solo viable en: Canarias, litoral sureste mediterráneo muy cálido, o invernadero >18°C todo el año\n• Temperatura mínima absoluta: 10°C (bajo esto muere la planta joven)\n• En invernadero: necesita altura suficiente (árbol puede alcanzar 3–5m en contenedor)\n\n🌱 GERMINACIÓN (proceso cuidadoso)\n• Paso 1: escarificar semilla con lija o papel de lija hasta que la capa externa pierda brillo\n• Paso 2: remojo en agua tibia (no caliente) durante 24–48h\n• Paso 3: siembra en sustrato tropical caliente (25–30°C) a 2cm de profundidad\n• Germinación: 3–8 semanas (proceso lento e irregular)\n• Usar calefactor de suelo o estera calefactora para mantener temperatura\n\n☀️ SUSTRATO Y MACETA\n• Sustrato: 50% tierra tropical + 30% perlita + 20% mantillo\n• Maceta inicial: 10L; escalar cada año (árbol grande en definitiva)\n• Sol pleno o semisombra con buena luminosidad\n\n📅 CRONOGRAMA DE CRECIMIENTO\n• Años 1–2: crecimiento lento, árbol pequeño (30–60cm)\n• Años 3–5: crecimiento se acelera si temperatura adecuada\n• Primera fructificación: 5–8 años (frutos naranjas con semillas tóxicas dentro)\n• Árbol adulto puede alcanzar 12–15m en hábitat natural (1–3m en maceta/invernadero)\n\n🌿 MANTENIMIENTO\n• Riego regular en temporada de crecimiento (primavera-verano)\n• Reducir notablemente en otoño-invierno (reposo parcial)\n• Abono tropical (con micronutrientes) cada 3–4 semanas en temporada activa\n• Proteger del viento frío — la principal causa de muerte en cultivo\n\n⚠️ SEGURIDAD\n• GUANTES NITRILO al manipular semillas — son la parte más concentrada\n• Frutos: no comer (aspecto de naranja pequeña, interior tóxico)\n• Guardar semillas bajo llave — aspecto similar a monedas o fichas para niños", "wikiPhase": "nuez_vomica", "notify": true },
+    { "id": "arbol_establecido", "title": "🌳 Árbol establecido — año 2", "emoji": "🌳", "type": "milestone", "offsetDays": 365, "durationMin": 15, "description": "Árbol establecido en su segundo año — crecimiento aún lento pero sostenido.\n\n🌳 EVALUACIÓN\n• Árbol debería tener 40–80cm de altura si condiciones óptimas\n• Tallo leñoso, hojas ovaladas lustrosas brillantes\n• Sin frutos aún — esperados en 5–8 años desde germinación\n\n🔍 PROBLEMAS COMUNES\n• Crecimiento muy lento: temperatura insuficiente o luz escasa\n• Hojas amarillas: falta de hierro o nitrógeno; añadir fertilizante con quelatos de hierro\n• Caída de hojas en invierno: normal si temperatura baja de 15°C (latencia parcial)\n• Raíces saliendo por drenaje: escalar a maceta más grande\n\n🌿 MANTENIMIENTO AÑO 2\n• Trasplantar a maceta 20–30L si raíces ya llenan la anterior\n• Podar ramas cruzadas para dar forma limpia\n• Reducir riego en otoño cuando el crecimiento se frena\n• Proteger del frío con vellón térmico si temperatura baja de 12°C", "wikiPhase": "nuez_vomica", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "riego_nuez", "title": "💧 Riego tropical", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 730, "cadence": { "everyDays": 4, "notes": "Tropical caducifolio — menos agua en reposo" }, "description": "Riego tropical con pausa invernal clara.\n\n• Primavera-verano (crecimiento activo): cada 4 días, 300–500ml\n• Verano caluroso: cada 3 días si en maceta pequeña\n• Otoño: reducir gradualmente a cada 7 días\n• Invierno (reposo): cada 10–14 días, solo para no dejar el suelo completamente seco\n• Señal de exceso: hojas amarillas que caen prematuramente\n• Señal de sequía: hojas que se enrollan levemente\n• Agua: blanda si es posible; evitar agua muy caliza a largo plazo", "consumes": [], "wikiPhase": "nuez_vomica", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semillas_nuez_vomica", "name": "Semillas Strychnos nux-vomica", "qty": 1, "unit": "sobre", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "nuez_vomica" },
+    { "key": "sustrato_tropical", "name": "Sustrato tropical (50% tierra + 30% perlita + 20% mantillo)", "qty": 20, "unit": "L", "category": "esencial", "approxPrice": "15-20€" },
+    { "key": "guantes_nitrilo_caja", "name": "Guantes nitrilo — semillas extremadamente tóxicas", "qty": 1, "unit": "caja", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "maceta_arbol", "name": "Macetón 40L+ para árbol", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-35€" }
+  ],
+  "prepChecklist": [
+    { "id": "clima_tropical", "title": "⚠️ TIER ROJO MAX — estricnina en semillas", "description": "Semillas contienen estricnina. Antagonista glicina → tetania convulsiva con conciencia preservada. Manipular SOLO con guantes nitrilo. Guardar bajo llave lejos de niños.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "nuez_habitat", "title": "Verificar clima adecuado (Canarias o invernadero >18°C)", "description": "Árbol tropical no viable en España continental sin invernadero climatizado.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [],
+  "harvestable": false
+}

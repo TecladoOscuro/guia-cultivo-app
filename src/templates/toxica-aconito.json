@@ -12,11 +12,43 @@
     { "id": "cultivo_aconito", "name": "Cultivo", "emoji": "💙", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "aconito" }
   ],
   "events": [
-    { "id": "plantar_aconito", "title": "💙 Plantar Acónito", "emoji": "💙", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO MÁXIMO — aconitina absorbida TAMBIÉN por piel. GUANTES DE NITRILO imprescindibles. Planta de montaña: suelo húmedo-ácido, semisombra, fresco. Tubérculo o semilla (lenta). Florece año 2-3.", "wikiPhase": "aconito", "notify": true },
-    { "id": "floracion_aconito", "title": "💙 Floración (azul espectacular)", "emoji": "💙", "type": "milestone", "offsetDays": 730, "durationMin": 10, "description": "Flores azul-violeta en espiga. Julio-agosto en montaña. Espectacular ornamental. NUNCA oler flores de cerca.", "wikiPhase": "aconito", "notify": true }
+    {
+      "id": "plantar_aconito",
+      "title": "💙 Plantar Acónito",
+      "emoji": "💙",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "⚠️ ACONITINA ABSORBIDA POR PIEL — GUANTES NITRILO OBLIGATORIOS\n\n📋 SUSTRATO\n• Mezcla: 50% turba ácida + 30% humus de lombriz + 20% perlita\n• pH ideal: 5.5–6.5 (ligeramente ácido)\n• Maceta: 15–20L con drenaje, o suelo jardín zona norte umbrosa\n\n🌱 PLANTACIÓN\n• Tubérculo: enterrar a 5–8cm de profundidad, yema hacia arriba\n• Semilla: siembra superficial en otoño — necesita estratificación por frío natural 8–12 semanas\n• Trasplante primavera cuando brotes visibles (si semilla en interior)\n\n☀️ LUZ Y TEMPERATURA\n• Semisombra: máximo 3–4h sol directo (norte o bajo árboles)\n• Temperatura óptima: 10–18°C — es planta de montaña\n• Tolera heladas fuertes (-20°C) — dormancia invernal normal\n\n📅 CRONOGRAMA\n• Año 1: roseta basal, sin flores\n• Año 2–3: primera floración (julio-agosto)\n• Planta perenne — vuelve cada año desde el tubérculo\n\n⚠️ SEGURIDAD CRÍTICA\n• Nitrilo NO látex — aconitina permea látex\n• Nunca oler flores o frotar ojos durante manipulación\n• Lavar manos con jabón inmediatamente después\n• Zona aislada lejos de paso frecuente y huerto comestible",
+      "wikiPhase": "aconito",
+      "notify": true
+    },
+    {
+      "id": "floracion_aconito",
+      "title": "💙 Floración (azul espectacular)",
+      "emoji": "💙",
+      "type": "milestone",
+      "offsetDays": 730,
+      "durationMin": 10,
+      "description": "Espiga floral de 60–120cm con flores azul-violeta intenso.\n\n🌸 CUIDADOS EN FLORACIÓN\n• No cortar las espigas hasta que terminen de florecer\n• Si quieres semillas: dejar algunas cápsulas madurar (oct-nov)\n• Si NO quieres propagación: cortar espigas antes de que abran cápsulas\n• Post-floración: hojas mueren, tubérculo entra en reposo\n\n🌿 MANTENIMIENTO\n• Reducir riego al mínimo tras floración (agosto-sept)\n• Añadir mantillo de hojas alrededor en otoño\n• No cortar tallos hasta que estén completamente secos\n\n⚠️ GUANTES SIEMPRE al manipular durante y después de la floración",
+      "wikiPhase": "aconito",
+      "notify": true
+    }
   ],
   "recurringTasks": [
-    { "id": "riego_aconito", "title": "💧 Riego Acónito", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1095, "cadence": { "everyDays": 4, "volumeMl": "400-600", "notes": "Suelo siempre húmedo, nunca seco" }, "description": "Suelo húmedo constante. Planta de montaña que no tolera sequía.", "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "aconito", "notify": false }
+    {
+      "id": "riego_aconito",
+      "title": "💧 Riego Acónito",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 1095,
+      "cadence": { "everyDays": 4, "volumeMl": "400-600", "notes": "Suelo siempre húmedo, nunca seco" },
+      "description": "Suelo húmedo constante — nunca completamente seco.\n\n• Primavera-verano (crecimiento): cada 3–4 días, 400–600ml\n• Post-floración y otoño: reducir a cada 7–10 días\n• Invierno (dormancia): riego mínimo, solo si suelo muy seco\n• Señal de falta de agua: hojas que caen o se enrollan\n• Señal de exceso: pudre el tubérculo (peor que la sequía)\n• No usar plato debajo — encharcamiento mata raíces",
+      "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }],
+      "wikiPhase": "aconito",
+      "notify": false
+    }
   ],
   "shoppingList": [
     { "key": "tuberculo_aconito", "name": "Tubérculo o semillas Aconitum napellus", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "aconito" },

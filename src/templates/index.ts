@@ -56,6 +56,9 @@ import toxicaLirioValle from "./toxica-lirio-valle.json";
 import toxicaEleboro from "./toxica-eleboro.json";
 import toxicaVeratrum from "./toxica-veratrum.json";
 import toxicaLaureola from "./toxica-laureola.json";
+import toxicaCurare from "./toxica-curare.json";
+import toxicaNuezVomica from "./toxica-nuez-vomica.json";
+import toxicaCalabarBean from "./toxica-calabar-bean.json";
 
 export const templates: Record<string, CultivoTemplate> = {
   "mushroom-kit": mushroomKit as CultivoTemplate,
@@ -115,6 +118,9 @@ export const templates: Record<string, CultivoTemplate> = {
   "toxica-eleboro": toxicaEleboro as CultivoTemplate,
   "toxica-veratrum": toxicaVeratrum as CultivoTemplate,
   "toxica-laureola": toxicaLaureola as CultivoTemplate,
+  "toxica-curare": toxicaCurare as CultivoTemplate,
+  "toxica-nuez-vomica": toxicaNuezVomica as CultivoTemplate,
+  "toxica-calabar-bean": toxicaCalabarBean as CultivoTemplate,
 };
 
 export function getTemplate(id: string): CultivoTemplate | undefined {
