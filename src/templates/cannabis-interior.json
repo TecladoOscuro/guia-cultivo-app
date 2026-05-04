@@ -1,0 +1,317 @@
+{
+  "id": "cannabis-interior",
+  "name": "Cannabis interior",
+  "emoji": "🌿",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 90 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=cannabis&mode=interior",
+  "theme": { "primary": "#52b788", "bg": "#0a1a0f" },
+
+  "phases": [
+    { "id": "compra", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra" },
+    { "id": "germinacion", "name": "Germinación", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 7, "wikiPhase": "germinacion" },
+    { "id": "vegetativa", "name": "Vegetativa", "emoji": "🌱", "startDayOffset": 7, "endDayOffset": 35, "wikiPhase": "vegetativa" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 35, "endDayOffset": 80, "wikiPhase": "floracion" },
+    { "id": "cosecha", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 80, "endDayOffset": 90, "wikiPhase": "cosecha" }
+  ],
+
+  "events": [
+    {
+      "id": "germinar",
+      "title": "🥚 Iniciar germinación (papel/agua)",
+      "emoji": "🥚",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 15,
+      "description": "Germina semillas en papel húmedo o vaso agua 24h. Cuando salga raíz blanca 1-2cm, plantar en jiffy o sustrato a 5mm profundidad.",
+      "checklistInline": [
+        "Papel cocina húmedo entre 2 platos OR vaso con agua 24h",
+        "24-26°C oscuro",
+        "Verificar cada 24h"
+      ],
+      "expectedSignals": [
+        "Día 1-3: cáscara abierta, raíz blanca",
+        "Día 3-7: hojas cotiledones (par redondeadas)"
+      ],
+      "warningIf": [
+        "Sin germinación día 7 → semillas mal almacenadas o viejas"
+      ],
+      "wikiPhase": "germinacion",
+      "notify": true
+    },
+    {
+      "id": "trasplante_veg",
+      "title": "🌱 Trasplante a maceta vegetativa (5-10L)",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 14,
+      "durationMin": 30,
+      "description": "Cuando planta tenga 3-4 nudos, trasplantar de jiffy/maceta pequeña a maceta 5-10L. Sustrato light.",
+      "wikiPhase": "vegetativa",
+      "notify": true
+    },
+    {
+      "id": "fotoperiodo_flora",
+      "title": "🌸 Cambio fotoperiodo a 12/12 (inicio floración)",
+      "emoji": "🌸",
+      "type": "milestone",
+      "offsetDays": 35,
+      "durationMin": 5,
+      "description": "Cambia luces a 12h on / 12h off. Inicia transición a floración (solo fotodependientes; autoflores ignorar).",
+      "checklistInline": [
+        "Verificar timer luces",
+        "12h ON 12h OFF estricto",
+        "Sin fugas de luz en periodo OFF"
+      ],
+      "warningIf": [
+        "Fugas de luz periodo OFF → estrés, posibles plantas hermafroditas"
+      ],
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "trasplante_flora",
+      "title": "🪴 Trasplante final (15-25L)",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 28,
+      "durationMin": 30,
+      "description": "Antes de floración, trasplante a maceta final 15-25L. Sustrato heavy con más nutrientes.",
+      "wikiPhase": "vegetativa",
+      "notify": true
+    },
+    {
+      "id": "lavado_raices",
+      "title": "💧 Lavado raíces pre-cosecha (10-14 días antes)",
+      "emoji": "💧",
+      "type": "preparation",
+      "offsetDays": 70,
+      "durationMin": 30,
+      "description": "Solo agua sin nutrientes 10-14 días antes cosecha. Elimina sales acumuladas para mejor sabor final.",
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "cosecha_main",
+      "title": "✂️ Cosecha principal",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 80,
+      "durationMin": 120,
+      "description": "Tricomas 70-80% lechosos, 20-30% ámbar. Cortar plantas, manicurar (quitar hojas grandes), colgar boca abajo en cuarto oscuro 18-22°C 50-60% humedad.",
+      "checklistInline": [
+        "Verificar tricomas con lupa 60x",
+        "Cortar al amanecer (THC pico)",
+        "Manicurar antes de colgar (mejor secado)",
+        "Pesar peso fresco"
+      ],
+      "expectedSignals": [
+        "Tricomas lechosos opacos = THC pico",
+        "Ámbar = degradación a CBN (más sedante)"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "secado_cura",
+      "title": "🌬️ Frascos curado",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 87,
+      "durationMin": 20,
+      "description": "Tras 7-10 días secado, ramas crujen al doblar. Pasar cogollos a frascos cristal sellados. Burping diario primera semana.",
+      "wikiPhase": "cosecha",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_veg",
+      "title": "💧 Riego vegetativa",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 35,
+      "cadence": { "everyDays": 3, "volumeMl": "300-500", "notes": "300ml sem 1-2, 500-800ml sem 3-4. Cada 3-4 días" },
+      "description": "Riego cada 2-4 días según ambiente. Verificar peso maceta: si pesa poco, regar. Agua a pH 6.0-6.5 sustrato.",
+      "consumes": [
+        { "stockKey": "agua_dechlorada", "qty": 500, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "vegetativa",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_veg",
+      "title": "🌿 Fertilizar vegetativa (BioBizz Grow)",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 14,
+      "endDayOffset": 35,
+      "cadence": { "everyDays": 7, "volumeMl": "1-3ml/L", "notes": "Empezar 1ml/L semana 3, subir a 2-3ml/L según planta" },
+      "description": "BioBizz Grow o equivalente. Nitrógeno alto. Aplicar en riego cada 7-10 días. Alternar con agua sola.",
+      "consumes": [
+        { "stockKey": "biobizz_grow", "qty": 5, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "vegetativa",
+      "notify": false
+    },
+    {
+      "id": "riego_flora",
+      "title": "💧 Riego floración",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 35,
+      "endDayOffset": 80,
+      "cadence": { "everyDays": 2, "volumeMl": "800-1500", "notes": "Más frecuente a medida que crecen flores" },
+      "description": "Riego cada 2 días. Plantas más grandes consumen más agua. Verificar drenaje.",
+      "consumes": [
+        { "stockKey": "agua_dechlorada", "qty": 1000, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "floracion",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_flora",
+      "title": "🌸 Fertilizar floración (BioBizz Bloom)",
+      "emoji": "🌸",
+      "type": "feeding",
+      "startDayOffset": 35,
+      "endDayOffset": 70,
+      "cadence": { "everyDays": 7, "volumeMl": "2-4ml/L" },
+      "description": "BioBizz Bloom o equivalente. P+K alto, N bajo. Estimula flores. Última fertilización ~10-14 días antes cosecha.",
+      "consumes": [
+        { "stockKey": "biobizz_bloom", "qty": 8, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "floracion",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_cannabis",
+      "name": "Semillas cannabis (banco UE)",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-50€",
+      "source": "internet",
+      "notes": "Royal Queen, Dinafem, Sweet Seeds, Kannabia. Para principiantes: Northern Lights Auto, Critical+, Skunk #1.",
+      "wikiPhase": "compra"
+    },
+    {
+      "key": "sustrato_ligero",
+      "name": "Sustrato ligero (light mix 50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "20-30€",
+      "source": "tienda_fisica",
+      "notes": "BioBizz Light Mix o equivalente. Bajo en nutrientes, ideal vegetativa."
+    },
+    {
+      "key": "fitolux_led",
+      "name": "Fitolux LED 100-300W",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "100-300€",
+      "source": "internet",
+      "notes": "Mars Hydro, Spider Farmer. Full spectrum. Mínimo 100W para 1 planta, 300W para 2-3."
+    },
+    {
+      "key": "macetas_cultivo",
+      "name": "Macetas tela 5L + 15-25L",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "internet",
+      "notes": "Smart pots tela permite mejor oxigenación raíces."
+    },
+    {
+      "key": "biobizz_grow",
+      "name": "BioBizz Grow (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Fertilizante vegetativa. Alternativas: GHE, Atami."
+    },
+    {
+      "key": "biobizz_bloom",
+      "name": "BioBizz Bloom (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Fertilizante floración."
+    },
+    {
+      "key": "phmetro",
+      "name": "pH-metro digital + calibración",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "15-30€",
+      "source": "internet",
+      "notes": "Imprescindible para verificar agua riego pH 6.0-6.5."
+    },
+    {
+      "key": "agua_dechlorada",
+      "name": "Agua osmosis o reposo 24h",
+      "qty": 100,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "5-15€",
+      "notes": "Agua de grifo: dejar reposar 24h en recipiente abierto para evaporar cloro. Mejor: agua osmosis filtrada."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "espacio_armario",
+      "title": "Reservar espacio armario / room",
+      "description": "Mínimo 1m² por planta con fitolux. Aireado, oscurable.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "instalar_fitolux",
+      "title": "Instalar fitolux + timer",
+      "description": "Verificar timer funciona 18/6 vegetativa, configurable a 12/12 flora.",
+      "blocking": true,
+      "estimatedMinutes": 60
+    },
+    {
+      "id": "extractor_intractor",
+      "title": "Sistema ventilación (extractor + intractor)",
+      "description": "Renovar aire armario cada 5-10 min. Filtro carbón si quieres ocultar olor.",
+      "blocking": false,
+      "estimatedMinutes": 90
+    },
+    {
+      "id": "termohigrometro",
+      "title": "Termohigrómetro instalado",
+      "description": "24-28°C / 50-70% humedad. Ajustar con extractor o humidificador.",
+      "blocking": false,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_cannabis", "qty": 3, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_ligero", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "biobizz_grow", "qty": 80, "unit": "ml", "trigger": "once", "description": "~5ml/riego × ~16 fertilizaciones veg" },
+    { "stockKey": "biobizz_bloom", "qty": 200, "unit": "ml", "trigger": "once", "description": "~8ml/riego × ~25 fertilizaciones flora" },
+    { "stockKey": "agua_dechlorada", "qty": 60, "unit": "L", "trigger": "once" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "main_cut",
+  "produces": { "kind": "flor_cannabis", "unit": "g" }
+}

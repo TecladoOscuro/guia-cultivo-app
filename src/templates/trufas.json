@@ -1,0 +1,202 @@
+{
+  "id": "trufas",
+  "name": "Trufas mágicas (Psilocybe esclerocios)",
+  "emoji": "🍯",
+  "category": "hongo",
+  "version": 1,
+  "totalDuration": { "days": 110 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=trufas",
+  "theme": { "primary": "#a888c8", "bg": "#1a1029" },
+
+  "phases": [
+    { "id": "compra_trufas", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_trufas" },
+    { "id": "inoculacion_trufas", "name": "Inoculación", "emoji": "💉", "startDayOffset": 0, "endDayOffset": 3, "wikiPhase": "inoculacion_trufas" },
+    { "id": "incubacion_trufas", "name": "Incubación", "emoji": "🔮", "startDayOffset": 3, "endDayOffset": 90, "wikiPhase": "incubacion_trufas" },
+    { "id": "cosecha_trufas", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 90, "endDayOffset": 110, "wikiPhase": "cosecha_trufas" }
+  ],
+
+  "events": [
+    {
+      "id": "esterilizar_grano",
+      "title": "🔥 Esterilizar grano (olla a presión 90 min)",
+      "emoji": "🔥",
+      "type": "preparation",
+      "offsetDays": 1,
+      "durationMin": 120,
+      "description": "Hidratar grano (centeno) 12-24h antes. Llenar frascos 2/3 + tapas con filtro. Olla a presión 15 PSI 90 min. Enfriar SIN abrir.",
+      "checklistInline": [
+        "Grano hidratado 24h",
+        "Frascos llenos 2/3 (no full)",
+        "Tapas con filtro (no apretar 100%)",
+        "15 PSI 90 minutos",
+        "Enfriar 8-12h dentro olla"
+      ],
+      "wikiPhase": "inoculacion_trufas",
+      "notify": true
+    },
+    {
+      "id": "inocular",
+      "title": "💉 Inocular con esporada",
+      "emoji": "💉",
+      "type": "milestone",
+      "offsetDays": 2,
+      "durationMin": 30,
+      "description": "SAB (still air box) o ambiente desinfectado. Flamear aguja jeringa al rojo. Inyectar 1-2ml por frasco vía puerto. Tapar agujero con micropore.",
+      "checklistInline": [
+        "Lavar manos + esterilizar SAB con alcohol 70%",
+        "Flamear aguja roja, enfriar 10s",
+        "Inyectar 1-2ml por frasco",
+        "Sellar puerto con micropore"
+      ],
+      "warningIf": [
+        "Aguja no flameada → contaminación garantizada",
+        "Tras inocular: NO abrir frascos"
+      ],
+      "wikiPhase": "inoculacion_trufas",
+      "notify": true
+    },
+    {
+      "id": "agitar_grano",
+      "title": "🥄 Agitar grano colonizado (~día 14)",
+      "emoji": "🥄",
+      "type": "monitoring",
+      "offsetDays": 14,
+      "durationMin": 5,
+      "description": "Cuando ~30% colonizado, agitar suave para distribuir micelio. NO abrir, solo mover el frasco.",
+      "wikiPhase": "incubacion_trufas",
+      "notify": true
+    },
+    {
+      "id": "primera_cosecha",
+      "title": "✂️ Primera cosecha trufas",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 95,
+      "durationMin": 60,
+      "description": "Esclerocios duros formados al fondo del frasco. Vaciar contenido, separar trufas del grano colonizado, lavar suave.",
+      "checklistInline": [
+        "Vaciar frasco en recipiente limpio",
+        "Separar trufas (duras, marrón claro) del micelio",
+        "Lavar suave agua fría 1min",
+        "Pesar peso fresco",
+        "Decidir consumo fresco o secar"
+      ],
+      "expectedSignals": [
+        "Trufas: duras, dentro blancas, sabor neutro/avellana",
+        "20-50g por frasco 1L típico"
+      ],
+      "wikiPhase": "cosecha_trufas",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "verificar_incubacion",
+      "title": "🔍 Verificar incubación (visual)",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 5,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 7, "notes": "Inspección visual semanal sin abrir" },
+      "description": "Mirar frasco semanalmente. Buscar: micelio blanco expandiendo, esclerocios marrones formándose. Alarma: manchas verdes/negras = contaminación.",
+      "wikiPhase": "incubacion_trufas",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "esporada_tampanensis",
+      "name": "Jeringa esporada Psilocybe tampanensis",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-40€",
+      "source": "internet",
+      "notes": "Avalon, ethnopharm. Tampanensis = mejor para esclerocios. 1 jeringa = 5-10 frascos.",
+      "wikiPhase": "compra_trufas"
+    },
+    {
+      "key": "frascos_filtro",
+      "name": "Frascos 1L con filtro micropore (5-10ud)",
+      "qty": 5,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-40€",
+      "source": "internet",
+      "notes": "DIY: frascos normales + filtro tela + cinta micropore."
+    },
+    {
+      "key": "centeno_grano",
+      "name": "Grano centeno seco (2kg)",
+      "qty": 2,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Tienda agrícola. Sin procesar. Centeno mejor que mijo para esclerocios."
+    },
+    {
+      "key": "olla_presion",
+      "name": "Olla a presión 6-10L",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "40-80€",
+      "source": "tienda_fisica",
+      "notes": "Reutilizable múltiples cultivos."
+    },
+    {
+      "key": "alcohol_70",
+      "name": "Alcohol isopropílico 70%",
+      "qty": 250,
+      "unit": "ml",
+      "category": "esencial",
+      "approxPrice": "3-5€"
+    },
+    {
+      "key": "micropore",
+      "name": "Cinta micropore",
+      "qty": 1,
+      "unit": "rollo",
+      "category": "esencial",
+      "approxPrice": "2-5€"
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "olla_disponible",
+      "title": "Olla a presión funcional + verificada",
+      "description": "Verificar válvulas, junta sellada, manómetro 15 PSI. Probar con agua antes.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "espacio_oscuro",
+      "title": "Espacio oscuro 24-26°C constante",
+      "description": "Armario interior, NO baño (humedad). Sin corrientes. Termohigrómetro recomendado.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "hidratar_grano",
+      "title": "Hidratar grano 12-24h antes",
+      "description": "Sumergir grano en agua filtrada. Eliminar exceso antes de meter en frascos.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "esporada_tampanensis", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "frascos_filtro", "qty": 5, "unit": "ud", "trigger": "once" },
+    { "stockKey": "centeno_grano", "qty": 1.5, "unit": "kg", "trigger": "once" },
+    { "stockKey": "alcohol_70", "qty": 100, "unit": "ml", "trigger": "once" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "main_harvest",
+  "produces": { "kind": "trufa_fresca", "unit": "g" }
+}

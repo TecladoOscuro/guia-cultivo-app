@@ -1,0 +1,209 @@
+{
+  "id": "cactus",
+  "name": "Cactus San Pedro / Bolivian Torch",
+  "emoji": "🌵",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 1095 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=cactus",
+  "theme": { "primary": "#a89968", "bg": "#1c1810" },
+
+  "phases": [
+    { "id": "compra_cactus", "name": "Compra esqueje", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_cactus" },
+    { "id": "germinacion_cactus", "name": "Callusing + plantar", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "germinacion_cactus" },
+    { "id": "cuidados_cactus", "name": "Crecimiento", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 1080, "wikiPhase": "cuidados_cactus" },
+    { "id": "cosecha_cactus", "name": "Primera cosecha posible", "emoji": "✂️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "cosecha_cactus" }
+  ],
+
+  "events": [
+    {
+      "id": "callusing",
+      "title": "🩹 Callusing esqueje (14-21 días)",
+      "emoji": "🩹",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 5,
+      "description": "Si esqueje recién cortado: dejar 14-21 días en lugar seco oscuro para que cicatrice corte. NO regar. NO tocar la herida. Pasado el tiempo, plantar.",
+      "checklistInline": [
+        "Lugar sombrío + seco",
+        "Vertical sin tocar la herida",
+        "Sin agua hasta plantar"
+      ],
+      "warningIf": [
+        "Si plantas sin callus → pudrición casi garantizada"
+      ],
+      "wikiPhase": "germinacion_cactus",
+      "notify": true
+    },
+    {
+      "id": "plantar",
+      "title": "🌵 Plantar esqueje en sustrato",
+      "emoji": "🌵",
+      "type": "milestone",
+      "offsetDays": 18,
+      "durationMin": 15,
+      "description": "Sustrato cactus 70% + perlita 30%. Maceta terracota agujeros. Enterrar 5-10cm. NO regar 1 semana tras plantar.",
+      "wikiPhase": "germinacion_cactus",
+      "notify": true
+    },
+    {
+      "id": "primera_floracion",
+      "title": "🌸 Primera floración esperada (año 4-6)",
+      "emoji": "🌸",
+      "type": "milestone",
+      "offsetDays": 1460,
+      "durationMin": 0,
+      "description": "Trichocereus florecen 4-6 años desde esqueje. Flores blancas grandes nocturnas. Posible polinización cruzada.",
+      "wikiPhase": "cuidados_cactus",
+      "notify": false
+    },
+    {
+      "id": "primera_cosecha",
+      "title": "✂️ Primera cosecha posible (año 2+)",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 730,
+      "durationMin": 60,
+      "description": "Cuando columna alcance 30-50cm, cortar punta 10-15cm con cuchillo esterilizado. Hacer callusing nuevo esqueje (puedes plantar = clónico).",
+      "wikiPhase": "cosecha_cactus",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_primavera",
+      "title": "💧 Riego primavera (marzo-abril)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 60,
+      "endDayOffset": 1095,
+      "cadence": { "everyDays": 21, "volumeMl": "500-800", "notes": "Cada 2-3 semanas, abundante. Dejar secar entre riegos." },
+      "description": "Riego abundante pero espaciado. Dejar sustrato secar entre riegos. Verificar humedad con dedo o palillo.",
+      "consumes": [
+        { "stockKey": "agua_riego", "qty": 700, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "cuidados_cactus",
+      "notify": false
+    },
+    {
+      "id": "riego_verano",
+      "title": "💧 Riego verano (mayo-agosto)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 120,
+      "endDayOffset": 1095,
+      "cadence": { "everyDays": 10, "volumeMl": "500-1000" },
+      "description": "Cada 7-14 días verano peninsular. Más frecuente si calor extremo (>35°C). Solo si sustrato seco.",
+      "consumes": [
+        { "stockKey": "agua_riego", "qty": 1000, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "cuidados_cactus",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_anual",
+      "title": "🌱 Fertilizante cactus (primavera/verano)",
+      "emoji": "🌱",
+      "type": "feeding",
+      "startDayOffset": 90,
+      "endDayOffset": 1095,
+      "cadence": { "everyDays": 30, "volumeMl": "media dosis fabricante" },
+      "description": "Fertilizante específico cactus mar-sep. Bajo N. Media dosis fabricante. NO en otoño/invierno.",
+      "consumes": [
+        { "stockKey": "fertilizante_cactus", "qty": 5, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "cuidados_cactus",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "esqueje_san_pedro",
+      "name": "Esqueje San Pedro 15-30cm enraizado",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-40€",
+      "source": "internet",
+      "notes": "Viveros cactáceas online. Esqueje enraizado más caro pero seguro. Variedades: Pachanoi (más rápido), Bolivian Torch (más potente).",
+      "wikiPhase": "compra_cactus"
+    },
+    {
+      "key": "sustrato_cactus",
+      "name": "Sustrato cactus (10L)",
+      "qty": 10,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Compo Sana Cactus, Westland. Bien drenado."
+    },
+    {
+      "key": "perlita",
+      "name": "Perlita (5L)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "5-8€",
+      "source": "tienda_fisica",
+      "notes": "Mezclar 30% al sustrato cactus para mejor drenaje."
+    },
+    {
+      "key": "maceta_terracota",
+      "name": "Maceta terracota 25-30cm con drenaje",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica"
+    },
+    {
+      "key": "fertilizante_cactus",
+      "name": "Fertilizante cactus líquido (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica"
+    },
+    {
+      "key": "agua_riego",
+      "name": "Agua riego",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "0-5€"
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "ubicacion_sol",
+      "title": "Sitio con sol pleno (al menos 4-6h directo)",
+      "description": "Cactus columnar necesita sol. Balcón sur, terraza, jardín. Aclimatar gradualmente si llega de invernadero.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "drenaje_maceta",
+      "title": "Maceta con agujeros drenaje + plato",
+      "description": "Sin drenaje = pudrición. Plato debajo NO acumular agua (vaciar tras riego).",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "esqueje_san_pedro", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_cactus", "qty": 8, "unit": "L", "trigger": "once" },
+    { "stockKey": "perlita", "qty": 3, "unit": "L", "trigger": "once" },
+    { "stockKey": "maceta_terracota", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "agua_riego", "qty": 30, "unit": "L", "trigger": "once" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "punta",
+  "produces": { "kind": "polvo_cactus_seco", "unit": "g" }
+}

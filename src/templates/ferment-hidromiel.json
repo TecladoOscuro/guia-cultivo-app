@@ -1,0 +1,223 @@
+{
+  "id": "ferment-hidromiel",
+  "name": "Hidromiel casero",
+  "emoji": "🍯",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 60 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=hidromiel",
+  "theme": { "primary": "#dba858", "bg": "#1a140a" },
+
+  "phases": [
+    { "id": "compra_hidromiel", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_hidromiel" },
+    { "id": "prep_hidromiel", "name": "Mosto", "emoji": "🍯", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "prep_hidromiel" },
+    { "id": "fermentacion_hidromiel", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 35, "wikiPhase": "fermentacion_hidromiel" },
+    { "id": "embotellado_hidromiel", "name": "Embotellado", "emoji": "🍾", "startDayOffset": 35, "endDayOffset": 38, "wikiPhase": "embotellado_hidromiel" },
+    { "id": "cata_hidromiel", "name": "Maduración", "emoji": "🥂", "startDayOffset": 38, "endDayOffset": 60, "wikiPhase": "cata_hidromiel" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_mosto",
+      "title": "🍯 Preparar mosto (miel + agua + nutrientes)",
+      "emoji": "🍯",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Calentar 4L agua a 60-65°C (NO hervir, conserva aromáticos miel). Disolver 1.2-1.5kg miel. Añadir nutrientes levadura. Enfriar a 20-25°C.",
+      "checklistInline": [
+        "Esterilizar garrafa con Star San",
+        "Calentar agua 60-65°C (NO hervir)",
+        "Disolver miel completamente",
+        "Añadir nutrientes y enzima si aplica",
+        "Enfriar a temp ambiente <25°C",
+        "Tomar densidad inicial con hidrómetro (DI esperada ~1.080-1.090)"
+      ],
+      "expectedSignals": [
+        "DI 1.080-1.090 (sec ~12% ABV final)",
+        "DI 1.090-1.100 (semi-dulce)"
+      ],
+      "wikiPhase": "prep_hidromiel",
+      "notify": true
+    },
+    {
+      "id": "inocular_levadura",
+      "title": "🧫 Rehidratar levadura + inocular",
+      "emoji": "🧫",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "Rehidratar levadura en agua tibia 15-20 min. Añadir al mosto a 20-25°C. Tapar con airlock. Activad fermentación 12-24h.",
+      "checklistInline": [
+        "Levadura rehidratada en 50ml agua 30°C 15min",
+        "Añadir al mosto removiendo suave",
+        "Sellar con airlock + agua",
+        "Etiquetar fecha + DI"
+      ],
+      "warningIf": [
+        "Mosto >30°C cuando inoculas → mata levadura",
+        "Sin actividad airlock 48h → re-inocular"
+      ],
+      "wikiPhase": "prep_hidromiel",
+      "notify": true
+    },
+    {
+      "id": "trasiego",
+      "title": "🪣 Trasiego (separar de heces)",
+      "emoji": "🪣",
+      "type": "preparation",
+      "offsetDays": 21,
+      "durationMin": 30,
+      "description": "Cuando fermentación primaria casi termina (burbujeo casi parado), trasegar a otra garrafa esterilizada. Dejar heces atrás. Madura 2 semanas más.",
+      "wikiPhase": "fermentacion_hidromiel",
+      "notify": true
+    },
+    {
+      "id": "embotellar",
+      "title": "🍾 Embotellado",
+      "emoji": "🍾",
+      "type": "preparation",
+      "offsetDays": 35,
+      "durationMin": 90,
+      "description": "Tomar densidad final. Calcular ABV: (DI - DF) × 131.25. Esterilizar botellas. Embotellar con tubo trasiego. Tapón corcho o rosca.",
+      "checklistInline": [
+        "DF medida (~0.995-1.000 sec)",
+        "ABV calculado y registrado",
+        "Botellas esterilizadas Star San",
+        "Trasegar evitando heces",
+        "Sellar inmediato",
+        "Etiquetar fecha + ABV"
+      ],
+      "wikiPhase": "embotellado_hidromiel",
+      "notify": true
+    },
+    {
+      "id": "primera_cata",
+      "title": "🥂 Primera cata (~día 60)",
+      "emoji": "🥂",
+      "type": "milestone",
+      "offsetDays": 60,
+      "durationMin": 30,
+      "description": "Probar primera botella. 2 meses ya bebible. Mejor a 4-6 meses. Apuntar notas: dulzor, alcohol percibido, aroma, defectos.",
+      "wikiPhase": "cata_hidromiel",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "verificar_airlock",
+      "title": "🫧 Verificar airlock activo",
+      "emoji": "🫧",
+      "type": "monitoring",
+      "startDayOffset": 1,
+      "endDayOffset": 30,
+      "cadence": { "everyDays": 3, "notes": "Burbujeo activo primeras 2-3 semanas" },
+      "description": "Verificar agua airlock + burbujeo. Día 1-7: muy activo. Día 7-21: lento. Día 21-30: casi parado.",
+      "wikiPhase": "fermentacion_hidromiel",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "miel_cruda",
+      "name": "Miel cruda sin pasteurizar (1.5kg)",
+      "qty": 1.5,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "15-30€",
+      "source": "tienda_fisica",
+      "notes": "Apicultor local mejor. Miel pasteurizada supermercado pierde aromas. Variedades: brezo, romero, milflores.",
+      "wikiPhase": "compra_hidromiel"
+    },
+    {
+      "key": "garrafa_5L",
+      "name": "Garrafa cristal 5L con airlock",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-30€",
+      "source": "internet"
+    },
+    {
+      "key": "levadura_hidromiel",
+      "name": "Levadura champagne EC-1118 o D47",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "internet",
+      "notes": "EC-1118 tolera 18% ABV. D47 más afrutada."
+    },
+    {
+      "key": "nutriente_levadura",
+      "name": "Nutriente levadura (DAP / Fermaid-K)",
+      "qty": 50,
+      "unit": "g",
+      "category": "importante",
+      "approxPrice": "5-10€",
+      "source": "internet",
+      "notes": "Miel pobre en nutrientes. Sin esto fermentación se atasca."
+    },
+    {
+      "key": "hidrometro",
+      "name": "Hidrómetro + probeta",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "internet",
+      "notes": "Imprescindible para medir DI/DF y calcular ABV."
+    },
+    {
+      "key": "star_san",
+      "name": "Star San sanitizante (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "internet",
+      "notes": "Food-safe, no hace falta aclarar. Botella dura años."
+    },
+    {
+      "key": "botellas_750ml",
+      "name": "Botellas vidrio 750ml + tapones",
+      "qty": 6,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "notes": "Reusar botellas vino con tapón corcho o rosca."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "esterilizar_equipo",
+      "title": "Esterilizar garrafa + airlock + utensilios",
+      "description": "Star San: 1.5ml/L agua. Sumergir, escurrir (no aclarar). Crítico antes de meter mosto.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "espacio_fermentar",
+      "title": "Espacio fermentar 18-22°C estable",
+      "description": "Armario interior. Sin variaciones bruscas. Sin sol directo (UV degrada).",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "miel_cruda", "qty": 1.5, "unit": "kg", "trigger": "once" },
+    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "levadura_hidromiel", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "nutriente_levadura", "qty": 5, "unit": "g", "trigger": "once" },
+    { "stockKey": "star_san", "qty": 30, "unit": "ml", "trigger": "once" },
+    { "stockKey": "botellas_750ml", "qty": 6, "unit": "ud", "trigger": "once" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "main_batch",
+  "produces": { "kind": "hidromiel", "unit": "ml" }
+}

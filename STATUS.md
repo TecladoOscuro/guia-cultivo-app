@@ -31,6 +31,10 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 ### Templates
 - [x] Schema completo `CultivoTemplate` con phases, events, recurringTasks, shoppingList, prepChecklist, consumables
 - [x] Template `mushroom-kit.json` completo
+- [x] Template `cannabis-interior.json` completo
+- [x] Template `trufas.json` completo
+- [x] Template `cactus.json` completo (3 años duration)
+- [x] Template `ferment-hidromiel.json` completo
 
 ### UI Routes (13)
 - [x] Dashboard — empty state + cultivos cards con next-action contextual + stats + capacity widget
@@ -69,22 +73,16 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 ## 🚧 Pendiente
 
 ### Templates restantes (Fase 11) — PRIORIDAD ALTA
-Solo `mushroom-kit` está. Faltan:
-- [ ] cannabis-interior
+Hay 5 templates. Faltan 9:
 - [ ] cannabis-exterior
 - [ ] mushroom-friendly (con cultura líquida)
 - [ ] mushroom-advanced (lab desde cero)
-- [ ] trufas
-- [ ] cactus (san pedro)
 - [ ] amanita
 - [ ] ayahuasca
 - [ ] dmt-mimosa
 - [ ] plantas-suaves (con sub-templates por planta)
-- [ ] ferment-hidromiel
 - [ ] ferment-cerveza
 - [ ] ferment-sidra
-
-Sin estos, la app solo es funcional para setas kit. Crítico.
 
 Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList nodes + tablas riego desde wiki actual. Ver `docs/wiki-sync.md`.
 
@@ -102,14 +100,15 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 - [ ] Costes acumulados (si introduces precios en stock/shopping)
 - [ ] Evolución stock
 
-### Settings real (Fase 13)
+### Settings real (Fase 13) — PARCIAL
 - [ ] Preferencias notificaciones
 - [ ] Threshold stock crítico
 - [ ] Tolerancia personalizada (override defaults)
-- [ ] Export JSON encrypted (AES-256 Web Crypto + password)
-- [ ] Import JSON (substitute o merge)
-- [ ] Factory reset
-- [ ] Info versión + about
+- [x] Export JSON (incluye fotos como base64)
+- [x] Import JSON (modo replace o merge)
+- [x] Factory reset
+- [x] Info versión + about
+- [ ] Encriptación opcional export con password (AES-256 Web Crypto)
 
 ### Skill `add-new-cultivo` integration test (Fase 12)
 - [ ] Templates de generación JSX en `docs/component-templates/`
