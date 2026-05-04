@@ -105,11 +105,6 @@ function JournalCard({ entry, cultivation }: { entry: JournalEntry; cultivation?
           <div className="text-xs text-text-muted">
             {format(entry.date, "PPp", { locale: es })} · {cultivation?.name ?? "?"}
           </div>
-          {entry.mood && (
-            <div className="text-xs text-accent">
-              {"⭐".repeat(entry.mood)}
-            </div>
-          )}
         </div>
         <button onClick={onDelete} className="text-text-muted hover:text-error text-xs">✕</button>
       </div>
@@ -133,7 +128,6 @@ function JournalCard({ entry, cultivation }: { entry: JournalEntry; cultivation?
 function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; name: string }[]; onClose: () => void }) {
   const [cultivationId, setCultivationId] = useState<number | "">(cultivations[0]?.id ?? "");
   const [note, setNote] = useState("");
-  const [mood, setMood] = useState(3);
   const [photoBlob, setPhotoBlob] = useState<Blob | null>(null);
   const [photoUrl, setPhotoUrl] = useState<string | null>(null);
   const [observations, setObservations] = useState<{ key: string; value: string }[]>([]);
@@ -160,7 +154,6 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
         date: new Date(),
         photoBlob: photoBlob ?? undefined,
         note,
-        mood,
         observations: observations.filter((o) => o.key.trim() && o.value.trim()),
       } as JournalEntry);
       onClose();
@@ -194,18 +187,32 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
             </select>
           </label>
 
-          <label className="grid gap-1">
+          <div className="grid gap-1">
             <span className="text-xs text-text-muted">Foto (opcional)</span>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => onPhotoChange(e.target.files?.[0] ?? null)}
-              className="text-xs"
-            />
+            <label className="cursor-pointer inline-flex items-center justify-center gap-2 px-3 py-2 border border-border rounded text-sm hover:border-accent">
+              <span>📷</span>
+              <span>{photoBlob ? "Cambiar foto" : "Elegir foto"}</span>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => onPhotoChange(e.target.files?.[0] ?? null)}
+                className="hidden"
+              />
+            </label>
             {photoUrl && (
-              <img src={photoUrl} alt="preview" className="max-h-48 rounded mt-2" />
+              <div className="relative mt-2">
+                <img src={photoUrl} alt="preview" className="w-full max-h-48 object-cover rounded" />
+                <button
+                  type="button"
+                  onClick={() => onPhotoChange(null)}
+                  className="absolute top-1 right-1 bg-bg/80 border border-border rounded-full w-7 h-7 text-xs"
+                  aria-label="Quitar foto"
+                >
+                  ✕
+                </button>
+              </div>
             )}
-          </label>
+          </div>
 
           <label className="grid gap-1">
             <span className="text-xs text-text-muted">Nota</span>
@@ -216,21 +223,6 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
               className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               placeholder="Cómo va el cultivo, observaciones, problemas..."
             />
-          </label>
-
-          <label className="grid gap-1">
-            <span className="text-xs text-text-muted">Estado planta (1-5)</span>
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setMood(n)}
-                  className={`px-3 py-1 rounded ${n <= mood ? "text-accent" : "text-text-muted"}`}
-                >
-                  ⭐
-                </button>
-              ))}
-            </div>
           </label>
 
           <div>
