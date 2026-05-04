@@ -106,8 +106,8 @@ Workspace VSCode: `guia-cultivo.code-workspace` (en directorio padre con ambos r
 
 ✅ **TODO IMPLEMENTADO**: 19 templates · 16 routes · Calendar Schedule-X drag-drop · Stock + capacity + reservas · Shopping con revertir · Prep con override · Journal foto + EXIF strip · Cosechas → producto · Sesiones + tolerancia 5 sustancias · 4 calculadoras · Genética · 5 gráficos stats recharts · Diagnóstico flowchart 4 categorías · Timelapse slider + comparación · Notif locales + badge counter · Auto-update PWA polling 60s · Export JSON + AES-256 encrypted · Import auto-detect · Factory reset · Planning conflicts + sugerencias próximo cultivo · Form normalization · Safe-area iOS
 
-📚 **Doc-only opt-in**:
-- [Web Push background reliable iOS](docs/web-push-setup.md) — guía completa CF Worker + VAPID. NO implementado por requerir CF account user-side; catch-up + badge cubre 80% casos.
+⏳ **Pendiente acción manual user** (no bloqueante):
+- **Deploy CF Worker para push iOS background**: código completo en [worker/](worker/), falta deploy en cuenta CF personal (~10 min, gratis). Beneficio: notif aunque PWA cerrada. Sin esto: notif solo foreground + badge counter persiste. Setup: [worker/README.md](worker/README.md)
 
 ## ⚖️ Licencia
 

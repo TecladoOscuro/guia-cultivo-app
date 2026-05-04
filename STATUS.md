@@ -91,22 +91,26 @@ Los 14 templates están implementados. Sub-templates por planta dentro de planta
 
 Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList nodes + tablas riego desde wiki actual. Ver `docs/wiki-sync.md`.
 
-### Notificaciones push (Fase 8) — DONE 100% ✅
+### Notificaciones push (Fase 8) — DONE ✅ (código)
 - [x] Local notification scheduling con setTimeout (foreground fiable)
 - [x] Badge counter (Application Badging API iOS 16.4+)
 - [x] Auto-schedule al crear/iniciar/borrar/abortar cultivo
 - [x] Cancel notif al completar/borrar evento
 - [x] Settings: toggle notif + permission state + horas antes (15min - 24h)
 - [x] Catch-up al abrir app (badge = overdue + today)
-- [x] **Web Push con VAPID + CF Worker IMPLEMENTADO**:
-  - `worker/` con CF Worker code (TS + wrangler config)
-  - Custom Service Worker `src/sw.ts` con push event handler
-  - Cliente: subscribePush, postScheduleToWorker, pushTest, unsubscribePush
-  - Settings UI: input Worker URL + botón Activar/Desactivar push remoto + Push test
-  - Auto-send schedule 14d vista al Worker en refreshAllNotifications
-  - Cron Worker dispara push según schedule
-  - User setup: deploy worker (10 min, gratis) + pegar URL en Settings
-  - Doc completa: `worker/README.md` step-by-step
+- [x] Custom Service Worker (`src/sw.ts`) con push event handler
+- [x] Cliente push API: subscribePush, postScheduleToWorker, pushTest, unsubscribePush
+- [x] Settings UI: input Worker URL + Activar/Desactivar/Test push remoto
+- [x] Auto-send schedule 14d vista al Worker en refreshAllNotifications
+- [x] CSP allowlist `https://*.workers.dev`
+- [x] Worker code completo en `worker/` (TS + wrangler + cron + KV)
+- [x] Doc deploy paso-a-paso: `worker/README.md`
+
+⏳ **PENDIENTE — acción manual usuario** (no bloqueante, app funciona sin esto):
+- [ ] Deploy CF Worker en cuenta personal del usuario (~10 min, gratis)
+  - Instrucciones: [worker/README.md](worker/README.md)
+  - Tras deploy: pegar URL en Settings → Notificaciones → Activar push remoto
+  - Sin esto: notif funcionan en foreground + badge counter; background iOS limitado pero usable
 
 ### Estadísticas dashboard (Fase 10) — DONE ✅
 - [x] Recharts integration (bar/line/pie)
@@ -147,6 +151,20 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 ## 🐛 Bugs conocidos
 
 - (vacío)
+
+---
+
+## ⏳ Acciones pendientes usuario
+
+Cosas que requieren **decisión/acción manual del user** (código listo, falta deploy):
+
+### Deploy CF Worker para Web Push iOS background
+- Coste: 0€ (CF free tier)
+- Tiempo: ~10 min
+- Requisitos: cuenta CF + email para VAPID subject
+- Instrucciones: [worker/README.md](worker/README.md)
+- Beneficio: notif llegan al iPhone aunque PWA cerrada
+- Sin esto: notif solo funcionan con app abierta o reciente background
 
 ---
 
