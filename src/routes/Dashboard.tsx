@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
-import { addDays, format, isToday, isPast, isWithinInterval } from "date-fns";
+import { addDays, format, isToday, isPast, isWithinInterval, differenceInDays } from "date-fns";
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
 import { calculateCapacity } from "../lib/stockPipeline";
 import { listAvailableTemplates } from "../lib/cultivationActions";
 import type { CapacityResult } from "../lib/stockPipeline";
+import type { Cultivation, AppEvent } from "../types";
 
 export default function Dashboard() {
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
   const stocks = useLiveQuery(() => db.stock.toArray(), []) ?? [];
+  const prepItems = useLiveQuery(() => db.prepChecklists.toArray(), []) ?? [];
+  const shopItems = useLiveQuery(() => db.shoppingList.toArray(), []) ?? [];
 
   const active = cultivations.filter((c) => c.status === "active" || c.status === "planning");
   const today = events.filter((e) => isToday(e.scheduledDate) && e.status === "pending");
@@ -25,23 +28,20 @@ export default function Dashboard() {
     (e) => isPast(e.scheduledDate) && !isToday(e.scheduledDate) && e.status === "pending"
   );
 
-  const stats = {
-    cultivosActivos: active.length,
-    eventosHoy: today.length,
-    eventosPendientes: events.filter((e) => e.status === "pending").length,
-    eventosAtrasados: overdue.length,
-    stockItems: stocks.length,
-  };
+  // EMPTY STATE: sin cultivos, mostrar onboarding claro
+  if (cultivations.length === 0) {
+    return <EmptyState />;
+  }
 
   return (
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-4">🏠 Dashboard</h1>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-        <Stat label="Cultivos activos" value={stats.cultivosActivos} />
-        <Stat label="Eventos hoy" value={stats.eventosHoy} />
-        <Stat label="Atrasados" value={stats.eventosAtrasados} highlight={stats.eventosAtrasados > 0} />
-        <Stat label="Items stock" value={stats.stockItems} />
+        <Stat label="Cultivos activos" value={active.length} />
+        <Stat label="Eventos hoy" value={today.length} />
+        <Stat label="Atrasados" value={overdue.length} highlight={overdue.length > 0} />
+        <Stat label="Items stock" value={stocks.length} />
       </div>
 
       {today.length > 0 && (
@@ -56,51 +56,162 @@ export default function Dashboard() {
         </Section>
       )}
 
+      <Section title="🌱 Cultivos en curso">
+        <div className="grid gap-3">
+          {active.map((c) => (
+            <CultivoCard
+              key={c.id}
+              cultivation={c}
+              events={events.filter((e) => e.cultivationId === c.id)}
+              prepItems={prepItems.filter((p) => p.cultivationId === c.id)}
+              shopItems={shopItems.filter((s) => s.cultivationId === c.id)}
+            />
+          ))}
+        </div>
+      </Section>
+
       {upcoming.length > 0 && (
         <Section title="📅 Próximos 7 días">
           <EventList events={upcoming} cultivations={cultivations} limit={5} />
         </Section>
       )}
 
-      <Section title="🌱 Cultivos activos">
-        {active.length === 0 ? (
-          <p className="text-text-muted">No tienes cultivos activos. <Link to="/new" className="text-accent">Empezar uno</Link></p>
-        ) : (
-          <div className="grid gap-2">
-            {active.map((c) => {
-              const cultEvents = events.filter((e) => e.cultivationId === c.id);
-              const done = cultEvents.filter((e) => e.status === "done").length;
-              const total = cultEvents.length;
-              const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-              return (
-                <Link
-                  key={c.id}
-                  to={`/calendar?highlight=${c.id}`}
-                  className="block p-3 border border-border rounded hover:border-accent transition"
-                >
-                  <div className="flex justify-between items-start mb-1">
-                    <div className="font-bold text-text-bright">{c.name}</div>
-                    <span className="text-xs text-text-muted">{c.status}</span>
-                  </div>
-                  <div className="text-xs text-text-muted">
-                    Inicio {format(c.startDate, "PP", { locale: es })} · {done}/{total} eventos
-                  </div>
-                  <div className="mt-2 h-1.5 bg-bg-3 rounded overflow-hidden">
-                    <div
-                      className="h-full bg-accent transition-all"
-                      style={{ width: `${pct}%` }}
-                    />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        )}
+      <Section title="➕ Empezar otro cultivo">
+        <Link
+          to="/new"
+          className="block p-3 border border-border rounded hover:border-accent text-sm text-center"
+        >
+          ➕ Nuevo cultivo
+        </Link>
       </Section>
 
       <Section title="📊 Capacidad por template">
         <CapacityWidget />
       </Section>
+    </div>
+  );
+}
+
+function EmptyState() {
+  return (
+    <div className="text-center py-8">
+      <div className="text-6xl mb-4">🌱</div>
+      <h1 className="text-2xl font-bold text-text-bright mb-2">Bienvenido a Guía Cultivo</h1>
+      <p className="text-text-muted mb-6 max-w-md mx-auto">
+        Gestiona tus cultivos caseros: calendario auto-generado, stock, planning, journal y sesiones. Todo en tu dispositivo.
+      </p>
+      <Link
+        to="/new"
+        className="inline-block px-6 py-3 bg-accent text-bg rounded-lg font-bold text-base"
+      >
+        🚀 Empezar primer cultivo
+      </Link>
+      <div className="mt-8 grid sm:grid-cols-3 gap-3 max-w-2xl mx-auto text-left text-sm">
+        <div className="p-3 border border-border rounded">
+          <div className="font-bold text-text-bright mb-1">1️⃣ Elige tipo</div>
+          <div className="text-text-muted text-xs">Setas, cannabis, cactus, hidromiel...</div>
+        </div>
+        <div className="p-3 border border-border rounded">
+          <div className="font-bold text-text-bright mb-1">2️⃣ Confirma</div>
+          <div className="text-text-muted text-xs">Stock check + fecha inicio. Eventos generados auto.</div>
+        </div>
+        <div className="p-3 border border-border rounded">
+          <div className="font-bold text-text-bright mb-1">3️⃣ Sigue calendario</div>
+          <div className="text-text-muted text-xs">Cada día qué hacer. Marca hecho. App lleva el resto.</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CultivoCard({
+  cultivation,
+  events,
+  prepItems,
+  shopItems,
+}: {
+  cultivation: Cultivation;
+  events: AppEvent[];
+  prepItems: { blocking: boolean; status: string }[];
+  shopItems: { status: string }[];
+}) {
+  const done = events.filter((e) => e.status === "done").length;
+  const total = events.length;
+  const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  const blockingPending = prepItems.filter((p) => p.blocking && p.status !== "done").length;
+  const shopPending = shopItems.filter((s) => s.status === "pending").length;
+
+  // Días desde inicio
+  const daysInto = differenceInDays(new Date(), cultivation.startDate);
+
+  // Próximo evento pendiente
+  const nextEvent = events
+    .filter((e) => e.status === "pending" && !isPast(e.scheduledDate))
+    .sort((a, b) => a.scheduledDate.getTime() - b.scheduledDate.getTime())[0];
+
+  // Atrasados
+  const overdueCount = events.filter(
+    (e) => e.status === "pending" && isPast(e.scheduledDate) && !isToday(e.scheduledDate)
+  ).length;
+
+  // Next action contextual segun status
+  let nextAction: { label: string; to: string; emphasized?: boolean } | null = null;
+  if (cultivation.status === "planning") {
+    if (blockingPending > 0) {
+      nextAction = { label: `✅ Completar ${blockingPending} tarea(s) preparación`, to: "/prep", emphasized: true };
+    } else if (shopPending > 0) {
+      nextAction = { label: `🛒 ${shopPending} compras pendientes`, to: "/shopping" };
+    } else {
+      nextAction = { label: "🚀 Iniciar cultivo", to: "/prep", emphasized: true };
+    }
+  } else if (cultivation.status === "active") {
+    if (overdueCount > 0) {
+      nextAction = { label: `⚠️ ${overdueCount} evento(s) atrasado(s)`, to: "/calendar", emphasized: true };
+    } else if (nextEvent) {
+      nextAction = {
+        label: `📅 ${nextEvent.emoji} ${nextEvent.title}`,
+        to: `/calendar?event=${nextEvent.id}`,
+      };
+    }
+  }
+
+  return (
+    <div className="p-4 border border-border rounded">
+      <div className="flex justify-between items-start mb-2 gap-2">
+        <div className="flex-1 min-w-0">
+          <div className="font-bold text-text-bright">{cultivation.name}</div>
+          <div className="text-xs text-text-muted">
+            {cultivation.status === "planning" ? "📋 planeado" : "🌿 activo"}
+            {cultivation.status === "active" && ` · día ${daysInto + 1}`}
+            {" · "}
+            {done}/{total} eventos
+          </div>
+        </div>
+        <Link
+          to={`/calendar?cult=${cultivation.id}`}
+          className="text-xs text-text-muted hover:text-accent"
+        >
+          Ver →
+        </Link>
+      </div>
+
+      <div className="mt-2 h-1.5 bg-bg-3 rounded overflow-hidden mb-3">
+        <div className="h-full bg-accent transition-all" style={{ width: `${pct}%` }} />
+      </div>
+
+      {nextAction && (
+        <Link
+          to={nextAction.to}
+          className={`block text-sm p-2 rounded transition ${
+            nextAction.emphasized
+              ? "bg-accent/15 border border-accent text-accent font-bold hover:bg-accent/25"
+              : "bg-bg-3 border border-border text-text-bright hover:border-accent"
+          }`}
+        >
+          {nextAction.label} →
+        </Link>
+      )}
     </div>
   );
 }
@@ -132,8 +243,8 @@ function EventList({
   cultivations,
   limit,
 }: {
-  events: { id?: number; emoji: string; title: string; scheduledDate: Date; cultivationId: number }[];
-  cultivations: { id?: number; name: string }[];
+  events: AppEvent[];
+  cultivations: Cultivation[];
   limit?: number;
 }) {
   const list = limit ? events.slice(0, limit) : events;

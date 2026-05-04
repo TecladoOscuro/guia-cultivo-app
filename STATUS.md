@@ -1,0 +1,162 @@
+# STATUS — guia-cultivo-app
+
+Estado actual del proyecto. Update este archivo cuando cierras una feature, descubres bug, o tomas decisión nueva.
+
+**URL prod**: https://tecladooscuro.github.io/guia-cultivo-app/dashboard
+**Repo**: https://github.com/TecladoOscuro/guia-cultivo-app
+
+---
+
+## ✅ Done
+
+### Infraestructura
+- [x] Vite + React 19 + TypeScript + Tailwind v4
+- [x] PWA instalable (manifest + Workbox SW)
+- [x] Auto-update (polling 60s + banner Recargar + skipWaiting + clientsClaim)
+- [x] Safe-area-inset iPhone (status bar + home indicator)
+- [x] Deploy GH Pages via Actions (`deploy.yml` + `enablement: true`)
+- [x] Sync workflow wiki ↔ app esqueleto (`sync-from-wiki.yml`)
+- [x] CSP estricta + .gitignore secrets blacklist
+- [x] @js-temporal/polyfill (Safari iOS no tiene Temporal nativo)
+
+### Datos + lógica
+- [x] Schema Dexie 13 tablas
+- [x] Types compartidos en `src/types.ts`
+- [x] eventGenerator (template → AppEvent[])
+- [x] stockPipeline (reservas/consumo/capacidad)
+- [x] cultivationActions (create, start, abort, completeEvent)
+- [x] eventActions (createManual, update, delete, reschedule)
+- [x] Photo compression con canvas + EXIF strip
+
+### Templates
+- [x] Schema completo `CultivoTemplate` con phases, events, recurringTasks, shoppingList, prepChecklist, consumables
+- [x] Template `mushroom-kit.json` completo
+
+### UI Routes (13)
+- [x] Dashboard — empty state + cultivos cards con next-action contextual + stats + capacity widget
+- [x] Calendar — Schedule-X (Google Calendar style) + drag-drop reagendar + click → modal CRUD
+- [x] NewCultivation — wizard 3 pasos: tipo → datos → preflight stock
+- [x] ShoppingList — auto-generada + cross-check stock + comprar/revertir
+- [x] PrepChecklist — items blocking + start con override warning
+- [x] Stock — CRUD + reservas + libre vs reservado
+- [x] Journal — foto + nota + observaciones + mood
+- [x] Harvests — peso fresco/seco + calidad + auto-crea producto
+- [x] Product — inventario agrupado por kind + abrir/borrar
+- [x] Sessions — dosis tracker + ventanas tolerancia automáticas
+- [x] Calculators — fresco→seco, dosis por peso, ABV, decarbox
+- [x] Genetics — CRUD library con caducidad
+- [x] Settings (stub)
+
+### Wiki integration
+- [x] Wiki: parser URLSearchParams `?guide=X&mode=Y&phase=Z` (cambio invisible)
+- [x] Deep links wiki desde eventos via `wikiUrl`
+- [x] Templates JSON con `wikiBase` configurado
+
+### Documentación
+- [x] README.md completo con URL acceso
+- [x] AGENTS.md (humanos + IAs)
+- [x] CLAUDE.md (instrucciones específicas)
+- [x] CONTRIBUTING.md
+- [x] docs/architecture.md, data-model.md, templates-format.md, wiki-sync.md, stock-system.md, security.md
+- [x] docs/decisions/ (ADRs 0001-0004)
+- [x] docs/ux-flow.md — flujo intencional usuario
+- [x] STATUS.md (este archivo)
+- [x] .claude/skills/ (add-template, add-feature, add-calculator, sync-wiki, debug-stock-state, **add-new-cultivo**)
+- [x] .claude/commands/ (new-cultivo, sync-wiki, add-feature)
+
+---
+
+## 🚧 Pendiente
+
+### Templates restantes (Fase 11) — PRIORIDAD ALTA
+Solo `mushroom-kit` está. Faltan:
+- [ ] cannabis-interior
+- [ ] cannabis-exterior
+- [ ] mushroom-friendly (con cultura líquida)
+- [ ] mushroom-advanced (lab desde cero)
+- [ ] trufas
+- [ ] cactus (san pedro)
+- [ ] amanita
+- [ ] ayahuasca
+- [ ] dmt-mimosa
+- [ ] plantas-suaves (con sub-templates por planta)
+- [ ] ferment-hidromiel
+- [ ] ferment-cerveza
+- [ ] ferment-sidra
+
+Sin estos, la app solo es funcional para setas kit. Crítico.
+
+Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList nodes + tablas riego desde wiki actual. Ver `docs/wiki-sync.md`.
+
+### Notificaciones push (Fase 8)
+- [ ] Schedule-X local notification al abrir app (catch-up)
+- [ ] Web Push con VAPID + service en CF Worker o GH Action cron (si valoras background real)
+- [ ] Badge counter (Application Badging API iOS 16.4+)
+- [ ] Settings: preferencias notif (hora digest, X horas antes evento)
+
+### Estadísticas dashboard (Fase 10)
+- [ ] Recharts integration
+- [ ] Cosechas históricas por cultivo (bar/line chart)
+- [ ] Tasa éxito vs abortos (pie)
+- [ ] Tiempo medio por fase
+- [ ] Costes acumulados (si introduces precios en stock/shopping)
+- [ ] Evolución stock
+
+### Settings real (Fase 13)
+- [ ] Preferencias notificaciones
+- [ ] Threshold stock crítico
+- [ ] Tolerancia personalizada (override defaults)
+- [ ] Export JSON encrypted (AES-256 Web Crypto + password)
+- [ ] Import JSON (substitute o merge)
+- [ ] Factory reset
+- [ ] Info versión + about
+
+### Skill `add-new-cultivo` integration test (Fase 12)
+- [ ] Templates de generación JSX en `docs/component-templates/`
+- [ ] Test caso real: añadir "café" o "lúpulo" como cultivo
+- [ ] Verificar pipeline 8 fases funciona end-to-end
+
+### Polish post-MVP (Fase 13)
+- [ ] Planning automático con detección conflictos recursos (armario, fitolux compartido)
+- [ ] Diagnóstico flowchart "qué le pasa al cultivo"
+- [ ] Foto-comparación timelapse
+- [ ] Compartir cultivo via QR/JSON
+
+---
+
+## 🐛 Bugs conocidos
+
+- (vacío)
+
+---
+
+## 🎯 Comportamiento esperado (guía rápida)
+
+Ver [docs/ux-flow.md](docs/ux-flow.md) para flujo completo.
+
+**Resumen UX**:
+1. Empty state → CTA "Empezar primer cultivo" (no "vacío")
+2. Wizard: tipo → datos → preflight stock check (warning si falta, opción confirmar igualmente)
+3. Cultivo en planning → CultivoCard en dashboard con next-action ("completar prep" o "iniciar")
+4. Prep checklist: blocking items se pueden saltar con confirm + warning
+5. Cultivo activo → CultivoCard muestra próximo evento + atrasados
+6. Click cualquier evento (en dashboard, calendario) → modal con desc + pasos + warnings + acciones
+7. Marcar hecho → decrementa stock si aplica + persiste
+8. Drag-drop evento en calendario → reagenda
+9. Cosecha → form → auto-crea entrada en inventario producto
+10. Sesión → form → decrementa producto + actualiza tolerancia
+
+**Restricciones inmutables**:
+- Datos solo en dispositivo (IndexedDB)
+- Sin tracking, sin analytics, sin sync sin opt-in
+- Wiki visualmente intacta
+- Auto-update cada 60s
+- Cero secretos en repo público
+
+---
+
+## 📋 Cómo actualizar este archivo
+
+Cuando cierras feature: tachar checkbox en sección Done. Cuando descubres bug: añadir en Bugs. Cuando decisión arquitectural: ADR en `docs/decisions/`. Cuando flujo UX cambia: update `docs/ux-flow.md` Y aquí.
+
+Mantenerlo current es responsabilidad de quien hace cambios.

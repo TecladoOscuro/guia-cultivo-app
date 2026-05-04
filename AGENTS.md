@@ -2,6 +2,10 @@
 
 Documento principal para humanos + IAs trabajando en este repo. Lee esto antes de modificar nada.
 
+**🚨 Lee también:**
+- [STATUS.md](STATUS.md) — qué está hecho y qué falta (mantener actualizado)
+- [docs/ux-flow.md](docs/ux-flow.md) — comportamiento UX intencional
+
 ## Propósito
 
 App PWA companion de la wiki [guia-cultivo](https://github.com/TecladoOscuro/guia-cultivo). Convierte la wiki educativa en gestor activo: calendario, stock, planning, journal, sesiones.
@@ -136,7 +140,20 @@ Repo público. Cero secretos. Ver [docs/security.md](docs/security.md).
 ## Para otras IAs
 
 - **Lee este archivo PRIMERO**
+- Lee `STATUS.md` para saber qué está done/pending — actualízalo cuando cierres feature
+- Lee `docs/ux-flow.md` para entender el comportamiento intencional
 - Lee `CLAUDE.md` para instrucciones de tono/estilo si eres Claude
 - Para tareas comunes: skills en `.claude/skills/`
 - Para slash commands: `.claude/commands/`
 - Para clarificar: pregunta al user, no asumas
+
+## Workflow estándar
+
+1. Lee feature spec o ticket
+2. Comprueba STATUS.md si feature ya hecha
+3. Comprueba ux-flow.md para encajar en flujo
+4. Implementa
+5. Build + verifica parse OK
+6. Commit con conventional commit
+7. **ACTUALIZA STATUS.md**: tachar checkbox done, añadir nuevo pending si aplica
+8. Push

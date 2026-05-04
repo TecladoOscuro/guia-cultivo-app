@@ -1,8 +1,10 @@
 import { useLiveQuery } from "dexie-react-hooks";
+import { useNavigate } from "react-router-dom";
 import { db } from "../lib/db";
 import { startCultivation } from "../lib/cultivationActions";
 
 export default function PrepChecklist() {
+  const navigate = useNavigate();
   const items = useLiveQuery(() => db.prepChecklists.toArray(), []) ?? [];
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
 
@@ -15,10 +17,22 @@ export default function PrepChecklist() {
     });
   };
 
-  const canStart = (cultivationId: number) => {
-    const cultItems = items.filter((i) => i.cultivationId === cultivationId);
-    const blocking = cultItems.filter((i) => i.blocking);
-    return blocking.every((i) => i.status === "done");
+  const blockingPending = (cultivationId: number) => {
+    return items.filter(
+      (i) => i.cultivationId === cultivationId && i.blocking && i.status !== "done"
+    );
+  };
+
+  const onStart = async (cultivationId: number) => {
+    const blocking = blockingPending(cultivationId);
+    if (blocking.length > 0) {
+      const confirmMsg = `⚠️ ${blocking.length} tarea(s) crítica(s) sin completar:\n\n${blocking
+        .map((b) => `• ${b.title}`)
+        .join("\n")}\n\n¿Iniciar cultivo igualmente?`;
+      if (!confirm(confirmMsg)) return;
+    }
+    await startCultivation(cultivationId);
+    navigate("/calendar");
   };
 
   return (
@@ -34,24 +48,33 @@ export default function PrepChecklist() {
           {planning.map((c) => {
             const cultItems = items.filter((i) => i.cultivationId === c.id);
             const done = cultItems.filter((i) => i.status === "done").length;
-            const ready = canStart(c.id!);
+            const blocking = blockingPending(c.id!);
+            const allDone = blocking.length === 0;
             return (
               <div key={c.id} className="p-4 border border-border rounded">
-                <div className="flex justify-between items-start mb-3">
-                  <div>
+                <div className="flex justify-between items-start mb-3 gap-3">
+                  <div className="flex-1 min-w-0">
                     <h2 className="text-lg font-bold text-text-bright">{c.name}</h2>
                     <div className="text-xs text-text-muted">
-                      {done}/{cultItems.length} tareas · {ready ? "✅ listo para iniciar" : "⏳ pendiente preparación"}
+                      {done}/{cultItems.length} tareas
+                      {allDone ? " · ✅ todas críticas completadas" : ` · ⚠️ ${blocking.length} crítica(s) pendiente(s)`}
                     </div>
                   </div>
-                  {ready && (
-                    <button
-                      onClick={() => startCultivation(c.id!)}
-                      className="px-4 py-2 bg-accent text-bg rounded font-bold text-sm"
-                    >
-                      🚀 Iniciar cultivo
-                    </button>
-                  )}
+                  <button
+                    onClick={() => onStart(c.id!)}
+                    className={`px-4 py-2 rounded font-bold text-sm whitespace-nowrap ${
+                      allDone
+                        ? "bg-accent text-bg"
+                        : "bg-warn text-bg hover:brightness-110"
+                    }`}
+                    title={
+                      allDone
+                        ? "Iniciar cultivo"
+                        : "Iniciar igualmente (saltar tareas pendientes)"
+                    }
+                  >
+                    {allDone ? "🚀 Iniciar" : "⚠️ Iniciar igualmente"}
+                  </button>
                 </div>
                 <div className="grid gap-2">
                   {cultItems.map((it) => {
@@ -61,13 +84,22 @@ export default function PrepChecklist() {
                         key={it.id}
                         onClick={() => toggle(it.id!, isDone)}
                         className={`text-left p-3 border rounded flex items-start gap-3 transition ${
-                          isDone ? "border-success/50 opacity-70" : "border-border hover:border-accent"
+                          isDone
+                            ? "border-success/50 opacity-70"
+                            : it.blocking
+                              ? "border-warn/40 hover:border-warn"
+                              : "border-border hover:border-accent"
                         }`}
                       >
-                        <span className="text-lg">{isDone ? "✅" : it.blocking ? "🔒" : "⬜"}</span>
+                        <span className="text-lg">
+                          {isDone ? "✅" : it.blocking ? "🔒" : "⬜"}
+                        </span>
                         <div className="flex-1">
                           <div className={`text-sm font-bold ${isDone ? "line-through" : "text-text-bright"}`}>
                             {it.title}
+                            {it.blocking && !isDone && (
+                              <span className="ml-2 text-xs text-warn">crítico</span>
+                            )}
                           </div>
                           {it.description && (
                             <div className="text-xs text-text-muted mt-1">{it.description}</div>
