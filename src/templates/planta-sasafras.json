@@ -1,0 +1,36 @@
+{
+  "id": "planta-sasafras",
+  "name": "Sasafrás (Sassafras albidum)",
+  "emoji": "🌳",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1825 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=sasafras",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_sasafras", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_sasafras", "name": "Cultivo", "emoji": "🌳", "startDayOffset": 0, "endDayOffset": 1825, "wikiPhase": "sasafras" }
+  ],
+  "events": [
+    { "id": "plantar_sasafras", "title": "🌳 Plantar Sasafrás", "emoji": "🌳", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Árbol mediano hardy. Plantón en suelo definitivo (raíz pivotante difícil trasplante). Suelo drenado neutro/ácido, sol o semisombra. Té tradicional Cherokee/colonial USA. ⚠️ Aceite/safrol fiscalizado.", "wikiPhase": "sasafras", "notify": true },
+    { "id": "primera_cosecha_sasafras", "title": "✂️ Cosecha corteza raíz", "emoji": "✂️", "type": "harvest", "offsetDays": 1825, "durationMin": 120, "description": "Año 5+. Excavar lateral exposing raíces secundarias. Pelar corteza, dejar mayoría. Secar al aire 1-2 sem.", "wikiPhase": "sasafras", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_sasafras", "title": "💧 Riego Sasafrás", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1825, "cadence": { "everyDays": 7, "volumeMl": "1000-2000", "notes": "Establecido tolera sequía" }, "description": "Año 1-2 frecuente. Adulto: solo en sequías prolongadas.", "consumes": [{ "stockKey": "agua_riego", "qty": 1500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "sasafras", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "planton_sasafras", "name": "Plantón Sasafrás 1-2 años", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-50€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante ácido", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 500, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_sasafras", "title": "Espacio definitivo árbol", "description": "Crece 5-15m altura adulto. Suelo, no maceta (raíz pivotante).", "blocking": true, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "planton_sasafras", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 30, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "raiz",
+  "produces": { "kind": "sasafras_corteza", "unit": "g" }
+}

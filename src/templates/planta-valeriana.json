@@ -1,0 +1,38 @@
+{
+  "id": "planta-valeriana",
+  "name": "Valeriana (Valeriana officinalis)",
+  "emoji": "💤",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 540 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=valeriana",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_valeriana", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_valeriana", "name": "Cultivo", "emoji": "💤", "startDayOffset": 0, "endDayOffset": 540, "wikiPhase": "valeriana" }
+  ],
+  "events": [
+    { "id": "plantar_valeriana", "title": "💤 Plantar Valeriana", "emoji": "💤", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Perenne robusta hasta -20°C. Sustrato fértil húmedo. Sol o semisombra (mejor semisombra en BCN). Crece 1-1.5m. Sedante GABAérgico potente. Plantón mejor que semilla.", "wikiPhase": "valeriana", "notify": true },
+    { "id": "primera_cosecha_valeriana", "title": "✂️ Cosecha raíz", "emoji": "✂️", "type": "harvest", "offsetDays": 540, "durationMin": 90, "description": "Año 2 otoño. Excavar mata, separar 70% rizoma, replantar 30%. Lavar muy bien, cortar trozos, secar 2-3 sem (huele fuerte — exterior).", "wikiPhase": "valeriana", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_valeriana", "title": "💧 Riego Valeriana", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 540, "cadence": { "everyDays": 3, "volumeMl": "400-600", "notes": "Le gusta humedad constante" }, "description": "Regular. No tolera sequía prolongada. Mantener suelo siempre algo húmedo.", "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "valeriana", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "planton_valeriana", "name": "Plantón Valeriana", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "4-8€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_15L", "name": "Maceta 15L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "sustrato_fertil", "name": "Sustrato fértil + compost", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 150, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_valeriana", "title": "Espacio semisombra en BCN", "description": "Sombra parcial evita marchitez verano. Lejos de ventanas si interior (olor raíz al cosechar).", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "planton_valeriana", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_15L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_fertil", "qty": 15, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "raiz",
+  "produces": { "kind": "valeriana_raiz", "unit": "g" }
+}

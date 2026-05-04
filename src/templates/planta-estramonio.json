@@ -1,0 +1,38 @@
+{
+  "id": "planta-estramonio",
+  "name": "Estramonio (Datura stramonium)",
+  "emoji": "⚠️",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 150 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=estramonio",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_estramonio", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_estramonio", "name": "Cultivo", "emoji": "⚠️", "startDayOffset": 0, "endDayOffset": 150, "wikiPhase": "estramonio" }
+  ],
+  "events": [
+    { "id": "plantar_estramonio", "title": "⚠️ Sembrar Estramonio", "emoji": "⚠️", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "⚠️ TIER ROJO. Anual cosmopolita naturalizada en ES. Semilla mayo directo, 4 por hoyuelo, separar 50cm. Sustrato cualquiera, sol pleno, riego escaso. Crece rápido 60-150cm. GUANTES.", "wikiPhase": "estramonio", "notify": true },
+    { "id": "primera_cosecha_estramonio", "title": "✂️ Cosecha hojas", "emoji": "✂️", "type": "harvest", "offsetDays": 120, "durationMin": 45, "description": "Hojas durante floración (julio-sept). Cápsulas espinosas para semillas. Secar y etiquetar VENENO.", "wikiPhase": "estramonio", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_estramonio", "title": "💧 Riego Estramonio", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 150, "cadence": { "everyDays": 7, "volumeMl": "200-400", "notes": "Tolera sequía" }, "description": "Escaso. Es ruderal — sobrevive cualquier condición.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "estramonio", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_estramonio", "name": "Semillas Datura stramonium", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "1-4€", "source": "internet", "notes": "Gratis en descampados ES — ya naturalizada", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_universal", "name": "Sustrato universal", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "guantes_seguros", "name": "Guantes manejo tóxica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "lugar_estramonio", "title": "⚠️ Lugar seguro etiquetado", "description": "Causa frecuente intoxicación juvenil ES verano. Plantar como ornamental con cartel, lejos de paseos.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_estramonio", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "estramonio_hojas", "unit": "g" }
+}

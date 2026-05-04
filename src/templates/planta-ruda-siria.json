@@ -1,0 +1,37 @@
+{
+  "id": "planta-ruda-siria",
+  "name": "Ruda siria (Peganum harmala)",
+  "emoji": "🌌",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 540 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=ruda_siria",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_ruda_siria", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_ruda_siria", "name": "Cultivo", "emoji": "🌌", "startDayOffset": 0, "endDayOffset": 540, "wikiPhase": "ruda_siria" }
+  ],
+  "events": [
+    { "id": "plantar_ruda_siria", "title": "🌌 Sembrar Ruda siria", "emoji": "🌌", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Perenne semi-arbustiva mediterránea. Semilla peat moss superficial. Sustrato seco arenoso, sol pleno. β-carbolinas IMAO (harmina, harmalina). Combo ayahuasca analógica con DMT-planta. ⚠️ Interacciones IMAO críticas.", "wikiPhase": "ruda_siria", "notify": true },
+    { "id": "primera_cosecha_ruda_siria", "title": "✂️ Cosecha semillas", "emoji": "✂️", "type": "harvest", "offsetDays": 480, "durationMin": 45, "description": "Año 2+. Cápsulas marrón-negro maduras (final verano-otoño). Recolectar antes de abrir. Secar al sol 3-5d.", "wikiPhase": "ruda_siria", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_ruda_siria", "title": "💧 Riego Ruda siria", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 540, "cadence": { "everyDays": 10, "volumeMl": "150-250", "notes": "Muy parco — desértica" }, "description": "Riego escaso. Tolera sequía extrema. Encharcamiento la mata.", "consumes": [{ "stockKey": "agua_riego", "qty": 200, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "ruda_siria", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_ruda_siria", "name": "Semillas Peganum harmala", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "3-8€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_10L", "name": "Maceta 10L drenada", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "sustrato_pobre_arenoso", "name": "Sustrato arenoso pobre", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 50, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "imao_diet", "title": "⚠️ Reposo dietético IMAO planificado", "description": "Antes de uso β-carbolinas: 24h sin tiramina (queso, vino, embutido, soja). Sin ISRS, MDMA. Documentar interacciones.", "blocking": false, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_ruda_siria", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_pobre_arenoso", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "semillas",
+  "produces": { "kind": "ruda_siria_semillas", "unit": "g" }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "planta-belladona",
+  "name": "Belladona (Atropa belladonna)",
+  "emoji": "🖤",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=belladona",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_belladona", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_belladona", "name": "Cultivo", "emoji": "🖤", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "belladona" }
+  ],
+  "events": [
+    { "id": "plantar_belladona", "title": "🖤 Sembrar Belladona", "emoji": "🖤", "type": "milestone", "offsetDays": 0, "durationMin": 45, "description": "⚠️ TIER ROJO. Perenne herbácea europea. Semilla estratificar 4 sem frío. Trasplantar a 80cm separación. Sustrato drenado calizo. Semisombra. Bayas negras MUY tóxicas. GUANTES siempre.", "wikiPhase": "belladona", "notify": true },
+    { "id": "primera_cosecha_belladona", "title": "✂️ Cosecha hojas año 2+", "emoji": "✂️", "type": "harvest", "offsetDays": 540, "durationMin": 45, "description": "Año 2+ floración (junio-agosto). Cosechar partes aéreas. Secar sombra 5-10d. Bayas: NO comer (compostar).", "wikiPhase": "belladona", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_belladona", "title": "💧 Riego Belladona", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 730, "cadence": { "everyDays": 5, "volumeMl": "300-500", "notes": "Suelo siempre algo húmedo" }, "description": "Moderado. No encharcar. Mulch en verano.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "belladona", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_belladona", "name": "Semillas Atropa belladonna", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "4-10€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_15L", "name": "Maceta 15L o suelo seguro", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante calizo", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_seguros", "name": "Guantes manejo tóxica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "lugar_seguro_belladona", "title": "⚠️ Plantar lejos de niños/mascotas", "description": "Bayas negras atractivas LETALES (2-3 bayas niño = hospital). Etiquetar y aislar. Arrancar bayas si riesgo.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_belladona", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_15L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "belladona_hojas", "unit": "g" }
+}

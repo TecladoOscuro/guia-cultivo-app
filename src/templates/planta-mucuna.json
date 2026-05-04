@@ -1,0 +1,40 @@
+{
+  "id": "planta-mucuna",
+  "name": "Mucuna pruriens (Frijol terciopelo)",
+  "emoji": "🫘",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 240 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=mucuna",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_mucuna", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_mucuna", "name": "Cultivo", "emoji": "🫘", "startDayOffset": 0, "endDayOffset": 240, "wikiPhase": "mucuna" }
+  ],
+  "events": [
+    { "id": "plantar_mucuna", "title": "🫘 Sembrar Mucuna", "emoji": "🫘", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Leguminosa trepadora tropical. Semillas: nick + remojo 24h. Sustrato fértil drenado. Sol pleno. Soporte 3-4m. L-DOPA natural en semillas (Parkinson + dopaminérgico). BCN: anual o macetón indoor invierno.", "wikiPhase": "mucuna", "notify": true },
+    { "id": "primera_cosecha_mucuna", "title": "✂️ Cosecha vainas", "emoji": "✂️", "type": "harvest", "offsetDays": 210, "durationMin": 60, "description": "Vainas peludas (urticantes — usar guantes!) cuando marrones secas (otoño). Extraer semillas. ⚠️ Pelos causan picor severo.", "wikiPhase": "mucuna", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_mucuna", "title": "💧 Riego Mucuna", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 240, "cadence": { "everyDays": 3, "volumeMl": "500-700", "notes": "Riego abundante" }, "description": "Tropical — humedad alta. Pulverizar foliage. Riego frecuente en verano BCN.", "consumes": [{ "stockKey": "agua_riego", "qty": 600, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "mucuna", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_mucuna", "name": "Semillas Mucuna pruriens", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-12€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_30L", "name": "Maceta 30L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "sustrato_fertil", "name": "Sustrato fértil + compost", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "tutor_trepadora", "name": "Tutor 3-4m", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-20€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "guantes_mucuna", "title": "Guantes obligatorios cosecha", "description": "Vainas tienen pelos urticantes (mucunaín). Picor severo si tocas piel — guantes + manga larga al cosechar.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_mucuna", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_30L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_fertil", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "tutor_trepadora", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "semillas",
+  "produces": { "kind": "mucuna_semillas", "unit": "g" }
+}

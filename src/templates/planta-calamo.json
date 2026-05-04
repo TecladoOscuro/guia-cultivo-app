@@ -1,0 +1,38 @@
+{
+  "id": "planta-calamo",
+  "name": "Cálamo aromático (Acorus calamus)",
+  "emoji": "🪴",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 540 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=calamo",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_calamo", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_calamo", "name": "Cultivo", "emoji": "🪴", "startDayOffset": 0, "endDayOffset": 540, "wikiPhase": "calamo" }
+  ],
+  "events": [
+    { "id": "plantar_calamo", "title": "🪴 Plantar rizoma Cálamo", "emoji": "🪴", "type": "milestone", "offsetDays": 0, "durationMin": 45, "description": "Acuática perenne. Rizoma con 2-3 yemas en sustrato pesado (arcilla+barro). Inundar con 5-15cm agua. Estanque/cubo 50L+. Sol pleno o parcial. β-asarona estimulante leve.", "wikiPhase": "calamo", "notify": true },
+    { "id": "primera_cosecha_calamo", "title": "✂️ Cosecha rizoma", "emoji": "✂️", "type": "harvest", "offsetDays": 540, "durationMin": 90, "description": "Año 2-3 otoño. Extraer 50% rizoma (replantar 50%). Pelar capa externa, cortar 1-2cm, secar al sol 2-3 sem (40°C max).", "wikiPhase": "calamo", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "mantener_agua_calamo", "title": "💧 Mantener nivel agua", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 540, "cadence": { "everyDays": 7, "volumeMl": "1000-3000", "notes": "Verificar y rellenar nivel" }, "description": "Mantener 5-15cm agua sobre sustrato. Reponer evaporación.", "consumes": [{ "stockKey": "agua_riego", "qty": 2000, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "calamo", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "rizoma_calamo", "name": "Rizoma Acorus calamus (variedad europea)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "estanque_50L", "name": "Cubo/estanque 50L+", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-50€" },
+    { "key": "sustrato_arcilla", "name": "Sustrato arcilla pesada", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "agua_riego", "name": "Agua para reposición", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_acuatico", "title": "Espacio para estanque/cubo acuático", "description": "Balcón con peso soportado o jardín. Considerar mosquitos (gambusia o aireador).", "blocking": true, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "rizoma_calamo", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "estanque_50L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_arcilla", "qty": 15, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "raiz",
+  "produces": { "kind": "calamo_rizoma", "unit": "g" }
+}

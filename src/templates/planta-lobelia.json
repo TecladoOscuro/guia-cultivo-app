@@ -1,0 +1,37 @@
+{
+  "id": "planta-lobelia",
+  "name": "Lobelia inflata (Indian Tobacco)",
+  "emoji": "🌿",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=lobelia",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_lobelia", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_lobelia", "name": "Cultivo", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "lobelia" }
+  ],
+  "events": [
+    { "id": "plantar_lobelia", "title": "🌿 Sembrar Lobelia", "emoji": "🌿", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Anual. Semillas diminutas superficie + spray. Trasplantar a 30cm separación. Sustrato húmedo fértil, semisombra. ⚠️ Lobelina margen estrecho activo/tóxico.", "wikiPhase": "lobelia", "notify": true },
+    { "id": "primera_cosecha_lobelia", "title": "✂️ Cosecha hierba", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 30, "description": "Partes aéreas en floración (julio-sept). Secar sombra 5-10d. Almacenar etiquetado.", "wikiPhase": "lobelia", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_lobelia", "title": "💧 Riego Lobelia", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 3, "volumeMl": "300-500", "notes": "Suelo húmedo constante" }, "description": "No tolera sequía. Riego frecuente.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "lobelia", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_lobelia", "name": "Semillas Lobelia inflata", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "3-8€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_5L", "name": "Maceta 5L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_fertil", "name": "Sustrato húmedo fértil", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 80, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "semisombra_lobelia", "title": "Semisombra requerida", "description": "Sol pleno BCN verano la quema. Bajo árbol o pared norte.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_lobelia", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_fertil", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "lobelia_hojas", "unit": "g" }
+}

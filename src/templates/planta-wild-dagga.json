@@ -1,0 +1,38 @@
+{
+  "id": "planta-wild-dagga",
+  "name": "Wild Dagga (Leonotis leonurus)",
+  "emoji": "🦁",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 270 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=wild_dagga",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_wild_dagga", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_wild_dagga", "name": "Cultivo", "emoji": "🦁", "startDayOffset": 0, "endDayOffset": 270, "wikiPhase": "wild_dagga" }
+  ],
+  "events": [
+    { "id": "plantar_wild_dagga", "title": "🦁 Plantar Wild Dagga", "emoji": "🦁", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Arbusto labiada africano. Esqueje en agua o semilla. Sustrato drenado, sol pleno crítico (no flora sombra). Crece 1-2m. Cannabis-like suave. BCN: macetón cobijo invierno.", "wikiPhase": "wild_dagga", "notify": true },
+    { "id": "primera_cosecha_wild_dagga", "title": "✂️ Cosecha hojas+flores", "emoji": "✂️", "type": "harvest", "offsetDays": 240, "durationMin": 45, "description": "Durante floración (sept-nov BCN). Espigas naranja vivo espectaculares. Secar sombra 7-10d.", "wikiPhase": "wild_dagga", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_wild_dagga", "title": "💧 Riego Wild Dagga", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 270, "cadence": { "everyDays": 4, "volumeMl": "300-500", "notes": "Tolera sequía moderada" }, "description": "Moderado. Pinzar puntas para forzar ramificación.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "wild_dagga", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_wild_dagga", "name": "Esqueje Wild Dagga enraizado", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_20L", "name": "Maceta 20L móvil", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante fértil", "qty": 20, "unit": "L", "category": "esencial", "approxPrice": "15-22€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 100, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "sol_pleno_dagga", "title": "Sol pleno", "description": "Sin sol pleno no florece. Balcón sur ideal.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_wild_dagga", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_20L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 20, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "wild_dagga_hojas", "unit": "g" }
+}

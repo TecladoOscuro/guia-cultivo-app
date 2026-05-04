@@ -1,0 +1,37 @@
+{
+  "id": "planta-calea",
+  "name": "Calea zacatechichi (Hierba de los sueños)",
+  "emoji": "💭",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=calea",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_calea", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_calea", "name": "Cultivo", "emoji": "💭", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "calea" }
+  ],
+  "events": [
+    { "id": "plantar_calea", "title": "💭 Plantar Calea", "emoji": "💭", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Compositácea mexicana. Esqueje enraizado (más fácil que semilla). Sustrato drenado, sol parcial. Promueve sueños lúcidos. BCN: indoor invierno (no <8°C), outdoor primavera-otoño.", "wikiPhase": "calea", "notify": true },
+    { "id": "primera_cosecha_calea", "title": "✂️ Cosecha hojas", "emoji": "✂️", "type": "harvest", "offsetDays": 120, "durationMin": 30, "description": "Cosechar hojas en crecimiento activo (verano). Sabor extremadamente amargo. Secar sombra 5-7d.", "wikiPhase": "calea", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_calea", "title": "💧 Riego Calea", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 4, "volumeMl": "200-400", "notes": "Cuando seque sustrato superior" }, "description": "Moderado. Sustrato húmedo no encharcado.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "calea", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_calea", "name": "Esqueje Calea zacatechichi", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_5L", "name": "Maceta 5L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 50, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "indoor_calea", "title": "Espacio indoor invierno", "description": "Calea NO tolera <8°C. Ventana sur + macetón móvil ideal en BCN.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_calea", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "calea_hojas", "unit": "g" }
+}

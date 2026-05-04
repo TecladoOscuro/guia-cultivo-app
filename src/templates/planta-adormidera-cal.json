@@ -1,0 +1,37 @@
+{
+  "id": "planta-adormidera-cal",
+  "name": "Adormidera California (Eschscholzia californica)",
+  "emoji": "🌼",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=adormidera_cal",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_adormidera_cal", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_adormidera_cal", "name": "Cultivo", "emoji": "🌼", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "adormidera_cal" }
+  ],
+  "events": [
+    { "id": "plantar_adormidera_cal", "title": "🌼 Sembrar Adormidera California", "emoji": "🌼", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Anual fácil. Sembrar directo octubre o feb-marzo. NO trasplanta bien. Sustrato pobre seco, sol pleno. Sedante leve no-opio. Florece 6-8 sem desde germinación.", "wikiPhase": "adormidera_cal", "notify": true },
+    { "id": "primera_cosecha_adormidera_cal", "title": "✂️ Cosecha hojas+flores", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 30, "description": "Cortar partes aéreas durante floración (mayo-julio). Secar sombra 5-7d.", "wikiPhase": "adormidera_cal", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_adormidera_cal", "title": "💧 Riego Adormidera", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 180, "cadence": { "everyDays": 7, "volumeMl": "100-200", "notes": "Muy parco — planta de zonas secas" }, "description": "Riego escaso. Tolera sequía. Encharcamiento la mata.", "consumes": [{ "stockKey": "agua_riego", "qty": 150, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "adormidera_cal", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_adormidera_cal", "name": "Semillas Adormidera California", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "1-3€", "source": "tienda_fisica", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_5L", "name": "Maceta 5L (o suelo definitivo)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_pobre_arenoso", "name": "Sustrato pobre + arena gruesa", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 10, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "sol_pleno_adormidera", "title": "Sol pleno crítico", "description": "Sin sombra. Floración requiere sol pleno todo el día.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_adormidera_cal", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_pobre_arenoso", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "adormidera_cal_hojas", "unit": "g" }
+}

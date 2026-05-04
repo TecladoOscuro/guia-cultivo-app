@@ -1,0 +1,37 @@
+{
+  "id": "planta-wild-lettuce",
+  "name": "Lechuga silvestre (Lactuca virosa)",
+  "emoji": "🥬",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=wild_lettuce",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_wild_lettuce", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_wild_lettuce", "name": "Cultivo", "emoji": "🥬", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "wild_lettuce" }
+  ],
+  "events": [
+    { "id": "plantar_wild_lettuce", "title": "🥬 Sembrar Wild Lettuce", "emoji": "🥬", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Bienal. Sembrar primavera directo en suelo. Sustrato cualquiera. Sol o semisombra. Crece 1.5-2m año 2. Lactucarium (látex blanco) = opiáceo suave.", "wikiPhase": "wild_lettuce", "notify": true },
+    { "id": "primera_cosecha_wild_lettuce", "title": "✂️ Cosecha látex", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 60, "description": "Año 2 floración: cortar tallos, recoger látex blanco que exuda. Secar a 'lactucarium' marrón. O cosechar hojas+tops y secar normal.", "wikiPhase": "wild_lettuce", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_wild_lettuce", "title": "💧 Riego Wild Lettuce", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 5, "volumeMl": "300-500", "notes": "Moderado" }, "description": "Regular. Sin encharcar.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "wild_lettuce", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_wild_lettuce", "name": "Semillas Lactuca virosa", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "3-6€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_10L", "name": "Maceta 10L o suelo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "sustrato_universal", "name": "Sustrato universal", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "8-12€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 80, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_wild_lettuce", "title": "Espacio para 1.5-2m altura año 2", "description": "Bienal: año 1 roseta basal pequeña, año 2 tallo floral alto. Necesita altura libre.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_wild_lettuce", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "wild_lettuce_hojas", "unit": "g" }
+}

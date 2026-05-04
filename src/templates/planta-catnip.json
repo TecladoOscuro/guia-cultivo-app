@@ -1,0 +1,37 @@
+{
+  "id": "planta-catnip",
+  "name": "Catnip / Hierba gatera (Nepeta cataria)",
+  "emoji": "🐈",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=catnip",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_catnip", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_catnip", "name": "Cultivo", "emoji": "🐈", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "catnip" }
+  ],
+  "events": [
+    { "id": "plantar_catnip", "title": "🐈 Sembrar Catnip", "emoji": "🐈", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Perenne rústica. Cualquier sustrato. Sol o semisombra. Sedante leve humano + euforia gato. ⚠️ Proteger de gatos vecinos (jaula o interior). Crece 60-80cm.", "wikiPhase": "catnip", "notify": true },
+    { "id": "primera_cosecha_catnip", "title": "✂️ Cosecha hojas+flores", "emoji": "✂️", "type": "harvest", "offsetDays": 120, "durationMin": 30, "description": "Durante floración (mayo-oct). 2-3 cosechas/temporada (rebrota). Secar sombra 5-7d.", "wikiPhase": "catnip", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_catnip", "title": "💧 Riego Catnip", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 5, "volumeMl": "200-300", "notes": "Tolera sequía moderada" }, "description": "Ocasional. Independiente una vez establecida.", "consumes": [{ "stockKey": "agua_riego", "qty": 250, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "catnip", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_catnip", "name": "Semillas Catnip", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "1-3€", "source": "tienda_fisica", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_5L", "name": "Maceta 5L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sustrato_universal", "name": "Sustrato universal", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "proteccion_gatos", "title": "Protección anti-gatos", "description": "Gatos del barrio destrozarán la planta. Jaula de tela metálica o cultivo interior.", "blocking": false, "estimatedMinutes": 20 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_catnip", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "catnip_hojas", "unit": "g" }
+}

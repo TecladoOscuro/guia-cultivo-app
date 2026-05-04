@@ -1,0 +1,40 @@
+{
+  "id": "planta-lupulo",
+  "name": "Lúpulo (Humulus lupulus)",
+  "emoji": "🌾",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 270 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=lupulo",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_lupulo", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_lupulo", "name": "Cultivo", "emoji": "🌾", "startDayOffset": 0, "endDayOffset": 270, "wikiPhase": "lupulo" }
+  ],
+  "events": [
+    { "id": "plantar_lupulo", "title": "🌾 Plantar Lúpulo", "emoji": "🌾", "type": "milestone", "offsetDays": 0, "durationMin": 45, "description": "Trepadora perenne dioica. Rizoma o esqueje (semilla muy lenta). Sustrato fértil drenado. Sol pleno. Soporte 4-6m vertical. Conos hembra son los activos (sedante GABA + cerveza).", "wikiPhase": "lupulo", "notify": true },
+    { "id": "primera_cosecha_lupulo", "title": "✂️ Cosecha conos hembra", "emoji": "✂️", "type": "harvest", "offsetDays": 240, "durationMin": 60, "description": "Conos amarillentos papelosos (final agosto-sept). Cosechar antes de marrón. Secar sombra ventilada 1 sem. Año 2+ produce más.", "wikiPhase": "lupulo", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_lupulo", "title": "💧 Riego Lúpulo", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 270, "cadence": { "everyDays": 3, "volumeMl": "500-800", "notes": "Riego abundante en crecimiento" }, "description": "Trepadora exigente. Riego frecuente en primavera-verano. Mulch en base.", "consumes": [{ "stockKey": "agua_riego", "qty": 600, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "lupulo", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "rizoma_lupulo", "name": "Rizoma Lúpulo (variedad cervecera)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-25€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_30L", "name": "Maceta 30L o suelo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "sustrato_fertil", "name": "Sustrato fértil + compost", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "tutor_trepadora", "name": "Tutor 4-6m vertical", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-30€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "soporte_lupulo", "title": "Soporte vertical 4-6m", "description": "Lúpulo crece 6m por temporada. Cuerda vertical desde suelo a alero o tutor robusto.", "blocking": true, "estimatedMinutes": 60 }
+  ],
+  "consumables": [
+    { "stockKey": "rizoma_lupulo", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_30L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_fertil", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "tutor_trepadora", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "conos",
+  "produces": { "kind": "lupulo_conos", "unit": "g" }
+}

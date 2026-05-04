@@ -1,0 +1,39 @@
+{
+  "id": "planta-tabaco-rustico",
+  "name": "Tabaco rústico (Nicotiana rustica)",
+  "emoji": "🌬️",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=tabaco_rustico",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_tabaco_rustico", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_tabaco_rustico", "name": "Cultivo", "emoji": "🌬️", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "tabaco_rustico" }
+  ],
+  "events": [
+    { "id": "plantar_tabaco_rustico", "title": "🌬️ Sembrar Tabaco rústico", "emoji": "🌬️", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Anual. Semillas DIMINUTAS — superficie + arena. Trasplantar 5L cuando 4-5 hojas. Plantar definitivo a 70cm. Sustrato rico drenado, sol pleno. ⚠️ Nicotina ×9 vs tabacum — guantes obligatorios.", "wikiPhase": "tabaco_rustico", "notify": true },
+    { "id": "primera_cosecha_tabaco_rustico", "title": "✂️ Cosecha hojas inferiores", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 60, "description": "Hojas inferiores madurando primero (amarillento). Cosecha progresiva abajo arriba. Curado 3-6 sem colgado en lugar seco ventilado.", "wikiPhase": "tabaco_rustico", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_tabaco_rustico", "title": "💧 Riego Tabaco rústico", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 2, "volumeMl": "500-800", "notes": "Riego abundante en crecimiento" }, "description": "Frecuente y abundante. Tabaco demanda mucha agua y N.", "consumes": [{ "stockKey": "agua_riego", "qty": 600, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "tabaco_rustico", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_tabaco_rustico", "name": "Semillas Nicotiana rustica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-5€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_15L", "name": "Maceta 15L o suelo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "sustrato_fertil", "name": "Sustrato rico + N", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_seguros", "name": "Guantes nitrilo manejo nicotina", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "guantes_tabaco", "title": "⚠️ Guantes obligatorios manejo", "description": "Nicotina absorbe transdérmica — Green Tobacco Sickness real en jornaleros. Guantes nitrilo siempre.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_tabaco_rustico", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_fertil", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "tabaco_rustico_hojas", "unit": "g" }
+}

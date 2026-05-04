@@ -1,0 +1,40 @@
+{
+  "id": "planta-woodrose",
+  "name": "Hawaiian Baby Woodrose (Argyreia nervosa)",
+  "emoji": "🌹",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 540 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=woodrose",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_woodrose", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_woodrose", "name": "Cultivo", "emoji": "🌹", "startDayOffset": 0, "endDayOffset": 540, "wikiPhase": "woodrose" }
+  ],
+  "events": [
+    { "id": "plantar_woodrose", "title": "🌹 Sembrar Hawaiian Woodrose", "emoji": "🌹", "type": "milestone", "offsetDays": 0, "durationMin": 45, "description": "Trepadora vivaz tropical. Semilla: nick + remojo 24-48h. Maceta 30L+ con tutor 3-4m. Sustrato fértil drenado. Indoor invierno BCN. Semillas LSA año 2+.", "wikiPhase": "woodrose", "notify": true },
+    { "id": "primera_cosecha_woodrose", "title": "✂️ Cosecha vainas", "emoji": "✂️", "type": "harvest", "offsetDays": 480, "durationMin": 60, "description": "Año 2 otoño. Vainas marrones secas, antes que se abran solas. Extraer semillas peludas, almacenar oscuro fresco.", "wikiPhase": "woodrose", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_woodrose", "title": "💧 Riego Woodrose", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 540, "cadence": { "everyDays": 4, "volumeMl": "400-600", "notes": "Moderado" }, "description": "Sustrato seco entre riegos. No encharcar — pudre raíz.", "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "woodrose", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_woodrose", "name": "Semillas Argyreia nervosa (Ghana)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_30L", "name": "Maceta 30L+", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "sustrato_drenante", "name": "Sustrato fértil drenado", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "18-25€" },
+    { "key": "tutor_trepadora", "name": "Tutor 3-4m", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-20€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "indoor_woodrose", "title": "Espacio indoor invierno", "description": "No tolera <5°C. Macetón rodante o ventana sur calentita.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_woodrose", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_30L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "tutor_trepadora", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "semillas",
+  "produces": { "kind": "woodrose_semillas", "unit": "g" }
+}

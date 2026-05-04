@@ -1,0 +1,38 @@
+{
+  "id": "planta-sinicuichi",
+  "name": "Sinicuichi (Heimia salicifolia)",
+  "emoji": "🎵",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 270 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=sinicuichi",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_sinicuichi", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_sinicuichi", "name": "Cultivo", "emoji": "🎵", "startDayOffset": 0, "endDayOffset": 270, "wikiPhase": "sinicuichi" }
+  ],
+  "events": [
+    { "id": "plantar_sinicuichi", "title": "🎵 Plantar Sinicuichi", "emoji": "🎵", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Arbusto perenne mex/sudamericano. Semilla muy fina superficie sustrato + spray. Sustrato drenado, sol pleno, agua abundante. 'Yerba de los recuerdos' — alucinógeno auditivo amarillo. BCN: macetón cobijo invierno.", "wikiPhase": "sinicuichi", "notify": true },
+    { "id": "primera_cosecha_sinicuichi", "title": "✂️ Cosecha hojas", "emoji": "✂️", "type": "harvest", "offsetDays": 180, "durationMin": 30, "description": "Hojas frescas cuando establecida. Tradición: dejar fermentar hojas en agua al sol 24-48h antes uso. Seca también funciona.", "wikiPhase": "sinicuichi", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_sinicuichi", "title": "💧 Riego Sinicuichi", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 270, "cadence": { "everyDays": 3, "volumeMl": "400-600", "notes": "Suelo drenado pero abundante agua" }, "description": "Riego frecuente y abundante. Drenaje crítico para evitar pudrición.", "consumes": [{ "stockKey": "agua_riego", "qty": 500, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "sinicuichi", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_sinicuichi", "name": "Semillas Heimia salicifolia", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-12€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_15L", "name": "Maceta 15L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenante", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 150, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "cobijo_invierno_sinicuichi", "title": "Cobijo invierno BCN (<5°C)", "description": "Macetón móvil — meter porche/garaje cuando heladas. Recuperación primaveral.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_sinicuichi", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_15L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 15, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "sinicuichi_hojas", "unit": "g" }
+}

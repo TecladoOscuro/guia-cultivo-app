@@ -1,0 +1,38 @@
+{
+  "id": "planta-beleno",
+  "name": "Beleño negro (Hyoscyamus niger)",
+  "emoji": "💀",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 540 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=beleno",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_beleno", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_beleno", "name": "Cultivo", "emoji": "💀", "startDayOffset": 0, "endDayOffset": 540, "wikiPhase": "beleno" }
+  ],
+  "events": [
+    { "id": "plantar_beleno", "title": "💀 Sembrar Beleño negro", "emoji": "💀", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO solanácea tropano. Bienal. Semilla mayo superficie. Sustrato pobre calizo seco. Sol pleno. Año 1 roseta, año 2 tallo floral 80-150cm. GUANTES siempre.", "wikiPhase": "beleno", "notify": true },
+    { "id": "primera_cosecha_beleno", "title": "✂️ Cosecha hojas año 2", "emoji": "✂️", "type": "harvest", "offsetDays": 480, "durationMin": 45, "description": "Año 2 floración (junio-agosto). Cosechar hojas/tops. Secado RÁPIDO al sol o estufa 40°C. Almacenar etiquetado VENENO con calavera.", "wikiPhase": "beleno", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_beleno", "title": "💧 Riego Beleño", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 540, "cadence": { "everyDays": 10, "volumeMl": "150-300", "notes": "Tolera sequía" }, "description": "Escaso. Encharcamiento la mata.", "consumes": [{ "stockKey": "agua_riego", "qty": 200, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "beleno", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_beleno", "name": "Semillas Hyoscyamus niger", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "3-8€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_pobre_calizo", "name": "Sustrato pobre calizo + arena", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "guantes_seguros", "name": "Guantes manejo planta tóxica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "guantes_beleno", "title": "⚠️ Guantes + lugar seguro", "description": "Tropano absorbe transdérmico. Plantar lejos de niños/mascotas. Etiquetar planta. Lavarse manos tras manejar.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_beleno", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_pobre_calizo", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "beleno_hojas", "unit": "g" }
+}

@@ -1,0 +1,40 @@
+{
+  "id": "planta-mandragora",
+  "name": "Mandrágora (Mandragora officinarum)",
+  "emoji": "🪬",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1095 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=mandragora",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_mandragora", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_mandragora", "name": "Cultivo", "emoji": "🪬", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "mandragora" }
+  ],
+  "events": [
+    { "id": "plantar_mandragora", "title": "🪬 Plantar Mandrágora", "emoji": "🪬", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "⚠️ TIER ROJO. Perenne mediterránea longeva. Semilla estratificar 6-8 sem frío. Sustrato muy profundo (50cm+) drenado calcáreo. Sol parcial. NO trasplantar (raíz pivotante). GUANTES.", "wikiPhase": "mandragora", "notify": true },
+    { "id": "primera_cosecha_mandragora", "title": "✂️ Cosecha raíz", "emoji": "✂️", "type": "harvest", "offsetDays": 1095, "durationMin": 120, "description": "Año 3-5 mínimo. Otoño tras hibernación hojas. Excavar con cuidado — raíz frágil antropomorfa. Mascarilla + guantes. Cortar rodajas, secar al sol/estufa baja 1-2 sem.", "wikiPhase": "mandragora", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_mandragora", "title": "💧 Riego Mandrágora", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 1095, "cadence": { "everyDays": 14, "volumeMl": "300-500", "notes": "Parco — invierno casi nada" }, "description": "Mediterránea con reposo invernal. Verano: cuando seque sustrato.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "mandragora", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_mandragora", "name": "Semillas Mandragora officinarum", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_airpot_15L", "name": "Macetón profundo 15L (airpot)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-35€" },
+    { "key": "sustrato_drenante", "name": "Sustrato calcáreo + arena gruesa", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_seguros", "name": "Guantes + mascarilla cosecha", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 200, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "ubicacion_definitiva", "title": "Ubicación definitiva (no trasplante)", "description": "Raíz pivotante frágil. Decide lugar antes de plantar. Profundidad sustrato 50cm+.", "blocking": true, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_mandragora", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_airpot_15L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "raiz",
+  "produces": { "kind": "mandragora_raiz", "unit": "g" }
+}

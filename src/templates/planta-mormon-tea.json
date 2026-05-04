@@ -1,0 +1,37 @@
+{
+  "id": "planta-mormon-tea",
+  "name": "Mormon tea (Ephedra nevadensis)",
+  "emoji": "🍵",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=mormon_tea",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_mormon_tea", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_mormon_tea", "name": "Cultivo", "emoji": "🍵", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "mormon_tea" }
+  ],
+  "events": [
+    { "id": "plantar_mormon_tea", "title": "🍵 Plantar Mormon tea", "emoji": "🍵", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "Arbusto desértico hardy. Estratificar semilla 1-2 meses frío. Sustrato extremadamente drenado (arena+grava). Sol pleno. Crece lento 60-100cm en 3-5 años. NO confundir E. sinica china (efedrina alta).", "wikiPhase": "mormon_tea", "notify": true },
+    { "id": "primera_cosecha_mormon_tea", "title": "✂️ Cosecha tallos verdes", "emoji": "✂️", "type": "harvest", "offsetDays": 540, "durationMin": 30, "description": "Año 2+. Cortar puntas tallos 10-15cm. Secar sombra 1 sem. Mata principal intacta.", "wikiPhase": "mormon_tea", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_mormon_tea", "title": "💧 Riego Mormon tea", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 730, "cadence": { "everyDays": 30, "volumeMl": "200-400", "notes": "Una vez al mes max" }, "description": "Mínimo. En BCN basta lluvia natural casi todo el año.", "consumes": [{ "stockKey": "agua_riego", "qty": 300, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "mormon_tea", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_mormon_tea", "name": "Semillas Ephedra nevadensis", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-12€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_10L", "name": "Maceta 10L drenada", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "sustrato_arena_grava", "name": "Arena + grava + sustrato pobre", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "drenaje_mormon", "title": "Drenaje extremo crítico", "description": "Encharcamiento la mata. Maceta con muchos agujeros + bandeja de bolas arcilla.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_mormon_tea", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_arena_grava", "qty": 10, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "mormon_tea_tallos", "unit": "g" }
+}

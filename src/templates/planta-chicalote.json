@@ -1,0 +1,38 @@
+{
+  "id": "planta-chicalote",
+  "name": "Chicalote (Argemone mexicana)",
+  "emoji": "🌻",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=chicalote",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_chicalote", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_chicalote", "name": "Cultivo", "emoji": "🌻", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "chicalote" }
+  ],
+  "events": [
+    { "id": "plantar_chicalote", "title": "🌻 Sembrar Chicalote", "emoji": "🌻", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Anual mexicana. Sembrar directo abril-mayo (NO trasplanta — raíz pivotante). Sustrato pobre seco, sol pleno. ⚠️ Espinas — guantes. Sucedáneo opio MUY suave (NO contiene opio).", "wikiPhase": "chicalote", "notify": true },
+    { "id": "primera_cosecha_chicalote", "title": "✂️ Cosecha hierba", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 45, "description": "Hojas/flores en floración (julio-oct). Cortar partes aéreas, guantes obligatorios. Secar sombra 5-7d.", "wikiPhase": "chicalote", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_chicalote", "title": "💧 Riego Chicalote", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 180, "cadence": { "everyDays": 10, "volumeMl": "150-300", "notes": "Muy parco" }, "description": "Mínimo. Tolera sequía extrema.", "consumes": [{ "stockKey": "agua_riego", "qty": 200, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "chicalote", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_chicalote", "name": "Semillas Argemone mexicana", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-5€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_pobre_arenoso", "name": "Sustrato pobre arenoso", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "guantes_seguros", "name": "Guantes (espinas)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 20, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "guantes_chicalote", "title": "Guantes obligatorios", "description": "Tallos y hojas espinosos — guantes gruesos al manejar.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_chicalote", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_pobre_arenoso", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "chicalote_hojas", "unit": "g" }
+}

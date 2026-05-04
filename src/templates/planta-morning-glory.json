@@ -1,0 +1,38 @@
+{
+  "id": "planta-morning-glory",
+  "name": "Morning Glory (Ipomoea tricolor)",
+  "emoji": "🌅",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=morning_glory",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_morning_glory", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_morning_glory", "name": "Cultivo", "emoji": "🌅", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "morning_glory" }
+  ],
+  "events": [
+    { "id": "plantar_morning_glory", "title": "🌅 Sembrar Morning Glory", "emoji": "🌅", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Anual trepadora. Semilla: nick + remojo 2h. Sembrar abril-mayo directo. Soporte vertical 3-5m. Sol pleno. Variedades activas: Heavenly Blue, Pearly Gates. Semillas LSA azteca.", "wikiPhase": "morning_glory", "notify": true },
+    { "id": "primera_cosecha_morning_glory", "title": "✂️ Cosecha semillas", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 60, "description": "Cápsulas marrones secas en planta. Cosechar antes abrir. Extraer semillas, secar al sol 1-2d. Frasco hermético oscuro.", "wikiPhase": "morning_glory", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_morning_glory", "title": "💧 Riego Morning Glory", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 4, "volumeMl": "300-500", "notes": "Moderado" }, "description": "Regular. Más floración con riego constante.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "morning_glory", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_morning_glory", "name": "Semillas Ipomoea Heavenly Blue (orgánica)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "1-3€", "source": "tienda_fisica", "notes": "Evitar tratadas con fungicida (síntomas vómito severo)", "wikiPhase": "compra_plantas" },
+    { "key": "tutor_trepadora", "name": "Malla/tutor 3-4m", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" },
+    { "key": "sustrato_universal", "name": "Sustrato universal", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 60, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "semillas_organicas", "title": "Semillas orgánicas (no tratadas)", "description": "Suplidores comerciales suelen tratar con fungicida — síntoma: vómito severo. Buscar 'orgánica' o 'sin tratar'.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_morning_glory", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "tutor_trepadora", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 5, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "semillas",
+  "produces": { "kind": "morning_glory_semillas", "unit": "g" }
+}

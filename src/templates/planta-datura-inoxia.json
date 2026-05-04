@@ -1,0 +1,40 @@
+{
+  "id": "planta-datura-inoxia",
+  "name": "Datura inoxia (Toloache)",
+  "emoji": "🎺",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=datura_inoxia",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_datura_inoxia", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_datura_inoxia", "name": "Cultivo", "emoji": "🎺", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "datura_inoxia" }
+  ],
+  "events": [
+    { "id": "plantar_datura_inoxia", "title": "🎺 Sembrar Datura inoxia", "emoji": "🎺", "type": "milestone", "offsetDays": 0, "durationMin": 30, "description": "⚠️ TIER ROJO MÁX. Anual/perenne corta vida. Semilla mayo + remojo 24h. Sustrato seco drenado, sol pleno. Crece 1-1.5m. Flores trompeta blanca espectaculares. GUANTES siempre.", "wikiPhase": "datura_inoxia", "notify": true },
+    { "id": "primera_cosecha_datura_inoxia", "title": "✂️ Cosecha hojas+semillas", "emoji": "✂️", "type": "harvest", "offsetDays": 150, "durationMin": 60, "description": "Hojas durante floración (julio-sept). Olor fétido al manipular. Cápsulas espinosas para semillas. Secar y etiquetar VENENO.", "wikiPhase": "datura_inoxia", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_datura_inoxia", "title": "💧 Riego Datura inoxia", "emoji": "💧", "type": "watering", "startDayOffset": 14, "endDayOffset": 180, "cadence": { "everyDays": 7, "volumeMl": "300-500", "notes": "Parco una vez establecida" }, "description": "Tolera sequía. Encharcamiento la pudre.", "consumes": [{ "stockKey": "agua_riego", "qty": 400, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "datura_inoxia", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "semilla_datura_inoxia", "name": "Semillas Datura inoxia", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "2-6€", "source": "internet", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_15L", "name": "Maceta 15L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "sustrato_drenante", "name": "Sustrato drenado seco", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "guantes_seguros", "name": "Guantes manejo tóxica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 80, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "ubicacion_datura", "title": "⚠️ Lugar seguro lejos niños/mascotas", "description": "Datura es la solanácea con MÁS muertes recreativas modernas. Plantar como ornamental con cartel.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [
+    { "stockKey": "semilla_datura_inoxia", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_15L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_drenante", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "guantes_seguros", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "datura_inoxia_hojas", "unit": "g" }
+}

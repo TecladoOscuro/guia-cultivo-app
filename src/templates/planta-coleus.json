@@ -1,0 +1,37 @@
+{
+  "id": "planta-coleus",
+  "name": "Coleus blumei",
+  "emoji": "🍂",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 180 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=coleus",
+  "theme": { "primary": "#9070b8", "bg": "#100818" },
+  "phases": [
+    { "id": "compra_coleus", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_coleus", "name": "Cultivo", "emoji": "🍂", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "coleus" }
+  ],
+  "events": [
+    { "id": "plantar_coleus", "title": "🍂 Plantar Coleus", "emoji": "🍂", "type": "milestone", "offsetDays": 0, "durationMin": 15, "description": "Esqueje agua → raíces 1-2 sem. Indoor BCN preferible (no <10°C). Luz indirecta brillante. Sustrato universal + perlita. Sustituto Salvia mazateco — efecto débil.", "wikiPhase": "coleus", "notify": true },
+    { "id": "primera_cosecha_coleus", "title": "✂️ Cosecha hojas frescas", "emoji": "✂️", "type": "harvest", "offsetDays": 90, "durationMin": 15, "description": "Hojas en cualquier momento. Frescas mejor que secas. Pinzar para mantener compacto.", "wikiPhase": "coleus", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_coleus", "title": "💧 Riego Coleus", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 180, "cadence": { "everyDays": 4, "volumeMl": "200-300", "notes": "Cuando seca capa superior" }, "description": "Moderado. Sin encharcar.", "consumes": [{ "stockKey": "agua_riego", "qty": 250, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "coleus", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_coleus", "name": "Coleus planta o esqueje", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-12€", "source": "tienda_fisica", "wikiPhase": "compra_plantas" },
+    { "key": "maceta_3L", "name": "Maceta 3L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "4-8€" },
+    { "key": "sustrato_universal", "name": "Sustrato universal + perlita", "qty": 3, "unit": "L", "category": "esencial", "approxPrice": "5-8€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 30, "unit": "L", "category": "esencial" }
+  ],
+  "prepChecklist": [
+    { "id": "indoor_coleus", "title": "Espacio indoor luminoso", "description": "Ventana este/oeste — luz indirecta. Sol pleno quema hojas.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_coleus", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_universal", "qty": 3, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "coleus_hojas", "unit": "g" }
+}
