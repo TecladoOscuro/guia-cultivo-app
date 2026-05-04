@@ -15,6 +15,7 @@ import Genetics from "./routes/Genetics";
 import Stats from "./routes/Stats";
 import Diagnostic from "./routes/Diagnostic";
 import Timelapse from "./routes/Timelapse";
+import Help from "./routes/Help";
 import NewCultivation from "./routes/NewCultivation";
 import Settings from "./routes/Settings";
 
@@ -34,6 +35,7 @@ const navItems = [
   { to: "/stats", emoji: "📊", label: "Stats" },
   { to: "/diagnostic", emoji: "🔍", label: "Diagnóstico" },
   { to: "/timelapse", emoji: "📸", label: "Timelapse" },
+  { to: "/help", emoji: "📖", label: "Cómo usar" },
   { to: "/settings", emoji: "⚙️", label: "Ajustes" },
 ];
 
@@ -68,14 +70,19 @@ function App() {
             <span className="text-xl">🌱</span>
             <span className="font-bold text-text-bright">Guía Cultivo</span>
           </div>
-          <a
-            href="https://tecladooscuro.github.io/guia-cultivo/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-text-muted hover:text-accent"
-          >
-            📖 Wiki ↗
-          </a>
+          <div className="flex gap-3 items-center">
+            <NavLink to="/help" className="text-xs text-text-muted hover:text-accent">
+              ❓ Cómo usar
+            </NavLink>
+            <a
+              href="https://tecladooscuro.github.io/guia-cultivo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-text-muted hover:text-accent"
+            >
+              📖 Wiki ↗
+            </a>
+          </div>
         </div>
         <nav className="max-w-6xl mx-auto px-2 pb-2 overflow-x-auto">
           <ul className="flex gap-1 text-xs">
@@ -118,6 +125,7 @@ function App() {
           <Route path="/stats" element={<Stats />} />
           <Route path="/diagnostic" element={<Diagnostic />} />
           <Route path="/timelapse" element={<Timelapse />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>
