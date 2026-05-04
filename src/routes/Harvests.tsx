@@ -179,6 +179,8 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
                 <button
                   key={n}
                   onClick={() => setQuality(n)}
+                  aria-label={`Calidad ${n} de 5`}
+                  aria-pressed={n <= quality}
                   className={`px-3 py-1 ${n <= quality ? "text-accent" : "text-text-muted"}`}
                 >
                   ⭐

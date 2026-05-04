@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
 import { getStockAvailable } from "../lib/stockPipeline";
@@ -59,8 +60,25 @@ export default function Stock() {
       </div>
 
       {stocks.length === 0 ? (
-        <div className="p-8 text-center border border-border rounded">
-          <p className="text-text-muted">Sin stock. Añade items manualmente o cómpralos desde shopping list.</p>
+        <div className="p-8 text-center border border-border rounded grid gap-3 justify-items-center">
+          <p className="text-text-muted">Sin stock todavía.</p>
+          <div className="flex gap-2 flex-wrap justify-center">
+            <button
+              onClick={() => {
+                setEditing(null);
+                setShowForm(true);
+              }}
+              className="px-3 py-2 bg-accent text-bg rounded font-bold text-sm"
+            >
+              ➕ Añadir manualmente
+            </button>
+            <Link
+              to="/shopping"
+              className="px-3 py-2 border border-border rounded text-sm hover:border-accent"
+            >
+              🛒 Ir a Shopping List
+            </Link>
+          </div>
         </div>
       ) : (
         <div className="grid gap-2">

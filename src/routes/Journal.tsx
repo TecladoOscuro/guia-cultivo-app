@@ -113,7 +113,7 @@ function JournalCard({ entry, cultivation }: { entry: JournalEntry; cultivation?
             {format(entry.date, "PPp", { locale: es })} · {cultivation?.name ?? "?"}
           </div>
         </div>
-        <button onClick={onDelete} className="text-text-muted hover:text-error text-xs">✕</button>
+        <button onClick={onDelete} aria-label="Borrar entrada" className="text-text-muted hover:text-error text-xs">✕</button>
       </div>
       {imgUrl && (
         <img src={imgUrl} alt="" className="w-full max-h-96 object-cover rounded mb-2" />

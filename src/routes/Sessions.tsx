@@ -270,6 +270,8 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
                 <button
                   key={n}
                   onClick={() => setRating(n)}
+                  aria-label={`Rating ${n} de 5`}
+                  aria-pressed={n <= rating}
                   className={`px-3 py-1 ${n <= rating ? "text-accent" : "text-text-muted"}`}
                 >
                   ⭐
