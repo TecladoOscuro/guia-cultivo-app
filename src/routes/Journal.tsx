@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
 import { compressPhoto } from "../lib/photo";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { JournalEntry } from "../types";
 
 export default function Journal() {
@@ -94,7 +95,13 @@ function JournalCard({ entry, cultivation }: { entry: JournalEntry; cultivation?
 
   const onDelete = async () => {
     if (!entry.id) return;
-    if (!confirm("Borrar entrada?")) return;
+    const ok = await confirmDialog({
+      title: "Borrar entrada",
+      message: "Esta entrada del journal se eliminará junto con su foto si tiene.",
+      confirmLabel: "Borrar",
+      danger: true,
+    });
+    if (!ok) return;
     await db.journal.delete(entry.id);
   };
 

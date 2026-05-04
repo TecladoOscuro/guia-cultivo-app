@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
 import { getStockAvailable } from "../lib/stockPipeline";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { Stock as StockType, StockCategory } from "../types";
 
 const categories: StockCategory[] = [
@@ -154,7 +155,13 @@ function StockForm({
 
   const onDelete = async () => {
     if (!initial?.id) return;
-    if (!confirm(`Borrar ${initial.name}?`)) return;
+    const ok = await confirmDialog({
+      title: "Borrar stock",
+      message: `Eliminar "${initial.name}" del stock?`,
+      confirmLabel: "Borrar",
+      danger: true,
+    });
+    if (!ok) return;
     await db.stock.delete(initial.id);
     onClose();
   };

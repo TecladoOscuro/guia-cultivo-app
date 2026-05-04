@@ -3,6 +3,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { format, isPast } from "date-fns";
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { Genetics } from "../types";
 
 const KINDS: Genetics["kind"][] = ["semilla", "esqueje", "esporada", "scoby", "levadura"];
@@ -108,7 +109,13 @@ function GeneticsForm({ initial, onClose }: { initial: Genetics | null; onClose:
 
   const onDelete = async () => {
     if (!initial?.id) return;
-    if (!confirm("Borrar?")) return;
+    const ok = await confirmDialog({
+      title: "Borrar entrada",
+      message: `Borrar "${initial.name}"?`,
+      confirmLabel: "Borrar",
+      danger: true,
+    });
+    if (!ok) return;
     await db.genetics.delete(initial.id);
     onClose();
   };

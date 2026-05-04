@@ -1,6 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
 import { abortCultivation } from "../lib/cultivationActions";
+import { confirmDialog } from "../lib/confirmDialog";
 
 export default function PrepChecklist() {
   const items = useLiveQuery(() => db.prepChecklists.toArray(), []) ?? [];
@@ -16,7 +17,13 @@ export default function PrepChecklist() {
   };
 
   const onAbort = async (cultId: number, name: string) => {
-    if (!confirm(`¿Abortar cultivo "${name}"?\n\nLibera reservas de stock. Datos se conservan en histórico.`)) return;
+    const ok = await confirmDialog({
+      title: "Abortar cultivo",
+      message: `¿Abortar "${name}"?\n\nLibera reservas de stock. Los datos se conservan en histórico.`,
+      confirmLabel: "Abortar",
+      danger: true,
+    });
+    if (!ok) return;
     await abortCultivation(cultId);
   };
 

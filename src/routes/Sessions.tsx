@@ -3,6 +3,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { format, differenceInDays, addDays } from "date-fns";
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { Session } from "../types";
 
 // Ventanas tolerancia mínimas por tipo producto (días)
@@ -103,9 +104,16 @@ export default function Sessions() {
                       <button
                         onClick={async () => {
                           if (!s.id) return;
-                          if (!confirm("Borrar?")) return;
+                          const ok = await confirmDialog({
+                            title: "Borrar sesión",
+                            message: "Eliminar este registro de sesión?",
+                            confirmLabel: "Borrar",
+                            danger: true,
+                          });
+                          if (!ok) return;
                           await db.sessions.delete(s.id);
                         }}
+                        aria-label="Borrar sesión"
                         className="text-text-muted hover:text-error text-xs"
                       >
                         ✕

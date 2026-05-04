@@ -2,6 +2,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
+import { confirmDialog } from "../lib/confirmDialog";
 
 export default function Product() {
   const products = useLiveQuery(() => db.product.toArray(), []) ?? [];
@@ -58,9 +59,16 @@ export default function Product() {
                           <button
                             onClick={async () => {
                               if (!p.id) return;
-                              if (!confirm("Borrar?")) return;
+                              const ok = await confirmDialog({
+                                title: "Borrar producto",
+                                message: `Eliminar "${p.kind}" del inventario?`,
+                                confirmLabel: "Borrar",
+                                danger: true,
+                              });
+                              if (!ok) return;
                               await db.product.delete(p.id);
                             }}
+                            aria-label="Borrar producto"
                             className="text-xs px-2 py-1 text-text-muted hover:text-error"
                           >
                             ✕

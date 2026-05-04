@@ -17,6 +17,7 @@ import { createDragAndDropPlugin } from "@schedule-x/drag-and-drop";
 import "@schedule-x/theme-default/dist/index.css";
 import { db } from "../lib/db";
 import { completeEvent } from "../lib/cultivationActions";
+import { confirmDialog } from "../lib/confirmDialog";
 import {
   createManualEvent,
   updateEvent,
@@ -202,7 +203,13 @@ export default function Calendar() {
           }}
           onDelete={async () => {
             if (!selectedEvent.id) return;
-            if (!confirm(`Borrar evento "${selectedEvent.title}"?`)) return;
+            const ok = await confirmDialog({
+              title: "Borrar evento",
+              message: `Eliminar "${selectedEvent.title}" del calendario?`,
+              confirmLabel: "Borrar",
+              danger: true,
+            });
+            if (!ok) return;
             await deleteEvent(selectedEvent.id);
             setSelectedEvent(null);
           }}

@@ -8,6 +8,7 @@ import { calculateCapacity } from "../lib/stockPipeline";
 import { listAvailableTemplates, abortCultivation, completeCultivation } from "../lib/cultivationActions";
 import { getTemplate } from "../templates";
 import { detectConflicts, suggestNextCultivo, type Conflict } from "../lib/planningConflicts";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { CapacityResult } from "../lib/stockPipeline";
 import type { Cultivation, AppEvent } from "../types";
 
@@ -131,7 +132,12 @@ function HistoryCard({ cultivation }: { cultivation: Cultivation }) {
 
   const onReactivate = async () => {
     if (!cultivation.id) return;
-    if (!confirm(`Reactivar "${cultivation.name}"?`)) return;
+    const ok = await confirmDialog({
+      title: "Reactivar cultivo",
+      message: `¿Reactivar "${cultivation.name}"?`,
+      confirmLabel: "Reactivar",
+    });
+    if (!ok) return;
     const { reactivateCultivation } = await import("../lib/cultivationActions");
     await reactivateCultivation(cultivation.id);
     setMenuOpen(false);
@@ -139,8 +145,13 @@ function HistoryCard({ cultivation }: { cultivation: Cultivation }) {
 
   const onDelete = async () => {
     if (!cultivation.id) return;
-    if (!confirm(`⚠️ BORRAR PERMANENTEMENTE "${cultivation.name}"?\n\nElimina TODOS los datos: eventos, journal, fotos, cosechas, sesiones. Irreversible.`)) return;
-    if (!confirm("¿Seguro? Esta acción no se puede deshacer.")) return;
+    const ok = await confirmDialog({
+      title: "⚠️ Borrar permanentemente",
+      message: `Vas a borrar TODOS los datos de "${cultivation.name}": eventos, journal, fotos, cosechas, sesiones.\n\nEsta acción es irreversible.`,
+      confirmLabel: "Borrar definitivamente",
+      danger: true,
+    });
+    if (!ok) return;
     const { deleteCultivationFully } = await import("../lib/cultivationActions");
     await deleteCultivationFully(cultivation.id);
     setMenuOpen(false);
@@ -354,14 +365,25 @@ function CultivoCard({
 
   const onAbort = async () => {
     if (!cultivation.id) return;
-    if (!confirm(`¿Abortar cultivo "${cultivation.name}"?\n\nLibera reservas de stock pendientes. Datos se conservan (puedes ver en histórico).`)) return;
+    const ok = await confirmDialog({
+      title: "Abortar cultivo",
+      message: `¿Abortar "${cultivation.name}"?\n\nLibera reservas de stock pendientes. Los datos se conservan (puedes verlos en histórico).`,
+      confirmLabel: "Abortar",
+      danger: true,
+    });
+    if (!ok) return;
     await abortCultivation(cultivation.id);
     setMenuOpen(false);
   };
 
   const onComplete = async () => {
     if (!cultivation.id) return;
-    if (!confirm(`¿Marcar "${cultivation.name}" como completado?\n\nLibera reservas pendientes. Útil cuando ya cosechaste y todo OK.`)) return;
+    const ok = await confirmDialog({
+      title: "Marcar como completado",
+      message: `¿Marcar "${cultivation.name}" como completado?\n\nLibera reservas pendientes. Útil cuando ya cosechaste y todo OK.`,
+      confirmLabel: "Completar",
+    });
+    if (!ok) return;
     await completeCultivation(cultivation.id);
     setMenuOpen(false);
   };

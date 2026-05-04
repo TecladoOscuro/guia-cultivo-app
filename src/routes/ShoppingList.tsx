@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
+import { confirmDialog } from "../lib/confirmDialog";
 import type { ShoppingItem, Stock } from "../types";
 
 export default function ShoppingList() {
@@ -39,7 +40,13 @@ export default function ShoppingList() {
 
   const revertPurchased = async (item: ShoppingItem) => {
     if (item.id === undefined) return;
-    if (!confirm(`Revertir "${item.name}" a pendiente?\n\nEl stock añadido se descontará.`)) return;
+    const ok = await confirmDialog({
+      title: "Revertir compra",
+      message: `Volver "${item.name}" a pendiente.\n\nEl stock añadido se descontará.`,
+      confirmLabel: "Revertir",
+      danger: true,
+    });
+    if (!ok) return;
     await db.shoppingList.update(item.id, {
       status: "pending",
       purchasedAt: undefined,

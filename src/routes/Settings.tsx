@@ -11,6 +11,7 @@ import {
   downloadEncrypted,
   isEncryptedPayload,
 } from "../lib/exportImport";
+import { confirmDialog, chooseDialog } from "../lib/confirmDialog";
 import {
   getNotifEnabled,
   setNotifEnabled,
@@ -222,8 +223,14 @@ export default function Settings() {
   };
 
   const onFactoryReset = async () => {
-    if (!confirm("⚠️ FACTORY RESET\n\nBorra TODOS los datos (cultivos, eventos, stock, journal, etc).\nEsta acción es irreversible.\n\n¿Continuar?")) return;
-    if (!confirm("¿SEGURO? Recomendado exportar backup antes.")) return;
+    const ok = await confirmDialog({
+      title: "⚠️ Factory reset",
+      message:
+        "Borra TODOS los datos (cultivos, eventos, stock, journal, sesiones, fotos).\n\nEsta acción es irreversible. Recomendado exportar backup antes.",
+      confirmLabel: "Borrar todo",
+      danger: true,
+    });
+    if (!ok) return;
     setBusy(true);
     try {
       await factoryReset();
@@ -322,11 +329,18 @@ export default function Settings() {
             onChange={async (e) => {
               const file = e.target.files?.[0];
               if (!file) return;
-              const mode = confirm(
-                `Importar "${file.name}"\n\n[OK] Reemplazar (borra datos actuales)\n[Cancelar] Merge (añadir sin borrar — puede dar conflictos de IDs)`
-              )
-                ? "replace"
-                : "merge";
+              const mode = await chooseDialog<"replace" | "merge">({
+                title: "Importar backup",
+                message: `Cómo aplicar "${file.name}"?`,
+                options: [
+                  { value: "replace", label: "Reemplazar (borra datos actuales)", danger: true },
+                  { value: "merge", label: "Merge (añadir sin borrar)" },
+                ],
+              });
+              if (!mode) {
+                e.target.value = "";
+                return;
+              }
               await onImportFile(file, mode);
               e.target.value = "";
             }}
