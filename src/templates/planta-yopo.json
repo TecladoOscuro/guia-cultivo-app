@@ -1,0 +1,66 @@
+{
+  "id": "planta-yopo",
+  "name": "Yopo (Anadenanthera peregrina)",
+  "emoji": "🌳",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 545 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=yopo",
+  "theme": { "primary": "#bda3d4", "bg": "#10081a" },
+  "phases": [
+    { "id": "compra_yopo", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_yopo", "name": "Cultivo", "emoji": "🌳", "startDayOffset": 0, "endDayOffset": 545, "wikiPhase": "yopo" }
+  ],
+  "events": [
+    {
+      "id": "plantar_yopo",
+      "title": "🌳 Plantar Anadenanthera peregrina",
+      "emoji": "🌳",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 45,
+      "description": "LEGUMINOSA TROPICAL — BUFOTENINA (5-OH-DMT) EN SEMILLAS — USO CHAMÁNICO ORINO\n\n🌱 CULTIVO (RELATIVAMENTE FÁCIL para tropical)\n• Árbol leguminoso caducifolio — más resistente que Kratom o Iboga\n• Temperatura mínima: 5-8°C (aguanta algo de fresco pero no heladas)\n• Clima ideal: Canarias, SE mediterráneo (Murcia, Almería, litoral valenciano)\n• Interior/invernadero: cualquier zona con temperatura >10°C en invierno\n\n📋 SEMILLAS\n• Disponibles en tiendas etnobotánicas europeas (€8-20/pack)\n• Escarificar ligeramente con lija\n• Remojo 24h en agua tibia antes de sembrar\n• Siembra: sustrato tropical, temperatura 25-28°C\n• Germinación: 5-14 días (muy buena tasa de germinación)\n\n☀️ SUSTRATO Y CUIDADOS\n• Sustrato: tierra de jardín + perlita (3:1). Drenaje bueno.\n• Riego: regular en verano, reducir en invierno (caducifolio)\n• Sol pleno — ama la luz intensa\n• Crecimiento: rápido (50-150cm primer año)\n\n📅 TIMELINE\n• Año 1: árbol 50-150cm\n• Año 2-3: árbol 2-4m, primeras vainas posibles\n• Año 3+: producción regular de vainas con semillas\n\n⚠️ SEMILLAS — CONTEXTO ETNOBOTÁNICO\n• Tradición chamánica Orinoco: semillas tostadas + molidas + cal viva = yopo (rapé psicoactivo)\n• Bufotenina (5-OH-DMT): 5-10% peso seco semillas — efectos cardiovasculares intensos\n• Solo documentación — praxis: NO recomendada sin contexto ceremonial y guía experta",
+      "wikiPhase": "yopo",
+      "notify": true
+    },
+    {
+      "id": "primera_vaina_yopo",
+      "title": "🌱 Primeras vainas maduras (año 3)",
+      "emoji": "🌱",
+      "type": "harvest",
+      "offsetDays": 730,
+      "durationMin": 30,
+      "description": "Primera producción de vainas con semillas.\n\n📦 VAINAS\n• Vainas café-marrón retorcidas en espiral, 15-20cm\n• Cada vaina: 6-10 semillas planas redondas marrón oscuro, 1-2cm\n• Cosechar cuando vaina completamente marrón y seca en árbol\n• Una planta adulta: cientos de semillas por temporada\n\n🌰 ALMACENAMIENTO\n• Semillas secas en frasco hermético: 3-5 años de viabilidad\n• Conservar en lugar fresco y oscuro",
+      "wikiPhase": "yopo",
+      "notify": false
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "riego_yopo",
+      "title": "💧 Riego Yopo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 545,
+      "cadence": { "everyDays": 5, "notes": "Moderado en verano, escaso en invierno (caducifolio)" },
+      "description": "Leguminosa tropical caducifolia — riego moderado.\n\n• Primavera-verano: cada 4-5 días, bien regado\n• Otoño: reducir gradualmente\n• Invierno: mínimo (pierde hojas en latitud más fría)\n• Resistente a sequía cuando establecido (2+ años)\n• Sol pleno — no necesita humedad ambiental alta (diferencia clave vs Kratom/Iboga)",
+      "consumes": [],
+      "wikiPhase": "yopo",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "semillas_yopo", "name": "Semillas Anadenanthera peregrina", "qty": 1, "unit": "sobre", "category": "esencial", "approxPrice": "8-20€", "source": "internet_etnobotanica", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_tropical_yopo", "name": "Sustrato tropical (tierra + perlita 3:1)", "qty": 15, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "maceta_yopo", "name": "Maceta 15-20L para árbol joven", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" }
+  ],
+  "prepChecklist": [
+    { "id": "clima_yopo", "title": "Clima cálido o interior con luz buena", "description": "Más tolerante que Kratom/Iboga. Canarias, mediterráneo o interior con temperatura >10°C en invierno.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "harm_yopo", "title": "Leer harm reduction: bufotenina y efectos cardiovasculares", "description": "Bufotenina produce taquicardia severa y vasoconstricción extrema. Contraindicado con cardiopatía/hipertensión.", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "semillas",
+  "produces": { "kind": "semillas_yopo", "unit": "g" }
+}

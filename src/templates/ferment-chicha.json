@@ -1,0 +1,70 @@
+{
+  "id": "ferment-chicha",
+  "name": "Chicha de Jora",
+  "emoji": "🌽",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 8 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=chicha",
+  "theme": { "primary": "#c08040", "bg": "#1a0f05" },
+  "phases": [
+    { "id": "compra_chicha", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_chicha" },
+    { "id": "prep_chicha", "name": "Preparación", "emoji": "🌽", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "prep_chicha" },
+    { "id": "fermentacion_chicha", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 5, "wikiPhase": "fermentacion_chicha" },
+    { "id": "cata_chicha", "name": "Degustación", "emoji": "🥂", "startDayOffset": 5, "endDayOffset": 8, "wikiPhase": "cata_chicha" }
+  ],
+  "events": [
+    {
+      "id": "preparar_mosto_chicha",
+      "title": "🌽 Preparar mosto de jora",
+      "emoji": "🌽",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 180,
+      "description": "Cerveza andina sagrada del Imperio Inca — 4000 años de historia.\n\n📋 INGREDIENTES (para 4-5L)\n• Jora (maíz malteado molido): 500-800g (o maíz morado/amarillo germinado en casa)\n• Agua sin cloro: 8L\n• Panela o azúcar: 150-200g (opcional, para más alcohol)\n• Canela, clavo, pimienta: opcional\n\n🌽 PROCESO MOSTO\nPaso 1: Hervir 7L agua en olla grande\nPaso 2: Añadir jora molida poco a poco removiendo\nPaso 3: Cocción lenta 2-6h removiendo periódicamente (cuanto más tiempo, más sabor)\nPaso 4: Últimos 30 min: añadir panela y especias\nPaso 5: Colar con tela fina o colador, presionando para extraer todo el líquido\nPaso 6: Enfriar a 25-28°C antes de fermentar\n\n⚠️ La jora tradicional = maíz germinado y re-secado. En casa: germinar maíz 3-5 días, secar al sol 2 días, moler groseramente.",
+      "wikiPhase": "prep_chicha",
+      "notify": true
+    },
+    {
+      "id": "inocular_chicha",
+      "title": "🫧 Inocular fermentación",
+      "emoji": "🫧",
+      "type": "milestone",
+      "offsetDays": 1,
+      "durationMin": 15,
+      "description": "Iniciar fermentación con levadura o chicha madre.\n\n🦠 OPCIONES LEVADURA\n• Opción A (tradicional): Añadir 100-200ml de chicha anterior ('pie de cuba') como inoculo — lleva levaduras adaptadas\n• Opción B (fiable): 1g levadura de pan rehidratada en agua tibia 10 min\n• Opción C (espontánea): Dejar fermentar naturalmente 3-5 días (levaduras del ambiente)\n\n📦 FERMENTADOR\n• Recipiente abierto o con tela (chicha es tradicionamente fermentación semi-abierta)\n• Temperatura ideal: 20-28°C\n• Remover 2x/día los primeros 2 días",
+      "wikiPhase": "fermentacion_chicha",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "seguimiento_chicha",
+      "title": "🌽 Remover chicha en fermentación",
+      "emoji": "🌽",
+      "type": "task",
+      "startDayOffset": 1,
+      "endDayOffset": 5,
+      "cadence": { "everyDays": 1, "notes": "Remover 2x/día — vigilar progreso fermentación" },
+      "description": "Control diario de la fermentación.\n\n• Remover con cuchara sanitizada 2x/día\n• Verificar burbujas activas (señal fermentación en marcha)\n• Probar pequeña cantidad: día 2-3 = ligeramente dulce-ácido-fizzy = LISTO\n• Día 4-5: más seco, más alcohol (4-6%), más ácido\n• Consumir preferiblemente fresca (días 2-4) o refrigerar hasta 5 días",
+      "consumes": [],
+      "wikiPhase": "fermentacion_chicha",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "jora_maiz", "name": "Jora (maíz malteado molido) o maíz seco para maltar", "qty": 800, "unit": "g", "category": "esencial", "approxPrice": "3-8€", "source": "tienda_latina", "wikiPhase": "compra_chicha" },
+    { "key": "panela_chicha", "name": "Panela o piloncillo (opcional, más alcohol)", "qty": 200, "unit": "g", "category": "opcional", "approxPrice": "2-4€" },
+    { "key": "especias_chicha", "name": "Canela, clavo, pimienta Jamaica", "qty": 1, "unit": "bolsa", "category": "opcional", "approxPrice": "2-4€" },
+    { "key": "levadura_pan", "name": "Levadura de panadería seca (Saccharomyces cerevisiae)", "qty": 7, "unit": "g", "category": "esencial", "approxPrice": "1-2€" },
+    { "key": "agua_chicha", "name": "Agua mineral sin gas (8L por lote)", "qty": 8, "unit": "L", "category": "esencial", "approxPrice": "1-2€" }
+  ],
+  "prepChecklist": [
+    { "id": "olla_grande", "title": "Olla >10L disponible", "description": "La cocción de la jora requiere hervor prolongado de mucho volumen.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "chicha_historia", "title": "Leer sección Chicha de Jora en wiki", "description": "Contexto histórico, variantes regionales (chicha morada, chicha de quinoa), el proceso de malteado tradicional.", "blocking": false, "estimatedMinutes": 10 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "chicha_fermentada",
+  "produces": { "kind": "chicha_de_jora", "unit": "L" }
+}

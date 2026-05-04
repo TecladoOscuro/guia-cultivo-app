@@ -1,0 +1,67 @@
+{
+  "id": "planta-kratom",
+  "name": "Kratom (Mitragyna speciosa)",
+  "emoji": "🍃",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=kratom",
+  "theme": { "primary": "#bda3d4", "bg": "#10081a" },
+  "phases": [
+    { "id": "compra_kratom", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_kratom", "name": "Cultivo tropical", "emoji": "🌳", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "kratom" }
+  ],
+  "events": [
+    {
+      "id": "plantar_kratom",
+      "title": "🍃 Plantar Mitragyna speciosa",
+      "emoji": "🍃",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "ÁRBOL TROPICAL DE ASIA — FAMILIA DEL CAFÉ — BIFÁSICO ESTIMULANTE/OPIOIDE\n\n⚠️ DIFICULTAD EXTREMA EN ESPAÑA\n• Requiere invernadero climatizado con temperatura constante 25-35°C\n• Humedad: >70% constante\n• Sin estas condiciones: NO viable en España continental\n• Alternativa práctica: comprar polvo/cápsulas online (legal en España, €10-20/100g)\n\n📋 CONDICIONES OBLIGATORIAS\n• Temperatura mínima absoluta: 18°C (heladas = muerte segura)\n• Sustrato: turboso-ácido, pH 5.5-6.5\n• Luz: sol pleno a semisombra brillante (6-8h luz directa)\n• Riego: constante, suelo nunca completamente seco\n\n🌱 SIEMBRA\n• Semillas: muy delicadas (viables solo días tras cosecha). Difíciles de conseguir.\n• Esquejes: más viables. Sumergir en agua 24h, plantar en sustrato húmedo a 28-30°C\n• Germinación semillas: 7-14 días a 28-30°C con alta humedad\n• Maceta inicial: 10-15L; escalando hasta 50-100L para árbol adulto\n\n🌳 CRECIMIENTO\n• Año 1: 30-60cm. Crecimiento lento\n• Año 2-3: 1-2m. Empieza a ser cosechable\n• Árbol adulto en pot: 2-4m. En naturaleza: 30m.\n\n⚠️ HARM REDUCTION\n• DEPENDENCIA FÍSICA posible con uso diario (síndrome abstinencia similar a opioides leve)\n• NO mezclar con opioides, benzodiacepinas, alcohol — riesgo depresión respiratoria\n• Dosis bajas (1-5g): estimulante. Dosis altas (5-15g): sedante/opioide.\n• Uso responsable: máximo 2-3 veces/semana con días de descanso",
+      "wikiPhase": "kratom",
+      "notify": true
+    },
+    {
+      "id": "primera_cosecha_kratom",
+      "title": "✂️ Primera cosecha de hojas (año 2)",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 365,
+      "durationMin": 60,
+      "description": "Primera cosecha significativa. Solo plantas con >1m de altura.\n\n✂️ COSECHA ÓPTIMA\n• Hojas maduras: verde oscuro intenso (máximo alcaloide)\n• Evitar hojas con venas amarillentas (degradación)\n• Cortar ramitas con tijera, no arrancar hojas sueltas\n\n🌿 PROCESADO\n• Secar en sombra con ventilación: 3-5 días (NO sol directo — degrada alcaloides)\n• Una vez crujientes: moler en procesador o mortero hasta polvo fino\n• Tamizar para uniformidad\n• 100g hojas frescas → 10-15g polvo seco\n\n💊 USO\n• Toss-and-wash: cucharadita de polvo + agua tibia\n• Té: 80°C (NO hervir), 15 min, colar\n• Cápsulas: 500mg cada una, 2-6 cápsulas por dosis",
+      "wikiPhase": "kratom",
+      "notify": false
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "riego_kratom",
+      "title": "💧 Riego Kratom (tropical)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 730,
+      "cadence": { "everyDays": 2, "notes": "Suelo permanentemente húmedo. Tropical." },
+      "description": "Riego tropical — suelo nunca completamente seco.\n\n• Riego: cada 2 días o cuando superficie empiece a secarse\n• Pulverización foliar diaria si HR < 60%\n• En verano con calor: riego diario\n• Agua blanda (baja en cal) preferible\n• Señal de sequía: hojas que caen o se enrollan\n• Señal de encharcamiento: hojas amarillas, raíces negras",
+      "consumes": [],
+      "wikiPhase": "kratom",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_kratom", "name": "Esqueje Mitragyna speciosa (más viable que semilla)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-40€", "source": "internet_etnobotanica", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_turboso_kratom", "name": "Sustrato turboso-ácido (pH 5.5-6.5)", "qty": 20, "unit": "L", "category": "esencial", "approxPrice": "12-18€" },
+    { "key": "humidificador_kratom", "name": "Humidificador (HR >70% constante)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€" },
+    { "key": "invernadero_kratom", "name": "Invernadero climatizado o espacio tropical", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "100-500€" }
+  ],
+  "prepChecklist": [
+    { "id": "invernadero_tropical_kratom", "title": "⚠️ INVERNADERO CLIMATIZADO OBLIGATORIO", "description": "Kratom NO sobrevive sin temperatura constante 25-35°C y humedad >70%. Sin estas condiciones: comprar polvo online en lugar de cultivar.", "blocking": true, "estimatedMinutes": 10 },
+    { "id": "harm_kratom", "title": "Leer harm reduction: dependencia y combinaciones", "description": "Dependencia física posible con uso diario. NO combinar con opioides/benzos. Dosis responsables.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "hojas_kratom_secas", "unit": "g" }
+}

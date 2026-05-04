@@ -1,0 +1,82 @@
+{
+  "id": "hongo-cordyceps",
+  "name": "Cordyceps militaris",
+  "emoji": "🧡",
+  "category": "hongos",
+  "version": 1,
+  "totalDuration": { "days": 80 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=cordyceps",
+  "theme": { "primary": "#7eb88a", "bg": "#0a140c" },
+  "phases": [
+    { "id": "compra_cordyceps", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "cordyceps" },
+    { "id": "esterilizar_cordyceps", "name": "Esterilizar sustrato", "emoji": "🔥", "startDayOffset": 0, "endDayOffset": 2, "wikiPhase": "cordyceps" },
+    { "id": "inoculacion_cordyceps", "name": "Inoculación", "emoji": "💉", "startDayOffset": 2, "endDayOffset": 3, "wikiPhase": "cordyceps" },
+    { "id": "colonizacion_cordyceps", "name": "Colonización", "emoji": "🔮", "startDayOffset": 3, "endDayOffset": 31, "wikiPhase": "cordyceps" },
+    { "id": "fructificacion_cordyceps", "name": "Fructificación naranja", "emoji": "🧡", "startDayOffset": 31, "endDayOffset": 70, "wikiPhase": "cordyceps" },
+    { "id": "cosecha_cordyceps", "name": "Cosecha + secado", "emoji": "✂️", "startDayOffset": 70, "endDayOffset": 80, "wikiPhase": "cordyceps" }
+  ],
+  "events": [
+    {
+      "id": "esterilizar_arroz_cordyceps",
+      "title": "🔥 Esterilizar sustrato de arroz",
+      "emoji": "🔥",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 180,
+      "description": "CORDYCEPS MILITARIS — ENERGÍA Y ATLETISMO — SUSTRATO DE ARROZ\n\n🍚 SUSTRATO (DIFERENTE de otros hongos — NO serrín)\n• Arroz blanco o integral cocido: sustrato principal\n• Opcional refuerzo: 5% harina de insectos o pupas de gusano de seda deshidratadas\n• Sin aditivos de insectos también funciona bien\n\n📋 PROCESO\nPaso 1: Cocer arroz normal (ligeramente menos agua que normal para que quede al dente)\nPaso 2: Enfriar completamente\nPaso 3: Llenar frascos de cristal 1/3 con arroz cocido\nPaso 4: Cubrir con papel aluminio + goma o con tapa con filtro micropore\nPaso 5: Esterilizar en olla a presión: 15 PSI durante 90 min\nPaso 6: Enfriar completamente (12-24h) antes de inocular\n\n⚠️ ESTERILIZACIÓN OBLIGATORIA\n• Cordyceps crece en sustrato rico en proteínas — muy susceptible a contaminación\n• Sin esterilización correcta: contaminación garantizada en días",
+      "wikiPhase": "cordyceps",
+      "notify": true
+    },
+    {
+      "id": "inocular_cordyceps",
+      "title": "💉 Inocular Cordyceps militaris",
+      "emoji": "💉",
+      "type": "milestone",
+      "offsetDays": 2,
+      "durationMin": 30,
+      "description": "Inoculación aséptica de frascos de arroz.\n\n🧫 TÉCNICA\n• Trabajar en SAB (Still Air Box) o junto a mechero de alcohol (flujo laminar casero)\n• Flamear aguja hasta roja, enfriar 30s\n• Agitar bien la jeringa de cultura líquida\n• Inyectar 2-3ml por frasco a través del filtro micropore\n• Sellar el orificio con cinta o nuevo micropore\n\n⏱️ COLONIZACIÓN\n• Temperatura: 18-24°C (más fría que otros hongos)\n• Días 1-7: invisible (micelio estableciéndose)\n• Días 7-21: micelio naranja/blanco visible en arroz\n• Días 21-28: frasco completamente colonizado — arroz todo naranja\n• Dar luz tenue para que empiece a apuntar hacia luz (fototropismo)",
+      "wikiPhase": "cordyceps",
+      "notify": true
+    },
+    {
+      "id": "cosecha_cordyceps_evento",
+      "title": "✂️ Cosecha estroma naranja",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 70,
+      "durationMin": 30,
+      "description": "Cosecha de estroma (cuerpos fructíferos naranjos).\n\n🧡 ASPECTO\n• Palos naranjos/rojos de 3-10cm creciendo desde superficie del arroz\n• Apariencia única: pequeños dedos o mazas naranjas (muy diferentes a setas clásicas)\n\n✂️ COSECHA\n• Cortar con tijera cuando alcancen altura máxima antes de liberar esporas\n• Rendimiento: 5-15g frescos por frasco (suena poco pero muy concentrado)\n\n🌬️ SECADO\n• Secar a 40°C en deshidratador 4-6h\n• Usar fresco en cocina (sabor dulce-suave) o secar y moler para polvo/cápsulas\n\n💊 DOSIS SUPLEMENTO\n• 1-3g polvo/día\n• Ciclos de 4 semanas ON + 1 semana OFF recomendado",
+      "wikiPhase": "cordyceps",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "luz_cordyceps",
+      "title": "💡 Luz Cordyceps (fototropismo)",
+      "emoji": "💡",
+      "type": "task",
+      "startDayOffset": 28,
+      "endDayOffset": 70,
+      "cadence": { "everyDays": 1, "notes": "Verificar que estroma apunta hacia la luz" },
+      "description": "Cordyceps necesita luz para dirigir crecimiento del estroma.\n\n• Mantener fuente de luz difusa 12-16h/día\n• Los estroma crecen HACIA la luz (fototropismo positivo)\n• Rotar frasco periódicamente para crecimiento uniforme\n• Nebulizar ligeramente paredes 1-2x/día si HR < 70%\n• Temperatura fructificación: 18-22°C (más fresco que colonización)",
+      "consumes": [],
+      "wikiPhase": "cordyceps",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "cultura_cordyceps", "name": "Cultura líquida Cordyceps militaris (LC syringe)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€", "source": "internet_micelio", "wikiPhase": "cordyceps" },
+    { "key": "arroz_cordyceps", "name": "Arroz blanco para sustrato", "qty": 500, "unit": "g", "category": "esencial", "approxPrice": "1-2€" },
+    { "key": "frascos_cordyceps", "name": "Frascos cristal 500ml con tapa micropore (x4)", "qty": 4, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "olla_presion_cord", "name": "Olla a presión (esterilización 15 PSI)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-80€" }
+  ],
+  "prepChecklist": [
+    { "id": "olla_presion_cordyceps", "title": "Olla a presión disponible (esterilización)", "description": "Sin esterilización correcta a 15 PSI, el sustrato rico en proteínas se contamina garantizado.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "sab_cordyceps", "title": "SAB o espacio aséptico para inoculación", "description": "Still Air Box: caja de plástico con guantes integrados. DIY: caja grande con 2 agujeros para brazos.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "estroma",
+  "produces": { "kind": "cordyceps_fresco", "unit": "g" }
+}

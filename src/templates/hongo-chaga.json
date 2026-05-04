@@ -1,0 +1,64 @@
+{
+  "id": "hongo-chaga",
+  "name": "Chaga (Inonotus obliquus)",
+  "emoji": "🪨",
+  "category": "hongos",
+  "version": 1,
+  "totalDuration": { "days": 90 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=chaga",
+  "theme": { "primary": "#7eb88a", "bg": "#0a140c" },
+  "phases": [
+    { "id": "obtencion_chaga", "name": "Obtención", "emoji": "🌲", "startDayOffset": 0, "endDayOffset": 7, "wikiPhase": "chaga" },
+    { "id": "procesado_chaga", "name": "Procesado", "emoji": "🪨", "startDayOffset": 7, "endDayOffset": 21, "wikiPhase": "chaga" },
+    { "id": "uso_chaga", "name": "Uso", "emoji": "🍵", "startDayOffset": 21, "endDayOffset": 90, "wikiPhase": "chaga" }
+  ],
+  "events": [
+    {
+      "id": "obtener_chaga",
+      "title": "🪨 Obtener Chaga (forrajeo o compra)",
+      "emoji": "🪨",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 120,
+      "description": "PARÁSITO ABEDUL — ANTIOXIDANTE EXTREMO — FORRAJEO EN BOSQUES NORTEÑOS\n\n🌲 FORRAJEO (si tienes acceso a bosques de abedul)\n• Dónde: Pirineos, Picos de Europa, Cordillera Cantábrica, Sierra Nevada (zonas con abedul)\n• Cuándo: todo el año (no estacional)\n• Identificación CRÍTICA:\n  — Exterior: negro carbón rugoso (masas irregulares 10-80cm en tronco abedul)\n  — Interior: MARRÓN-NARANJA (identificador definitivo) — si es blanco NO es chaga\n  — Solo en abedul o raramente aliso. Si el árbol no es abedul: no cosechar.\n• Cosecha responsable: cortar solo 2/3 de la masa — dejar 1/3 para regeneración (crece de vuelta en 3-5 años)\n• Herramienta: navaja robusta o sierra pequeña\n\n🛒 COMPRA (más fácil y seguro)\n• Proveedores online: Ural Herbs (ruso/siberia), Forest Superfood (UK), tiendas bio\n• Verificar: 'wild-harvested Siberian Chaga' — mejor calidad\n• Forma: trozos enteros o polvo\n• Precio: €10-30 por 100g",
+      "wikiPhase": "chaga",
+      "notify": true
+    },
+    {
+      "id": "procesar_chaga",
+      "title": "🔨 Procesar Chaga (trozar y secar)",
+      "emoji": "🔨",
+      "type": "preparation",
+      "offsetDays": 7,
+      "durationMin": 60,
+      "description": "Preparación del Chaga para uso.\n\n🔨 TROZADO\n• Chaga fresco es duro como madera — usar martillo + bolsa de tela para romper\n• Objetivo: trozos de 1-3cm (o polvo con molinillo potente)\n• Nunca cortar con cuchillo de cocina normal — se puede romper\n\n🌬️ SECADO\n• Secar en lugar con ventilación, temperatura ambiente\n• NO calor alto (destruye SOD y beta-glucanos)\n• 7-14 días hasta totalmente seco\n• O en deshidratador a 40°C máximo, 12-24h\n\n📦 ALMACENAMIENTO\n• Bolsa de papel (no plástico — necesita 'respirar')\n• Lugar fresco y oscuro\n• Duración: 2-4 años en trozos. 1-2 años en polvo.",
+      "wikiPhase": "chaga",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "decoccion_chaga_diaria",
+      "title": "🍵 Decocción de Chaga",
+      "emoji": "🍵",
+      "type": "task",
+      "startDayOffset": 21,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 2, "notes": "Preparar té de chaga cada 2-3 días" },
+      "description": "Preparación de té de Chaga medicinal.\n\n☕ RECETA BÁSICA\n• Poner 5g trozos o 1-2 cucharaditas polvo en 500ml agua\n• Hervir suave 40-60 min (NO a borbotones — conserva enzimas SOD)\n• Alternativa: calentar a 80°C 2h (más suave)\n• Colar. Sabor: terroso, suave vainilla, ligeramente amargo.\n• Guardar en nevera hasta 48h\n\n♻️ LOS TROZOS SE REUTILIZAN\n• Un mismo trozo de chaga se puede usar 3-5 veces antes de tirar\n• Guardar trozos usados en nevera entre cocciones",
+      "consumes": [],
+      "wikiPhase": "chaga",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "chaga_comprado", "name": "Chaga silvestre siberiano (trozos o polvo)", "qty": 100, "unit": "g", "category": "esencial", "approxPrice": "10-30€", "source": "internet_bio", "wikiPhase": "chaga" },
+    { "key": "olla_chaga", "name": "Olla para decocción (1L+)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "0€ (si ya tienes)" }
+  ],
+  "prepChecklist": [
+    { "id": "identificacion_chaga", "title": "Identificar correctamente Chaga (solo si forrajeas)", "description": "Interior MARRÓN-NARANJA. Solo en abedul. Exterior negro. Sin estas 3 condiciones: no cosechar.", "blocking": true, "estimatedMinutes": 15 },
+    { "id": "rinones_chaga", "title": "Sin antecedentes de cálculos renales", "description": "Chaga contiene oxalatos — alto consumo puede aumentar riesgo cálculos en personas predispuestas.", "blocking": false, "estimatedMinutes": 3 }
+  ],
+  "consumables": [],
+  "harvestable": false
+}

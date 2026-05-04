@@ -1,0 +1,67 @@
+{
+  "id": "hongo-reishi",
+  "name": "Reishi (Ganoderma lucidum)",
+  "emoji": "🍄",
+  "category": "hongos",
+  "version": 1,
+  "totalDuration": { "days": 150 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=reishi",
+  "theme": { "primary": "#7eb88a", "bg": "#0a140c" },
+  "phases": [
+    { "id": "compra_reishi", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "reishi" },
+    { "id": "colonizacion_reishi", "name": "Colonización (60-90d)", "emoji": "🔮", "startDayOffset": 0, "endDayOffset": 75, "wikiPhase": "reishi" },
+    { "id": "fructificacion_reishi", "name": "Fructificación", "emoji": "🍄", "startDayOffset": 75, "endDayOffset": 130, "wikiPhase": "reishi" },
+    { "id": "cosecha_reishi", "name": "Cosecha + secado", "emoji": "✂️", "startDayOffset": 130, "endDayOffset": 150, "wikiPhase": "reishi" }
+  ],
+  "events": [
+    {
+      "id": "inocular_reishi",
+      "title": "🍄 Inocular bloque serrín para Reishi",
+      "emoji": "🍄",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 90,
+      "description": "HONGO DE LA INMORTALIDAD — INMUNIDAD Y ADAPTÓGENO — 2000 AÑOS MEDICINA CHINA\n\n📋 OPCIONES INICIO\n• Kit completo (más fácil): bloque de serrín pre-colonizado €20-40. 3-5 meses hasta cosecha.\n• Bag esterilizado + cultura líquida: sterilized sawdust bag + LC syringe €25-50.\n• Tronco inoculado (método lento): taladrar tronco roble, insertar tacos spawn, sellar. 6-12 meses.\n\n🍄 SUSTRATO ÓPTIMO\n• Serrín de roble/haya (hardwood) + salvado de trigo 10-15%\n• Yeso: 1-2%\n• Esterilizar a 15 PSI durante 90-120 min si preparas tú\n\n⏱️ COLONIZACIÓN (más lenta que otras especies)\n• Temperatura: 24-28°C\n• Duración: 60-90 días (PACIENCIA — mucho más lento que Psilocybe o Lion's Mane)\n• Micelio blanco denso, sin olores malos\n\n☀️ INICIACIÓN FRUCTIFICACIÓN\n• Cuando bloque 100% blanco: bajar temperatura a 20-25°C\n• Humedad: 70-80%\n• Luz: 12h luz\n• FAE regular",
+      "wikiPhase": "reishi",
+      "notify": true
+    },
+    {
+      "id": "cosecha_reishi_evento",
+      "title": "✂️ Cosecha Reishi (cuerpos fructíferos maduros)",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 130,
+      "durationMin": 30,
+      "description": "Cosecha cuando el borde blanco deja de crecer y comienzan las esporas.\n\n⚠️ SEÑAL DE COSECHA\n• El borde blanco del sombrero para de crecer\n• Superficie inferior (poros) empieza a liberar polvo rojizo-marrón (esporas)\n• Cosechar justo antes o al inicio de esporación\n• Cortar limpio en la base del estipe\n\n🍄 FORMA\n• NO se come fresco (muy duro, amargo, leñoso)\n• Secar entero a 40-50°C — 2-3 días\n• Moler en picadora potente o mortero\n• 100g fresco → 12-18g seco\n\n🍵 PREPARACIÓN OBLIGATORIA\n• DECOCCIÓN: 3-5g slices en 500ml agua. Hervir a fuego suave 1-2h. Colar.\n• Añadir miel para el sabor amargo\n• O dual extract: agua caliente + tintura alcohólica combinadas",
+      "wikiPhase": "reishi",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "cuidado_colonizacion_reishi",
+      "title": "🔍 Verificar colonización Reishi",
+      "emoji": "🔍",
+      "type": "task",
+      "startDayOffset": 7,
+      "endDayOffset": 75,
+      "cadence": { "everyDays": 7, "notes": "Inspección semanal sin abrir — buscar colores anómalos" },
+      "description": "Verificación semanal del bloque en colonización.\n\n• Inspección visual a través del plástico (NO abrir)\n• Micelio blanco denso avanzando = NORMAL\n• Verde/negro/rojo = contaminación → retirar de zona limpia\n• Temperatura: mantener 24-28°C\n• El micelio de Reishi avanza lento — no alarmarse si parece parado",
+      "consumes": [],
+      "wikiPhase": "reishi",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "spawn_reishi", "name": "Kit cultivo Reishi o bag esterilizado + LC syringe", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-50€", "source": "internet_micelio", "wikiPhase": "reishi" },
+    { "key": "termometro_cultivo", "name": "Termómetro digital (colonización 24-28°C)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" }
+  ],
+  "prepChecklist": [
+    { "id": "paciencia_reishi", "title": "Preparado para 3-5 meses hasta primera cosecha", "description": "Reishi es el más lento — colonización 60-90 días, luego fructificación 4-8 semanas. Mucha paciencia necesaria.", "blocking": false, "estimatedMinutes": 5 },
+    { "id": "espacio_reishi", "title": "Espacio estable 24-28°C para colonización", "description": "La colonización lenta necesita temperatura constante. Sin calor estable el Reishi no avanza.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "cuerpo_fructifero",
+  "produces": { "kind": "reishi_seco", "unit": "g" }
+}

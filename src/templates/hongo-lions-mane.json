@@ -1,0 +1,69 @@
+{
+  "id": "hongo-lions-mane",
+  "name": "Lion's Mane (Hericium erinaceus)",
+  "emoji": "🦁",
+  "category": "hongos",
+  "version": 1,
+  "totalDuration": { "days": 60 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=lions_mane",
+  "theme": { "primary": "#7eb88a", "bg": "#0a140c" },
+  "phases": [
+    { "id": "compra_lions_mane", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "lions_mane" },
+    { "id": "colonizacion_lions", "name": "Colonización", "emoji": "🔮", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "lions_mane" },
+    { "id": "fructificacion_lions", "name": "Fructificación", "emoji": "🦁", "startDayOffset": 21, "endDayOffset": 40, "wikiPhase": "lions_mane" },
+    { "id": "cosecha_lions", "name": "Cosecha + secado", "emoji": "✂️", "startDayOffset": 40, "endDayOffset": 60, "wikiPhase": "lions_mane" }
+  ],
+  "events": [
+    {
+      "id": "setup_lions_mane",
+      "title": "🦁 Setup cultivo Lion's Mane",
+      "emoji": "🦁",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "HONGO MEDICINAL NEUROLÓGICO — NGF (FACTOR CRECIMIENTO NERVIOSO)\n\n📋 OPCIONES DE INICIO\n• Opción A (principiante absoluto): Comprar kit de fructificación Lion's Mane listo (bloque pre-colonizado). €15-35. Solo hidratar y esperar.\n• Opción B (intermedio): Bag de serrín esterilizado + jeringa cultura líquida. €20-40.\n• Opción C (avanzado): Esterilizar serrín propio (roble/haya) + salvado 10% + olla a presión.\n\n🦁 CONDICIONES FRUCTIFICACIÓN\n• Temperatura: 18-24°C\n• Humedad: 85-95% (nebulizar paredes 2-3x/día)\n• Luz: 12h luz difusa/día\n• FAE: ventilación fresca 2-3x/día\n\n⏱️ TIMELINE\n• Kit: días 1-14 colonización completa → días 14-30 primera cosecha\n• Bag propio: días 14-21 colonización → días 21-35 primera cosecha\n\n✂️ SEÑAL COSECHA\n• Cuando espinas (dientes) están completamente formadas pero antes de elongarse >1cm\n• Color: blanco brillante\n• Si se pone amarillo: sobremadurado, cosechar inmediatamente",
+      "wikiPhase": "lions_mane",
+      "notify": true
+    },
+    {
+      "id": "primera_cosecha_lions",
+      "title": "✂️ Primera cosecha Lion's Mane",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 25,
+      "durationMin": 30,
+      "description": "Primera cosecha de Lion's Mane fresco.\n\n✂️ TÉCNICA COSECHA\n• Girar y tirar suavemente (giro-tirón) o cortar con tijera limpia en base\n• No dejar restos pegados (pueden podrir)\n• Rendimiento típico: 100-300g fresco por flush\n\n🍳 FRESCO (mejor uso)\n• Sabor suave a marisco, textura esponjosa\n• Saltear en mantequilla/aceite: excelente como alimento\n• Fresco: refrigerar máx 5 días\n\n🌬️ SECADO (para suplemento)\n• Rebanar 1cm espesor\n• Secar a 40°C hasta crujiente (6-12h deshidratador)\n• 100g fresco → 8-12g seco\n• Moler hasta polvo para cápsulas o té",
+      "wikiPhase": "lions_mane",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "nebulizar_lions",
+      "title": "💧 Nebulizar Lion's Mane",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 21,
+      "endDayOffset": 50,
+      "cadence": { "everyDays": 1, "notes": "2-3 veces al día durante fructificación" },
+      "description": "Mantener humedad 85-95% durante fructificación.\n\n• Nebulizar paredes internas de cámara 2-3x/día (NO directamente sobre hongo)\n• Ventilación: abrir 2-3x/día para FAE (intercambio aire fresco)\n• Señal de baja humedad: hongos se ponen amarillos o secos en puntas\n• Señal exceso humedad: goteo en el fruto (raro con Lion's Mane)",
+      "consumes": [],
+      "wikiPhase": "lions_mane",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "kit_lions_mane", "name": "Kit cultivo Lion's Mane (bloque pre-colonizado)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-35€", "source": "internet_micelio", "wikiPhase": "lions_mane" },
+    { "key": "camara_humedad", "name": "Cámara de fructificación (SGFC o similar) o tienda crecimiento", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-40€" },
+    { "key": "nebulizador_manual", "name": "Pulverizador manual (nebulizador)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "3-8€" },
+    { "key": "termohigrometro", "name": "Termohigrómetro (temperatura + humedad)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "8-15€" }
+  ],
+  "prepChecklist": [
+    { "id": "kit_o_bag", "title": "Kit pre-colonizado o bag esterilizado obtenido", "description": "Opción más fácil para empezar: kit completo de Mundo Setas, Fungi Perfecti EU, etc.", "blocking": true, "estimatedMinutes": 10 },
+    { "id": "temperatura_lions", "title": "Temperatura estable 18-24°C garantizada", "description": "Lion's Mane muy sensible a temperaturas fuera de rango. Verificar que el espacio mantiene temperatura constante.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "cuerpo_fructifero",
+  "produces": { "kind": "lions_mane_fresco", "unit": "g" }
+}

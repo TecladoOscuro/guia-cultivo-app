@@ -1,0 +1,64 @@
+{
+  "id": "planta-iboga",
+  "name": "Iboga (Tabernanthe iboga)",
+  "emoji": "🌿",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1825 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=plantas&phase=iboga",
+  "theme": { "primary": "#bda3d4", "bg": "#10081a" },
+  "phases": [
+    { "id": "compra_iboga", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_plantas" },
+    { "id": "cultivo_iboga", "name": "Cultivo tropical (años)", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 1825, "wikiPhase": "iboga" }
+  ],
+  "events": [
+    {
+      "id": "plantar_iboga",
+      "title": "🌿 Plantar Tabernanthe iboga",
+      "emoji": "🌿",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "ARBUSTO AFRICANO — ALCALOIDE IBOGAÍNA — TRATAMIENTO ADICCIONES / CEREMONIA BWITI\n\n⚠️ CONDICIONES EXTREMADAMENTE EXIGENTES\n• Temperatura: 20-28°C constante (mínimo absoluto: 15°C)\n• Humedad: 75-85% constante (bosque ecuatorial africano)\n• Luz: sombra parcial (20-30% sol directo) — NOT sol pleno\n• Crecimiento: EXTREMADAMENTE LENTO (años hasta tamaño significativo)\n\n🌱 PROPAGACIÓN\n• Semillas: frescas (viabilidad solo 1-3 meses). Estratificación húmeda. Germinación 30-60 días.\n• Esquejes: más fiables. Corte 15-20cm, enraizar en turbera húmeda a 25°C.\n• Sustrato: turboso-ácido, pH 5.5-6.5, muy bien drenado pero constantemente húmedo.\n• Maceta inicial: 5-10L. Crecimiento: 20-50cm/año en condiciones óptimas.\n\n📅 CRONOGRAMA REALISTA\n• Año 1-2: planta pequeña 20-40cm\n• Año 3-5: arbusto establecido 50-100cm\n• Año 7-10: planta adulta con corteza de raíz cosechable\n• La corteza de raíz (la parte activa) es significativa solo en plantas maduras (5+ años)\n\n🌍 CONTEXTO CEREMONIAL\n• Ceremonias Bwiti (Gabón): uso como rito de paso y sanación ancestral\n• Tratamiento adicciones: clínicas certificadas en España, Países Bajos, Portugal\n• USO SOLO BAJO SUPERVISIÓN MÉDICA — riesgo cardíaco real (QT prolongación)\n\n⚠️ HARM REDUCTION\n• 18-36h de experiencia intensa (no recreativo)\n• Riesgo cardíaco severo: contraindicado con cardiopatía\n• NO hacer en casa sin supervisión médica y ECG previo",
+      "wikiPhase": "iboga",
+      "notify": true
+    },
+    {
+      "id": "establecida_iboga",
+      "title": "🌿 Iboga establecida (año 2-3)",
+      "emoji": "🌿",
+      "type": "milestone",
+      "offsetDays": 730,
+      "durationMin": 15,
+      "description": "Verificación estado planta a los 2 años.\n\n🌿 EVALUACIÓN\n• 30-80cm altura si condiciones óptimas\n• Hojas ovaladas brillantes, nervaduras prominentes, verde intenso\n• Raíces llenando maceta: trasplantar a maceta más grande\n\n🔍 PROBLEMAS COMUNES\n• Crecimiento muy lento: temperatura <20°C o humedad <60%\n• Hojas amarillas: nutrición insuficiente o pH incorrecto\n• Caída hojas: corriente de aire frío o baja temperatura nocturna\n\n📝 NOTA SOBRE USO\n• Planta de coleccionismo etnobotánico — el arbusto de jardín no produce suficiente alcaloide para uso ceremonial\n• Para tratamiento ibogaína: clínicas especializadas certificadas",
+      "wikiPhase": "iboga",
+      "notify": false
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "riego_iboga",
+      "title": "💧 Riego Iboga (bosque ecuatorial)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 1825,
+      "cadence": { "everyDays": 3, "notes": "Suelo húmedo constante, NO encharcado. Bosque ecuatorial africano." },
+      "description": "Riego bosque ecuatorial — húmedo pero drenado.\n\n• Riego: cada 2-3 días, mantener suelo húmedo (no empapado)\n• Pulverización foliar diaria si HR < 70%\n• Agua blanda o de lluvia preferible\n• Señal sequía: hojas que caen o se curvan hacia abajo\n• Señal encharcamiento: raíces negras, olor a podrido",
+      "consumes": [],
+      "wikiPhase": "iboga",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_iboga", "name": "Esqueje Tabernanthe iboga", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "25-60€", "source": "internet_etnobotanica", "wikiPhase": "compra_plantas" },
+    { "key": "sustrato_iboga", "name": "Sustrato turboso-ácido (pH 5.5-6.5)", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "humidificador_iboga", "name": "Humidificador (HR 75-85% constante)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€" }
+  ],
+  "prepChecklist": [
+    { "id": "invernadero_iboga", "title": "⚠️ Espacio tropical estable >20°C constante", "description": "Sin temperatura e humedad tropicales constantes, la iboga muere. Solo para quien tenga infraestructura tropical.", "blocking": true, "estimatedMinutes": 10 },
+    { "id": "harm_iboga", "title": "Leer harm reduction: riesgo cardíaco ibogaína", "description": "Ibogaína causa prolongación QT — riesgo arritmia. Solo bajo supervisión médica con ECG. NO automedicación.", "blocking": true, "estimatedMinutes": 20 }
+  ],
+  "consumables": [],
+  "harvestable": false
+}

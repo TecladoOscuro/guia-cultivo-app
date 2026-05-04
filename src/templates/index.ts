@@ -44,6 +44,16 @@ import plantaEstramonio from "./planta-estramonio.json";
 import fermentHidromiel from "./ferment-hidromiel.json";
 import fermentCerveza from "./ferment-cerveza.json";
 import fermentSidra from "./ferment-sidra.json";
+import fermentChicha from "./ferment-chicha.json";
+import fermentPulque from "./ferment-pulque.json";
+import fermentBalche from "./ferment-balche.json";
+import plantaKratom from "./planta-kratom.json";
+import plantaIboga from "./planta-iboga.json";
+import plantaYopo from "./planta-yopo.json";
+import hongoLionsMane from "./hongo-lions-mane.json";
+import hongoReishi from "./hongo-reishi.json";
+import hongoChaga from "./hongo-chaga.json";
+import hongoCordyceps from "./hongo-cordyceps.json";
 import toxicaBrugmansia from "./toxica-brugmansia.json";
 import toxicaAdelfa from "./toxica-adelfa.json";
 import toxicaDedalera from "./toxica-dedalera.json";
@@ -106,6 +116,16 @@ export const templates: Record<string, CultivoTemplate> = {
   "ferment-hidromiel": fermentHidromiel as CultivoTemplate,
   "ferment-cerveza": fermentCerveza as CultivoTemplate,
   "ferment-sidra": fermentSidra as CultivoTemplate,
+  "ferment-chicha": fermentChicha as CultivoTemplate,
+  "ferment-pulque": fermentPulque as CultivoTemplate,
+  "ferment-balche": fermentBalche as CultivoTemplate,
+  "planta-kratom": plantaKratom as CultivoTemplate,
+  "planta-iboga": plantaIboga as CultivoTemplate,
+  "planta-yopo": plantaYopo as CultivoTemplate,
+  "hongo-lions-mane": hongoLionsMane as CultivoTemplate,
+  "hongo-reishi": hongoReishi as CultivoTemplate,
+  "hongo-chaga": hongoChaga as CultivoTemplate,
+  "hongo-cordyceps": hongoCordyceps as CultivoTemplate,
   "toxica-brugmansia": toxicaBrugmansia as CultivoTemplate,
   "toxica-adelfa": toxicaAdelfa as CultivoTemplate,
   "toxica-dedalera": toxicaDedalera as CultivoTemplate,

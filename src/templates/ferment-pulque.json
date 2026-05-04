@@ -1,0 +1,54 @@
+{
+  "id": "ferment-pulque",
+  "name": "Pulque (aguamiel de agave)",
+  "emoji": "🌵",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 3 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=pulque",
+  "theme": { "primary": "#c08040", "bg": "#1a0f05" },
+  "phases": [
+    { "id": "compra_pulque", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_pulque" },
+    { "id": "prep_pulque", "name": "Aguamiel", "emoji": "🌵", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "prep_pulque" },
+    { "id": "fermentacion_pulque", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 2, "wikiPhase": "fermentacion_pulque" },
+    { "id": "cata_pulque", "name": "Consumo fresco", "emoji": "🥛", "startDayOffset": 2, "endDayOffset": 3, "wikiPhase": "cata_pulque" }
+  ],
+  "events": [
+    {
+      "id": "preparar_aguamiel",
+      "title": "🌵 Preparar aguamiel base",
+      "emoji": "🌵",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Pulque — bebida sagrada pre-azteca del agave maguey. Fermentación ultra-rápida (12-24h).\n\n🌵 OPCIONES AGUAMIEL EN ESPAÑA\n• Opción A (ideal): aguamiel enlatada importada de México (Amazon, tiendas latinas especializadas)\n• Opción B: néctar de agave (miel de agave) diluido 1:3 con agua mineral (muy diferente en bioquímica pero sirve para experimento)\n• Opción C: si tienes Agave americana en jardín floreciendo — extraer savia directamente del corazón cortado\n\n📋 PREPARACIÓN\n• Diluir aguamiel enlatada según instrucciones del envase\n• Si usando néctar de agave: mezclar 200ml néctar + 600ml agua mineral\n• Temperatura: 20-28°C para fermentar\n• Brix objetivo: 10-13° (prueba con refractómetro si tienes, o a ojo — ligeramente dulce)",
+      "wikiPhase": "prep_pulque",
+      "notify": true
+    },
+    {
+      "id": "fermentar_pulque",
+      "title": "🫧 Fermentar pulque (12-24h)",
+      "emoji": "🫧",
+      "type": "milestone",
+      "offsetDays": 1,
+      "durationMin": 15,
+      "description": "Fermentación rapidísima con bacteria Leuconostoc + levaduras naturales.\n\n🦠 INOCULO\n• Añadir 50-100ml de pulque anterior ('semilla') si disponible\n• Alternativa: kéfir de agua (tiene Leuconostoc mesenteroides similar)\n• Alternativa: pizca de masa madre + levadura de pan (1g) — efecto diferente pero funciona\n\n⏱️ TIEMPOS\n• 12h: pulque joven — dulce, ligeramente fizzy, muy bajo alcohol (1-2%)\n• 18-24h: pulque maduro — viscoso por glucanos, ácido-dulce, 4-6% alcohol\n• 36h+: sobreexplotado, muy ácido, vinagre casi\n\n🥛 LA TEXTURA VISCOSA\n• Característica única del pulque: Leuconostoc produce exopolisacáridos (glucanos)\n• Dan textura 'babosa' o viscosa — NORMAL y deseable\n• Sin esta textura no es pulque auténtico\n\n• Consumir el mismo día o máximo 48h en nevera",
+      "wikiPhase": "fermentacion_pulque",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [],
+  "shoppingList": [
+    { "key": "aguamiel_agave", "name": "Aguamiel de agave (lata/concentrado) o néctar de agave", "qty": 400, "unit": "ml", "category": "esencial", "approxPrice": "8-20€", "source": "internet_tienda_latina", "wikiPhase": "compra_pulque" },
+    { "key": "kefir_agua", "name": "Kéfir de agua o pulque anterior (semilla/inoculo)", "qty": 100, "unit": "ml", "category": "esencial", "approxPrice": "3-8€" },
+    { "key": "agua_mineral_pulque", "name": "Agua mineral sin gas", "qty": 2, "unit": "L", "category": "esencial", "approxPrice": "1-2€" }
+  ],
+  "prepChecklist": [
+    { "id": "aguamiel_disponible", "title": "Aguamiel o substituto obtenido", "description": "Sin aguamiel de agave o buen sustituto, el resultado no es pulque. Buscar en Amazon o tiendas latinas especializadas.", "blocking": true, "estimatedMinutes": 10 },
+    { "id": "pulque_historia", "title": "Leer contexto histórico Pulque en wiki", "description": "Bebida sagrada de Mayahuel, diosa agave. Cultura pulquera en México, tlachiqueros, diferencias regionales.", "blocking": false, "estimatedMinutes": 8 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "pulque_fresco",
+  "produces": { "kind": "pulque", "unit": "L" }
+}

@@ -1,0 +1,69 @@
+{
+  "id": "ferment-balche",
+  "name": "Balché (ceremonial Maya)",
+  "emoji": "🌿",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 6 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=balche",
+  "theme": { "primary": "#c08040", "bg": "#1a0f05" },
+  "phases": [
+    { "id": "compra_balche", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_balche" },
+    { "id": "preparacion_balche", "name": "Preparación corteza", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "preparacion_balche" },
+    { "id": "fermentacion_balche", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 4, "wikiPhase": "fermentacion_balche" },
+    { "id": "cata_balche", "name": "Degustación ceremonial", "emoji": "🍵", "startDayOffset": 4, "endDayOffset": 6, "wikiPhase": "cata_balche" }
+  ],
+  "events": [
+    {
+      "id": "preparar_corteza_balche",
+      "title": "🌿 Preparar corteza de balché",
+      "emoji": "🌿",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Bebida ceremonial Maya — Lonchocarpus longistylus + miel + agua.\n\n📋 INGREDIENTES (para 2L)\n• Corteza Lonchocarpus longistylus (balché): 30-50g (tiendas etnobotánicas)\n• Miel cruda sin pasteurizar: 250-350g (crítico: cruda para llevar levaduras silvestres)\n• Agua mineral o de lluvia: 2-2.5L\n• Semillas achiote, pimienta Jamaica: opcional (tradicional)\n\n🌿 PREPARACIÓN CORTEZA\nPaso 1: Tostar corteza en sartén seca a fuego medio 3-5 min (abre los poros)\nPaso 2: Sumergir en agua fría 24h para extraer resinas y taninos\nPaso 3: Colar el agua de maceración de corteza (guardar este líquido)\nPaso 4: Disolver miel en agua tibia (35°C máximo, NO hervir — preserva levaduras)\nPaso 5: Combinar agua de corteza + miel disuelta\n\n⚠️ MIEL CRUDA OBLIGATORIA\nLas levaduras silvestres de la miel cruda son las que fermentan naturalmente el balché. Miel industrial pasteurizada no funciona igual — añadir levadura de pan en su lugar.",
+      "wikiPhase": "preparacion_balche",
+      "notify": true
+    },
+    {
+      "id": "fermentar_balche",
+      "title": "🫧 Fermentación natural balché (2-4 días)",
+      "emoji": "🫧",
+      "type": "milestone",
+      "offsetDays": 1,
+      "durationMin": 15,
+      "description": "Fermentación abierta tradicional con levaduras silvestres de la miel.\n\n🦠 INOCULO\n• Con miel cruda: las levaduras naturales de la miel empiezan solas en 12-24h\n• Sin miel cruda: añadir 1-2g levadura de pan rehidratada\n\n⏱️ DESARROLLO\n• Día 1: Burbujeo leve (levaduras arrancando)\n• Día 2: Fermentación activa, aroma miel-madera-amargo\n• Día 3: ABV ~3-4%, sabor amargo-mielado con acidez\n• Día 4: ABV ~4-6%, más seco, más tanino\n\n📦 RECIPIENTE\n• Recipiente abierto cubierto con tela (no hermético — fermentación semi-abierta)\n• Temperatura: 22-28°C\n• Removeer 2x/día\n\n🏺 CONTEXTO CEREMONIAL\nTradicional Maya: 'un jarro de balché a la derecha del altar de Chac (dios lluvia)'. Sacerdotes bebían en rituales de lluvia, cosecha, curación. Fermentación tradicional incluía abejas vivas que portaban levaduras — no reproducible en casa.",
+      "wikiPhase": "fermentacion_balche",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "remover_balche",
+      "title": "🌿 Remover balché",
+      "emoji": "🌿",
+      "type": "task",
+      "startDayOffset": 1,
+      "endDayOffset": 4,
+      "cadence": { "everyDays": 1, "notes": "Remover mañana y tarde" },
+      "description": "Remover 2x/día con cuchara limpia. Probar progresión de sabor. Días 2-3 = punto óptimo consumo.",
+      "consumes": [],
+      "wikiPhase": "fermentacion_balche",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    { "key": "corteza_balche", "name": "Corteza Lonchocarpus longistylus (balché bark)", "qty": 50, "unit": "g", "category": "esencial", "approxPrice": "10-25€", "source": "internet_etnobotanica", "wikiPhase": "compra_balche" },
+    { "key": "miel_cruda_balche", "name": "Miel cruda sin pasteurizar", "qty": 350, "unit": "g", "category": "esencial", "approxPrice": "8-15€" },
+    { "key": "agua_balche", "name": "Agua mineral o de lluvia", "qty": 2.5, "unit": "L", "category": "esencial", "approxPrice": "1-2€" },
+    { "key": "especias_balche", "name": "Achiote + pimienta Jamaica (opcional)", "qty": 1, "unit": "bolsa", "category": "opcional", "approxPrice": "2-5€" }
+  ],
+  "prepChecklist": [
+    { "id": "corteza_obtenida", "title": "Corteza de balché obtenida", "description": "Lonchocarpus longistylus de tienda etnobotánica online. Sin corteza auténtica no es balché — se puede sustituir con corteza de roble + algo de Lonchocarpus de otra variedad.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "miel_cruda_check", "title": "Miel cruda SIN pasteurizar", "description": "Verificar que la miel es cruda (no pasteurizada). Las levaduras silvestres de la miel cruda son el inoculo natural del balché.", "blocking": true, "estimatedMinutes": 3 }
+  ],
+  "consumables": [],
+  "harvestable": true,
+  "harvestType": "balche_fermentado",
+  "produces": { "kind": "balche", "unit": "L" }
+}
