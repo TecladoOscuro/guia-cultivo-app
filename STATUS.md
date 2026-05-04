@@ -91,14 +91,22 @@ Los 14 templates están implementados. Sub-templates por planta dentro de planta
 
 Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList nodes + tablas riego desde wiki actual. Ver `docs/wiki-sync.md`.
 
-### Notificaciones push (Fase 8) — DONE ✅
+### Notificaciones push (Fase 8) — DONE 100% ✅
 - [x] Local notification scheduling con setTimeout (foreground fiable)
 - [x] Badge counter (Application Badging API iOS 16.4+)
 - [x] Auto-schedule al crear/iniciar/borrar/abortar cultivo
 - [x] Cancel notif al completar/borrar evento
 - [x] Settings: toggle notif + permission state + horas antes (15min - 24h)
 - [x] Catch-up al abrir app (badge = overdue + today)
-- [x] Web Push con VAPID + CF Worker — guía completa documentada en docs/web-push-setup.md (no implementado en código por requerir CF account; user-decisión)
+- [x] **Web Push con VAPID + CF Worker IMPLEMENTADO**:
+  - `worker/` con CF Worker code (TS + wrangler config)
+  - Custom Service Worker `src/sw.ts` con push event handler
+  - Cliente: subscribePush, postScheduleToWorker, pushTest, unsubscribePush
+  - Settings UI: input Worker URL + botón Activar/Desactivar push remoto + Push test
+  - Auto-send schedule 14d vista al Worker en refreshAllNotifications
+  - Cron Worker dispara push según schedule
+  - User setup: deploy worker (10 min, gratis) + pegar URL en Settings
+  - Doc completa: `worker/README.md` step-by-step
 
 ### Estadísticas dashboard (Fase 10) — DONE ✅
 - [x] Recharts integration (bar/line/pie)

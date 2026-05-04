@@ -9,6 +9,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      strategies: "injectManifest",
+      srcDir: "src",
+      filename: "sw.ts",
       includeAssets: ["favicon.ico", "apple-touch-icon.png", "icons/*"],
       manifest: {
         name: "Guía Cultivo",
@@ -26,11 +29,8 @@ export default defineConfig({
           { src: "icons/icon-maskable.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
         ],
       },
-      workbox: {
+      injectManifest: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
-        navigateFallback: "/guia-cultivo-app/index.html",
-        skipWaiting: true,
-        clientsClaim: true,
       },
     }),
   ],

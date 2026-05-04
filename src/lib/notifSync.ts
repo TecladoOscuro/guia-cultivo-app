@@ -10,11 +10,13 @@ import {
   setBadge,
   clearAllScheduled,
   getPermission,
+  postScheduleToWorker,
 } from "./notifications";
 import { isToday, isPast, addDays, isWithinInterval, subHours } from "date-fns";
 
 const PREF_KEY = "notif.enabled";
 const REMIND_HOURS_KEY = "notif.remindHoursBefore";
+const WORKER_URL_KEY = "notif.workerUrl";
 const DEFAULT_REMIND_HOURS = 1;
 
 export async function getNotifEnabled(): Promise<boolean> {
@@ -33,6 +35,19 @@ export async function getRemindHoursBefore(): Promise<number> {
 
 export async function setRemindHoursBefore(hours: number) {
   await db.settings.put({ key: REMIND_HOURS_KEY, value: hours });
+}
+
+export async function getWorkerUrl(): Promise<string | null> {
+  const pref = await db.settings.get(WORKER_URL_KEY);
+  return typeof pref?.value === "string" ? pref.value : null;
+}
+
+export async function setWorkerUrl(url: string | null) {
+  if (url) {
+    await db.settings.put({ key: WORKER_URL_KEY, value: url });
+  } else {
+    await db.settings.delete(WORKER_URL_KEY);
+  }
 }
 
 export async function refreshAllNotifications() {
@@ -59,9 +74,12 @@ export async function refreshAllNotifications() {
   const cultivations = await db.cultivations.toArray();
   const cultMap = new Map(cultivations.map((c) => [c.id, c.name]));
 
-  // Programar próximas 24h
   const now = new Date();
-  const horizon = addDays(now, 1);
+  const localHorizon = addDays(now, 1);
+  const workerHorizon = addDays(now, 14); // Worker maneja 14 días vista
+
+  const workerUrl = await getWorkerUrl();
+  const workerSchedule: { fireAt: number; title: string; body: string; tag: string }[] = [];
 
   for (const e of events) {
     if (e.status !== "pending") continue;
@@ -69,15 +87,35 @@ export async function refreshAllNotifications() {
     if (!e.id) continue;
 
     const fireAt = subHours(e.scheduledDate, hoursBefore);
-    if (!isWithinInterval(fireAt, { start: now, end: horizon })) continue;
+    if (fireAt.getTime() <= now.getTime()) continue;
 
     const cultName = cultMap.get(e.cultivationId) ?? "?";
-    scheduleNotification(
-      `event-${e.id}`,
-      fireAt,
-      `${e.emoji} ${e.title}`,
-      `${cultName} · en ${hoursBefore}h`
-    );
+    const title = `${e.emoji} ${e.title}`;
+    const body = `${cultName} · en ${hoursBefore}h`;
+
+    // Local schedule (foreground 24h)
+    if (isWithinInterval(fireAt, { start: now, end: localHorizon })) {
+      scheduleNotification(`event-${e.id}`, fireAt, title, body);
+    }
+
+    // Worker schedule (background 14 días)
+    if (workerUrl && fireAt.getTime() <= workerHorizon.getTime()) {
+      workerSchedule.push({
+        fireAt: fireAt.getTime(),
+        title,
+        body,
+        tag: `event-${e.id}`,
+      });
+    }
+  }
+
+  // Enviar schedule al Worker (si configurado)
+  if (workerUrl && workerSchedule.length > 0) {
+    try {
+      await postScheduleToWorker(workerUrl, workerSchedule);
+    } catch (err) {
+      console.error("[notif] worker schedule fail:", err);
+    }
   }
 }
 

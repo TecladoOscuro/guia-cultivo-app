@@ -16,11 +16,17 @@ import {
   setNotifEnabled,
   getRemindHoursBefore,
   setRemindHoursBefore,
+  getWorkerUrl,
+  setWorkerUrl,
   refreshAllNotifications,
 } from "../lib/notifSync";
 import {
   getPermission,
   requestPermission,
+  subscribePush,
+  unsubscribePush,
+  pushTest,
+  getPushSubscription,
   type NotifPermission,
 } from "../lib/notifications";
 
@@ -31,11 +37,15 @@ export default function Settings() {
   const [notifPerm, setNotifPerm] = useState<NotifPermission>("default");
   const [notifOn, setNotifOn] = useState(false);
   const [remindHours, setRemindHours] = useState(1);
+  const [workerUrl, setWorkerUrlState] = useState("");
+  const [pushSubscribed, setPushSubscribed] = useState(false);
 
   useEffect(() => {
     setNotifPerm(getPermission());
     getNotifEnabled().then(setNotifOn);
     getRemindHoursBefore().then(setRemindHours);
+    getWorkerUrl().then((u) => setWorkerUrlState(u ?? ""));
+    getPushSubscription().then((s) => setPushSubscribed(Boolean(s)));
   }, []);
 
   const onToggleNotif = async () => {
@@ -58,6 +68,76 @@ export default function Settings() {
     setRemindHours(h);
     await setRemindHoursBefore(h);
     await refreshAllNotifications();
+  };
+
+  const onSavePushConfig = async () => {
+    const url = workerUrl.trim().replace(/\/$/, "");
+    if (!url) {
+      setMsg({ type: "err", text: "Worker URL vacía" });
+      return;
+    }
+    if (!url.startsWith("https://")) {
+      setMsg({ type: "err", text: "URL debe empezar con https://" });
+      return;
+    }
+    setBusy(true);
+    try {
+      // Verificar Worker accesible
+      const test = await fetch(`${url}/vapid-public`);
+      if (!test.ok) throw new Error(`Worker respondió ${test.status}`);
+      await setWorkerUrl(url);
+      // Subscribe push
+      if (notifPerm !== "granted") {
+        const r = await requestPermission();
+        setNotifPerm(r);
+        if (r !== "granted") {
+          setMsg({ type: "err", text: "Permisos denegados" });
+          setBusy(false);
+          return;
+        }
+      }
+      const sub = await subscribePush(url);
+      if (sub) {
+        setPushSubscribed(true);
+        await refreshAllNotifications();
+        setMsg({ type: "ok", text: "Push remoto activado. Eventos llegarán al iPhone aunque app cerrada." });
+      }
+    } catch (e) {
+      setMsg({ type: "err", text: `Error: ${e instanceof Error ? e.message : String(e)}` });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const onUnsubscribePush = async () => {
+    const url = await getWorkerUrl();
+    if (!url) return;
+    setBusy(true);
+    try {
+      await unsubscribePush(url);
+      await setWorkerUrl(null);
+      setWorkerUrlState("");
+      setPushSubscribed(false);
+      setMsg({ type: "ok", text: "Push remoto desactivado" });
+    } catch (e) {
+      setMsg({ type: "err", text: `Error: ${e instanceof Error ? e.message : String(e)}` });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const onTestPush = async () => {
+    const url = await getWorkerUrl();
+    if (!url) return;
+    setBusy(true);
+    try {
+      await pushTest(url);
+      setMsg({ type: "ok", text: "Push test enviado. Debe llegar en ~5s." });
+    } catch (e) {
+      setMsg({ type: "err", text: `Error test: ${e instanceof Error ? e.message : String(e)}` });
+    } finally {
+      setBusy(false);
+    }
   };
 
   // Counts para resumen
@@ -301,6 +381,62 @@ export default function Settings() {
             <p className="text-xs text-text-muted mt-2">
               Notif locales sin servidor. Background limitado en iOS — badge counter persiste.
             </p>
+          </div>
+
+          <div className="p-3 border border-border rounded">
+            <div className="font-bold text-text-bright text-sm mb-1">📱 Push remoto (background iOS)</div>
+            <div className="text-xs text-text-muted mb-3">
+              Notif background reliable iOS. Requiere CF Worker. Setup: deploy{" "}
+              <a
+                href="https://github.com/TecladoOscuro/guia-cultivo-app/tree/main/worker"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline"
+              >
+                worker/
+              </a>{" "}
+              en tu cuenta CF (10 min, gratis), pega URL aquí.
+            </div>
+            <input
+              type="url"
+              value={workerUrl}
+              onChange={(e) => setWorkerUrlState(e.target.value)}
+              placeholder="https://guia-cultivo-push.tu-usuario.workers.dev"
+              className="w-full bg-bg-3 border border-border rounded px-3 text-text-bright mb-2"
+            />
+            <div className="flex flex-wrap gap-2">
+              {pushSubscribed ? (
+                <>
+                  <button
+                    onClick={onTestPush}
+                    disabled={busy}
+                    className="px-3 py-2 border border-accent text-accent rounded text-sm disabled:opacity-50"
+                  >
+                    🧪 Push test
+                  </button>
+                  <button
+                    onClick={onUnsubscribePush}
+                    disabled={busy}
+                    className="px-3 py-2 border border-error text-error rounded text-sm disabled:opacity-50"
+                  >
+                    ✕ Desactivar push
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={onSavePushConfig}
+                  disabled={busy || !workerUrl}
+                  className="px-3 py-2 bg-accent text-bg rounded font-bold text-sm disabled:opacity-50"
+                >
+                  ✅ Activar push remoto
+                </button>
+              )}
+            </div>
+            {pushSubscribed && (
+              <div className="text-xs text-success mt-2">
+                ✅ Suscrito · Worker: {workerUrl.replace(/^https?:\/\//, "")}
+              </div>
+            )}
           </div>
         </div>
       </Section>
