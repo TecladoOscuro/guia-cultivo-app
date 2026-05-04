@@ -91,7 +91,7 @@ export default function NewCultivation() {
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="grid gap-1">
@@ -100,7 +100,7 @@ export default function NewCultivation() {
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="grid gap-1">
@@ -109,7 +109,7 @@ export default function NewCultivation() {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={3}
-              className="bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <div className="flex gap-2 mt-2">

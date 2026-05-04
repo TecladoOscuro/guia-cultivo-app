@@ -143,7 +143,7 @@ function StockForm({
       onClick={onClose}
     >
       <div
-        className="bg-bg-2 border border-border rounded-lg p-6 max-w-md w-full"
+        className="bg-bg-2 border border-border rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold text-text-bright mb-4">
@@ -157,7 +157,7 @@ function StockForm({
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value as StockCategory)}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -212,7 +212,7 @@ function Field({
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+        className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
       />
     </label>
   );

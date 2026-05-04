@@ -367,7 +367,7 @@ function EventForm({
             <select
               value={cultivationId}
               onChange={(e) => setCultivationId(e.target.value === "" ? "" : Number(e.target.value))}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               <option value="">— elige —</option>
               {cultivations.map((c) => (
@@ -381,7 +381,7 @@ function EventForm({
               type="date"
               value={scheduledDate}
               onChange={(e) => setScheduledDate(e.target.value)}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <div className="flex gap-3 items-end">
@@ -417,7 +417,7 @@ function EventForm({
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               placeholder="Ej: Chequear humedad cámara"
             />
           </label>
@@ -427,7 +427,7 @@ function EventForm({
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               rows={4}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               placeholder="Notas, pasos, cantidades..."
             />
           </label>

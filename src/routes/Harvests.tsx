@@ -136,7 +136,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
             <select
               value={cultivationId}
               onChange={(e) => setCultivationId(e.target.value === "" ? "" : Number(e.target.value))}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               <option value="">— elige —</option>
               {cultivations.map((c) => (
@@ -149,7 +149,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
             <input
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <div className="grid grid-cols-2 gap-3">
@@ -159,7 +159,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
                 type="number"
                 value={weightWet}
                 onChange={(e) => setWeightWet(e.target.value)}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+                className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               />
             </label>
             <label className="grid gap-1">
@@ -168,7 +168,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
                 type="number"
                 value={weightDry}
                 onChange={(e) => setWeightDry(e.target.value)}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+                className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               />
             </label>
           </div>
@@ -192,7 +192,7 @@ function HarvestForm({ cultivations, onClose }: { cultivations: { id?: number; n
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows={2}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="flex items-center gap-2 text-sm">

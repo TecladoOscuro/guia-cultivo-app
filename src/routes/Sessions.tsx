@@ -181,7 +181,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
             <select
               value={productId}
               onChange={(e) => setProductId(e.target.value === "" ? "" : Number(e.target.value))}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               <option value="">— elige —</option>
               {products.map((p) => (
@@ -196,7 +196,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
                 type="number"
                 value={dose}
                 onChange={(e) => setDose(e.target.value)}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+                className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               />
             </label>
             <label className="grid gap-1">
@@ -204,7 +204,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
               <select
                 value={doseUnit}
                 onChange={(e) => setDoseUnit(e.target.value)}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+                className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               >
                 <option value="g">g</option>
                 <option value="mg">mg</option>
@@ -217,7 +217,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
             <select
               value={method}
               onChange={(e) => setMethod(e.target.value)}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               <option>oral</option>
               <option>lemon_tek</option>
@@ -234,7 +234,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
               value={setting}
               onChange={(e) => setSetting(e.target.value)}
               placeholder="Casa, solo, música ambient..."
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="grid gap-1">
@@ -243,7 +243,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
               value={notesPre}
               onChange={(e) => setNotesPre(e.target.value)}
               rows={2}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="grid gap-1">
@@ -252,7 +252,7 @@ function SessionForm({ products, onClose }: { products: { id?: number; kind: str
               value={notesPost}
               onChange={(e) => setNotesPost(e.target.value)}
               rows={3}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
           <label className="grid gap-1">

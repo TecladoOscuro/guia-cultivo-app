@@ -185,7 +185,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
             <select
               value={cultivationId}
               onChange={(e) => setCultivationId(e.target.value === "" ? "" : Number(e.target.value))}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             >
               <option value="">— elige —</option>
               {cultivations.map((c) => (
@@ -213,7 +213,7 @@ function JournalForm({ cultivations, onClose }: { cultivations: { id?: number; n
               value={note}
               onChange={(e) => setNote(e.target.value)}
               rows={4}
-              className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
               placeholder="Cómo va el cultivo, observaciones, problemas..."
             />
           </label>
