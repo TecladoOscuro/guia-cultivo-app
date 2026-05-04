@@ -1,0 +1,58 @@
+{
+  "id": "mushroom-advanced",
+  "name": "Setas Psilocybe — Advanced (lab desde cero)",
+  "emoji": "🧫",
+  "category": "hongo",
+  "version": 1,
+  "totalDuration": { "days": 115 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=mushroom&mode=advanced",
+  "theme": { "primary": "#8a6240", "bg": "#1c1510" },
+  "phases": [
+    { "id": "compra_advanced", "name": "Compra equipo lab", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_advanced" },
+    { "id": "esterilizar_advanced", "name": "Esterilizar grano", "emoji": "🧫", "startDayOffset": 1, "endDayOffset": 2, "wikiPhase": "esterilizar_advanced" },
+    { "id": "inoculacion_advanced", "name": "Inoculación SAB", "emoji": "💉", "startDayOffset": 2, "endDayOffset": 3, "wikiPhase": "inoculacion_advanced" },
+    { "id": "incubacion_advanced", "name": "Incubación", "emoji": "🔮", "startDayOffset": 3, "endDayOffset": 25, "wikiPhase": "incubacion_advanced" },
+    { "id": "fructificacion_advanced", "name": "Bulk + Fructificación", "emoji": "🍄", "startDayOffset": 25, "endDayOffset": 110, "wikiPhase": "fructificacion_advanced" },
+    { "id": "secado_advanced", "name": "Secado", "emoji": "🌬️", "startDayOffset": 108, "endDayOffset": 115, "wikiPhase": "secado_advanced" }
+  ],
+  "events": [
+    { "id": "esterilizar_grano_adv", "title": "🔥 Esterilizar grano olla 90 min", "emoji": "🔥", "type": "preparation", "offsetDays": 1, "durationMin": 180, "description": "Centeno hidratado 12-24h. Frascos 2/3 + filtro. Olla a presión 15 PSI 90 min. Enfriar dentro 8-12h.", "wikiPhase": "esterilizar_advanced", "notify": true },
+    { "id": "inocular_adv", "title": "💉 Inocular en SAB", "emoji": "💉", "type": "milestone", "offsetDays": 3, "durationMin": 45, "description": "SAB esterilizado. Flamear aguja al rojo. Inyectar 1-2ml por frasco. Sellar puerto.", "wikiPhase": "inoculacion_advanced", "notify": true },
+    { "id": "agitar_adv", "title": "🥄 Agitar grano (~30% colonizado)", "emoji": "🥄", "type": "monitoring", "offsetDays": 14, "durationMin": 5, "description": "Distribuir micelio. NO abrir.", "wikiPhase": "incubacion_advanced", "notify": true },
+    { "id": "s2b_adv", "title": "📦 Spawn to Bulk", "emoji": "📦", "type": "milestone", "offsetDays": 25, "durationMin": 60, "description": "Mezclar grano colonizado con CVG bulk hidratado pasteurizado. Monotub.", "wikiPhase": "fructificacion_advanced", "notify": true },
+    { "id": "primera_cosecha_adv", "title": "✂️ Primera cosecha", "emoji": "✂️", "type": "harvest", "offsetDays": 45, "durationMin": 60, "description": "Cosechar todo flush 1. Esperar 4-6 flushes total.", "wikiPhase": "fructificacion_advanced", "notify": true },
+    { "id": "secado_adv", "title": "🌬️ Secado cracker dry", "emoji": "🌬️", "type": "preparation", "offsetDays": 108, "durationMin": 60, "description": "Presecado 24h + sílica gel 24h. Frasco hermético + congelador.", "wikiPhase": "secado_advanced", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "verificar_inc_adv", "title": "🔍 Verificar incubación", "emoji": "🔍", "type": "monitoring", "startDayOffset": 5, "endDayOffset": 25, "cadence": { "everyDays": 3 }, "description": "Visual sin abrir. Buscar contaminación verde/negra. Lote contaminado = desechar.", "wikiPhase": "incubacion_advanced", "notify": false },
+    { "id": "neb_adv", "title": "💧 Nebulizar monotub", "emoji": "💧", "type": "watering", "startDayOffset": 32, "endDayOffset": 108, "cadence": { "everyDays": 1 }, "description": "Humedad 90%+. Spray paredes.", "consumes": [{ "stockKey": "agua_destilada", "qty": 30, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "fructificacion_advanced", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esporada_cubensis", "name": "Esporada Psilocybe cubensis", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-40€", "source": "internet" },
+    { "key": "olla_presion", "name": "Olla a presión 6-10L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "40-80€" },
+    { "key": "frascos_filtro_adv", "name": "Frascos 1L con filtro (5-10ud)", "qty": 5, "unit": "ud", "category": "esencial", "approxPrice": "20-40€" },
+    { "key": "centeno_grano", "name": "Grano centeno 2kg", "qty": 2, "unit": "kg", "category": "esencial", "approxPrice": "5-10€" },
+    { "key": "sab_box", "name": "SAB (still air box) DIY caja transparente", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" },
+    { "key": "coco_coir", "name": "Coco coir + vermiculita + gypsum", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "monotub", "name": "Monotub 100L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "agua_destilada", "name": "Agua destilada", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "2-5€" },
+    { "key": "alcohol_70", "name": "Alcohol 70%", "qty": 500, "unit": "ml", "category": "esencial", "approxPrice": "5-8€" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_lab", "title": "Zona limpia tipo lab (cocina ok)", "description": "Sin corriente aire. Superficies sanitizadas.", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "olla_funcional", "title": "Olla a presión verificada (15 PSI)", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "espacio_incubacion", "title": "Espacio 24-26°C oscuro", "blocking": true, "estimatedMinutes": 10 }
+  ],
+  "consumables": [
+    { "stockKey": "esporada_cubensis", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "frascos_filtro_adv", "qty": 5, "unit": "ud", "trigger": "once" },
+    { "stockKey": "centeno_grano", "qty": 1.5, "unit": "kg", "trigger": "once" },
+    { "stockKey": "coco_coir", "qty": 8, "unit": "L", "trigger": "once" },
+    { "stockKey": "monotub", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "agua_destilada", "qty": 4, "unit": "L", "trigger": "once" },
+    { "stockKey": "alcohol_70", "qty": 200, "unit": "ml", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "flushes",
+  "produces": { "kind": "seta_psilocybe_seca", "unit": "g" }
+}

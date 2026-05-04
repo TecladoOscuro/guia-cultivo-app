@@ -373,14 +373,14 @@ function EventForm({
               className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright"
             />
           </label>
-          <div className="flex gap-3">
+          <div className="flex gap-3 items-end">
             <label className="flex flex-col gap-1 w-20 shrink-0">
               <span className="text-xs text-text-muted">Emoji</span>
               <input
                 value={emoji}
                 onChange={(e) => setEmoji(e.target.value)}
                 maxLength={4}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright text-center w-full"
+                className="bg-bg-3 border border-border rounded px-2 text-text-bright text-center w-full h-10 text-base"
               />
             </label>
             <label className="flex flex-col gap-1 flex-1 min-w-0">
@@ -393,7 +393,7 @@ function EventForm({
                   const def = EVENT_TYPES.find((x) => x.id === t);
                   if (def && !editing) setEmoji(def.emoji);
                 }}
-                className="bg-bg-3 border border-border rounded px-3 py-2 text-text-bright w-full"
+                className="bg-bg-3 border border-border rounded px-3 text-text-bright w-full h-10"
               >
                 {EVENT_TYPES.map((t) => (
                   <option key={t.id} value={t.id}>{t.emoji} {t.label}</option>

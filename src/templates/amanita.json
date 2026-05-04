@@ -1,0 +1,36 @@
+{
+  "id": "amanita",
+  "name": "Amanita muscaria (forrajeo)",
+  "emoji": "🍄",
+  "category": "hongo",
+  "version": 1,
+  "totalDuration": { "days": 14 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=amanita",
+  "theme": { "primary": "#c44848", "bg": "#1a0808" },
+  "phases": [
+    { "id": "compra_amanita", "name": "Equipo", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_amanita" },
+    { "id": "recoleccion_amanita", "name": "Recolección bosque", "emoji": "🍂", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "recoleccion_amanita" },
+    { "id": "secado_amanita", "name": "Secado + decarbox", "emoji": "🌬️", "startDayOffset": 1, "endDayOffset": 7, "wikiPhase": "secado_amanita" },
+    { "id": "preparacion_amanita", "name": "Preparación té", "emoji": "🍵", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "preparacion_amanita" }
+  ],
+  "events": [
+    { "id": "salir_bosque", "title": "🌲 Salida forrajeo (otoño bosque conífera/abedul)", "emoji": "🌲", "type": "milestone", "offsetDays": 0, "durationMin": 240, "description": "Otoño octubre-noviembre. Bosques abedules y coníferas. Identificar correctamente: sombrero rojo + verrugas blancas + láminas blancas + anillo. CUIDADO: confusión con A.phalloides MORTAL.", "checklistInline": ["Identificar 100% antes de coger", "Sin contacto si dudas", "Foto + verificar con experto"], "warningIf": ["A.phalloides hepatotóxica MORTAL — verde-oliva sin verrugas"], "wikiPhase": "recoleccion_amanita", "notify": true },
+    { "id": "secado_decarbox", "title": "🌬️ Secado + decarboxilación", "emoji": "🌬️", "type": "preparation", "offsetDays": 1, "durationMin": 120, "description": "Cortar setas en rodajas. Secar al aire 3-5 días o deshidratador 50°C. Decarbox: convierte ácido iboténico (tóxico) en muscimol (psicoactivo). Calor: 80°C 1h o agua acidulada simmer 3h.", "checklistInline": ["Secar completamente primero", "Decarbox antes de consumir SIEMPRE", "80°C 1h horno OR agua pH 2.5-3 simmer 3h"], "warningIf": ["Sin decarbox = mucho ácido iboténico = náuseas + neurotoxicidad"], "wikiPhase": "secado_amanita", "notify": true },
+    { "id": "primera_prep", "title": "🍵 Preparación té primera dosis test", "emoji": "🍵", "type": "preparation", "offsetDays": 8, "durationMin": 60, "description": "DOSIS TEST: 0.1-0.5g cap seca. Té decarbox tradicional. Esperar 2-4h efectos. NO subir dosis primer día.", "wikiPhase": "preparacion_amanita", "notify": true }
+  ],
+  "recurringTasks": [],
+  "shoppingList": [
+    { "key": "cesta_forrajeo", "name": "Cesta mimbre + cuchillo + guía micológica", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "wikiPhase": "compra_amanita" },
+    { "key": "deshidratador", "name": "Deshidratador alimentos (opcional)", "qty": 1, "unit": "ud", "category": "util", "approxPrice": "40-80€", "notes": "O secar al aire/horno mínimo." }
+  ],
+  "prepChecklist": [
+    { "id": "identificacion", "title": "Estudiar identificación A.muscaria vs A.phalloides", "description": "Phalloides es MORTAL. Wiki sección 'identificación'. Verificar con experto antes de consumir.", "blocking": true, "estimatedMinutes": 60 },
+    { "id": "epoca_otono", "title": "Época correcta: octubre-noviembre", "description": "Tras lluvias. Bosques conífera/abedul.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "cesta_forrajeo", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "main_harvest",
+  "produces": { "kind": "amanita_seca", "unit": "g" }
+}

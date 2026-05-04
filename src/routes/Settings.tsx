@@ -1,12 +1,55 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
 import { exportAll, downloadJSON, importAll, factoryReset } from "../lib/exportImport";
+import {
+  getNotifEnabled,
+  setNotifEnabled,
+  getRemindHoursBefore,
+  setRemindHoursBefore,
+  refreshAllNotifications,
+} from "../lib/notifSync";
+import {
+  getPermission,
+  requestPermission,
+  type NotifPermission,
+} from "../lib/notifications";
 
 export default function Settings() {
   const fileRef = useRef<HTMLInputElement>(null);
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ type: "ok" | "err"; text: string } | null>(null);
+  const [notifPerm, setNotifPerm] = useState<NotifPermission>("default");
+  const [notifOn, setNotifOn] = useState(false);
+  const [remindHours, setRemindHours] = useState(1);
+
+  useEffect(() => {
+    setNotifPerm(getPermission());
+    getNotifEnabled().then(setNotifOn);
+    getRemindHoursBefore().then(setRemindHours);
+  }, []);
+
+  const onToggleNotif = async () => {
+    if (!notifOn && notifPerm !== "granted") {
+      const r = await requestPermission();
+      setNotifPerm(r);
+      if (r !== "granted") {
+        setMsg({ type: "err", text: "Permisos de notificación denegados por el navegador" });
+        return;
+      }
+    }
+    const next = !notifOn;
+    await setNotifEnabled(next);
+    setNotifOn(next);
+    await refreshAllNotifications();
+    setMsg({ type: "ok", text: next ? "Notificaciones activadas" : "Notificaciones desactivadas" });
+  };
+
+  const onChangeRemindHours = async (h: number) => {
+    setRemindHours(h);
+    await setRemindHoursBefore(h);
+    await refreshAllNotifications();
+  };
 
   // Counts para resumen
   const counts = useLiveQuery(async () => ({
@@ -154,6 +197,57 @@ export default function Settings() {
               e.target.value = "";
             }}
           />
+        </div>
+      </Section>
+
+      <Section title="🔔 Notificaciones">
+        <div className="grid gap-3">
+          <div className="p-3 border border-border rounded">
+            <div className="flex justify-between items-center mb-2">
+              <div>
+                <div className="font-bold text-text-bright text-sm">Notificaciones de eventos</div>
+                <div className="text-xs text-text-muted">
+                  {notifPerm === "granted"
+                    ? "✅ permiso concedido"
+                    : notifPerm === "denied"
+                      ? "❌ permiso denegado en navegador"
+                      : notifPerm === "unsupported"
+                        ? "⚠️ no soportado en este navegador"
+                        : "permiso no solicitado aún"}
+                </div>
+              </div>
+              <button
+                onClick={onToggleNotif}
+                disabled={notifPerm === "denied" || notifPerm === "unsupported"}
+                className={`px-4 py-2 rounded font-bold text-sm disabled:opacity-50 ${
+                  notifOn ? "bg-success text-bg" : "border border-border hover:border-accent"
+                }`}
+              >
+                {notifOn ? "✅ Activadas" : "Activar"}
+              </button>
+            </div>
+            {notifOn && (
+              <label className="flex items-center gap-2 text-xs">
+                <span className="text-text-muted">Avisar antes:</span>
+                <select
+                  value={remindHours}
+                  onChange={(e) => onChangeRemindHours(Number(e.target.value))}
+                  className="bg-bg-3 border border-border rounded px-2 py-1 text-text-bright"
+                >
+                  <option value={0.25}>15 min</option>
+                  <option value={0.5}>30 min</option>
+                  <option value={1}>1 hora</option>
+                  <option value={2}>2 horas</option>
+                  <option value={4}>4 horas</option>
+                  <option value={12}>12 horas</option>
+                  <option value={24}>24 horas</option>
+                </select>
+              </label>
+            )}
+            <p className="text-xs text-text-muted mt-2">
+              Notif locales sin servidor. Background limitado en iOS — badge counter persiste.
+            </p>
+          </div>
         </div>
       </Section>
 

@@ -8,10 +8,12 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import { initPwaUpdate } from "./lib/pwaUpdate";
+import { refreshAllNotifications } from "./lib/notifSync";
 
 const basename = import.meta.env.BASE_URL.replace(/\/$/, "");
 
 initPwaUpdate();
+refreshAllNotifications();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

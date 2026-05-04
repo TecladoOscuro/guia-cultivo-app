@@ -99,14 +99,16 @@ Workspace VSCode: `guia-cultivo.code-workspace` (en directorio padre con ambos r
 - Skills proyecto en [.claude/skills/](.claude/skills/) — `add-template`, `add-feature`, `add-calculator`, `sync-wiki`, `debug-stock-state`, **`add-new-cultivo`** (flagship)
 - Slash commands en [.claude/commands/](.claude/commands/) — `/new-cultivo`, `/sync-wiki`, `/add-feature`
 
-## 📋 Próximas fases
+## 📋 Estado funcional
 
-- Templates restantes (cannabis, cactus, trufas, amanita, ayahuasca, dmt, plantas suaves, ferment×3) — actualmente solo mushroom-kit
-- Notificaciones push (Web Push API + foreground SW)
-- Estadísticas dashboard (recharts gráficos)
-- Export/import JSON encrypted
-- Skill `add-new-cultivo` integration test (caso real café/lúpulo)
-- Settings route real (preferencias notif + threshold + factory reset)
+✅ **MVP completo + extras**: 14 templates · Calendar Schedule-X · Stock + capacity · Shopping · Prep · Journal foto · Cosechas · Inventario · Sesiones + tolerancia · 4 calculadoras · Genética · 5 gráficos stats · Notificaciones locales · Badge counter · Auto-update PWA · Export/import backup · Factory reset · Detección conflictos planning
+
+📋 **Pendiente** (post-MVP):
+- Web Push real con VAPID + Cloudflare Worker (background reliable iOS)
+- Diagnóstico flowchart "qué le pasa al cultivo"
+- Foto-comparación timelapse interactiva
+- Sub-templates por planta suave individual
+- Encriptación opcional export con password
 
 ## ⚖️ Licencia
 

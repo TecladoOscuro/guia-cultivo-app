@@ -1,0 +1,51 @@
+{
+  "id": "ferment-cerveza",
+  "name": "Cerveza casera (Pale Ale/IPA)",
+  "emoji": "🍺",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 45 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=cerveza",
+  "theme": { "primary": "#dba858", "bg": "#1a140a" },
+  "phases": [
+    { "id": "compra_cerveza", "name": "Compra kit", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_cerveza" },
+    { "id": "macerado_cerveza", "name": "Macerado", "emoji": "🌾", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "macerado_cerveza" },
+    { "id": "hervor_cerveza", "name": "Hervor + Lúpulo", "emoji": "🔥", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "hervor_cerveza" },
+    { "id": "fermentacion_cerveza", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 14, "wikiPhase": "fermentacion_cerveza" },
+    { "id": "embotellado_cerveza", "name": "Embotellado", "emoji": "🍾", "startDayOffset": 14, "endDayOffset": 16, "wikiPhase": "embotellado_cerveza" },
+    { "id": "cata_cerveza", "name": "Maduración", "emoji": "🍺", "startDayOffset": 16, "endDayOffset": 45, "wikiPhase": "cata_cerveza" }
+  ],
+  "events": [
+    { "id": "macerar_dia", "title": "🌾 Día brewing: macerar + hervor + inocular", "emoji": "🌾", "type": "preparation", "offsetDays": 0, "durationMin": 360, "description": "Día completo. Macerar maltas 60-70°C 60min. Filtrar. Hervir mosto + añadir lúpulos por horarios (60min/15min/0min). Enfriar a 20°C. Inocular levadura. Sellar con airlock.", "checklistInline": ["Esterilizar TODO equipo Star San", "Macerado 60-70°C 60 min", "Hervor 60 min con lúpulos en tiempos", "Enfriar rápido 20°C (chiller o nevera)", "Tomar densidad inicial OG", "Inocular levadura ALE 18-22°C"], "expectedSignals": ["OG 1.045-1.055 Pale Ale", "OG 1.055-1.070 IPA"], "wikiPhase": "hervor_cerveza", "notify": true },
+    { "id": "trasiego_cerveza", "title": "🪣 Trasiego (opcional, día 7)", "emoji": "🪣", "type": "preparation", "offsetDays": 7, "durationMin": 30, "description": "A los 7 días, trasegar a otra garrafa para clarificar. Opcional pero mejora claridad.", "wikiPhase": "fermentacion_cerveza", "notify": false },
+    { "id": "embotellar_cerveza", "title": "🍾 Embotellar + carbonatación natural", "emoji": "🍾", "type": "preparation", "offsetDays": 14, "durationMin": 120, "description": "Densidad final estable 3 días. Calcular ABV. Añadir azúcar carbonatación (priming sugar) ~6g/L. Embotellar. Guardar 14 días 18-22°C para carbonatar.", "checklistInline": ["DF estable 3 días = fermentación completa", "Calcular ABV: (OG-FG)×131.25", "Priming sugar 6g/L disuelto", "Botellas esterilizadas", "Tapón corona o flip-top"], "wikiPhase": "embotellado_cerveza", "notify": true },
+    { "id": "primera_cata_cerveza", "title": "🍺 Primera cata (~día 30)", "emoji": "🍺", "type": "milestone", "offsetDays": 30, "durationMin": 30, "description": "Cerveza ya bebible 2-3 sem post-embotellado. Mejor a 4-6 semanas. Refrigerar antes consumir.", "wikiPhase": "cata_cerveza", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "verificar_airlock_cerveza", "title": "🫧 Verificar airlock", "emoji": "🫧", "type": "monitoring", "startDayOffset": 1, "endDayOffset": 14, "cadence": { "everyDays": 2 }, "description": "Días 1-3: muy activo. Días 4-7: lento. Días 7-14: parando.", "wikiPhase": "fermentacion_cerveza", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "kit_cerveza_inicio", "name": "Kit cerveza inicio (malta + lúpulo + levadura)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Brewferm, Coopers o equivalente. Estilo Pale Ale o Pilsner.", "wikiPhase": "compra_cerveza" },
+    { "key": "olla_25L", "name": "Olla 25L para hervor", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
+    { "key": "fermentador_cerveza", "name": "Fermentador 23L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
+    { "key": "hidrometro", "name": "Hidrómetro + probeta", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "star_san", "name": "Star San", "qty": 250, "unit": "ml", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "botellas_cerveza", "name": "Botellas + tapones corona (50)", "qty": 50, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
+    { "key": "priming_sugar", "name": "Priming sugar (azúcar carbonatación)", "qty": 200, "unit": "g", "category": "importante", "approxPrice": "3-5€" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_brewing", "title": "Espacio cocina + 1 día completo (6h)", "description": "Brewing es maratón: 6h continuas día 0. Reservar día.", "blocking": true, "estimatedMinutes": 360 },
+    { "id": "esterilizar_todo", "title": "Esterilizar fermentador + utensilios", "description": "Star San crítico. Cualquier contaminación = vinagre.", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "espacio_fermentar", "title": "Espacio 18-22°C para fermentar 14 días", "description": "Variaciones bruscas paran fermentación. Sin sol directo.", "blocking": true, "estimatedMinutes": 5 }
+  ],
+  "consumables": [
+    { "stockKey": "kit_cerveza_inicio", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "fermentador_cerveza", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "star_san", "qty": 50, "unit": "ml", "trigger": "once" },
+    { "stockKey": "botellas_cerveza", "qty": 30, "unit": "ud", "trigger": "once" },
+    { "stockKey": "priming_sugar", "qty": 130, "unit": "g", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "main_batch",
+  "produces": { "kind": "cerveza", "unit": "ml" }
+}

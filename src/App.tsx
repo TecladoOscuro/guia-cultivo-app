@@ -12,6 +12,7 @@ import Product from "./routes/Product";
 import Sessions from "./routes/Sessions";
 import Calculators from "./routes/Calculators";
 import Genetics from "./routes/Genetics";
+import Stats from "./routes/Stats";
 import NewCultivation from "./routes/NewCultivation";
 import Settings from "./routes/Settings";
 
@@ -28,6 +29,7 @@ const navItems = [
   { to: "/sessions", emoji: "🌌", label: "Sesiones" },
   { to: "/calculators", emoji: "🧮", label: "Calc" },
   { to: "/genetics", emoji: "🧬", label: "Genética" },
+  { to: "/stats", emoji: "📊", label: "Stats" },
   { to: "/settings", emoji: "⚙️", label: "Ajustes" },
 ];
 
@@ -109,6 +111,7 @@ function App() {
           <Route path="/sessions" element={<Sessions />} />
           <Route path="/calculators" element={<Calculators />} />
           <Route path="/genetics" element={<Genetics />} />
+          <Route path="/stats" element={<Stats />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>
       </main>

@@ -1,0 +1,48 @@
+{
+  "id": "ayahuasca",
+  "name": "Ayahuasca (Caapi + Chacruna)",
+  "emoji": "🪴",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1095 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ayahuasca",
+  "theme": { "primary": "#9c8866", "bg": "#1a1208" },
+  "phases": [
+    { "id": "compra_aya", "name": "Compra plantas", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_aya" },
+    { "id": "cultivo_caapi", "name": "Cultivo Caapi", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "cultivo_caapi" },
+    { "id": "cultivo_chacruna", "name": "Cultivo Chacruna", "emoji": "🍃", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "cultivo_chacruna" },
+    { "id": "preparacion_brebaje", "name": "Preparación brebaje", "emoji": "🍵", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "preparacion_brebaje" }
+  ],
+  "events": [
+    { "id": "plantar_caapi", "title": "🌿 Plantar esquejes Caapi", "emoji": "🌿", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Banisteriopsis caapi. Trepadora tropical. Maceta 25-30L con tutor o pared. Sustrato rico bien drenado. Necesita >18°C constante (interior España).", "wikiPhase": "cultivo_caapi", "notify": true },
+    { "id": "plantar_chacruna", "title": "🍃 Plantar esquejes Chacruna", "emoji": "🍃", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Psychotria viridis. Arbusto tropical. Maceta 15-20L. Humedad alta + sombra parcial + >20°C. Más exigente que caapi.", "wikiPhase": "cultivo_chacruna", "notify": true },
+    { "id": "primera_cosecha_caapi", "title": "✂️ Primera cosecha vid Caapi", "emoji": "✂️", "type": "harvest", "offsetDays": 730, "durationMin": 90, "description": "Año 2-3 vid alcanza 3-5m. Cortar tallos para preparar brebaje. NO cortar planta entera (regenera).", "wikiPhase": "cultivo_caapi", "notify": false },
+    { "id": "primera_cosecha_chacruna", "title": "✂️ Primera cosecha hojas Chacruna", "emoji": "✂️", "type": "harvest", "offsetDays": 1095, "durationMin": 60, "description": "Año 3+ arbusto produce hojas suficientes. Recolectar hojas maduras verdes oscuras. NO desnudar planta.", "wikiPhase": "cultivo_chacruna", "notify": false }
+  ],
+  "recurringTasks": [
+    { "id": "riego_caapi", "title": "💧 Riego Caapi", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1095, "cadence": { "everyDays": 3, "volumeMl": "500-1000", "notes": "Mantener humedad alta. NO encharcar." }, "description": "Cada 2-4 días. Sustrato húmedo no encharcado. Pulverizar hojas con frecuencia (humedad ambiental 70%+).", "consumes": [{ "stockKey": "agua_riego", "qty": 700, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "cuidados_aya", "notify": false },
+    { "id": "fert_aya", "title": "🌱 Fertilización mensual", "emoji": "🌱", "type": "feeding", "startDayOffset": 30, "endDayOffset": 1095, "cadence": { "everyDays": 30 }, "description": "Fertilizante orgánico tropical NPK equilibrado. Solo primavera/verano.", "wikiPhase": "cuidados_aya", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "esqueje_caapi", "name": "Esqueje Banisteriopsis caapi enraizado", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Vendedores etnobotánicos UE." },
+    { "key": "esqueje_chacruna", "name": "Esqueje Psychotria viridis enraizado", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet" },
+    { "key": "macetas_tropicales", "name": "Macetas 15-30L (2)", "qty": 2, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "sustrato_tropical", "name": "Sustrato orgánico bien drenado", "qty": 30, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
+    { "key": "tutor_caapi", "name": "Tutor o enrejado para vid", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "10-20€" },
+    { "key": "agua_riego", "name": "Agua riego", "qty": 500, "unit": "L", "category": "esencial", "approxPrice": "5-15€" }
+  ],
+  "prepChecklist": [
+    { "id": "espacio_tropical", "title": "Espacio interior 20-28°C año redondo", "description": "Caapi/chacruna NO toleran <18°C. Invernadero o cuarto cálido.", "blocking": true, "estimatedMinutes": 60 },
+    { "id": "humidificacion", "title": "Sistema humidificación 70%+ humedad", "description": "Humidificador o bandejas agua. Pulverizar hojas frecuente.", "blocking": false, "estimatedMinutes": 30 }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_caapi", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "esqueje_chacruna", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "macetas_tropicales", "qty": 2, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_tropical", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_riego", "qty": 100, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "main_harvest",
+  "produces": { "kind": "brebaje_ayahuasca", "unit": "ml" }
+}

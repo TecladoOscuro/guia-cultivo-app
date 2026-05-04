@@ -2,6 +2,7 @@ import { db } from "./db";
 import { generateEvents } from "./eventGenerator";
 import { reserveAll, releasePending, consume } from "./stockPipeline";
 import { templates, getTemplate } from "../templates";
+import { refreshAllNotifications, cancelEventNotification } from "./notifSync";
 import type {
   CultivoTemplate,
   ShoppingItem,
@@ -91,6 +92,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     timestamp: new Date(),
   });
 
+  refreshAllNotifications();
   return {
     cultivationId,
     eventCount: events.length,
@@ -107,9 +109,19 @@ export async function startCultivation(cultivationId: number) {
     payload: {},
     timestamp: new Date(),
   });
+  refreshAllNotifications();
 }
 
 export async function abortCultivation(cultivationId: number) {
+  // Cancel notif de eventos pendientes
+  const pendingEvents = await db.events
+    .where({ cultivationId })
+    .and((e) => e.status === "pending")
+    .toArray();
+  for (const e of pendingEvents) {
+    if (e.id) cancelEventNotification(e.id);
+  }
+
   await db.cultivations.update(cultivationId, {
     status: "aborted",
     endedAt: new Date(),
@@ -121,6 +133,7 @@ export async function abortCultivation(cultivationId: number) {
     payload: {},
     timestamp: new Date(),
   });
+  refreshAllNotifications();
 }
 
 export async function completeEvent(eventId: number) {
@@ -135,6 +148,7 @@ export async function completeEvent(eventId: number) {
       await consume(rid);
     }
   }
+  cancelEventNotification(eventId);
   await db.history.add({
     cultivationId: event.cultivationId,
     eventId,
@@ -142,6 +156,7 @@ export async function completeEvent(eventId: number) {
     payload: { title: event.title },
     timestamp: new Date(),
   });
+  refreshAllNotifications();
 }
 
 export function listAvailableTemplates(): CultivoTemplate[] {

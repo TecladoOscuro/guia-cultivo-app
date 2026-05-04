@@ -1,0 +1,50 @@
+{
+  "id": "ferment-sidra",
+  "name": "Sidra casera",
+  "emoji": "🍎",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 90 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&mode=sidra",
+  "theme": { "primary": "#dba858", "bg": "#1a140a" },
+  "phases": [
+    { "id": "compra_sidra", "name": "Compra manzanas + equipo", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_sidra" },
+    { "id": "prep_sidra", "name": "Preparar mosto", "emoji": "🍎", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "prep_sidra" },
+    { "id": "fermentacion_sidra", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 35, "wikiPhase": "fermentacion_sidra" },
+    { "id": "embotellado_sidra", "name": "Embotellado", "emoji": "🍾", "startDayOffset": 35, "endDayOffset": 38, "wikiPhase": "embotellado_sidra" },
+    { "id": "cata_sidra", "name": "Maduración", "emoji": "🥂", "startDayOffset": 38, "endDayOffset": 90, "wikiPhase": "cata_sidra" }
+  ],
+  "events": [
+    { "id": "preparar_mosto_sidra", "title": "🍎 Triturar + prensar manzanas → mosto", "emoji": "🍎", "type": "preparation", "offsetDays": 0, "durationMin": 240, "description": "10kg manzanas → ~6L mosto. Triturar (machacador o batidora industrial). Prensar (bolsa tela + peso). Filtrar pulpa. Mosto a fermentador.", "checklistInline": ["Manzanas SIDRA (no postre): mezcla dulce/ácida/amarga", "Lavar bien", "Triturar a pulpa fina", "Prensar exprimiendo bien", "Filtrar 2 veces", "Tomar densidad inicial OG (1.045-1.055)"], "wikiPhase": "prep_sidra", "notify": true },
+    { "id": "inocular_sidra", "title": "🧫 Inocular levadura (opcional)", "emoji": "🧫", "type": "milestone", "offsetDays": 0, "durationMin": 20, "description": "Opción A: Levadura champagne EC-1118 (predecible). Opción B: Levaduras silvestres en piel manzana (espontánea, más arriesgada).", "wikiPhase": "prep_sidra", "notify": true },
+    { "id": "trasiego_sidra", "title": "🪣 Trasiego (separar de heces)", "emoji": "🪣", "type": "preparation", "offsetDays": 21, "durationMin": 30, "description": "Cuando fermentación calmando: trasegar a otra garrafa esterilizada. Maduración 2 sem más.", "wikiPhase": "fermentacion_sidra", "notify": true },
+    { "id": "embotellar_sidra", "title": "🍾 Embotellado", "emoji": "🍾", "type": "preparation", "offsetDays": 35, "durationMin": 90, "description": "DF medida (~0.995-1.005 sec, 1.010-1.015 semi-dulce). Calcular ABV. Si quieres espumosa: priming sugar 4-6g/L. Si tranquila: sin azúcar añadido.", "wikiPhase": "embotellado_sidra", "notify": true },
+    { "id": "primera_cata_sidra", "title": "🥂 Primera cata (~día 60)", "emoji": "🥂", "type": "milestone", "offsetDays": 60, "durationMin": 30, "description": "Sidra ya bebible. Mejor a 3-6 meses. Refrigerar antes consumir.", "wikiPhase": "cata_sidra", "notify": true }
+  ],
+  "recurringTasks": [
+    { "id": "verificar_airlock_sidra", "title": "🫧 Verificar airlock", "emoji": "🫧", "type": "monitoring", "startDayOffset": 1, "endDayOffset": 30, "cadence": { "everyDays": 3 }, "description": "Días 1-7: muy activo. Días 7-21: lento. Días 21-30: casi parado.", "wikiPhase": "fermentacion_sidra", "notify": false }
+  ],
+  "shoppingList": [
+    { "key": "manzanas_sidra", "name": "Manzanas sidra (10kg)", "qty": 10, "unit": "kg", "category": "esencial", "approxPrice": "10-25€", "source": "tienda_fisica", "notes": "Mercado o frutería. Mezcla dulces + ácidas + amargas. NO solo postre (low ácido).", "wikiPhase": "compra_sidra" },
+    { "key": "garrafa_5L", "name": "Garrafa cristal 5L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "levadura_champagne", "name": "Levadura champagne EC-1118 (opcional)", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "3-6€" },
+    { "key": "hidrometro", "name": "Hidrómetro", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "star_san", "name": "Star San", "qty": 250, "unit": "ml", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "botellas_sidra", "name": "Botellas vidrio 750ml (8)", "qty": 8, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" },
+    { "key": "prensa_DIY", "name": "Bolsa tela + peso (DIY prensa)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "notes": "O alquilar prensa fruta a vecino. Sin prensa = mucho desperdicio." }
+  ],
+  "prepChecklist": [
+    { "id": "epoca_otono", "title": "Otoño (sept-nov) cuando manzanas están de temporada", "description": "Sidra tradicional otoño. Manzanas frescas locales mejor.", "blocking": true, "estimatedMinutes": 5 },
+    { "id": "esterilizar_sidra", "title": "Esterilizar garrafa + utensilios", "description": "Star San crítico.", "blocking": true, "estimatedMinutes": 20 }
+  ],
+  "consumables": [
+    { "stockKey": "manzanas_sidra", "qty": 10, "unit": "kg", "trigger": "once" },
+    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "levadura_champagne", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "star_san", "qty": 30, "unit": "ml", "trigger": "once" },
+    { "stockKey": "botellas_sidra", "qty": 8, "unit": "ud", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "main_batch",
+  "produces": { "kind": "sidra", "unit": "ml" }
+}

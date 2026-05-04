@@ -28,13 +28,22 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 - [x] eventActions (createManual, update, delete, reschedule)
 - [x] Photo compression con canvas + EXIF strip
 
-### Templates
+### Templates (14 total — 100%)
 - [x] Schema completo `CultivoTemplate` con phases, events, recurringTasks, shoppingList, prepChecklist, consumables
-- [x] Template `mushroom-kit.json` completo
-- [x] Template `cannabis-interior.json` completo
-- [x] Template `trufas.json` completo
-- [x] Template `cactus.json` completo (3 años duration)
-- [x] Template `ferment-hidromiel.json` completo
+- [x] mushroom-kit (60d)
+- [x] mushroom-friendly (95d, cultura líquida + bulk monotub)
+- [x] mushroom-advanced (115d, lab desde cero + olla a presión)
+- [x] cannabis-interior (90d)
+- [x] cannabis-exterior (200d, mediterráneo)
+- [x] trufas (110d, esclerocios)
+- [x] cactus (3 años, San Pedro / Bolivian)
+- [x] amanita (14d, forrajeo + decarbox)
+- [x] ayahuasca (3 años, Caapi + Chacruna)
+- [x] dmt-mimosa (5 años hasta cosecha raíz)
+- [x] plantas-suaves (Damiana/Kava/Kanna/Salvia/etc)
+- [x] ferment-hidromiel (60d)
+- [x] ferment-cerveza (45d, Pale Ale/IPA)
+- [x] ferment-sidra (90d)
 
 ### UI Routes (13)
 - [x] Dashboard — empty state + cultivos cards con next-action contextual + stats + capacity widget
@@ -72,33 +81,28 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 
 ## 🚧 Pendiente
 
-### Templates restantes (Fase 11) — PRIORIDAD ALTA
-Hay 5 templates. Faltan 9:
-- [ ] cannabis-exterior
-- [ ] mushroom-friendly (con cultura líquida)
-- [ ] mushroom-advanced (lab desde cero)
-- [ ] amanita
-- [ ] ayahuasca
-- [ ] dmt-mimosa
-- [ ] plantas-suaves (con sub-templates por planta)
-- [ ] ferment-cerveza
-- [ ] ferment-sidra
+### Templates restantes — DONE 100% ✅
+Los 14 templates están implementados. Sub-templates por planta dentro de plantas-suaves: 1 template genérico (no individual por planta), pero cubre flujo común.
 
 Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList nodes + tablas riego desde wiki actual. Ver `docs/wiki-sync.md`.
 
-### Notificaciones push (Fase 8)
-- [ ] Schedule-X local notification al abrir app (catch-up)
-- [ ] Web Push con VAPID + service en CF Worker o GH Action cron (si valoras background real)
-- [ ] Badge counter (Application Badging API iOS 16.4+)
-- [ ] Settings: preferencias notif (hora digest, X horas antes evento)
+### Notificaciones push (Fase 8) — DONE ✅
+- [x] Local notification scheduling con setTimeout (foreground fiable)
+- [x] Badge counter (Application Badging API iOS 16.4+)
+- [x] Auto-schedule al crear/iniciar/borrar/abortar cultivo
+- [x] Cancel notif al completar/borrar evento
+- [x] Settings: toggle notif + permission state + horas antes (15min - 24h)
+- [x] Catch-up al abrir app (badge = overdue + today)
+- [ ] Web Push con VAPID + server (CF Worker) — PENDIENTE para background real iOS
 
-### Estadísticas dashboard (Fase 10)
-- [ ] Recharts integration
-- [ ] Cosechas históricas por cultivo (bar/line chart)
-- [ ] Tasa éxito vs abortos (pie)
-- [ ] Tiempo medio por fase
-- [ ] Costes acumulados (si introduces precios en stock/shopping)
-- [ ] Evolución stock
+### Estadísticas dashboard (Fase 10) — DONE ✅
+- [x] Recharts integration (bar/line/pie)
+- [x] Pie estado cultivos (active/planning/completed/aborted)
+- [x] Bar cosechas por kind con peso seco
+- [x] Line cronológico cosechas (peso + calidad)
+- [x] Bar eventos por tipo
+- [x] Pie sesiones por método
+- [x] Stats summary: total cultivos, tasa éxito, duración media, coste total
 
 ### Settings real (Fase 13) — PARCIAL
 - [ ] Preferencias notificaciones
@@ -116,10 +120,12 @@ Pista: usar `scripts/extract-templates.js` (a crear) para extraer TimelineList n
 - [ ] Verificar pipeline 8 fases funciona end-to-end
 
 ### Polish post-MVP (Fase 13)
-- [ ] Planning automático con detección conflictos recursos (armario, fitolux compartido)
+- [x] Planning automático con detección conflictos recursos (lib/planningConflicts.ts)
+- [x] Compartir backup completo via export JSON (Settings)
+- [x] Form normalization (input/select/textarea altura uniforme)
 - [ ] Diagnóstico flowchart "qué le pasa al cultivo"
-- [ ] Foto-comparación timelapse
-- [ ] Compartir cultivo via QR/JSON
+- [ ] Foto-comparación timelapse interactiva
+- [ ] Sub-templates individuales por planta suave (Salvia, Kava, etc.)
 
 ---
 

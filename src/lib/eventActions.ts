@@ -1,4 +1,5 @@
 import { db } from "./db";
+import { refreshAllNotifications, cancelEventNotification } from "./notifSync";
 import type { AppEvent, EventType } from "../types";
 
 export interface CreateEventInput {
@@ -52,12 +53,14 @@ export async function updateEvent(eventId: number, patch: Partial<AppEvent>) {
     payload: { fields: Object.keys(patch) },
     timestamp: new Date(),
   });
+  refreshAllNotifications();
 }
 
 export async function deleteEvent(eventId: number) {
   const existing = await db.events.get(eventId);
   if (!existing) return;
 
+  cancelEventNotification(eventId);
   await db.events.delete(eventId);
   await db.history.add({
     cultivationId: existing.cultivationId,
@@ -66,6 +69,7 @@ export async function deleteEvent(eventId: number) {
     payload: { title: existing.title },
     timestamp: new Date(),
   });
+  refreshAllNotifications();
 }
 
 export async function rescheduleEvent(eventId: number, newDate: Date) {

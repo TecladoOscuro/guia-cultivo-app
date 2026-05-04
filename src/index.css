@@ -49,6 +49,43 @@ button {
 
 input, textarea, select {
   font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+/* Normalizar altura inputs/selects iguales en todos browsers */
+input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+select {
+  min-height: 40px;
+  height: 40px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238a949e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px !important;
+}
+
+input[type="date"],
+input[type="time"],
+input[type="datetime-local"] {
+  -webkit-appearance: none;
+  color-scheme: dark;
+}
+
+textarea {
+  min-height: 80px;
+  padding: 8px 12px;
+}
+
+/* Force all interactive elements similar focus ring */
+input:focus, textarea:focus, select:focus, button:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
 }
 
 /* Schedule-X overrides para que eventos sean clickables visualmente */
