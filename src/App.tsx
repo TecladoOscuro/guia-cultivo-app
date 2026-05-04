@@ -32,7 +32,10 @@ const navItems = [
 function App() {
   return (
     <div className="min-h-screen flex flex-col bg-bg text-text">
-      <header className="border-b border-border bg-bg-2 sticky top-0 z-10">
+      <header
+        className="border-b border-border bg-bg-2 sticky top-0 z-10"
+        style={{ paddingTop: "env(safe-area-inset-top)" }}
+      >
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-xl">🌱</span>
@@ -89,7 +92,10 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="border-t border-border bg-bg-2 mt-auto">
+      <footer
+        className="border-t border-border bg-bg-2 mt-auto"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+      >
         <div className="max-w-6xl mx-auto px-4 py-3 text-center text-xs text-text-muted">
           Guía Cultivo · Datos solo en tu dispositivo · Sin tracking
         </div>
