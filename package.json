@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@js-temporal/polyfill": "^0.5.1",
     "@preact/signals": "^2.9.0",
     "@schedule-x/calendar": "^4.5.0",
     "@schedule-x/current-time": "^4.5.0",
