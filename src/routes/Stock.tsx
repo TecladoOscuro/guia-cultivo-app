@@ -237,7 +237,7 @@ function ShoppingTab({ items, stocks, cultivations }: { items: ShoppingItem[]; s
                         ) : (
                           <div className="flex gap-1 shrink-0">
                             {stocks.length > 0 && (
-                              <LinkToStock stocks={stocks} onLink={(stockId) => useExistingStock(it, stockId)} />
+                              <LinkToStock item={it} stocks={stocks} onLink={(stockId) => useExistingStock(it, stockId)} />
                             )}
                             <button onClick={() => markPurchased(it)} className="px-2 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap">
                               🛒 Comprado
@@ -367,8 +367,13 @@ function Field({ label, value, onChange, type = "text", placeholder }: { label: 
   );
 }
 
-function LinkToStock({ stocks, onLink }: { stocks: StockType[]; onLink: (stockId: number) => void }) {
+function LinkToStock({ item, stocks, onLink }: { item: ShoppingItem; stocks: StockType[]; onLink: (stockId: number) => void }) {
   const [open, setOpen] = useState(false);
+
+  const guessedCategory = guessCategory(item);
+  const relevant = stocks.filter((s) => s.category === guessedCategory);
+  const others = stocks.filter((s) => s.category !== guessedCategory);
+  const sorted = [...relevant, ...others];
 
   return (
     <div className="relative">
@@ -383,12 +388,17 @@ function LinkToStock({ stocks, onLink }: { stocks: StockType[]; onLink: (stockId
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 top-full mt-1 z-20 bg-bg-2 border border-border rounded shadow-lg min-w-[200px] max-h-40 overflow-y-auto">
-            <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">Selecciona de tu stock:</div>
-            {stocks.map((s) => (
+            <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">
+              Tu stock{guessedCategory ? ` (${guessedCategory})` : ""}:
+            </div>
+            {relevant.length === 0 && guessedCategory && (
+              <div className="px-3 py-1.5 text-xs text-text-muted">Nada en {guessedCategory}</div>
+            )}
+            {sorted.map((s) => (
               <button
                 key={s.id}
                 onClick={() => { onLink(s.id!); setOpen(false); }}
-                className="block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3"
+                className={`block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3 ${s.category !== guessedCategory ? "opacity-40" : ""}`}
               >
                 {s.name} ({s.qty}{s.unit})
               </button>
@@ -398,6 +408,17 @@ function LinkToStock({ stocks, onLink }: { stocks: StockType[]; onLink: (stockId
       )}
     </div>
   );
+}
+
+function guessCategory(item: ShoppingItem): StockCategory | null {
+  const name = (item.name + " " + item.itemKey).toLowerCase();
+  if (name.includes("semilla") || name.includes("espora") || name.includes("spore")) return "semilla";
+  if (name.includes("esqueje") || name.includes("clone")) return "esqueje";
+  if (name.includes("sustrato") || name.includes("tierra") || name.includes("coco") || name.includes("perlita") || name.includes("verm")) return "sustrato";
+  if (name.includes("kit") && !name.includes("kitchen")) return "kit";
+  if (name.includes("fertilizante") || name.includes("nutriente") || name.includes("abono") || name.includes("biobizz") || name.includes("bloom") || name.includes("grow")) return "nutriente";
+  if (name.includes("maceta") || name.includes("luz") || name.includes("ventilador") || name.includes("medidor") || name.includes("tijera") || name.includes("pulverizador") || name.includes("alcohol")) return "equipo";
+  return null;
 }
 
 function UnitSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {

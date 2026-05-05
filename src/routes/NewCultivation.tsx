@@ -164,7 +164,13 @@ export default function NewCultivation() {
                 min={1}
                 max={99}
                 value={scale}
-                onChange={(e) => setScale(Math.max(1, parseInt(e.target.value) || 1))}
+                onChange={(e) => {
+                  const v = e.target.value;
+                  if (v === "") { setScale(1); return; }
+                  const n = parseInt(v, 10);
+                  if (!isNaN(n)) setScale(Math.max(1, Math.min(99, n)));
+                }}
+                onFocus={(e) => e.target.select()}
                 className="w-20 bg-bg-2 border border-border rounded px-3 py-2 text-text-bright text-center"
               />
               <span className="text-xs text-text-muted">

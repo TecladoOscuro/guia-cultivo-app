@@ -7,7 +7,7 @@ import { db } from "../lib/db";
 import { getTemplate } from "../templates";
 import { abortCultivation, completeCultivation, reactivateCultivation, deleteCultivationFully, startCultivation } from "../lib/cultivationActions";
 import { confirmDialog } from "../lib/confirmDialog";
-import type { Cultivation, AppEvent, ShoppingItem, PrepChecklistItem, JournalEntry, Harvest, Stock } from "../types";
+import type { Cultivation, AppEvent, ShoppingItem, PrepChecklistItem, JournalEntry, Harvest, Stock, StockCategory } from "../types";
 
 export default function CultivoDetail() {
   const { id } = useParams<{ id: string }>();
@@ -411,8 +411,13 @@ function ShoppingSection({ items, stocks }: { items: ShoppingItem[]; stocks: Sto
   );
 }
 
-function LinkToStock({ stocks, onLink }: { item: ShoppingItem; stocks: Stock[]; onLink: (stockId: number) => void }) {
+function LinkToStock({ item, stocks, onLink }: { item: ShoppingItem; stocks: Stock[]; onLink: (stockId: number) => void }) {
   const [open, setOpen] = useState(false);
+
+  const guessedCategory = guessStockCategory(item);
+  const relevant = stocks.filter((s) => s.category === guessedCategory);
+  const others = stocks.filter((s) => s.category !== guessedCategory);
+  const sorted = [...relevant, ...others];
 
   return (
     <div className="relative">
@@ -427,12 +432,17 @@ function LinkToStock({ stocks, onLink }: { item: ShoppingItem; stocks: Stock[]; 
         <>
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 top-full mt-1 z-20 bg-bg-2 border border-border rounded shadow-lg min-w-[200px] max-h-40 overflow-y-auto">
-            <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">Selecciona de tu stock:</div>
-            {stocks.map((s) => (
+            <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">
+              Tu stock{guessedCategory ? ` (${guessedCategory})` : ""}:
+            </div>
+            {relevant.length === 0 && guessedCategory && (
+              <div className="px-3 py-1.5 text-xs text-text-muted">Nada en {guessedCategory}</div>
+            )}
+            {sorted.map((s) => (
               <button
                 key={s.id}
                 onClick={() => { onLink(s.id!); setOpen(false); }}
-                className="block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3"
+                className={`block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3 ${s.category !== guessedCategory ? "opacity-40" : ""}`}
               >
                 {s.name} ({s.qty}{s.unit})
               </button>
@@ -442,6 +452,17 @@ function LinkToStock({ stocks, onLink }: { item: ShoppingItem; stocks: Stock[]; 
       )}
     </div>
   );
+}
+
+function guessStockCategory(item: ShoppingItem): StockCategory | null {
+  const name = (item.name + " " + item.itemKey).toLowerCase();
+  if (name.includes("semilla") || name.includes("espora") || name.includes("spore")) return "semilla";
+  if (name.includes("esqueje") || name.includes("clone")) return "esqueje";
+  if (name.includes("sustrato") || name.includes("tierra") || name.includes("coco") || name.includes("perlita") || name.includes("verm")) return "sustrato";
+  if (name.includes("kit") && !name.includes("kitchen")) return "kit";
+  if (name.includes("fertilizante") || name.includes("nutriente") || name.includes("abono") || name.includes("biobizz") || name.includes("bloom") || name.includes("grow") || name.includes("feeding")) return "nutriente";
+  if (name.includes("maceta") || name.includes("luz") || name.includes("ventilador") || name.includes("medidor") || name.includes("tijera") || name.includes("pulverizador") || name.includes("alcohol")) return "equipo";
+  return null;
 }
 
 function EventList({ events }: { events: AppEvent[] }) {

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import { addDays, format, isToday, isPast, isWithinInterval, differenceInDays } from "date-fns";
 import { es } from "date-fns/locale";
@@ -6,6 +6,7 @@ import { db } from "../lib/db";
 import type { Cultivation, AppEvent } from "../types";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
 
@@ -50,9 +51,9 @@ export default function Dashboard() {
       <h1 className="text-xl font-bold text-text-bright mb-3">🏠 Hoy</h1>
 
       <div className="grid grid-cols-3 gap-2 mb-4">
-        <Stat label="En curso" value={active.length} desc="planning + activos" targetId="cultivos-section" />
-        <Stat label="Hoy" value={today.length} desc="eventos pendientes" highlight={today.length > 0} targetId="today-section" />
-        <Stat label="Atrasados" value={overdue.length} desc="sin hacer" highlight={overdue.length > 0} targetId="overdue-section" />
+        <Stat label="En curso" value={active.length} desc="planning + activos" onClick={() => navigate("/cultivations")} />
+        <Stat label="Hoy" value={today.length} desc="eventos pendientes" highlight={today.length > 0} onClick={() => navigate("/calendar")} />
+        <Stat label="Atrasados" value={overdue.length} desc="sin hacer" highlight={overdue.length > 0} onClick={() => navigate("/calendar")} />
       </div>
 
       {overdue.length > 0 && (
@@ -189,19 +190,13 @@ function CultivoCard({ cultivation, events }: { cultivation: Cultivation; events
   );
 }
 
-function Stat({ label, value, desc, highlight, targetId }: { label: string; value: number; desc?: string; highlight?: boolean; targetId?: string }) {
-  const scrollTo = () => {
-    if (targetId) {
-      const el = document.getElementById(targetId);
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
+function Stat({ label, value, desc, highlight, onClick }: { label: string; value: number; desc?: string; highlight?: boolean; onClick?: () => void }) {
   return (
     <button
-      onClick={scrollTo}
-      className={`p-2 border rounded text-center transition hover:border-accent cursor-pointer ${
+      onClick={onClick}
+      className={`p-2 border rounded text-center transition hover:border-accent ${
         highlight ? "border-error bg-error/5" : "border-border"
-      }`}
+      } ${onClick ? "cursor-pointer" : ""}`}
     >
       <div className={`text-lg font-bold ${highlight ? "text-error" : "text-text-bright"}`}>{value}</div>
       <div className="text-xs text-text-muted">{label}</div>

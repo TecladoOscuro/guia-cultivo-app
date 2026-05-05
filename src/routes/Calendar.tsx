@@ -67,6 +67,23 @@ export default function Calendar() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editing, setEditing] = useState<AppEvent | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [resizeKey, setResizeKey] = useState(0);
+
+  // Reset calendar on orientation change (iPhone rotation zoom bug)
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    const onResize = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => setResizeKey((k) => k + 1), 300);
+    };
+    window.addEventListener("orientationchange", onResize);
+    window.addEventListener("resize", onResize);
+    return () => {
+      window.removeEventListener("orientationchange", onResize);
+      window.removeEventListener("resize", onResize);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
@@ -183,7 +200,7 @@ export default function Calendar() {
           <p className="text-text-muted">Sin eventos. Crea un cultivo en ➕ Nuevo o un evento manual con el botón de arriba.</p>
         </div>
       ) : (
-        <div className="sx-wrapper" style={{ height: "calc(100vh - 220px)", minHeight: 500 }}>
+        <div className="sx-wrapper" style={{ height: "calc(100vh - 220px)", minHeight: 500 }} key={resizeKey}>
           <ScheduleXCalendar calendarApp={calendar} />
         </div>
       )}
