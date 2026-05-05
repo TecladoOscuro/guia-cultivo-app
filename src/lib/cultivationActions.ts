@@ -1,6 +1,6 @@
 import { db } from "./db";
 import { generateEvents } from "./eventGenerator";
-import { reserveAll, releasePending, consume } from "./stockPipeline";
+import { releasePending, consume } from "./stockPipeline";
 import { templates, getTemplate } from "../templates";
 import { refreshAllNotifications, cancelEventNotification } from "./notifSync";
 import type {
@@ -32,7 +32,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     templateId: input.templateId,
     name: input.name,
     startDate: input.startDate,
-    status: "active", // directo activo. prep checklist es recordatorio, no bloquea
+    status: "active",
     notes: input.notes,
     customParams: input.customParams,
     createdAt: new Date(),
@@ -44,7 +44,90 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     startDate: input.startDate,
     cultivationId,
   });
+
+  // Add events to DB
   await db.events.bulkAdd(events as AppEvent[]);
+
+  // Fetch events back to get their IDs, then link reservations
+  const persistedEvents = await db.events.where({ cultivationId }).toArray();
+
+  for (const event of persistedEvents) {
+    if (!event.id || !event.templateEventId) continue;
+
+    const reservationIds: number[] = [];
+
+    const tplEvent = template.events.find((e) => e.id === event.templateEventId);
+    if (tplEvent?.consumes) {
+      for (const c of tplEvent.consumes) {
+        if (c.trigger === "per_event") {
+          const rid = (await db.stockReservations.add({
+            stockKey: c.stockKey,
+            cultivationId,
+            eventId: event.id,
+            qty: c.qty,
+            unit: c.unit,
+            status: "reserved",
+            createdAt: new Date(),
+          })) as number;
+          reservationIds.push(rid);
+        }
+      }
+    }
+
+    const tplRecurring = template.recurringTasks.find((rt) => rt.id === event.templateEventId);
+    if (tplRecurring?.consumes) {
+      for (const c of tplRecurring.consumes) {
+        if (c.trigger === "per_event") {
+          const rid = (await db.stockReservations.add({
+            stockKey: c.stockKey,
+            cultivationId,
+            eventId: event.id,
+            qty: c.qty,
+            unit: c.unit,
+            status: "reserved",
+            createdAt: new Date(),
+          })) as number;
+          reservationIds.push(rid);
+        }
+      }
+    }
+
+    if (reservationIds.length > 0) {
+      await db.events.update(event.id, {
+        consumesReservationIds: reservationIds,
+      });
+    }
+  }
+
+  // Reserve "once" consumables (not linked to events, for capacity display)
+  for (const c of template.consumables) {
+    if (c.trigger === "once") {
+      await db.stockReservations.add({
+        stockKey: c.stockKey,
+        cultivationId,
+        qty: c.qty,
+        unit: c.unit,
+        status: "reserved",
+        createdAt: new Date(),
+      });
+    }
+  }
+
+  // Reserve "per_phase" consumables as well (total)
+  for (const c of template.consumables) {
+    if (c.trigger === "per_phase") {
+      // Count how many unique phases exist
+      const phases = template.phases?.length ?? 1;
+      await db.stockReservations.add({
+        stockKey: c.stockKey,
+        cultivationId,
+        qty: c.qty * phases,
+        unit: c.unit,
+        status: "reserved",
+        createdAt: new Date(),
+      });
+    }
+  }
 
   // Generate shopping items — solo lo que NO tienes ya en stock
   const allStock = await db.stock.toArray();
@@ -53,24 +136,22 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
       const inStock = allStock.find((st) => st.key === s.key);
       return !inStock || inStock.qty < s.qty;
     })
-    .map(
-      (s) => ({
-        cultivationId,
-        itemKey: s.key,
-        name: s.name,
-        qty: s.qty,
-        unit: s.unit,
-        category: s.category,
-        approxPrice: s.approxPrice,
-        source: s.source,
-        notes: s.notes,
-        status: "pending",
-        addedAt: new Date(),
-        wikiUrl: s.wikiPhase
-          ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
-          : undefined,
-      })
-    );
+    .map((s) => ({
+      cultivationId,
+      itemKey: s.key,
+      name: s.name,
+      qty: s.qty,
+      unit: s.unit,
+      category: s.category,
+      approxPrice: s.approxPrice,
+      source: s.source,
+      notes: s.notes,
+      status: "pending" as const,
+      addedAt: new Date(),
+      wikiUrl: s.wikiPhase
+        ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
+        : undefined,
+    }));
   await db.shoppingList.bulkAdd(shoppingItems as ShoppingItem[]);
 
   // Generate prep checklist
@@ -82,13 +163,10 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
       description: p.description,
       blocking: p.blocking,
       estimatedMinutes: p.estimatedMinutes,
-      status: "pending",
+      status: "pending" as const,
     })
   );
   await db.prepChecklists.bulkAdd(prepItems as PrepChecklistItem[]);
-
-  // Reserve stock
-  await reserveAll(cultivationId, template);
 
   // History log
   await db.history.add({
@@ -119,7 +197,6 @@ export async function startCultivation(cultivationId: number) {
 }
 
 export async function completeCultivation(cultivationId: number) {
-  // Cancel notif eventos pendientes
   const pendingEvents = await db.events
     .where({ cultivationId })
     .and((e) => e.status === "pending")
@@ -157,12 +234,10 @@ export async function reactivateCultivation(cultivationId: number) {
 }
 
 export async function deleteCultivationFully(cultivationId: number) {
-  // Cancel notif eventos
   const events = await db.events.where({ cultivationId }).toArray();
   for (const e of events) {
     if (e.id) cancelEventNotification(e.id);
   }
-  // Borrar todos los datos del cultivo
   await db.events.where({ cultivationId }).delete();
   await db.shoppingList.where({ cultivationId }).delete();
   await db.prepChecklists.where({ cultivationId }).delete();
@@ -176,7 +251,6 @@ export async function deleteCultivationFully(cultivationId: number) {
 }
 
 export async function abortCultivation(cultivationId: number) {
-  // Cancel notif de eventos pendientes
   const pendingEvents = await db.events
     .where({ cultivationId })
     .and((e) => e.status === "pending")
@@ -202,15 +276,19 @@ export async function abortCultivation(cultivationId: number) {
 export async function completeEvent(eventId: number) {
   const event = await db.events.get(eventId);
   if (!event) return;
+
   await db.events.update(eventId, {
     status: "done",
     completedAt: new Date(),
   });
+
+  // Decrement stock: consume linked reservations (deducts from stock AND marks reservation consumed)
   if (event.consumesReservationIds?.length) {
     for (const rid of event.consumesReservationIds) {
       await consume(rid);
     }
   }
+
   cancelEventNotification(eventId);
   await db.history.add({
     cultivationId: event.cultivationId,
