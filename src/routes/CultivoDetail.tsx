@@ -5,7 +5,7 @@ import { format, isToday, isPast, differenceInDays, addDays, isWithinInterval } 
 import { es } from "date-fns/locale";
 import { db } from "../lib/db";
 import { getTemplate } from "../templates";
-import { abortCultivation, completeCultivation, reactivateCultivation, deleteCultivationFully } from "../lib/cultivationActions";
+import { abortCultivation, completeCultivation, reactivateCultivation, deleteCultivationFully, startCultivation } from "../lib/cultivationActions";
 import { confirmDialog } from "../lib/confirmDialog";
 import type { Cultivation, AppEvent, ShoppingItem, PrepChecklistItem, JournalEntry, Harvest, Stock } from "../types";
 
@@ -122,7 +122,32 @@ export default function CultivoDetail() {
         </div>
       )}
 
-      {/* Prep checklist — recordatorio, no bloquea. Se muestra si hay items pendientes */}
+      {/* Start button for planning cultivations */}
+      {cultivation.status === "planning" && (
+        <button
+          onClick={async () => {
+            const ok = await confirmDialog({
+              title: "Iniciar cultivo",
+              message: `¿Iniciar "${cultivation.name}" ahora?\n\nSe generarán los eventos en el calendario a partir de hoy y se reservará el stock necesario.`,
+              confirmLabel: "🚀 Iniciar",
+            });
+            if (!ok) return;
+            setActionBusy(true);
+            try {
+              await startCultivation(cultivationId);
+            } catch (e) {
+              // ignore — component will re-render with new status
+            }
+            setActionBusy(false);
+          }}
+          disabled={actionBusy}
+          className="w-full p-4 mb-4 bg-accent text-bg rounded-lg font-bold text-base hover:brightness-110 transition active:scale-[0.98] disabled:opacity-50"
+        >
+          🚀 Iniciar cultivo — empezar hoy
+        </button>
+      )}
+
+      {/* Prep checklist — recordatorio, no bloquea */}
       {(cultivation.status === "active" || cultivation.status === "planning") && prepItems.length > 0 && (
         <DetailSection title="✅ Preparación" emoji="📋">
           <PrepSection items={prepItems} />

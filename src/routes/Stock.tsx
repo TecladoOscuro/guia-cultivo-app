@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLiveQuery } from "dexie-react-hooks";
 import { db } from "../lib/db";
-import { getStockAvailable } from "../lib/stockPipeline";
+import { getStockAvailable, calculateCapacity } from "../lib/stockPipeline";
 import { confirmDialog } from "../lib/confirmDialog";
+import { listAvailableTemplates } from "../lib/cultivationActions";
 import type { Stock as StockType, StockCategory, ShoppingItem } from "../types";
+import type { CapacityResult } from "../lib/stockPipeline";
+
+const UNITS = ["ml", "L", "g", "kg", "ud", "sobres", "gotas", "cucharaditas"];
 
 const categories: StockCategory[] = [
   "semilla",
@@ -107,6 +111,8 @@ export default function Stock() {
               ➕ Añadir al stock
             </button>
           </div>
+
+          <CapacityInfo />
         </>
       )}
 
@@ -302,7 +308,7 @@ function StockForm({ initial, onClose }: { initial: StockType | null; onClose: (
           </label>
           <div className="grid grid-cols-2 gap-3">
             <Field label="Cantidad" value={qty} onChange={setQty} type="number" />
-            <Field label="Unidad" value={unit} onChange={setUnit} placeholder="ud, g, ml..." />
+            <UnitSelect value={unit} onChange={setUnit} />
           </div>
           <Field label="Notas (opcional)" value={notes} onChange={setNotes} />
           <label className="grid gap-1">
@@ -344,5 +350,89 @@ function Field({ label, value, onChange, type = "text", placeholder }: { label: 
       <span className="text-xs text-text-muted">{label}</span>
       <input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright" />
     </label>
+  );
+}
+
+function UnitSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const [custom, setCustom] = useState(!UNITS.includes(value) && value !== "");
+  const predefined = UNITS.includes(value) ? value : custom ? "__custom__" : UNITS[0];
+
+  return (
+    <label className="grid gap-1">
+      <span className="text-xs text-text-muted">Unidad</span>
+      <div className="flex gap-1">
+        <select
+          value={predefined}
+          onChange={(e) => {
+            if (e.target.value === "__custom__") {
+              setCustom(true);
+            } else {
+              setCustom(false);
+              onChange(e.target.value);
+            }
+          }}
+          className="flex-1 bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
+        >
+          {UNITS.map((u) => (
+            <option key={u} value={u}>{u}</option>
+          ))}
+          <option value="__custom__">otro...</option>
+        </select>
+        {custom && (
+          <input
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder="ej: ml, g..."
+            className="w-24 bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
+          />
+        )}
+      </div>
+    </label>
+  );
+}
+
+function CapacityInfo() {
+  const stocks = useLiveQuery(() => db.stock.toArray(), []) ?? [];
+  const reservations = useLiveQuery(() => db.stockReservations.where("status").equals("reserved").toArray(), []) ?? [];
+  const [data, setData] = useState<{ template: ReturnType<typeof listAvailableTemplates>[number]; result: CapacityResult }[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const templates = listAvailableTemplates();
+      const results = await Promise.all(
+        templates.map(async (t) => ({ template: t, result: await calculateCapacity(t) }))
+      );
+      if (!cancelled) setData(results);
+    })();
+    return () => { cancelled = true; };
+  }, [stocks, reservations]);
+
+  if (stocks.length === 0 || data.length === 0) return null;
+
+  const canDo = data.filter((d) => d.result.capacity > 0);
+  if (canDo.length === 0) return null;
+
+  return (
+    <div className="mt-4">
+      <h3 className="text-sm font-bold text-text-bright mb-2 uppercase tracking-wide">🎯 ¿Qué puedes cultivar?</h3>
+      <div className="grid gap-2">
+        {canDo.map(({ template, result }) => (
+          <div key={template.id} className="p-3 border border-border rounded flex justify-between items-center gap-2">
+            <div className="flex-1 min-w-0">
+              <div className="font-bold text-text-bright text-sm">{template.emoji} {template.name}</div>
+              {result.bottleneck && (
+                <div className="text-xs text-text-muted">
+                  Limitante: <span className="text-warn">{result.bottleneck.key}</span> ({result.bottleneck.have}{result.bottleneck.unit} de {result.bottleneck.need}{result.bottleneck.unit})
+                </div>
+              )}
+            </div>
+            <div className="text-lg font-bold text-accent shrink-0">
+              ×{result.capacity === Infinity ? "∞" : result.capacity}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

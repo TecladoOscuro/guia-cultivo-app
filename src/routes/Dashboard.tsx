@@ -35,9 +35,10 @@ export default function Dashboard() {
         <div className="mt-8 max-w-lg mx-auto text-left">
           <h2 className="text-sm font-bold text-text-bright mb-3 text-center">¿Cómo funciona?</h2>
           <div className="grid gap-2">
-            <Step n="1" title="Crea un cultivo" desc="➕ Nuevo → elige tipo → fecha inicio. App genera calendario + lista compras + stock reservado." />
-            <Step n="2" title="Compra lo que falte" desc="📦 Stock → pestaña Compras → marca comprado. Entra a tu stock automáticamente." />
-            <Step n="3" title="Sigue el calendario" desc="📅 Cada día tienes eventos con instrucciones. Marca ✅ Hecho cuando completes." />
+            <Step n="1" title="Crea un cultivo" desc="➕ Nuevo → elige tipo → ponle nombre. Se crea en estado planeado con lista de compras y preparación." />
+            <Step n="2" title="Prepárate" desc="📦 Stock → pestaña Compras → marca lo que compres. Entra a tu stock automáticamente. Completa la checklist de preparación." />
+            <Step n="3" title="Inícialo cuando estés listo" desc="🌱 Cultivos → tu cultivo → 🚀 Iniciar. Ese día se genera el calendario con todos los eventos." />
+            <Step n="4" title="Sigue el calendario" desc="📅 Cada día tienes eventos con instrucciones. Marca ✅ Hecho y el stock se descuenta solo." />
           </div>
         </div>
       </div>
@@ -49,36 +50,42 @@ export default function Dashboard() {
       <h1 className="text-xl font-bold text-text-bright mb-3">🏠 Hoy</h1>
 
       <div className="grid grid-cols-3 gap-2 mb-4">
-        <Stat label="Activos" value={active.length} />
-        <Stat label="Hoy" value={today.length} highlight={today.length > 0} />
-        <Stat label="Atrasados" value={overdue.length} highlight={overdue.length > 0} />
+        <Stat label="En curso" value={active.length} desc="planning + activos" targetId="cultivos-section" />
+        <Stat label="Hoy" value={today.length} desc="eventos pendientes" highlight={today.length > 0} targetId="today-section" />
+        <Stat label="Atrasados" value={overdue.length} desc="sin hacer" highlight={overdue.length > 0} targetId="overdue-section" />
       </div>
 
       {overdue.length > 0 && (
-        <section className="mb-4">
+        <section id="overdue-section" className="mb-4">
           <h2 className="text-sm font-bold text-error mb-2 uppercase tracking-wide">⚠️ Atrasados</h2>
           <EventList events={overdue} cultivations={cultivations} />
         </section>
       )}
 
       {today.length > 0 && (
-        <section className="mb-4">
+        <section id="today-section" className="mb-4">
           <h2 className="text-sm font-bold text-accent mb-2 uppercase tracking-wide">🔥 Hoy</h2>
           <EventList events={today} cultivations={cultivations} />
         </section>
       )}
 
-      <section className="mb-4">
-        <h2 className="text-sm font-bold text-text-bright mb-2 uppercase tracking-wide">🌱 Cultivos en curso</h2>
-        <div className="grid gap-2">
-          {active.map((c) => (
-            <CultivoCard
-              key={c.id}
-              cultivation={c}
-              events={events.filter((e) => e.cultivationId === c.id)}
-            />
-          ))}
-        </div>
+      <section id="cultivos-section" className="mb-4">
+        <h2 className="text-sm font-bold text-text-bright mb-2 uppercase tracking-wide">🌱 En curso</h2>
+        {active.length === 0 ? (
+          <div className="p-3 border border-border rounded text-sm text-text-muted text-center">
+            Sin cultivos activos. <Link to="/new" className="text-accent hover:underline">Crear uno</Link>
+          </div>
+        ) : (
+          <div className="grid gap-2">
+            {active.map((c) => (
+              <CultivoCard
+                key={c.id}
+                cultivation={c}
+                events={events.filter((e) => e.cultivationId === c.id)}
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {upcoming.length > 0 && (
@@ -182,12 +189,24 @@ function CultivoCard({ cultivation, events }: { cultivation: Cultivation; events
   );
 }
 
-function Stat({ label, value, highlight }: { label: string; value: number; highlight?: boolean }) {
+function Stat({ label, value, desc, highlight, targetId }: { label: string; value: number; desc?: string; highlight?: boolean; targetId?: string }) {
+  const scrollTo = () => {
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
   return (
-    <div className={`p-2 border rounded text-center ${highlight ? "border-error" : "border-border"}`}>
+    <button
+      onClick={scrollTo}
+      className={`p-2 border rounded text-center transition hover:border-accent cursor-pointer ${
+        highlight ? "border-error bg-error/5" : "border-border"
+      }`}
+    >
       <div className={`text-lg font-bold ${highlight ? "text-error" : "text-text-bright"}`}>{value}</div>
       <div className="text-xs text-text-muted">{label}</div>
-    </div>
+      {desc && <div className="text-xs text-text-muted opacity-60">{desc}</div>}
+    </button>
   );
 }
 

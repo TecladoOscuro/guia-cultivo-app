@@ -13,15 +13,13 @@ import type {
 export interface CreateCultivationInput {
   templateId: string;
   name: string;
-  startDate: Date;
   notes?: string;
   customParams?: Record<string, unknown>;
-  forceWithoutStock?: boolean;
 }
 
+// Step 1: Create cultivation in "planning" — no events, no date, no reservations
 export async function createCultivation(input: CreateCultivationInput): Promise<{
   cultivationId: number;
-  eventCount: number;
   shoppingCount: number;
   prepCount: number;
 }> {
@@ -31,24 +29,89 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
   const cultivationId = (await db.cultivations.add({
     templateId: input.templateId,
     name: input.name,
-    startDate: input.startDate,
-    status: "active",
+    startDate: new Date(), // placeholder, se actualiza al iniciar
+    status: "planning",
     notes: input.notes,
     customParams: input.customParams,
     createdAt: new Date(),
   })) as number;
 
-  // Generate events
+  // Generate shopping items — solo lo que NO tienes ya en stock
+  const allStock = await db.stock.toArray();
+  const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList
+    .filter((s) => {
+      const inStock = allStock.find((st) => st.key === s.key);
+      return !inStock || inStock.qty < s.qty;
+    })
+    .map((s) => ({
+      cultivationId,
+      itemKey: s.key,
+      name: s.name,
+      qty: s.qty,
+      unit: s.unit,
+      category: s.category,
+      approxPrice: s.approxPrice,
+      source: s.source,
+      notes: s.notes,
+      status: "pending" as const,
+      addedAt: new Date(),
+      wikiUrl: s.wikiPhase
+        ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
+        : undefined,
+    }));
+  await db.shoppingList.bulkAdd(shoppingItems as ShoppingItem[]);
+
+  // Generate prep checklist
+  const prepItems: Omit<PrepChecklistItem, "id">[] = template.prepChecklist.map(
+    (p) => ({
+      cultivationId,
+      templateChecklistId: p.id,
+      title: p.title,
+      description: p.description,
+      blocking: p.blocking,
+      estimatedMinutes: p.estimatedMinutes,
+      status: "pending" as const,
+    })
+  );
+  await db.prepChecklists.bulkAdd(prepItems as PrepChecklistItem[]);
+
+  await db.history.add({
+    cultivationId,
+    action: "cultivo.create",
+    payload: { templateId: input.templateId, name: input.name },
+    timestamp: new Date(),
+  });
+
+  refreshAllNotifications();
+  return {
+    cultivationId,
+    shoppingCount: shoppingItems.length,
+    prepCount: prepItems.length,
+  };
+}
+
+// Step 2: Start cultivation — generates events, reservations, sets date = today
+export async function startCultivation(cultivationId: number): Promise<{
+  eventCount: number;
+}> {
+  const cultivation = await db.cultivations.get(cultivationId);
+  if (!cultivation) throw new Error("Cultivo no encontrado");
+
+  const template = getTemplate(cultivation.templateId);
+  if (!template) throw new Error("Template no encontrado");
+
+  const today = new Date();
+
+  // Generate events from today
   const events = generateEvents({
     template,
-    startDate: input.startDate,
+    startDate: today,
     cultivationId,
   });
 
-  // Add events to DB
   await db.events.bulkAdd(events as AppEvent[]);
 
-  // Fetch events back to get their IDs, then link reservations
+  // Fetch events back to get their IDs, then link per-event reservations
   const persistedEvents = await db.events.where({ cultivationId }).toArray();
 
   for (const event of persistedEvents) {
@@ -99,7 +162,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     }
   }
 
-  // Reserve "once" consumables (not linked to events, for capacity display)
+  // Reserve "once" consumables
   for (const c of template.consumables) {
     if (c.trigger === "once") {
       await db.stockReservations.add({
@@ -113,10 +176,9 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     }
   }
 
-  // Reserve "per_phase" consumables as well (total)
+  // Reserve "per_phase" consumables
   for (const c of template.consumables) {
     if (c.trigger === "per_phase") {
-      // Count how many unique phases exist
       const phases = template.phases?.length ?? 1;
       await db.stockReservations.add({
         stockKey: c.stockKey,
@@ -129,71 +191,21 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     }
   }
 
-  // Generate shopping items — solo lo que NO tienes ya en stock
-  const allStock = await db.stock.toArray();
-  const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList
-    .filter((s) => {
-      const inStock = allStock.find((st) => st.key === s.key);
-      return !inStock || inStock.qty < s.qty;
-    })
-    .map((s) => ({
-      cultivationId,
-      itemKey: s.key,
-      name: s.name,
-      qty: s.qty,
-      unit: s.unit,
-      category: s.category,
-      approxPrice: s.approxPrice,
-      source: s.source,
-      notes: s.notes,
-      status: "pending" as const,
-      addedAt: new Date(),
-      wikiUrl: s.wikiPhase
-        ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
-        : undefined,
-    }));
-  await db.shoppingList.bulkAdd(shoppingItems as ShoppingItem[]);
-
-  // Generate prep checklist
-  const prepItems: Omit<PrepChecklistItem, "id">[] = template.prepChecklist.map(
-    (p) => ({
-      cultivationId,
-      templateChecklistId: p.id,
-      title: p.title,
-      description: p.description,
-      blocking: p.blocking,
-      estimatedMinutes: p.estimatedMinutes,
-      status: "pending" as const,
-    })
-  );
-  await db.prepChecklists.bulkAdd(prepItems as PrepChecklistItem[]);
-
-  // History log
-  await db.history.add({
-    cultivationId,
-    action: "cultivo.create",
-    payload: { templateId: input.templateId, name: input.name },
-    timestamp: new Date(),
+  // Update cultivation
+  await db.cultivations.update(cultivationId, {
+    status: "active",
+    startDate: today,
   });
 
-  refreshAllNotifications();
-  return {
-    cultivationId,
-    eventCount: events.length,
-    shoppingCount: shoppingItems.length,
-    prepCount: prepItems.length,
-  };
-}
-
-export async function startCultivation(cultivationId: number) {
-  await db.cultivations.update(cultivationId, { status: "active" });
   await db.history.add({
     cultivationId,
     action: "cultivo.start",
-    payload: {},
+    payload: { startDate: today.toISOString() },
     timestamp: new Date(),
   });
+
   refreshAllNotifications();
+  return { eventCount: events.length };
 }
 
 export async function completeCultivation(cultivationId: number) {
@@ -282,7 +294,6 @@ export async function completeEvent(eventId: number) {
     completedAt: new Date(),
   });
 
-  // Decrement stock: consume linked reservations (deducts from stock AND marks reservation consumed)
   if (event.consumesReservationIds?.length) {
     for (const rid of event.consumesReservationIds) {
       await consume(rid);
