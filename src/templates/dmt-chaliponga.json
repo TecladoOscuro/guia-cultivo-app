@@ -1,0 +1,183 @@
+{
+  "id": "dmt-chaliponga",
+  "name": "Chaliponga (Diplopterys cabrerana)",
+  "emoji": "🌿",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 730 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=dmt",
+  "theme": { "primary": "#74a8d8", "bg": "#0a121a" },
+  "phases": [
+    { "id": "compra_dmt_chali", "name": "Compra esqueje", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_dmt" },
+    { "id": "cultivo_chaliponga", "name": "Cultivo Chaliponga", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "cultivo_chaliponga" },
+    { "id": "cosecha_chali", "name": "Cosecha hojas", "emoji": "✂️", "startDayOffset": 365, "endDayOffset": 730, "wikiPhase": "cultivo_chaliponga" }
+  ],
+  "events": [
+    {
+      "id": "plantar_chaliponga",
+      "title": "🌿 Plantar esqueje Chaliponga",
+      "emoji": "🌿",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Diplopterys cabrerana. Trepadora amazónica. Hidratar esqueje 24h en agua tibia antes de plantar. Sustrato: 50% turba + 30% perlita + 20% compost. Maceta 30L mínimo. Tutor vertical obligatorio 1-2m.",
+      "checklistInline": [
+        "Hidratar esqueje 24h en agua tibia",
+        "Maceta 30L+ con tutor vertical",
+        "Sustrato drenado ácido pH 5-6",
+        "NO sol directo — luz indirecta brillante"
+      ],
+      "warningIf": [
+        "Sol directo quema las hojas en horas"
+      ],
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": true
+    },
+    {
+      "id": "trasplante_chali",
+      "title": "🪴 Trasplante a maceta grande (50L)",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 180,
+      "durationMin": 60,
+      "description": "A los 6 meses, si la planta crece bien, trasplantar a maceta 50L o directamente a tierra en invernadero. Renovar sustrato y ampliar tutor.",
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": true
+    },
+    {
+      "id": "cosecha_chali_primera",
+      "title": "✂️ Primera cosecha hojas Chaliponga",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 365,
+      "durationMin": 90,
+      "description": "Año 1-2: vid madura con tallos de 3-5m. Cosechar hojas maduras (>8cm) dejando 50% en la planta. Rendimiento: 30-80g hojas secas/año (suficiente para 2-4 brebajes). Secar al aire en sombra 7-10 días.",
+      "checklistInline": [
+        "Cosechar solo hojas maduras (>8cm)",
+        "Dejar al menos 50% de hojas en la planta",
+        "Secar en sombra ventilada 7-10 días",
+        "Guardar en frasco oscuro hermético"
+      ],
+      "expectedSignals": [
+        "Hojas verde oscuro brillantes = óptimas",
+        "Contiene DMT + 5-MeO-DMT"
+      ],
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "nebulizar_chali",
+      "title": "💧 Nebulizar hojas Chaliponga",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 730,
+      "cadence": { "everyDays": 1, "notes": "1-2 veces al día" },
+      "description": "Mantener humedad ambiental 60-80%. Pulverizar hojas con agua tibia 1-2x/día. NO encharcar sustrato.",
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": false
+    },
+    {
+      "id": "riego_chali",
+      "title": "💧 Riego sustrato Chaliponga",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 7,
+      "endDayOffset": 730,
+      "cadence": { "everyDays": 3, "volumeMl": "500-1000" },
+      "description": "Regar cada 2-4 días según temperatura. Sustrato húmedo pero no encharcado.",
+      "consumes": [{ "stockKey": "agua_destilada", "qty": 800, "unit": "ml", "trigger": "per_event" }],
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": false
+    },
+    {
+      "id": "monitor_temp_chali",
+      "title": "🌡️ Verificar temperatura Chaliponga",
+      "emoji": "🌡️",
+      "type": "monitoring",
+      "startDayOffset": 7,
+      "endDayOffset": 730,
+      "cadence": { "everyDays": 3, "notes": "Cada 2-3 días" },
+      "description": "Temperatura ideal 22-28°C. Por debajo de 15°C = crecimiento lento. Por debajo de 10°C = muerte. España: SOLO interior (ventana sur o invernadero calefactado).",
+      "warningIf": [
+        "<15°C: crecimiento se detiene",
+        "<10°C: daño irreversible"
+      ],
+      "wikiPhase": "cultivo_chaliponga",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    {
+      "key": "esqueje_chaliponga",
+      "name": "Esqueje Diplopterys cabrerana enraizado",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "30-60€",
+      "source": "internet",
+      "notes": "Vendedores etnobotánicos UE. Chaliponga más fácil que Chacruna.",
+      "wikiPhase": "compra_dmt"
+    },
+    {
+      "key": "maceta_30L_chali",
+      "name": "Maceta 30L + tutor vertical",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-35€"
+    },
+    {
+      "key": "sustrato_acido",
+      "name": "Sustrato ácido bien drenado (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "notes": "50% turba + 30% perlita + 20% compost. pH 5-6."
+    },
+    {
+      "key": "agua_destilada",
+      "name": "Agua destilada/desmineralizada (pulverizador)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "3-5€"
+    },
+    {
+      "key": "termohigrometro",
+      "name": "Termohigrómetro digital",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€"
+    }
+  ],
+  "prepChecklist": [
+    {
+      "id": "espacio_tropical_chali",
+      "title": "Espacio interior 22-28°C + humedad 60-80%",
+      "description": "Chaliponga es 100% tropical. Necesita invernadero calefactado o cuarto cálido con humidificador. NO tolera <15°C.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "luz_indirecta",
+      "title": "Luz indirecta brillante (NO sol directo)",
+      "description": "Ventana sur con cortina difusora o luz artificial. Sol directo quema las hojas irreversiblemente.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    }
+  ],
+  "consumables": [
+    { "stockKey": "esqueje_chaliponga", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "maceta_30L_chali", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acido", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_destilada", "qty": 300, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "hojas",
+  "produces": { "kind": "hojas_chaliponga_secas", "unit": "g" }
+}

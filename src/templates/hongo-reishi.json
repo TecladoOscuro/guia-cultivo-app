@@ -2,7 +2,7 @@
   "id": "hongo-reishi",
   "name": "Reishi (Ganoderma lucidum)",
   "emoji": "🍄",
-  "category": "hongos",
+  "category": "hongo",
   "version": 1,
   "totalDuration": { "days": 150 },
   "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=reishi",

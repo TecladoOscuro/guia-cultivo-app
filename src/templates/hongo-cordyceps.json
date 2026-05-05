@@ -2,7 +2,7 @@
   "id": "hongo-cordyceps",
   "name": "Cordyceps militaris",
   "emoji": "🧡",
-  "category": "hongos",
+  "category": "hongo",
   "version": 1,
   "totalDuration": { "days": 80 },
   "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos&phase=cordyceps",

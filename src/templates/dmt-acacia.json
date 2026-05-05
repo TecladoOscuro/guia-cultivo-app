@@ -1,0 +1,170 @@
+{
+  "id": "dmt-acacia",
+  "name": "Acacia confusa (DMT)",
+  "emoji": "🌳",
+  "category": "etnobotanica",
+  "version": 1,
+  "totalDuration": { "days": 1825 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=dmt",
+  "theme": { "primary": "#74a8d8", "bg": "#0a121a" },
+  "phases": [
+    { "id": "compra_dmt_acacia", "name": "Compra semillas", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_dmt" },
+    { "id": "cultivo_acacia", "name": "Cultivo Acacia", "emoji": "🌳", "startDayOffset": 0, "endDayOffset": 1825, "wikiPhase": "cultivo_acacia" }
+  ],
+  "events": [
+    {
+      "id": "germinar_acacia",
+      "title": "🥚 Germinar semillas Acacia confusa",
+      "emoji": "🥚",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Semillas Acacia confusa. Escarificación: lijar la dura cubierta externa. Remojo 24h en agua 40-45°C. Plantar 1cm profundidad en 50% turba + 30% perlita + 20% compost. Germinación: 5-21 días a 25-28°C.",
+      "checklistInline": [
+        "Lijar cubierta de cada semilla",
+        "Remojar 24h agua tibia 40-45°C",
+        "Plantar 1cm profundo",
+        "25-28°C + sustrato húmedo"
+      ],
+      "expectedSignals": [
+        "Día 5: primeras semillas germinan",
+        "Día 21: germinación 50-70% completada"
+      ],
+      "wikiPhase": "cultivo_acacia",
+      "notify": true
+    },
+    {
+      "id": "trasplante_acacia_1",
+      "title": "🪴 Trasplante a maceta 10-20L (mes 6)",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 180,
+      "durationMin": 60,
+      "description": "A los 6 meses, plántulas de 20-40cm. Trasplantar a maceta 10-20L. Acacia desarrolla raíces profundas — asegurar buen drenaje.",
+      "wikiPhase": "cultivo_acacia",
+      "notify": true
+    },
+    {
+      "id": "trasplante_acacia_final",
+      "title": "🏡 Trasplante final a maceta 40-50L o suelo (año 1)",
+      "emoji": "🏡",
+      "type": "milestone",
+      "offsetDays": 365,
+      "durationMin": 90,
+      "description": "Año 1: planta de 1-2m. Trasplantar a maceta 40-50L o directamente a tierra. Tolera heladas hasta -2°C. Pleno sol.",
+      "wikiPhase": "cultivo_acacia",
+      "notify": true
+    },
+    {
+      "id": "cosecha_acacia",
+      "title": "✂️ Cosecha corteza raíz Acacia (año 4-5)",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 1460,
+      "durationMin": 240,
+      "description": "Año 4-5+: árbol maduro. Excavar parcialmente, cortar raíces secundarias (NO la principal). Lavar, pelar corteza externa rojiza (ACRB). Secar 2-4 semanas en sombra ventilada. Rendimiento: 80-200g ACRB seco por cosecha sostenible.",
+      "checklistInline": [
+        "Excavar con cuidado — NO dañar raíz principal",
+        "Cortar solo raíces secundarias accesibles",
+        "Pelar corteza rojiza externa",
+        "Secar 2-4 semanas en sombra ventilada",
+        "Moler y guardar en frasco oscuro hermético"
+      ],
+      "expectedSignals": [
+        "Corteza rojiza = parte activa (1-2% DMT)",
+        "Mayor concentración que Mimosa compensa menor rendimiento"
+      ],
+      "wikiPhase": "cultivo_acacia",
+      "notify": true
+    }
+  ],
+  "recurringTasks": [
+    {
+      "id": "riego_acacia",
+      "title": "💧 Riego Acacia",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 14,
+      "endDayOffset": 1825,
+      "cadence": { "everyDays": 4, "volumeMl": "1000-4000", "notes": "Cada 3-7 días según tamaño y estación" },
+      "description": "Tolerante a sequía pero prefiere riego regular durante crecimiento activo. Reducir en invierno. Verificar humedad del suelo antes de regar.",
+      "consumes": [{ "stockKey": "agua_riego_acacia", "qty": 2000, "unit": "ml", "trigger": "per_event" }],
+      "wikiPhase": "cultivo_acacia",
+      "notify": false
+    },
+    {
+      "id": "poda_acacia",
+      "title": "✂️ Poda de formación Acacia",
+      "emoji": "✂️",
+      "type": "monitoring",
+      "startDayOffset": 365,
+      "endDayOffset": 1825,
+      "cadence": { "everyDays": 365, "notes": "Anual en primavera" },
+      "description": "Podar ramas bajas para fomentar crecimiento vertical. Eliminar ramas muertas o cruzadas. Forma de árbol columnar facilita acceso a raíces para cosecha futura.",
+      "wikiPhase": "cultivo_acacia",
+      "notify": false
+    }
+  ],
+  "shoppingList": [
+    {
+      "key": "semillas_acacia_confusa",
+      "name": "Semillas Acacia confusa (20-30 ud)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-15€",
+      "source": "internet",
+      "notes": "Germinación 50-70% con escarificación. Comprar de más.",
+      "wikiPhase": "compra_dmt"
+    },
+    {
+      "key": "macetas_acacia",
+      "name": "Macetas 10L + 40-50L",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-45€"
+    },
+    {
+      "key": "sustrato_acacia",
+      "name": "Sustrato bien drenado 50L + compost",
+      "qty": 60,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "25-35€"
+    },
+    {
+      "key": "agua_riego_acacia",
+      "name": "Agua de riego",
+      "qty": 1000,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "10-30€"
+    }
+  ],
+  "prepChecklist": [
+    {
+      "id": "espacio_arbol_acacia",
+      "title": "Espacio para árbol (alcanza 2-4m en 5 años)",
+      "description": "Patio, jardín o maceta XL en terraza. Tolera heladas hasta -2°C. Sol pleno.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "clima_acacia",
+      "title": "Clima adecuado (tolera frío mejor que Mimosa)",
+      "description": "Mediterráneo ideal. Centro/norte: exterior mayo-octubre, interior en invierno. Resiste hasta -2°C.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    }
+  ],
+  "consumables": [
+    { "stockKey": "semillas_acacia_confusa", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "macetas_acacia", "qty": 2, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acacia", "qty": 50, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_riego_acacia", "qty": 600, "unit": "L", "trigger": "once" }
+  ],
+  "harvestable": true,
+  "harvestType": "corteza_raiz",
+  "produces": { "kind": "corteza_acacia_seca", "unit": "g" }
+}

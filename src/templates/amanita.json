@@ -9,14 +9,57 @@
   "theme": { "primary": "#c44848", "bg": "#1a0808" },
   "phases": [
     { "id": "compra_amanita", "name": "Equipo", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_amanita" },
+    { "id": "identificacion_amanita", "name": "Identificación", "emoji": "🔬", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "identificacion_amanita" },
     { "id": "recoleccion_amanita", "name": "Recolección bosque", "emoji": "🍂", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "recoleccion_amanita" },
     { "id": "secado_amanita", "name": "Secado + decarbox", "emoji": "🌬️", "startDayOffset": 1, "endDayOffset": 7, "wikiPhase": "secado_amanita" },
-    { "id": "preparacion_amanita", "name": "Preparación té", "emoji": "🍵", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "preparacion_amanita" }
+    { "id": "preparacion_amanita", "name": "Preparación té", "emoji": "🍵", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "preparacion_amanita" },
+    { "id": "conservacion_amanita", "name": "Conservación", "emoji": "🫙", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "conservacion_amanita" }
   ],
   "events": [
     { "id": "salir_bosque", "title": "🌲 Salida forrajeo (otoño bosque conífera/abedul)", "emoji": "🌲", "type": "milestone", "offsetDays": 0, "durationMin": 240, "description": "Otoño octubre-noviembre. Bosques abedules y coníferas. Identificar correctamente: sombrero rojo + verrugas blancas + láminas blancas + anillo. CUIDADO: confusión con A.phalloides MORTAL.", "checklistInline": ["Identificar 100% antes de coger", "Sin contacto si dudas", "Foto + verificar con experto"], "warningIf": ["A.phalloides hepatotóxica MORTAL — verde-oliva sin verrugas"], "wikiPhase": "recoleccion_amanita", "notify": true },
+    {
+      "id": "verificar_identificacion",
+      "title": "🔬 Re-identificar en casa con buena luz",
+      "emoji": "🔬",
+      "type": "monitoring",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "ANTES de procesar: re-identificar CADA seta individualmente. Sombrero rojo intenso con verrugas blancas (restos del velo). Láminas blancas libres. Pie blanco con anillo y bulbo basal con verrugas concéntricas. SOLO bajo abedules/pinos/abetos. Si hay la menor duda: DESCARTAR. Una sola A. phalloides puede ser letal.",
+      "checklistInline": [
+        "Revisar TODAS las setas una a una",
+        "5 características clave: rojo + verrugas + láminas blancas + anillo + bulbo",
+        "Si alguna no cumple TODAS → DESCARTAR",
+        "Consultar con sociedad micológica local si es primer año"
+      ],
+      "warningIf": [
+        "Cualquier seta con tonos verdes/oliva → DESCARTAR INMEDIATAMENTE",
+        "Láminas rosas/marrones → NO es Amanita muscaria",
+        "Sin anillo o sin bulbo → NO recolectar"
+      ],
+      "wikiPhase": "identificacion_amanita",
+      "notify": true
+    },
     { "id": "secado_decarbox", "title": "🌬️ Secado + decarboxilación", "emoji": "🌬️", "type": "preparation", "offsetDays": 1, "durationMin": 120, "description": "Cortar setas en rodajas. Secar al aire 3-5 días o deshidratador 50°C. Decarbox: convierte ácido iboténico (tóxico) en muscimol (psicoactivo). Calor: 80°C 1h o agua acidulada simmer 3h.", "checklistInline": ["Secar completamente primero", "Decarbox antes de consumir SIEMPRE", "80°C 1h horno OR agua pH 2.5-3 simmer 3h"], "warningIf": ["Sin decarbox = mucho ácido iboténico = náuseas + neurotoxicidad"], "wikiPhase": "secado_amanita", "notify": true },
-    { "id": "primera_prep", "title": "🍵 Preparación té primera dosis test", "emoji": "🍵", "type": "preparation", "offsetDays": 8, "durationMin": 60, "description": "DOSIS TEST: 0.1-0.5g cap seca. Té decarbox tradicional. Esperar 2-4h efectos. NO subir dosis primer día.", "wikiPhase": "preparacion_amanita", "notify": true }
+    { "id": "primera_prep", "title": "🍵 Preparación té primera dosis test", "emoji": "🍵", "type": "preparation", "offsetDays": 8, "durationMin": 60, "description": "DOSIS TEST: 0.1-0.5g cap seca. Té decarbox tradicional. Esperar 2-4h efectos. NO subir dosis primer día.",       "wikiPhase": "preparacion_amanita",
+      "notify": true
+    },
+    {
+      "id": "envasar_conservar",
+      "title": "🫙 Envasar para conservación larga duración",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 8,
+      "durationMin": 30,
+      "description": "Setas secas y decarboxiladas: envasar en frasco de vidrio oscuro hermético con sobre de sílica gel. Almacenar en lugar fresco, seco y oscuro. Etiquetar con fecha de procesado y peso. Duración: 1-2 años en frasco hermético, 2-3 años al vacío en nevera, 5+ años al vacío en congelador.",
+      "checklistInline": [
+        "Frasco vidrio oscuro hermético",
+        "1-2 sobres sílica gel dentro",
+        "Etiquetar: fecha + peso seco + lote",
+        "Guardar en armario fresco y oscuro"
+      ],
+      "wikiPhase": "conservacion_amanita",
+      "notify": false
+    }
   ],
   "recurringTasks": [],
   "shoppingList": [

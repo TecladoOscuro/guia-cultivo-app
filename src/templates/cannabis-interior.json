@@ -10,9 +10,14 @@
 
   "phases": [
     { "id": "compra", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra" },
+    { "id": "semillas_int", "name": "Elegir semillas", "emoji": "🌰", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "semillas_int" },
+    { "id": "antes", "name": "Setup armario", "emoji": "🔧", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "antes" },
     { "id": "germinacion", "name": "Germinación", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 7, "wikiPhase": "germinacion" },
     { "id": "vegetativa", "name": "Vegetativa", "emoji": "🌱", "startDayOffset": 7, "endDayOffset": 35, "wikiPhase": "vegetativa" },
+    { "id": "poda", "name": "Poda y entrenamiento", "emoji": "✂️", "startDayOffset": 14, "endDayOffset": 70, "wikiPhase": "poda" },
+    { "id": "goteo", "name": "Riego automático", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 80, "wikiPhase": "goteo" },
     { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 35, "endDayOffset": 80, "wikiPhase": "floracion" },
+    { "id": "plagas_int", "name": "Prevención plagas", "emoji": "🐛", "startDayOffset": 0, "endDayOffset": 90, "wikiPhase": "plagas_int" },
     { "id": "cosecha", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 80, "endDayOffset": 90, "wikiPhase": "cosecha" }
   ],
 
@@ -39,6 +44,92 @@
       ],
       "wikiPhase": "germinacion",
       "notify": true
+    },
+    {
+      "id": "elegir_semillas",
+      "title": "🌰 Elegir variedad de semillas",
+      "emoji": "🌰",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Autoflorecientes (ciclo 70-80 días, no dependen de fotoperiodo) vs Fotodependientes (necesitan 12/12h para florecer, más control). Indica: relajante, baja y frondosa. Sativa: energética, alta y esbelta. Híbrida: mezcla.",
+      "wikiPhase": "semillas_int",
+      "notify": false
+    },
+    {
+      "id": "test_setup_24h",
+      "title": "⚙️ Test setup 24h antes de plantar",
+      "emoji": "⚙️",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Encender todo el sistema 24h y verificar: luces funcionan, timer correcto (20/4 para auto, 18/6 para foto), temperatura 22-28°C, humedad 50-70%, extractor/intractor funcionan, sin fugas de luz en periodo oscuro.",
+      "checklistInline": [
+        "Verificar timer lucea 20/4 o 18/6",
+        "Medir temperatura 22-28°C",
+        "Medir humedad 50-70%",
+        "Extractor e intractor funcionando",
+        "Oscuridad total en periodo OFF (sin LEDs de aparatos)"
+      ],
+      "warningIf": [
+        "Temperatura >30°C con luces → necesita más extracción o AC",
+        "HR <40% → humidificador"
+      ],
+      "wikiPhase": "antes",
+      "notify": true
+    },
+    {
+      "id": "instalar_goteo",
+      "title": "💧 Instalar sistema de riego por goteo",
+      "emoji": "💧",
+      "type": "milestone",
+      "offsetDays": 10,
+      "durationMin": 60,
+      "description": "Sistema goteo autómático: depósito 15-20L + bomba + temporizador + goteros 4L/h (2 por maceta). Programa inicio: NO gotear primeras 2 semanas (plántula manual). Semana 3: 1x/día 3min (~200ml). Aumentar según fase.",
+      "checklistInline": [
+        "Depósito con tapa (evita algas y mosquitos)",
+        "Goteros no apuntan al tallo (riesgo podredumbre)",
+        "Temporizador programable por minutos",
+        "Verificar caudal con prueba antes de instalar"
+      ],
+      "wikiPhase": "goteo",
+      "notify": true
+    },
+    {
+      "id": "poda_apical",
+      "title": "✂️ Poda apical (3er-4to nudo)",
+      "emoji": "✂️",
+      "type": "milestone",
+      "offsetDays": 21,
+      "durationMin": 15,
+      "description": "Cuando planta tiene 4-5 nudos (15-20cm), cortar punta de crecimiento principal entre 3er y 4to nudo. La planta desarrollará 2 puntas principales en lugar de 1 → más cogollos. Usar tijera esterilizada con alcohol.",
+      "checklistInline": [
+        "Esterilizar tijera con alcohol 70%",
+        "Corte limpio entre 3er y 4to nudo",
+        "NO tocar herida con dedos"
+      ],
+      "expectedSignals": [
+        "3-5 días: 2 nuevos brotes laterales crecen",
+        "Planta se ensancha en vez de estirarse"
+      ],
+      "wikiPhase": "poda",
+      "notify": true
+    },
+    {
+      "id": "lst_inicio",
+      "title": "🌿 Iniciar LST (Low Stress Training)",
+      "emoji": "🌿",
+      "type": "milestone",
+      "offsetDays": 14,
+      "durationMin": 20,
+      "description": "Atar tallo principal suavemente hacia un lado con alambre recubierto o bridas. Objetivo: copa plana horizontal para que todas las ramas reciban luz uniforme. NO usar hilo que corte el tallo. Reajustar cada 3-5 días.",
+      "checklistInline": [
+        "Alambre suave recubierto o bridas de jardinería",
+        "No apretar — dejar espacio para crecimiento",
+        "Fijar al borde de la maceta o estacas"
+      ],
+      "wikiPhase": "poda",
+      "notify": false
     },
     {
       "id": "trasplante_veg",
@@ -123,6 +214,66 @@
       "description": "Tras 7-10 días secado, ramas crujen al doblar. Pasar cogollos a frascos cristal sellados. Burping diario primera semana.",
       "wikiPhase": "cosecha",
       "notify": true
+    },
+    {
+      "id": "lst_inicio",
+      "title": "🌿 Iniciar LST (Low Stress Training)",
+      "emoji": "🌿",
+      "type": "monitoring",
+      "offsetDays": 14,
+      "durationMin": 20,
+      "description": "Semana 2 de vegetativa: iniciar LST para controlar altura y maximizar copa horizontal. Atar ramas principales hacia los lados con alambre blando o bridas. Objetivo: copa plana y ancha en vez de vertical.",
+      "checklistInline": [
+        "Usar alambre blando recubierto o bridas",
+        "Doblar tallo principal 45-90° gradualmente",
+        "Fijar ramas en maceta (agujeros o clips)",
+        "Re-ajustar cada 4-7 días según crecimiento"
+      ],
+      "warningIf": [
+        "No doblar más de 90° de golpe — puede romper el tallo",
+        "Tallos gruesos: doblar tras riego (más flexibles)"
+      ],
+      "wikiPhase": "poda",
+      "notify": true
+    },
+    {
+      "id": "lst_ajuste",
+      "title": "🌿 Re-ajustar LST y defoliación baja",
+      "emoji": "🌿",
+      "type": "monitoring",
+      "offsetDays": 21,
+      "durationMin": 15,
+      "description": "Semana 3: re-ajustar ataduras LST. Eliminar 1-2 hojas bajas que tocan el sustrato (riesgo de hongos). NO defoliar agresivamente en vegetativa temprana.",
+      "wikiPhase": "poda",
+      "notify": true
+    },
+    {
+      "id": "instalar_goteo",
+      "title": "💧 Instalar sistema de riego por goteo (opcional)",
+      "emoji": "💧",
+      "type": "milestone",
+      "offsetDays": 14,
+      "durationMin": 120,
+      "description": "OPCIONAL pero recomendado para segundo cultivo. Kit goteo con timer digital (~50€). Instalar: depósito fuera del armario → tubo principal → conector Y → 2 goteros por maceta. Calibrar: medir caudal real de cada gotero (5 min test en vaso). Programar: 3 min/día semana 3-4, 5-7 min/día semana 5-6.",
+      "wikiPhase": "goteo",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_semanal_plagas",
+      "title": "🔍 Inspección semanal de plagas",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "offsetDays": 7,
+      "durationMin": 10,
+      "description": "Revisar TODAS las hojas, especialmente el envés. Buscar: mosquitos (fungus gnats), telarañas finas (araña roja), rayitas plateadas (trips), manchas blancas (oidio). Trampas amarillas pegajosas como alerta temprana.",
+      "checklistInline": [
+        "Examinar envés de hojas jóvenes",
+        "Revisar base del tallo y sustrato",
+        "Verificar trampas amarillas",
+        "Anotar cualquier señal en journal"
+      ],
+      "wikiPhase": "plagas_int",
+      "notify": false
     }
   ],
 
@@ -173,18 +324,15 @@
       "notify": false
     },
     {
-      "id": "fertilizar_flora",
-      "title": "🌸 Fertilizar floración (BioBizz Bloom)",
-      "emoji": "🌸",
-      "type": "feeding",
-      "startDayOffset": 35,
-      "endDayOffset": 70,
-      "cadence": { "everyDays": 7, "volumeMl": "2-4ml/L" },
-      "description": "BioBizz Bloom o equivalente. P+K alto, N bajo. Estimula flores. Última fertilización ~10-14 días antes cosecha.",
-      "consumes": [
-        { "stockKey": "biobizz_bloom", "qty": 8, "unit": "ml", "trigger": "per_event" }
-      ],
-      "wikiPhase": "floracion",
+      "id": "inspeccion_plagas",
+      "title": "🔍 Inspección plagas (semanal)",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 7,
+      "endDayOffset": 80,
+      "cadence": { "everyDays": 7, "notes": "Revisión semanal de hojas y trampas" },
+      "description": "Revisar envés de hojas, trampas amarillas, base del tallo. Alertas: mosquitos pequeños (fungus gnats), puntos amarillos + telaraña (araña roja), rayas plateadas (trips). Actuar inmediato si se detecta.",
+      "wikiPhase": "plagas_int",
       "notify": false
     }
   ],
@@ -269,6 +417,39 @@
       "category": "esencial",
       "approxPrice": "5-15€",
       "notes": "Agua de grifo: dejar reposar 24h en recipiente abierto para evaporar cloro. Mejor: agua osmosis filtrada."
+    },
+    {
+      "key": "kit_goteo",
+      "name": "Kit riego por goteo con timer digital (opcional)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "20-35€",
+      "source": "internet",
+      "notes": "Gardena, ELGo, Rainpoint. Incluye timer, tubo 6mm, goteros. Depósito 15-20L aparte (10-15€).",
+      "wikiPhase": "goteo"
+    },
+    {
+      "key": "trampas_amarillas",
+      "name": "Trampas amarillas adhesivas (pack 10)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Detección temprana de fungus gnats, trips y mosca blanca.",
+      "wikiPhase": "plagas_int"
+    },
+    {
+      "key": "alambre_lst",
+      "name": "Alambre blando recubierto para LST",
+      "qty": 1,
+      "unit": "rollo",
+      "category": "util",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Alternativa: bridas pequeñas o hilo de jardinería.",
+      "wikiPhase": "poda"
     }
   ],
 

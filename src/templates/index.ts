@@ -9,6 +9,8 @@ import cactus from "./cactus.json";
 import amanita from "./amanita.json";
 import ayahuasca from "./ayahuasca.json";
 import dmtMimosa from "./dmt-mimosa.json";
+import dmtChaliponga from "./dmt-chaliponga.json";
+import dmtAcacia from "./dmt-acacia.json";
 import plantasSuaves from "./plantas-suaves.json";
 import plantaSalvia from "./planta-salvia.json";
 import plantaDamiana from "./planta-damiana.json";
@@ -81,6 +83,8 @@ export const templates: Record<string, CultivoTemplate> = {
   amanita: amanita as CultivoTemplate,
   ayahuasca: ayahuasca as CultivoTemplate,
   "dmt-mimosa": dmtMimosa as CultivoTemplate,
+  "dmt-chaliponga": dmtChaliponga as CultivoTemplate,
+  "dmt-acacia": dmtAcacia as CultivoTemplate,
   "plantas-suaves": plantasSuaves as CultivoTemplate,
   "planta-salvia": plantaSalvia as CultivoTemplate,
   "planta-damiana": plantaDamiana as CultivoTemplate,

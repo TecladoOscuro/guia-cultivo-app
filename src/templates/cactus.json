@@ -11,8 +11,10 @@
   "phases": [
     { "id": "compra_cactus", "name": "Compra esqueje", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_cactus" },
     { "id": "germinacion_cactus", "name": "Callusing + plantar", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "germinacion_cactus" },
-    { "id": "cuidados_cactus", "name": "Crecimiento", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 1080, "wikiPhase": "cuidados_cactus" },
-    { "id": "cosecha_cactus", "name": "Primera cosecha posible", "emoji": "✂️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "cosecha_cactus" }
+    { "id": "cuidados_cactus", "name": "Cuidados básicos", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 1095, "wikiPhase": "cuidados_cactus" },
+    { "id": "crecimiento_cactus", "name": "Crecimiento y desarrollo", "emoji": "📏", "startDayOffset": 90, "endDayOffset": 730, "wikiPhase": "crecimiento_cactus" },
+    { "id": "cosecha_cactus", "name": "Primera cosecha posible", "emoji": "✂️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "cosecha_cactus" },
+    { "id": "preparacion_cactus", "name": "Preparación y secado", "emoji": "🌬️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "preparacion_cactus" }
   ],
 
   "events": [
@@ -67,6 +69,57 @@
       "description": "Cuando columna alcance 30-50cm, cortar punta 10-15cm con cuchillo esterilizado. Hacer callusing nuevo esqueje (puedes plantar = clónico).",
       "wikiPhase": "cosecha_cactus",
       "notify": true
+    },
+    {
+      "id": "medicion_crecimiento",
+      "title": "📏 Medir crecimiento mensual",
+      "emoji": "📏",
+      "type": "monitoring",
+      "offsetDays": 60,
+      "durationMin": 5,
+      "description": "Medir altura y diámetro de la columna principal. Anotar en journal. Crecimiento saludable: 2-5cm/mes en verano. Menos de 1cm/mes = falta luz o nutrientes. Si aparecen brotes basales (hijuelos): excelente salud.",
+      "expectedSignals": [
+        "2-5cm/mes en verano = excelente ritmo",
+        "Brotes basales = cactus maduro y feliz",
+        "Color verde intenso uniforme = salud óptima"
+      ],
+      "warningIf": [
+        "Crecimiento débil y fino sin espinas robustas = FALTA LUZ",
+        "0 crecimiento en verano = problema grave (raíces? sustrato?)"
+      ],
+      "wikiPhase": "crecimiento_cactus",
+      "notify": false
+    },
+    {
+      "id": "trasplante_crecimiento",
+      "title": "🪴 Trasplante a maceta mayor (cuando necesario)",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 365,
+      "durationMin": 30,
+      "description": "Cuando columna duplique altura o raíces salgan por drenaje: trasplantar a maceta 5-10cm más ancha. Mejor en primavera. Sustrato fresco misma mezcla (70% cactus + 30% perlita). NO regar 1-2 semanas post trasplante.",
+      "wikiPhase": "crecimiento_cactus",
+      "notify": false
+    },
+    {
+      "id": "preparacion_cosecha",
+      "title": "🔪 Preparar material cosechado",
+      "emoji": "🔪",
+      "type": "preparation",
+      "offsetDays": 730,
+      "durationMin": 120,
+      "description": "Procesado post-cosecha: 1) Lavar columna con agua fría. 2) Quitar espinas (mechero o cuchillo). 3) Cortar en rodajas de 1-2cm. 4) Pelar piel verde externa (1-2mm), descartar núcleo blanco. 5) Secar en lugar oscuro ventilado 1-3 semanas hasta quebradizo. 6) Moler a polvo fino. 7) Guardar en frasco hermético opaco (dura 2-5 años).",
+      "checklistInline": [
+        "Lavar columna con agua fría",
+        "Retirar espinas con mechero o cuchillo",
+        "Cortar rodajas 1-2cm",
+        "Pelar capa verde externa (rica en mescalina)",
+        "Secar en oscuridad ventilada 1-3 semanas",
+        "Moler a polvo fino",
+        "Frasco hermético opaco + lugar fresco"
+      ],
+      "wikiPhase": "preparacion_cactus",
+      "notify": false
     }
   ],
 

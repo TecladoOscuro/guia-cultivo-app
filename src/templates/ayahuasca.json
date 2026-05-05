@@ -11,13 +11,69 @@
     { "id": "compra_aya", "name": "Compra plantas", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_aya" },
     { "id": "cultivo_caapi", "name": "Cultivo Caapi", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "cultivo_caapi" },
     { "id": "cultivo_chacruna", "name": "Cultivo Chacruna", "emoji": "🍃", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "cultivo_chacruna" },
-    { "id": "preparacion_brebaje", "name": "Preparación brebaje", "emoji": "🍵", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "preparacion_brebaje" }
+    { "id": "cuidados_aya", "name": "Cuidados y clima", "emoji": "🌡️", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "cuidados_aya" },
+    { "id": "preparacion_brebaje", "name": "Preparación brebaje", "emoji": "🍵", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "preparacion_brebaje" },
+    { "id": "ceremonia_aya", "name": "Ceremonia y protocolo", "emoji": "🕯️", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "ceremonia_aya" }
   ],
   "events": [
     { "id": "plantar_caapi", "title": "🌿 Plantar esquejes Caapi", "emoji": "🌿", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Banisteriopsis caapi. Trepadora tropical. Maceta 25-30L con tutor o pared. Sustrato rico bien drenado. Necesita >18°C constante (interior España).", "wikiPhase": "cultivo_caapi", "notify": true },
     { "id": "plantar_chacruna", "title": "🍃 Plantar esquejes Chacruna", "emoji": "🍃", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Psychotria viridis. Arbusto tropical. Maceta 15-20L. Humedad alta + sombra parcial + >20°C. Más exigente que caapi.", "wikiPhase": "cultivo_chacruna", "notify": true },
     { "id": "primera_cosecha_caapi", "title": "✂️ Primera cosecha vid Caapi", "emoji": "✂️", "type": "harvest", "offsetDays": 730, "durationMin": 90, "description": "Año 2-3 vid alcanza 3-5m. Cortar tallos para preparar brebaje. NO cortar planta entera (regenera).", "wikiPhase": "cultivo_caapi", "notify": false },
-    { "id": "primera_cosecha_chacruna", "title": "✂️ Primera cosecha hojas Chacruna", "emoji": "✂️", "type": "harvest", "offsetDays": 1095, "durationMin": 60, "description": "Año 3+ arbusto produce hojas suficientes. Recolectar hojas maduras verdes oscuras. NO desnudar planta.", "wikiPhase": "cultivo_chacruna", "notify": false }
+    { "id": "primera_cosecha_chacruna", "title": "✂️ Primera cosecha hojas Chacruna", "emoji": "✂️", "type": "harvest", "offsetDays": 1095, "durationMin": 60, "description": "Año 3+ arbusto produce hojas suficientes. Recolectar hojas maduras verdes oscuras. NO desnudar planta.",       "wikiPhase": "cultivo_chacruna",
+      "notify": false
+    },
+    {
+      "id": "control_clima_tropical",
+      "title": "🌡️ Verificar clima tropical (semanal)",
+      "emoji": "🌡️",
+      "type": "monitoring",
+      "offsetDays": 30,
+      "durationMin": 5,
+      "description": "Verificar condiciones tropicales: temperatura 22-28°C (nunca <18°C), humedad 70-90% (crítico para Chacruna). Si humedad <60%: humidificador o bandeja agua. Pulverizar hojas 1-2x/día. Rotar macetas 90° cada 2 semanas.",
+      "wikiPhase": "cuidados_aya",
+      "notify": false
+    },
+    {
+      "id": "dieta_pre_ceremonia",
+      "title": "🍽️ Iniciar dieta pre-ceremonia (7 días antes)",
+      "emoji": "🍽️",
+      "type": "preparation",
+      "offsetDays": 1088,
+      "durationMin": 0,
+      "description": "7 DÍAS ANTES DE LA CEREMONIA — eliminar de la dieta:\n❌ Quesos curados, embutidos, pescado ahumado\n❌ Vino tinto/cerveza, soja fermentada (miso, salsa soja)\n❌ Chucrut/kimchi, plátanos/aguacate muy maduros\n❌ Café/cafeína (últimas 24h), chocolate negro\n\n✅ Comer: verduras frescas, arroz, quinoa, legumbres, fruta fresca, agua\n\nÚltima comida: 6-8h antes de la ceremonia.",
+      "checklistInline": [
+        "Eliminar alimentos fermentados/curados",
+        "Sin alcohol ni cafeína",
+        "Dieta ligera vegetal",
+        "Ayuno 6-8h antes de ceremonia"
+      ],
+      "wikiPhase": "ceremonia_aya",
+      "notify": true
+    },
+    {
+      "id": "ceremonia_aya_event",
+      "title": "🕯️ Ceremonia de Ayahuasca",
+      "emoji": "🕯️",
+      "type": "session",
+      "offsetDays": 1095,
+      "durationMin": 480,
+      "description": "DÍA DE LA CEREMONIA (4-6h de experiencia + preparación):\n\n📋 ANTES:\n• Preparar espacio: oscuro/semioscuro, cojines/colchoneta, cubo, agua, papel/pañuelos\n• Intención escrita clara\n• Sin teléfono ni distracciones\n• Música: icaros, ambiental o silencio\n\n⏱️ FASES:\n• 0-30min: Beber (sabor amargo), posible náusea\n• 30-60min: Inicio, meditativo, posible primera purga\n• 1-2h: PICO — visiones ojos cerrados, introspección profunda\n• 2-4h: Descenso gradual, insights\n• 4-6h: Fin, fatiga física, claridad mental\n\n👥 SITTER: persona sobria presente toda la ceremonia. Funciones: tranquilizar, agua/manta, llamar emergencias si reacción severa.\n\nDías 1-7 post: integración y journaling.",
+      "checklistInline": [
+        "Espacio preparado (oscuro, cómodo, seguro)",
+        "Cubo y agua a mano",
+        "Intención escrita",
+        "Sitter sobrio presente",
+        "Sin teléfono ni distracciones",
+        "Bloquear 8-10h ininterrumpidas"
+      ],
+      "warningIf": [
+        "NO tomar si: crisis emocional aguda, depresión severa, paranoia activa",
+        "NO tomar si: embarazo, lactancia, diagnóstico psiquiátrico",
+        "NO mezclar con: alcohol, otras drogas, medicación SSRI/IMAO"
+      ],
+      "wikiPhase": "ceremonia_aya",
+      "notify": true
+    }
   ],
   "recurringTasks": [
     { "id": "riego_caapi", "title": "💧 Riego Caapi", "emoji": "💧", "type": "watering", "startDayOffset": 7, "endDayOffset": 1095, "cadence": { "everyDays": 3, "volumeMl": "500-1000", "notes": "Mantener humedad alta. NO encharcar." }, "description": "Cada 2-4 días. Sustrato húmedo no encharcado. Pulverizar hojas con frecuencia (humedad ambiental 70%+).", "consumes": [{ "stockKey": "agua_riego", "qty": 700, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "cuidados_aya", "notify": false },
@@ -33,7 +89,7 @@
   ],
   "prepChecklist": [
     { "id": "espacio_tropical", "title": "Espacio interior 20-28°C año redondo", "description": "Caapi/chacruna NO toleran <18°C. Invernadero o cuarto cálido.", "blocking": true, "estimatedMinutes": 60 },
-    { "id": "humidificacion", "title": "Sistema humidificación 70%+ humedad", "description": "Humidificador o bandejas agua. Pulverizar hojas frecuente.", "blocking": false, "estimatedMinutes": 30 }
+    { "id": "humedad_tropical", "title": "Sistema humidificación 70%+ humedad", "description": "Humidificador o bandejas agua. Pulverizar hojas frecuente. Chacruna MUERE con <50% humedad.", "blocking": true, "estimatedMinutes": 30 }
   ],
   "consumables": [
     { "stockKey": "esqueje_caapi", "qty": 1, "unit": "ud", "trigger": "once" },

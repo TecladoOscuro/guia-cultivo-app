@@ -12,7 +12,9 @@
     { "id": "compra_trufas", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_trufas" },
     { "id": "inoculacion_trufas", "name": "Inoculación", "emoji": "💉", "startDayOffset": 0, "endDayOffset": 3, "wikiPhase": "inoculacion_trufas" },
     { "id": "incubacion_trufas", "name": "Incubación", "emoji": "🔮", "startDayOffset": 3, "endDayOffset": 90, "wikiPhase": "incubacion_trufas" },
-    { "id": "cosecha_trufas", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 90, "endDayOffset": 110, "wikiPhase": "cosecha_trufas" }
+    { "id": "cosecha_trufas", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 90, "endDayOffset": 110, "wikiPhase": "cosecha_trufas" },
+    { "id": "preparacion_trufas", "name": "Preparación", "emoji": "🍵", "startDayOffset": 95, "endDayOffset": 110, "wikiPhase": "preparacion_trufas" },
+    { "id": "conservacion_trufas", "name": "Conservación", "emoji": "🫙", "startDayOffset": 95, "endDayOffset": 110, "wikiPhase": "conservacion_trufas" }
   ],
 
   "events": [
@@ -87,6 +89,40 @@
       ],
       "wikiPhase": "cosecha_trufas",
       "notify": true
+    },
+    {
+      "id": "secar_trufas",
+      "title": "🌬️ Secar trufas (si no se consumen frescas)",
+      "emoji": "🌬️",
+      "type": "preparation",
+      "offsetDays": 95,
+      "durationMin": 30,
+      "description": "Trufas frescas contienen ~70% agua. Para conservar: secar en deshidratador a 35-40°C durante 12-24h o al aire en lugar oscuro ventilado 3-5 días. Deben quedar totalmente duras (cracker dry). 1g seco ≈ 5g frescos. Guardar inmediatamente en frasco hermético con sílica gel.",
+      "checklistInline": [
+        "Deshidratador 35-40°C 12-24h o aire oscuro 3-5 días",
+        "Deben estar completamente duras y quebradizas",
+        "Pesar peso seco (anotar en journal)",
+        "NO almacenar si queda humedad residual"
+      ],
+      "wikiPhase": "preparacion_trufas",
+      "notify": false
+    },
+    {
+      "id": "envasar_trufas",
+      "title": "🫙 Envasar y conservar trufas",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 97,
+      "durationMin": 20,
+      "description": "Conservación de trufas secas: frasco vidrio oscuro hermético + sobre sílica gel. Guardar en lugar fresco (<25°C) y oscuro. Frescas en nevera: 4-8 semanas en papel absorbente dentro de bolsa papel. En miel cruda: 6-12 meses (cubrir completamente). En chocolate: 3-6 meses en nevera. Etiquetar con fecha y peso.",
+      "checklistInline": [
+        "Frasco vidrio oscuro con cierre hermético",
+        "Sobre sílica gel dentro del frasco",
+        "Etiquetar: especie, peso, fecha",
+        "Guardar en lugar oscuro y fresco (<25°C)"
+      ],
+      "wikiPhase": "conservacion_trufas",
+      "notify": false
     }
   ],
 
