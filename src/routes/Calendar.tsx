@@ -249,6 +249,8 @@ function EventDetailModal({
   onEdit: () => void;
   onDelete: () => void;
 }) {
+  const sections = parseEventDescription(event.description);
+
   return (
     <div
       className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50"
@@ -262,17 +264,55 @@ function EventDetailModal({
           <div>
             <div className="text-3xl mb-1">{event.emoji}</div>
             <h2 className="text-lg font-bold text-text-bright">{event.title}</h2>
-            <div className="text-xs text-text-muted">
+            <div className="text-xs text-text-muted mt-1">
               {cultivation?.name} · {format(event.scheduledDate, "PP", { locale: es })}
               {event.status === "done" && " · ✅ hecho"}
             </div>
           </div>
-          <button onClick={onClose} className="text-text-muted hover:text-text-bright text-xl">
+          <button onClick={onClose} className="text-text-muted hover:text-text-bright text-xl shrink-0">
             ✕
           </button>
         </div>
 
-        <div className="text-sm whitespace-pre-line mb-4">{event.description}</div>
+        {sections.main && (
+          <p className="text-sm text-text-bright mb-3">{sections.main}</p>
+        )}
+
+        {sections.steps.length > 0 && (
+          <div className="mb-3">
+            <h3 className="text-xs font-bold text-accent uppercase tracking-wide mb-1">Pasos</h3>
+            <ul className="grid gap-1">
+              {sections.steps.map((s, i) => (
+                <li key={i} className="text-sm flex items-start gap-2">
+                  <input type="checkbox" className="mt-1 accent-accent" readOnly tabIndex={-1} />
+                  <span className="text-text-bright">{s}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {sections.signals.length > 0 && (
+          <div className="mb-3 p-3 border border-success/30 bg-success/5 rounded">
+            <h3 className="text-xs font-bold text-success uppercase tracking-wide mb-1">Señales esperadas</h3>
+            <ul className="grid gap-1">
+              {sections.signals.map((s, i) => (
+                <li key={i} className="text-sm text-success">✅ {s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {sections.warnings.length > 0 && (
+          <div className="mb-3 p-3 border border-error/30 bg-error/5 rounded">
+            <h3 className="text-xs font-bold text-error uppercase tracking-wide mb-1">⚠️ Atención</h3>
+            <ul className="grid gap-1">
+              {sections.warnings.map((s, i) => (
+                <li key={i} className="text-sm text-error">⚠ {s}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {event.wikiUrl && (
           <a
@@ -285,25 +325,69 @@ function EventDetailModal({
           </a>
         )}
 
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap mt-2">
           {event.status !== "done" && (
-            <button onClick={onDone} className="px-4 py-2 bg-success text-bg rounded font-bold">
+            <button onClick={onDone} className="px-4 py-2 bg-success text-bg rounded font-bold text-sm">
               ✅ Hecho
             </button>
           )}
-          <button onClick={onEdit} className="px-4 py-2 border border-border rounded hover:border-accent">
+          <button onClick={onEdit} className="px-3 py-2 border border-border rounded hover:border-accent text-sm">
             ✏️ Editar
           </button>
-          <button onClick={onDelete} className="px-4 py-2 border border-error text-error rounded hover:bg-error/10">
+          <button onClick={onDelete} className="px-3 py-2 border border-error text-error rounded hover:bg-error/10 text-sm">
             🗑️ Borrar
           </button>
-          <button onClick={onClose} className="px-4 py-2 border border-border rounded ml-auto">
+          <button onClick={onClose} className="px-3 py-2 border border-border rounded ml-auto text-sm">
             Cerrar
           </button>
         </div>
       </div>
     </div>
   );
+}
+
+function parseEventDescription(desc: string) {
+  const sections: { main: string; steps: string[]; signals: string[]; warnings: string[] } = {
+    main: "",
+    steps: [],
+    signals: [],
+    warnings: [],
+  };
+
+  const lines = desc.split("\n");
+  let currentSection: "main" | "steps" | "signals" | "warnings" = "main";
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+
+    if (trimmed.startsWith("**Pasos:**")) {
+      currentSection = "steps";
+      continue;
+    }
+    if (trimmed.startsWith("**Señales esperadas:**")) {
+      currentSection = "signals";
+      continue;
+    }
+    if (trimmed.startsWith("**⚠️ Atención si:**")) {
+      currentSection = "warnings";
+      continue;
+    }
+
+    const clean = trimmed
+      .replace(/^- /, "")
+      .replace(/^- ✅ /, "")
+      .replace(/^\*\*/, "")
+      .replace(/\*\*$/, "");
+
+    if (currentSection === "main") {
+      sections.main = sections.main ? `${sections.main}\n${clean}` : clean;
+    } else {
+      sections[currentSection].push(clean);
+    }
+  }
+
+  return sections;
 }
 
 function EventForm({

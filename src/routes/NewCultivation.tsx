@@ -180,6 +180,7 @@ export default function NewCultivation() {
               onChange={(e) => setStartDate(e.target.value)}
               className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
             />
+            <span className="text-xs text-text-muted">Ponla para cuando tengas todo listo. Si te faltan compras, pon una fecha futura para no ir a contrarreloj.</span>
           </label>
           <label className="grid gap-1">
             <span className="text-xs text-text-muted">Notas (opcional)</span>
@@ -214,44 +215,49 @@ export default function NewCultivation() {
             Pre-flight check de stock
           </h2>
           {stockCheck.ok ? (
-            <div className="p-4 border border-success rounded">
-              ✅ Tienes todo el stock necesario.
+            <div className="p-3 border border-success rounded text-sm">
+              ✅ Tienes todo. La lista de compras quedará vacía.
             </div>
           ) : (
-            <div className="p-4 border border-warn rounded">
-              ⚠️ Falta stock. Puedes confirmar igualmente; la falta se añadirá a tu shopping list.
+            <div className="p-3 border border-warn rounded text-sm">
+              ⚠️ Te falta algo. Solo lo que no tengas en stock irá a la lista de compras.
             </div>
           )}
           <div className="grid gap-2">
-            <h3 className="text-sm font-bold text-text-bright">Consumo total estimado:</h3>
             {stockCheck.total.map((t) => {
               const m = stockCheck.missing.find((m) => m.stockKey === t.stockKey);
+              const hasStock = !m;
               return (
                 <div
                   key={t.stockKey}
                   className={`flex justify-between p-3 border rounded ${
-                    m ? "border-warn" : "border-border"
+                    m ? "border-warn" : "border-success/40 bg-success/5"
                   }`}
                 >
                   <div>
-                    <div className="font-bold">{t.stockKey}</div>
+                    <div className="font-bold text-sm">{t.stockKey}</div>
                     <div className="text-xs text-text-muted">
                       Necesitas: {t.need}{t.unit}
                     </div>
                   </div>
-                  {m && (
-                    <div className="text-right text-warn text-xs">
-                      Tienes: {m.have}{m.unit}
-                      <br />
-                      Faltan: {(m.need - m.have).toFixed(1)}{m.unit}
-                    </div>
-                  )}
+                  <div className="text-right text-xs">
+                    {hasStock ? (
+                      <span className="text-success">✅ Ya lo tienes</span>
+                    ) : (
+                      <span className="text-warn">
+                        Tienes: {m!.have}{m!.unit}
+                        <br />
+                        Faltan: {(m!.need - m!.have).toFixed(1)}{m!.unit}
+                      </span>
+                    )}
+                  </div>
                 </div>
               );
             })}
           </div>
           <div className="p-3 border border-accent/40 bg-accent/5 rounded text-xs">
-            ℹ️ Al confirmar: cultivo se crea en estado <strong>activo</strong>, eventos se generan en el calendario, y el stock necesario queda <strong>reservado</strong> (no consumido aún — solo se descuenta al marcar evento "✅ Hecho").
+            ℹ️ <strong>Lo que ya tienes:</strong> se reserva del stock (no se descuenta hasta marcar "✅ Hecho").<br />
+            <strong>Lo que falte:</strong> irá a la lista de compras. Al marcarlo comprado, entrará al stock automáticamente.
           </div>
           <div className="flex gap-2 mt-2">
             <button
