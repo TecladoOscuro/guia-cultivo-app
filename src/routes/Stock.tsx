@@ -410,12 +410,16 @@ function CapacityInfo() {
 
   if (stocks.length === 0 || data.length === 0) return null;
 
-  const canDo = data.filter((d) => d.result.capacity > 0);
+  // Solo mostrar templates con capacidad concreta (ignorar ∞ = no tienen consumibles)
+  const canDo = data
+    .filter((d) => d.result.capacity > 0 && d.result.capacity !== Infinity)
+    .sort((a, b) => b.result.capacity - a.result.capacity);
+
   if (canDo.length === 0) return null;
 
   return (
     <div className="mt-4">
-      <h3 className="text-sm font-bold text-text-bright mb-2 uppercase tracking-wide">🎯 ¿Qué puedes cultivar?</h3>
+      <h3 className="text-sm font-bold text-text-bright mb-2 uppercase tracking-wide">🎯 Con tu stock puedes empezar</h3>
       <div className="grid gap-2">
         {canDo.map(({ template, result }) => (
           <div key={template.id} className="p-3 border border-border rounded flex justify-between items-center gap-2">
@@ -423,12 +427,12 @@ function CapacityInfo() {
               <div className="font-bold text-text-bright text-sm">{template.emoji} {template.name}</div>
               {result.bottleneck && (
                 <div className="text-xs text-text-muted">
-                  Limitante: <span className="text-warn">{result.bottleneck.key}</span> ({result.bottleneck.have}{result.bottleneck.unit} de {result.bottleneck.need}{result.bottleneck.unit})
+                  Lo que menos te sobra: <span className="text-warn">{result.bottleneck.key}</span> ({result.bottleneck.have}{result.bottleneck.unit} de {result.bottleneck.need}{result.bottleneck.unit})
                 </div>
               )}
             </div>
             <div className="text-lg font-bold text-accent shrink-0">
-              ×{result.capacity === Infinity ? "∞" : result.capacity}
+              ×{result.capacity}
             </div>
           </div>
         ))}
