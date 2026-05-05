@@ -36,29 +36,30 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     createdAt: new Date(),
   })) as number;
 
-  // Generate shopping items — solo lo que NO tienes ya en stock
+  // Generate shopping items — todos, pero marcamos los cubiertos por stock
   const allStock = await db.stock.toArray();
-  const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList
-    .filter((s) => {
+  const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList.map(
+    (s) => {
       const inStock = allStock.find((st) => st.key === s.key);
-      return !inStock || inStock.qty < s.qty;
-    })
-    .map((s) => ({
-      cultivationId,
-      itemKey: s.key,
-      name: s.name,
-      qty: s.qty,
-      unit: s.unit,
-      category: s.category,
-      approxPrice: s.approxPrice,
-      source: s.source,
-      notes: s.notes,
-      status: "pending" as const,
-      addedAt: new Date(),
-      wikiUrl: s.wikiPhase
-        ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
-        : undefined,
-    }));
+      const covered = inStock && inStock.qty >= s.qty;
+      return {
+        cultivationId,
+        itemKey: s.key,
+        name: s.name,
+        qty: s.qty,
+        unit: s.unit,
+        category: s.category,
+        approxPrice: s.approxPrice,
+        source: s.source,
+        notes: s.notes,
+        status: covered ? "purchased" as const : "pending" as const,
+        addedAt: new Date(),
+        wikiUrl: s.wikiPhase
+          ? `${template.wikiBase ?? ""}&phase=${s.wikiPhase}`
+          : undefined,
+      };
+    }
+  );
   await db.shoppingList.bulkAdd(shoppingItems as ShoppingItem[]);
 
   // Generate prep checklist

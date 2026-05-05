@@ -20,6 +20,7 @@ export default function CultivoDetail() {
   const prepItems = useLiveQuery(() => (cultivationId ? db.prepChecklists.where({ cultivationId }).toArray() : []), [id]) ?? [];
   const journals = useLiveQuery(() => (cultivationId ? db.journal.where({ cultivationId }).reverse().sortBy("date") : []), [id]) ?? [];
   const harvests = useLiveQuery(() => (cultivationId ? db.harvests.where({ cultivationId }).toArray() : []), [id]) ?? [];
+  const stocks = useLiveQuery(() => db.stock.toArray(), []) ?? [];
 
   const [actionBusy, setActionBusy] = useState(false);
 
@@ -122,30 +123,50 @@ export default function CultivoDetail() {
         </div>
       )}
 
-      {/* Start button for planning cultivations */}
-      {cultivation.status === "planning" && (
-        <button
-          onClick={async () => {
-            const ok = await confirmDialog({
-              title: "Iniciar cultivo",
-              message: `¿Iniciar "${cultivation.name}" ahora?\n\nSe generarán los eventos en el calendario a partir de hoy y se reservará el stock necesario.`,
-              confirmLabel: "🚀 Iniciar",
-            });
-            if (!ok) return;
-            setActionBusy(true);
-            try {
-              await startCultivation(cultivationId);
-            } catch (e) {
-              // ignore — component will re-render with new status
-            }
-            setActionBusy(false);
-          }}
-          disabled={actionBusy}
-          className="w-full p-4 mb-4 bg-accent text-bg rounded-lg font-bold text-base hover:brightness-110 transition active:scale-[0.98] disabled:opacity-50"
-        >
-          🚀 Iniciar cultivo — empezar hoy
-        </button>
-      )}
+      {/* Start button for planning cultivations — blocked until essentials ready */}
+      {cultivation.status === "planning" && (() => {
+        const essentials = computeReadiness(shopItems, prepItems, stocks);
+        const canStart = essentials.missing.length === 0;
+
+        return (
+          <div className="mb-4">
+            {!canStart && (
+              <div className="p-3 border border-warn/50 bg-warn/5 rounded text-xs mb-2">
+                <div className="font-bold text-warn mb-1">⚠️ Antes de iniciar necesitas:</div>
+                <ul className="grid gap-0.5">
+                  {essentials.missing.map((m, i) => (
+                    <li key={i} className="text-text-muted">• {m}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <button
+              onClick={async () => {
+                if (!canStart) return;
+                const ok = await confirmDialog({
+                  title: "Iniciar cultivo",
+                  message: `¿Iniciar "${cultivation.name}" ahora?\n\nSe generarán los eventos en el calendario a partir de hoy y se reservará el stock necesario.`,
+                  confirmLabel: "🚀 Iniciar",
+                });
+                if (!ok) return;
+                setActionBusy(true);
+                try {
+                  await startCultivation(cultivationId);
+                } catch (_) {}
+                setActionBusy(false);
+              }}
+              disabled={actionBusy || !canStart}
+              className={`w-full p-4 rounded-lg font-bold text-base transition active:scale-[0.98] disabled:opacity-50 ${
+                canStart
+                  ? "bg-accent text-bg hover:brightness-110"
+                  : "bg-bg-3 text-text-muted border border-border cursor-not-allowed"
+              }`}
+            >
+              {canStart ? "🚀 Iniciar cultivo — empezar hoy" : "🔒 Te faltan cosas para iniciar"}
+            </button>
+          </div>
+        );
+      })()}
 
       {/* Prep checklist — recordatorio, no bloquea */}
       {(cultivation.status === "active" || cultivation.status === "planning") && prepItems.length > 0 && (
@@ -157,7 +178,7 @@ export default function CultivoDetail() {
       {/* Shopping list for this cultivation */}
       {shopItems.length > 0 && (
         <DetailSection title="🛒 Compras de este cultivo" emoji="🛒">
-          <ShoppingSection items={shopItems} />
+          <ShoppingSection items={shopItems} stocks={stocks} />
         </DetailSection>
       )}
 
@@ -312,7 +333,7 @@ function PrepSection({ items }: { items: PrepChecklistItem[] }) {
   );
 }
 
-function ShoppingSection({ items }: { items: ShoppingItem[] }) {
+function ShoppingSection({ items, stocks }: { items: ShoppingItem[]; stocks: Stock[] }) {
   const markPurchased = async (item: ShoppingItem) => {
     if (item.id === undefined) return;
     await db.shoppingList.update(item.id, { status: "purchased", purchasedAt: new Date() });
@@ -330,27 +351,44 @@ function ShoppingSection({ items }: { items: ShoppingItem[] }) {
 
   return (
     <div className="grid gap-2">
-      {pendingItems.map((it) => (
-        <div key={it.id} className="flex justify-between items-center gap-2 p-2 border border-border rounded">
-          <div className="flex-1 min-w-0">
-            <div className="text-sm text-text-bright">{it.name}</div>
-            <div className="text-xs text-text-muted">{it.qty}{it.unit}{it.approxPrice ? ` · ${it.approxPrice}` : ""}</div>
+      {pendingItems.length === 0 && purchasedItems.length === 0 && (
+        <div className="text-xs text-text-muted">Sin compras necesarias.</div>
+      )}
+
+      {pendingItems.map((it) => {
+        const inStock = stocks.find((s) => s.key === it.itemKey);
+        return (
+          <div key={it.id} className="flex justify-between items-center gap-2 p-2 border border-border rounded">
+            <div className="flex-1 min-w-0">
+              <div className="text-sm text-text-bright">{it.name}</div>
+              <div className="text-xs text-text-muted">
+                {it.qty}{it.unit}{it.approxPrice ? ` · ${it.approxPrice}` : ""}
+                {inStock && ` · 📦 tienes ${inStock.qty}${inStock.unit}`}
+              </div>
+            </div>
+            <button
+              onClick={() => markPurchased(it)}
+              className="px-2 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap"
+            >
+              🛒 Comprado
+            </button>
           </div>
-          <button
-            onClick={() => markPurchased(it)}
-            className="px-2 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap"
-          >
-            🛒 Comprado
-          </button>
-        </div>
-      ))}
+        );
+      })}
+
       {purchasedItems.length > 0 && (
-        <details className="text-xs text-text-muted">
-          <summary className="cursor-pointer">Comprados ({purchasedItems.length})</summary>
+        <details className="text-xs">
+          <summary className="cursor-pointer text-text-muted">✅ Cubierto ({purchasedItems.length})</summary>
           <div className="mt-2 grid gap-1">
-            {purchasedItems.map((it) => (
-              <div key={it.id} className="line-through opacity-60">{it.name} · {it.qty}{it.unit}</div>
-            ))}
+            {purchasedItems.map((it) => {
+              const autoCovered = !it.purchasedAt; // auto-marked at creation because stock existed
+              return (
+                <div key={it.id} className="p-2 border border-success/30 bg-success/5 rounded text-sm flex justify-between">
+                  <span className="text-success">{it.name} · {it.qty}{it.unit}</span>
+                  <span className="text-xs text-success/70">{autoCovered ? "ya lo tenías" : "comprado"}</span>
+                </div>
+              );
+            })}
           </div>
         </details>
       )}
@@ -418,4 +456,30 @@ function HarvestSection({ harvests }: { harvests: Harvest[] }) {
       <Link to="/harvests" className="text-xs text-accent hover:underline">Registrar cosecha →</Link>
     </div>
   );
+}
+
+function computeReadiness(
+  shopItems: ShoppingItem[],
+  prepItems: PrepChecklistItem[],
+  stocks: Stock[],
+): { missing: string[] } {
+  const missing: string[] = [];
+
+  // Blocking prep items not done
+  const blockingPending = prepItems.filter((p) => p.blocking && p.status !== "done");
+  for (const p of blockingPending) {
+    missing.push(`Preparación: ${p.title}`);
+  }
+
+  // Essential shopping items not covered by stock
+  const essentialItems = shopItems.filter((s) => s.category === "esencial" && s.status !== "purchased");
+  for (const s of essentialItems) {
+    const inStock = stocks.find((st) => st.key === s.itemKey);
+    if (!inStock || inStock.qty < s.qty) {
+      const have = inStock ? ` (tienes ${inStock.qty}${inStock.unit})` : " (no tienes)";
+      missing.push(`${s.name}: necesitas ${s.qty}${s.unit}${have}`);
+    }
+  }
+
+  return { missing };
 }
