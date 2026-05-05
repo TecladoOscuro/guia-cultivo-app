@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 
 const ITEMS = [
-  { emoji: "🧮", label: "Calculadoras", to: "/calculators", desc: "Fresco↔seco, dosis, ABV, decarbox" },
+  { emoji: "📔", label: "Journal", to: "/journal", desc: "Fotos y notas por cultivo" },
+  { emoji: "🧮", label: "Calculadoras", to: "/calculators", desc: "Fresco↔seco, dosis, ABV" },
   { emoji: "🔍", label: "Diagnóstico", to: "/diagnostic", desc: "¿Qué le pasa al cultivo?" },
-  { emoji: "📸", label: "Timelapse", to: "/timelapse", desc: "Compara fotos del cultivo" },
   { emoji: "📊", label: "Estadísticas", to: "/stats", desc: "Gráficos y resumen" },
-  { emoji: "🧬", label: "Genética", to: "/genetics", desc: "Semillas, esporas, scobys" },
-  { emoji: "⚙️", label: "Ajustes", to: "/settings", desc: "Notificaciones, export/import, reset" },
+  { emoji: "📸", label: "Timelapse", to: "/timelapse", desc: "Compara fotos del cultivo" },
+  { emoji: "⚙️", label: "Ajustes", to: "/settings", desc: "Notificaciones, export/import" },
   { emoji: "📖", label: "Cómo usar", to: "/help", desc: "Guía flujo y conceptos" },
 ];
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useLiveQuery } from "dexie-react-hooks";
 import { differenceInDays } from "date-fns";
 import { db } from "../lib/db";
+import { getTemplate } from "../templates";
 import type { Cultivation, AppEvent } from "../types";
 
 export default function Cultivations() {
@@ -20,7 +21,7 @@ export default function Cultivations() {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-text-bright">🌱 Cultivos</h1>
+        <h1 className="text-2xl font-bold text-text-bright">🌱 Cultivos y elaboraciones</h1>
         <Link
           to="/new"
           className="px-4 py-2 bg-accent text-bg rounded-lg font-bold text-sm"
@@ -78,6 +79,9 @@ function CultivationCard({ cultivation, events }: { cultivation: Cultivation; ev
   const total = events.length;
   const pct = total > 0 ? Math.round((done / total) * 100) : 0;
   const daysInto = cultivation.status === "active" ? differenceInDays(new Date(), cultivation.startDate) + 1 : 0;
+  const template = getTemplate(cultivation.templateId);
+  const isFerment = template?.category === "fermento";
+  const typeLabel = isFerment ? "elaboración" : "cultivo";
 
   const statusColors: Record<string, string> = {
     active: "border-l-accent",
@@ -93,10 +97,10 @@ function CultivationCard({ cultivation, events }: { cultivation: Cultivation; ev
     >
       <div className="flex justify-between items-start gap-2">
         <div className="flex-1 min-w-0">
-          <div className="font-bold text-text-bright text-sm">{cultivation.name}</div>
+          <div className="font-bold text-text-bright text-sm">{template?.emoji} {cultivation.name}</div>
           <div className="text-xs text-text-muted">
-            {cultivation.status === "planning" && "📋 Planeado"}
-            {cultivation.status === "active" && `🌿 Activo · día ${daysInto}`}
+            {cultivation.status === "planning" && `📋 Planeado · ${typeLabel}`}
+            {cultivation.status === "active" && `🌿 Activo · ${typeLabel} · día ${daysInto}`}
             {cultivation.status === "completed" && "✅ Completado"}
             {cultivation.status === "aborted" && "⚠️ Abortado"}
             {total > 0 && ` · ${done}/${total} eventos`}

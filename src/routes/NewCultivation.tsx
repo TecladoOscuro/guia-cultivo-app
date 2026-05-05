@@ -66,16 +66,18 @@ export default function NewCultivation() {
   };
 
   const scaleLabel = template
-    ? template.category === "fermento" ? "lote/fermentación"
-    : template.category === "hongo" ? "kit/cultivo"
+    ? template.category === "fermento" ? "lote"
+    : template.category === "hongo" ? "kit"
     : "planta"
     : "";
 
+  const typeLabel = template?.category === "fermento" ? "elaboración" : "cultivo";
+
   return (
     <div>
-      <h1 className="text-2xl font-bold text-text-bright mb-1">➕ Nuevo cultivo</h1>
+      <h1 className="text-2xl font-bold text-text-bright mb-1">➕ Nueva {typeLabel}</h1>
       <p className="text-xs text-text-muted mb-4">
-        Se crea en estado <strong>planeado</strong>. Cuando tengas todo listo, podrás iniciarlo desde Mis Cultivos.
+        Se crea en estado <strong>planeado</strong>. Cuando tengas todo listo, podrás iniciar{template?.category === "fermento" ? "la" : "lo"} desde {template?.category === "fermento" ? "Elaboraciones" : "Cultivos"}.
       </p>
 
       {errMsg && (
@@ -121,25 +123,7 @@ export default function NewCultivation() {
               Sin resultados. Prueba otra búsqueda o categoría.
             </div>
           ) : (
-            templates.map((t) => (
-              <button
-                key={t.id}
-                onClick={() => onChooseTemplate(t)}
-                className="text-left p-4 border border-border rounded hover:border-accent transition"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <div className="text-lg font-bold text-text-bright">
-                    {t.emoji} {t.name}
-                  </div>
-                  <span className="text-xs px-2 py-0.5 border border-border rounded text-text-muted shrink-0 mt-0.5">
-                    {CATEGORY_LABELS[t.category] ?? t.category}
-                  </span>
-                </div>
-                <div className="text-xs text-text-muted mt-1">
-                  {t.totalDuration.days} días · {t.events.length} eventos · {t.recurringTasks.length} tareas
-                </div>
-              </button>
-            ))
+            <GroupedTemplates templates={templates} onChoose={onChooseTemplate} />
           )}
         </section>
       ) : (
@@ -231,6 +215,65 @@ export default function NewCultivation() {
             </button>
           </div>
         </section>
+      )}
+    </div>
+  );
+}
+
+function GroupedTemplates({ templates, onChoose }: { templates: CultivoTemplate[]; onChoose: (t: CultivoTemplate) => void }) {
+  const cultivos = templates.filter((t) => t.category !== "fermento");
+  const elaboraciones = templates.filter((t) => t.category === "fermento");
+
+  return (
+    <div className="grid gap-4">
+      {cultivos.length > 0 && (
+        <div>
+          <h3 className="text-xs font-bold text-text-muted uppercase tracking-wide mb-2">🌱 Cultivos</h3>
+          <div className="grid gap-2">
+            {cultivos.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => onChoose(t)}
+                className="text-left p-4 border border-border rounded hover:border-accent transition"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-lg font-bold text-text-bright">{t.emoji} {t.name}</div>
+                  <span className="text-xs px-2 py-0.5 border border-border rounded text-text-muted shrink-0 mt-0.5">
+                    {CATEGORY_LABELS[t.category] ?? t.category}
+                  </span>
+                </div>
+                <div className="text-xs text-text-muted mt-1">
+                  {t.totalDuration.days} días · {t.events.length} eventos · {t.recurringTasks.length} tareas
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {elaboraciones.length > 0 && (
+        <div>
+          <h3 className="text-xs font-bold text-text-muted uppercase tracking-wide mb-2">🍯 Elaboraciones</h3>
+          <div className="grid gap-2">
+            {elaboraciones.map((t) => (
+              <button
+                key={t.id}
+                onClick={() => onChoose(t)}
+                className="text-left p-4 border border-border rounded hover:border-accent transition"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="text-lg font-bold text-text-bright">{t.emoji} {t.name}</div>
+                  <span className="text-xs px-2 py-0.5 border border-border rounded text-text-muted shrink-0 mt-0.5">
+                    Fermentación
+                  </span>
+                </div>
+                <div className="text-xs text-text-muted mt-1">
+                  {t.totalDuration.days} días · {t.events.length} eventos · {t.recurringTasks.length} pasos
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
       )}
     </div>
   );

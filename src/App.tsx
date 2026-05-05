@@ -12,7 +12,6 @@ import Calculators from "./routes/Calculators";
 import Diagnostic from "./routes/Diagnostic";
 import Timelapse from "./routes/Timelapse";
 import Stats from "./routes/Stats";
-import Genetics from "./routes/Genetics";
 import Settings from "./routes/Settings";
 import Help from "./routes/Help";
 import ShoppingList from "./routes/ShoppingList";
@@ -82,7 +81,6 @@ function App() {
           <Route path="/diagnostic" element={<Diagnostic />} />
           <Route path="/timelapse" element={<Timelapse />} />
           <Route path="/stats" element={<Stats />} />
-          <Route path="/genetics" element={<Genetics />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
           <Route path="/shopping" element={<ShoppingList />} />

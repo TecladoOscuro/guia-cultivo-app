@@ -27,7 +27,6 @@ export default function Stats() {
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
   const harvests = useLiveQuery(() => db.harvests.toArray(), []) ?? [];
   const sessions = useLiveQuery(() => db.sessions.toArray(), []) ?? [];
-  const stocks = useLiveQuery(() => db.stock.toArray(), []) ?? [];
 
   // === Datos para gráficos ===
 
@@ -88,10 +87,10 @@ export default function Stats() {
     return Math.round(total / completed.length);
   }, [cultivations]);
 
-  // Coste total invertido (si hay precios)
-  const totalCost = useMemo(() => {
-    return stocks.reduce((s, st) => s + (st.costPaid ?? 0), 0);
-  }, [stocks]);
+  // Peso total cosechado
+  const totalHarvestWeight = useMemo(() => {
+    return harvests.reduce((s, h) => s + (h.weightDry ?? h.weightWet ?? 0), 0);
+  }, [harvests]);
 
   // Sesiones por método
   const sessionsByMethod = useMemo(() => {
@@ -141,8 +140,8 @@ export default function Stats() {
           value={avgDuration !== null ? `${avgDuration}d` : "—"}
         />
         <Stat
-          label="Coste total"
-          value={totalCost > 0 ? `${totalCost.toFixed(0)}€` : "—"}
+          label="Peso cosechado"
+          value={totalHarvestWeight > 0 ? `${totalHarvestWeight}g` : "—"}
         />
       </div>
 

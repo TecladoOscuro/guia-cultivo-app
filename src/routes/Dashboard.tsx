@@ -133,22 +133,31 @@ function CultivoCard({ cultivation, events }: { cultivation: Cultivation; events
     .sort((a, b) => a.scheduledDate.getTime() - b.scheduledDate.getTime())[0];
 
   let nextActionLabel: string | null = null;
-  let nextActionEmoji: string | null = null;
   let linkTo: string | null = null;
+  let actionStyle: "cta" | "info" | "warn" = "info";
 
   if (cultivation.status === "planning") {
     nextActionLabel = "Completar preparación";
-    nextActionEmoji = "📋";
     linkTo = `/cultivations/${cultivation.id}`;
+    actionStyle = "cta";
   } else if (cultivation.status === "active") {
     if (overdueCount > 0) {
       nextActionLabel = `${overdueCount} atrasados`;
-      nextActionEmoji = "⚠️";
       linkTo = "/calendar";
+      actionStyle = "warn";
     } else if (nextEvent) {
-      nextActionLabel = nextEvent.title;
-      nextActionEmoji = nextEvent.emoji;
-      linkTo = `/calendar?event=${nextEvent.id}`;
+      const daysUntil = differenceInDays(nextEvent.scheduledDate, new Date());
+      // Show CTA if event is today, overdue, or within 3 days
+      if (daysUntil <= 3) {
+        nextActionLabel = nextEvent.title;
+        linkTo = `/calendar?event=${nextEvent.id}`;
+        actionStyle = daysUntil <= 0 ? "cta" : "cta";
+      } else {
+        // Just show next event as info, no action
+        nextActionLabel = `Próximo: ${nextEvent.emoji} ${nextEvent.title} · ${format(nextEvent.scheduledDate, "d MMM", { locale: es })}`;
+        linkTo = `/calendar?event=${nextEvent.id}`;
+        actionStyle = "info";
+      }
     }
   }
 
@@ -178,12 +187,14 @@ function CultivoCard({ cultivation, events }: { cultivation: Cultivation; events
         <Link
           to={linkTo}
           className={`block text-xs p-1.5 rounded transition ${
-            overdueCount > 0
+            actionStyle === "warn"
               ? "bg-error/10 border border-error/40 text-error font-bold"
-              : "bg-bg-3 border border-border text-text-bright hover:border-accent"
+              : actionStyle === "cta"
+                ? "bg-accent/10 border border-accent/40 text-accent font-bold"
+                : "text-text-muted hover:text-text-bright"
           }`}
         >
-          {nextActionEmoji} {nextActionLabel} →
+          {nextActionLabel} {actionStyle !== "info" ? "→" : ""}
         </Link>
       )}
     </div>
