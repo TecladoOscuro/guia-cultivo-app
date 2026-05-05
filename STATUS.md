@@ -27,6 +27,9 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 - [x] cultivationActions (create, start, abort, completeEvent)
 - [x] eventActions (createManual, update, delete, reschedule)
 - [x] Photo compression con canvas + EXIF strip
+- [x] **Stock inteligente**: eventos ahora consumen stock al marcar "Hecho" (per-event reservations)
+- [x] **Shopping list inteligente**: solo genera items que no tienes ya en stock
+- [x] **Navegación simplificada**: 5 tabs bottom bar (Hoy, Calendario, Cultivos, Stock, Más)
 
 ### Templates (19 total — 100% + sub-templates plantas)
 - [x] Schema completo `CultivoTemplate` con phases, events, recurringTasks, shoppingList, prepChecklist, consumables
@@ -50,20 +53,16 @@ Estado actual del proyecto. Update este archivo cuando cierras una feature, desc
 - [x] ferment-cerveza (45d, Pale Ale/IPA)
 - [x] ferment-sidra (90d)
 
-### UI Routes (13)
-- [x] Dashboard — empty state + cultivos cards con next-action contextual + stats + capacity widget
-- [x] Calendar — Schedule-X (Google Calendar style) + drag-drop reagendar + click → modal CRUD
-- [x] NewCultivation — wizard 3 pasos: tipo → datos → preflight stock
-- [x] ShoppingList — auto-generada + cross-check stock + comprar/revertir
-- [x] PrepChecklist — items blocking + start con override warning
-- [x] Stock — CRUD + reservas + libre vs reservado
-- [x] Journal — foto + nota + observaciones + mood
-- [x] Harvests — peso fresco/seco + calidad + auto-crea producto
-- [x] Product — inventario agrupado por kind + abrir/borrar
-- [x] Sessions — dosis tracker + ventanas tolerancia automáticas
-- [x] Calculators — fresco→seco, dosis por peso, ABV, decarbox
-- [x] Genetics — CRUD library con caducidad
-- [x] Settings (stub)
+### UI Routes (16 + 3 nuevas)
+- [x] Dashboard — vista «Hoy» simplificada: eventos hoy + atrasados + próximos 7 días + cultivos cards
+- [x] Calendar — Schedule-X con modal enriquecido: pasos, señales, warnings estructurados
+- [x] Cultivations — lista de cultivos agrupados por status (nueva ruta)
+- [x] CultivoDetail — vista unificada por cultivo: prep + compras + eventos + journal + cosechas (nueva ruta)
+- [x] Stock — tabs Mi Stock + Compras (merge de shopping list)
+- [x] More — grid de herramientas secundarias (calculadoras, diagnóstico, etc) (nueva ruta)
+- [x] NewCultivation — wizard 3 pasos con preflight stock mejorado
+- [x] ShoppingList, PrepChecklist, Journal, Harvests, Product, Sessions — acceso directo conservado
+- [x] Calculators, Diagnostic, Timelapse, Stats, Genetics, Settings, Help — desde «Más»
 
 ### Wiki integration
 - [x] Wiki: parser URLSearchParams `?guide=X&mode=Y&phase=Z` (cambio invisible)

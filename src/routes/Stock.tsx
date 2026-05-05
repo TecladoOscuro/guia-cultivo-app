@@ -305,13 +305,24 @@ function StockForm({ initial, onClose }: { initial: StockType | null; onClose: (
             <Field label="Unidad" value={unit} onChange={setUnit} placeholder="ud, g, ml..." />
           </div>
           <Field label="Notas (opcional)" value={notes} onChange={setNotes} />
-          <details className="text-xs text-text-muted">
-            <summary className="cursor-pointer select-none">⚙️ Identificador técnico</summary>
-            <div className="mt-2 grid gap-1">
-              <p>ID usado por plantillas para consumir stock.{isEditing && " No editable."}</p>
-              <input value={effectiveKey} onChange={(e) => { setKeyOverridden(true); setKey(slugify(e.target.value)); }} disabled={isEditing} className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright disabled:opacity-60" />
-            </div>
-          </details>
+          <label className="grid gap-1">
+            <span className="text-xs text-text-muted">
+              Identificador técnico
+              {!isEditing && <span className="text-accent"> — debe coincidir con el que esperan los cultivos</span>}
+            </span>
+            <input
+              value={effectiveKey}
+              onChange={(e) => { setKeyOverridden(true); setKey(slugify(e.target.value)); }}
+              disabled={isEditing}
+              placeholder="Se genera desde el nombre"
+              className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright text-sm disabled:opacity-60 font-mono"
+            />
+            <span className="text-xs text-text-muted">
+              {isEditing
+                ? "No editable. Si necesitas cambiar el identificador, borra y crea uno nuevo."
+                : "Edítalo si el auto-generado no coincide con lo que espera la plantilla del cultivo."}
+            </span>
+          </label>
         </div>
         <div className="flex justify-between gap-2 mt-4">
           <div>{initial && <button onClick={onDelete} className="px-3 py-2 border border-error text-error rounded text-sm">Borrar</button>}</div>

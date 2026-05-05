@@ -19,24 +19,22 @@ Mismo flujo en Android (Chrome → menú → Instalar app).
 
 ## ✨ Funcionalidades
 
-| Sección | Qué hace |
-|---------|----------|
-| 🏠 **Dashboard** | Empty state + stats · cultivos cards con next-action contextual · capacity widget · planning conflicts · sugerencias próximo cultivo |
-| 📅 **Calendario** | Schedule-X (Google Cal style) mes/semana/día/agenda · drag-drop reagendar · click → modal CRUD evento · deep link wiki |
-| ➕ **Nuevo cultivo** | Wizard 3 pasos · 19 templates · preflight stock check con override |
-| 🛒 **Compras** | Lista auto + cross-check stock · marcar comprado/revertir · auto-stock |
-| ✅ **Preparación** | Checklist pre-cultivo + blocking items + override warning |
-| 📦 **Stock** | CRUD + reservas blandas + libre vs reservado |
-| 📔 **Journal** | Foto comprimida + nota + observaciones + mood |
-| ✂️ **Cosechas** | Form completo · auto-crea producto inventario |
-| 🫙 **Inventario** | Producto cosechado · decrementa al consumir |
-| 🌌 **Sesiones** | Dosis tracker · ventanas tolerancia auto (14d setas, 42d mescalina, etc) |
-| 🧮 **Calculadoras** | Fresco→seco · Dosis/peso · ABV · Decarbox |
-| 🧬 **Genética** | Library semillas/esquejes con caducidad |
-| 📊 **Stats** | 5 gráficos recharts: cultivos status · cosechas por kind · timeline · eventos · sesiones |
-| 🔍 **Diagnóstico** | Flowchart interactivo "qué le pasa": cannabis/setas/cactus/ferment con causas + fixes |
-| 📸 **Timelapse** | Slider fotos journal cronológico + comparación side-by-side |
-| ⚙️ **Ajustes** | Resumen · backup JSON · backup encriptado AES-256 · import auto-detect · notif toggle · factory reset |
+**Navegación simplificada** — 5 pestañas fijas abajo:
+
+| Tab | Qué hace |
+|-----|----------|
+| 🏠 **Hoy** | Vista rápida: eventos de hoy, atrasados, próximos 7 días, cultivos en curso con next-action |
+| 📅 **Calendario** | Schedule-X mes/semana/día/agenda · drag-drop reagendar · modal evento con pasos, señales, warnings estructurados |
+| 🌱 **Cultivos** | Todos tus cultivos con progreso · click → vista unificada con: prep, compras, eventos, journal, cosechas |
+| 📦 **Stock** | Tabs: Mi Stock (CRUD + reservas) y Compras (lista auto-generada, marcar comprado añade a stock) |
+| 🔧 **Más** | Herramientas: Calculadoras, Diagnóstico, Timelapse, Stats, Genética, Ajustes, Ayuda |
+
+**Sistema de stock inteligente:**
+- Crear cultivo → solo lo que NO tienes va a la lista de compras
+- Marcar "✅ Hecho" en evento → descuenta automáticamente del stock (fertilizante, agua, etc.)
+- Marcar "🛒 Comprado" → añade al stock con el identificador correcto
+- Stock muestra: cantidad real + reservado + libre para nuevos cultivos
+- Los identificadores (`key`) conectan tu stock con lo que esperan los cultivos
 
 ## 🔄 Auto-update
 
