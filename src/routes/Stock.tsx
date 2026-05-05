@@ -158,6 +158,11 @@ function ShoppingTab({ items, stocks, cultivations }: { items: ShoppingItem[]; s
     }
   };
 
+  const useExistingStock = async (item: ShoppingItem, stockId: number) => {
+    if (item.id === undefined) return;
+    await db.shoppingList.update(item.id, { status: "purchased", purchasedAt: new Date(), notes: `stock_id:${stockId}` });
+  };
+
   const revertPurchased = async (item: ShoppingItem) => {
     if (item.id === undefined) return;
     const ok = await confirmDialog({ title: "Revertir", message: `Volver "${item.name}" a pendiente. Se descontará del stock.`, confirmLabel: "Revertir", danger: true });
@@ -215,11 +220,14 @@ function ShoppingTab({ items, stocks, cultivations }: { items: ShoppingItem[]; s
                           </div>
                           <div className="text-xs text-text-muted">
                             {it.qty}{it.unit} · {it.approxPrice ?? "?"} · {cult?.name ?? "manual"}
+                            {!isPurchased && !haveStock && " · no tienes en stock"}
                             {haveStock && ` · 📦 tienes ${haveStock.qty}${haveStock.unit}`}
                           </div>
-                          {it.notes && <div className="text-xs text-text-muted mt-1">{it.notes}</div>}
-                          {isPurchased && it.purchasedAt && (
-                            <div className="text-xs text-success mt-1">✅ Comprado {new Date(it.purchasedAt).toLocaleDateString("es-ES")}</div>
+                          {it.notes && !it.notes.startsWith("stock_id:") && <div className="text-xs text-text-muted mt-1">{it.notes}</div>}
+                          {isPurchased && (
+                            <div className="text-xs text-success mt-1">
+                              {!it.purchasedAt ? "✅ ya lo tenías" : it.notes?.startsWith("stock_id:") ? "✅ usando tu stock" : `✅ Comprado ${new Date(it.purchasedAt).toLocaleDateString("es-ES")}`}
+                            </div>
                           )}
                         </div>
                         {isPurchased ? (
@@ -227,9 +235,14 @@ function ShoppingTab({ items, stocks, cultivations }: { items: ShoppingItem[]; s
                             ↩️ Revertir
                           </button>
                         ) : (
-                          <button onClick={() => markPurchased(it)} className="px-2 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap">
-                            🛒 Comprado
-                          </button>
+                          <div className="flex gap-1 shrink-0">
+                            {stocks.length > 0 && (
+                              <LinkToStock stocks={stocks} onLink={(stockId) => useExistingStock(it, stockId)} />
+                            )}
+                            <button onClick={() => markPurchased(it)} className="px-2 py-1 bg-success text-bg rounded text-xs font-bold whitespace-nowrap">
+                              🛒 Comprado
+                            </button>
+                          </div>
                         )}
                       </div>
                     </div>
@@ -351,6 +364,39 @@ function Field({ label, value, onChange, type = "text", placeholder }: { label: 
       <span className="text-xs text-text-muted">{label}</span>
       <input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className="w-full bg-bg-3 border border-border rounded px-3 py-2 text-text-bright" />
     </label>
+  );
+}
+
+function LinkToStock({ stocks, onLink }: { stocks: StockType[]; onLink: (stockId: number) => void }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        className="px-2 py-1 border border-border rounded text-xs text-text-muted hover:border-accent whitespace-nowrap"
+        title="Vincular a stock existente"
+      >
+        📦 Usar stock
+      </button>
+      {open && (
+        <>
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 top-full mt-1 z-20 bg-bg-2 border border-border rounded shadow-lg min-w-[200px] max-h-40 overflow-y-auto">
+            <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">Selecciona de tu stock:</div>
+            {stocks.map((s) => (
+              <button
+                key={s.id}
+                onClick={() => { onLink(s.id!); setOpen(false); }}
+                className="block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3"
+              >
+                {s.name} ({s.qty}{s.unit})
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
