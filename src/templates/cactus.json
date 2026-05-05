@@ -12,9 +12,9 @@
     { "id": "compra_cactus", "name": "Compra esqueje", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_cactus" },
     { "id": "germinacion_cactus", "name": "Callusing + plantar", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "germinacion_cactus" },
     { "id": "cuidados_cactus", "name": "Cuidados básicos", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 1095, "wikiPhase": "cuidados_cactus" },
-    { "id": "crecimiento_cactus", "name": "Crecimiento y desarrollo", "emoji": "📏", "startDayOffset": 90, "endDayOffset": 730, "wikiPhase": "crecimiento_cactus" },
+    { "id": "crecimiento_cactus", "name": "Crecimiento", "emoji": "📏", "startDayOffset": 21, "endDayOffset": 730, "wikiPhase": "crecimiento_cactus" },
     { "id": "cosecha_cactus", "name": "Primera cosecha posible", "emoji": "✂️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "cosecha_cactus" },
-    { "id": "preparacion_cactus", "name": "Preparación y secado", "emoji": "🌬️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "preparacion_cactus" }
+    { "id": "preparacion_cactus", "name": "Preparación", "emoji": "⚗️", "startDayOffset": 730, "endDayOffset": 1095, "wikiPhase": "preparacion_cactus" }
   ],
 
   "events": [
