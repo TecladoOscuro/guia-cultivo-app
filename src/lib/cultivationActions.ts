@@ -1,6 +1,6 @@
 import { db } from "./db";
 import { generateEvents } from "./eventGenerator";
-import { releasePending, consume } from "./stockPipeline";
+import { releasePending, consume, getStockAvailable } from "./stockPipeline";
 import { templates, getTemplate } from "../templates";
 import { refreshAllNotifications, cancelEventNotification } from "./notifSync";
 import type {
@@ -13,8 +13,10 @@ import type {
 export interface CreateCultivationInput {
   templateId: string;
   name: string;
+  scale?: number;
   notes?: string;
   customParams?: Record<string, unknown>;
+  forceWithoutStock?: boolean;
 }
 
 // Step 1: Create cultivation in "planning" — no events, no date, no reservations
@@ -31,22 +33,24 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     name: input.name,
     startDate: new Date(), // placeholder, se actualiza al iniciar
     status: "planning",
+    scale: input.scale ?? 1,
     notes: input.notes,
     customParams: input.customParams,
     createdAt: new Date(),
   })) as number;
 
-  // Generate shopping items — todos, pero marcamos los cubiertos por stock
-  const allStock = await db.stock.toArray();
+  // Generate shopping items — todos, pero marcamos los cubiertos por stock DISPONIBLE
+  const availableStock = await getStockAvailable();
   const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList.map(
     (s) => {
-      const inStock = allStock.find((st) => st.key === s.key);
-      const covered = inStock && inStock.qty >= s.qty;
+      const qtyNeeded = s.qty * (input.scale ?? 1);
+      const haveAvailable = availableStock[s.key] ?? 0;
+      const covered = haveAvailable >= qtyNeeded;
       return {
         cultivationId,
         itemKey: s.key,
         name: s.name,
-        qty: s.qty,
+        qty: qtyNeeded,
         unit: s.unit,
         category: s.category,
         approxPrice: s.approxPrice,
@@ -61,6 +65,20 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
     }
   );
   await db.shoppingList.bulkAdd(shoppingItems as ShoppingItem[]);
+
+  // Reserve "once" consumables NOW (planning) to prevent double-booking
+  for (const c of template.consumables) {
+    if (c.trigger === "once") {
+      await db.stockReservations.add({
+        stockKey: c.stockKey,
+        cultivationId,
+        qty: c.qty * (input.scale ?? 1),
+        unit: c.unit,
+        status: "reserved",
+        createdAt: new Date(),
+      });
+    }
+  }
 
   // Generate prep checklist
   const prepItems: Omit<PrepChecklistItem, "id">[] = template.prepChecklist.map(
@@ -101,6 +119,7 @@ export async function startCultivation(cultivationId: number): Promise<{
   const template = getTemplate(cultivation.templateId);
   if (!template) throw new Error("Template no encontrado");
 
+  const scale = cultivation.scale ?? 1;
   const today = new Date();
 
   // Generate events from today
@@ -128,7 +147,7 @@ export async function startCultivation(cultivationId: number): Promise<{
             stockKey: c.stockKey,
             cultivationId,
             eventId: event.id,
-            qty: c.qty,
+            qty: c.qty * scale,
             unit: c.unit,
             status: "reserved",
             createdAt: new Date(),
@@ -146,7 +165,7 @@ export async function startCultivation(cultivationId: number): Promise<{
             stockKey: c.stockKey,
             cultivationId,
             eventId: event.id,
-            qty: c.qty,
+            qty: c.qty * scale,
             unit: c.unit,
             status: "reserved",
             createdAt: new Date(),
@@ -159,20 +178,6 @@ export async function startCultivation(cultivationId: number): Promise<{
     if (reservationIds.length > 0) {
       await db.events.update(event.id, {
         consumesReservationIds: reservationIds,
-      });
-    }
-  }
-
-  // Reserve "once" consumables
-  for (const c of template.consumables) {
-    if (c.trigger === "once") {
-      await db.stockReservations.add({
-        stockKey: c.stockKey,
-        cultivationId,
-        qty: c.qty,
-        unit: c.unit,
-        status: "reserved",
-        createdAt: new Date(),
       });
     }
   }
@@ -306,6 +311,26 @@ export async function completeEvent(eventId: number) {
     cultivationId: event.cultivationId,
     eventId,
     action: "event.done",
+    payload: { title: event.title },
+    timestamp: new Date(),
+  });
+  refreshAllNotifications();
+}
+
+export async function markSkipped(eventId: number) {
+  const event = await db.events.get(eventId);
+  if (!event) return;
+
+  await db.events.update(eventId, {
+    status: "skipped",
+    completedAt: new Date(),
+  });
+
+  cancelEventNotification(eventId);
+  await db.history.add({
+    cultivationId: event.cultivationId,
+    eventId,
+    action: "event.skipped",
     payload: { title: event.title },
     timestamp: new Date(),
   });

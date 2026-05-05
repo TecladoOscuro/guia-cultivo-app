@@ -12,10 +12,11 @@ const UNITS = ["ml", "L", "g", "kg", "ud", "sobres", "gotas", "cucharaditas"];
 const categories: StockCategory[] = [
   "semilla",
   "esqueje",
+  "sustrato",
   "equipo",
-  "fungible",
   "nutriente",
-  "producto_final",
+  "fungible",
+  "kit",
 ];
 
 function slugify(value: string): string {

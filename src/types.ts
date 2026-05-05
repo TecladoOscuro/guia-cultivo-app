@@ -25,10 +25,11 @@ export type CultivationStatus =
 export type StockCategory =
   | "semilla"
   | "esqueje"
+  | "sustrato"
   | "equipo"
-  | "fungible"
   | "nutriente"
-  | "producto_final";
+  | "fungible"
+  | "kit";
 
 export type ShoppingCategory = "esencial" | "importante" | "util";
 
@@ -137,6 +138,7 @@ export interface Cultivation {
   name: string;
   startDate: Date;
   status: CultivationStatus;
+  scale?: number;
   notes?: string;
   customParams?: Record<string, unknown>;
   createdAt: Date;

@@ -16,7 +16,7 @@ import { createCurrentTimePlugin } from "@schedule-x/current-time";
 import { createDragAndDropPlugin } from "@schedule-x/drag-and-drop";
 import "@schedule-x/theme-default/dist/index.css";
 import { db } from "../lib/db";
-import { completeEvent } from "../lib/cultivationActions";
+import { completeEvent, markSkipped } from "../lib/cultivationActions";
 import { confirmDialog } from "../lib/confirmDialog";
 import {
   createManualEvent,
@@ -213,6 +213,12 @@ export default function Calendar() {
             await deleteEvent(selectedEvent.id);
             setSelectedEvent(null);
           }}
+          onSkip={async () => {
+            if (selectedEvent.id) {
+              await markSkipped(selectedEvent.id);
+              setSelectedEvent(null);
+            }
+          }}
         />
       )}
 
@@ -241,6 +247,7 @@ function EventDetailModal({
   onDone,
   onEdit,
   onDelete,
+  onSkip,
 }: {
   event: AppEvent;
   cultivation?: Cultivation;
@@ -248,6 +255,7 @@ function EventDetailModal({
   onDone: () => void;
   onEdit: () => void;
   onDelete: () => void;
+  onSkip: () => void;
 }) {
   const sections = parseEventDescription(event.description);
 
@@ -327,9 +335,14 @@ function EventDetailModal({
 
         <div className="flex gap-2 flex-wrap mt-2">
           {event.status !== "done" && (
-            <button onClick={onDone} className="px-4 py-2 bg-success text-bg rounded font-bold text-sm">
-              ✅ Hecho
-            </button>
+            <>
+              <button onClick={onDone} className="px-4 py-2 bg-success text-bg rounded font-bold text-sm">
+                ✅ Hecho
+              </button>
+              <button onClick={onSkip} className="px-3 py-2 border border-border rounded hover:border-accent text-sm">
+                ⏭️ Saltar
+              </button>
+            </>
           )}
           <button onClick={onEdit} className="px-3 py-2 border border-border rounded hover:border-accent text-sm">
             ✏️ Editar

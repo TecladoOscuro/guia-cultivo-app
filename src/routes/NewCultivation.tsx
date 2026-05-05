@@ -18,6 +18,7 @@ export default function NewCultivation() {
   const navigate = useNavigate();
   const [template, setTemplate] = useState<CultivoTemplate | null>(null);
   const [name, setName] = useState("");
+  const [scale, setScale] = useState(1);
   const [notes, setNotes] = useState("");
   const [creating, setCreating] = useState(false);
   const [errMsg, setErrMsg] = useState<string | null>(null);
@@ -53,6 +54,7 @@ export default function NewCultivation() {
       const result = await createCultivation({
         templateId: template.id,
         name: name.trim() || template.name,
+        scale,
         notes: notes.trim() || undefined,
       });
       navigate(`/cultivations/${result.cultivationId}`);
@@ -152,6 +154,23 @@ export default function NewCultivation() {
               className="w-full bg-bg-2 border border-border rounded px-3 py-2 text-text-bright"
               placeholder={template.name}
             />
+          </label>
+
+          <label className="grid gap-1">
+            <span className="text-xs text-text-muted">Escala — ¿cuántas plantas/kits/unidades?</span>
+            <div className="flex items-center gap-2">
+              <input
+                type="number"
+                min={1}
+                max={99}
+                value={scale}
+                onChange={(e) => setScale(Math.max(1, parseInt(e.target.value) || 1))}
+                className="w-20 bg-bg-2 border border-border rounded px-3 py-2 text-text-bright text-center"
+              />
+              <span className="text-xs text-text-muted">
+                {scale > 1 ? `×${scale} — todas las cantidades se multiplican` : "×1 — cantidades del template"}
+              </span>
+            </div>
           </label>
 
           <label className="grid gap-1">
