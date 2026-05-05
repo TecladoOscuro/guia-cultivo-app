@@ -6,6 +6,7 @@ import { confirmDialog } from "../lib/confirmDialog";
 import { listAvailableTemplates } from "../lib/cultivationActions";
 import type { Stock as StockType, StockCategory, ShoppingItem } from "../types";
 import type { CapacityResult } from "../lib/stockPipeline";
+import CategoryHelp from "../components/CategoryHelp";
 
 const UNITS = ["ml", "L", "g", "kg", "ud", "sobres", "gotas", "cucharaditas"];
 
@@ -54,6 +55,7 @@ export default function Stock() {
   return (
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-4">📦 Stock</h1>
+      <CategoryHelp />
 
       {/* Tabs */}
       <div className="flex gap-1 mb-4 border-b border-border">
@@ -429,33 +431,31 @@ function UnitSelect({ value, onChange }: { value: string; onChange: (v: string) 
   return (
     <label className="grid gap-1">
       <span className="text-xs text-text-muted">Unidad</span>
-      <div className="flex gap-1">
-        <select
-          value={predefined}
-          onChange={(e) => {
-            if (e.target.value === "__custom__") {
-              setCustom(true);
-            } else {
-              setCustom(false);
-              onChange(e.target.value);
-            }
-          }}
-          className="flex-1 bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
-        >
-          {UNITS.map((u) => (
-            <option key={u} value={u}>{u}</option>
-          ))}
-          <option value="__custom__">otro...</option>
-        </select>
-        {custom && (
-          <input
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            placeholder="ej: ml, g..."
-            className="w-24 bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
-          />
-        )}
-      </div>
+      <select
+        value={predefined}
+        onChange={(e) => {
+          if (e.target.value === "__custom__") {
+            setCustom(true);
+          } else {
+            setCustom(false);
+            onChange(e.target.value);
+          }
+        }}
+        className="bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
+      >
+        {UNITS.map((u) => (
+          <option key={u} value={u}>{u}</option>
+        ))}
+        <option value="__custom__">otro...</option>
+      </select>
+      {custom && (
+        <input
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder="tu unidad..."
+          className="bg-bg-3 border border-border rounded px-2 py-2 text-text-bright text-sm"
+        />
+      )}
     </label>
   );
 }

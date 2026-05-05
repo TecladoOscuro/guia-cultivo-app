@@ -163,8 +163,16 @@ export default function NewCultivation() {
           </label>
 
           <label className="grid gap-1">
-            <span className="text-xs text-text-muted">Escala — ¿cuántas plantas/kits/unidades?</span>
-            <div className="flex items-center gap-2">
+            <span className="text-xs text-text-muted">Escala — ¿cuántas {scaleLabel}s?</span>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => setScale((s) => Math.max(1, s - 1))}
+                disabled={scale <= 1}
+                className="w-9 h-9 border border-border rounded text-text-bright text-lg disabled:opacity-30 flex items-center justify-center"
+              >
+                −
+              </button>
               <input
                 type="text"
                 inputMode="numeric"
@@ -176,10 +184,18 @@ export default function NewCultivation() {
                   const n = parseInt(v, 10);
                   if (!isNaN(n)) setScale(Math.max(1, Math.min(99, n)));
                 }}
-                className="w-20 bg-bg-2 border border-border rounded px-3 py-2 text-text-bright text-center"
+                className="w-14 h-9 bg-bg-2 border border-border rounded text-text-bright text-center text-sm"
               />
-              <span className="text-xs text-text-muted">
-                {scale > 1 ? `×${scale} = ${scale} ${scaleLabel}${scale > 1 ? "s" : ""}` : `×1 = 1 ${scaleLabel}`}
+              <button
+                type="button"
+                onClick={() => setScale((s) => Math.min(99, s + 1))}
+                disabled={scale >= 99}
+                className="w-9 h-9 border border-border rounded text-text-bright text-lg disabled:opacity-30 flex items-center justify-center"
+              >
+                +
+              </button>
+              <span className="text-xs text-text-muted ml-1">
+                = {scale} {scaleLabel}{scale > 1 ? "s" : ""}
               </span>
             </div>
           </label>
