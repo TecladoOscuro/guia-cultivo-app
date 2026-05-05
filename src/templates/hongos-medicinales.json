@@ -1,0 +1,31 @@
+{
+  "id": "hongos-medicinales",
+  "name": "Hongos medicinales — Guía introductoria",
+  "emoji": "🍄",
+  "category": "hongo",
+  "version": 1,
+  "totalDuration": { "days": 90 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=hongos",
+  "theme": { "primary": "#7eb88a", "bg": "#0a140c" },
+  "phases": [
+    { "id": "intro_hongos", "name": "Intro", "emoji": "📖", "startDayOffset": 0, "endDayOffset": 7, "wikiPhase": "intro_hongos" }
+  ],
+  "events": [
+    { "id": "elegir_hongo", "title": "🍄 Elegir qué hongo medicinal cultivar", "emoji": "🍄", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "4 HONGOS MEDICINALES DISPONIBLES:\n\n🦁 Lion's Mane (Hericium erinaceus) — Neurogénesis, NGF, cognición. Cultivo FÁCIL con kit (15-35€). 10-14 días primordios, cosecha 25-40 días.\n\n🍄 Reishi (Ganoderma lucidum) — Inmunidad, longevidad, anti-estrés, hígado. Cultivo MEDIO (3-5 meses). Sustrato serrín roble/haya o tronco. NUNCA comer fresco (solo extracto).\n\n🌳 Chaga (Inonotus obliquus) — Antioxidante extremo, inmune, inflamación. NO SE CULTIVA — solo forrajeo en abedules del norte de España (Pirineos, Cordillera Cantábrica) o comprar (20-50€/100g).\n\n🧬 Cordyceps (Cordyceps militaris) — Energía, atletismo, VO2 max, mitocondria. Cultivo MEDIO (7-10 sem). Sustrato único: arroz cocido. 20-40g seco por tarro.\n\n100% LEGAL en España y UE. Vendidos como complementos alimenticios.\n\nCONTRAINDICACIONES: anticoagulantes (warfarina, aspirina), inmunosupresores (trasplantados), hipoglucemiantes, embarazo/lactancia, alergia a setas.",
+      "wikiPhase": "intro_hongos", "notify": true }
+  ],
+  "shoppingList": [
+    { "key": "kit_lions_mane", "name": "Kit cultivo Lion's Mane (opción principiante)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-35€", "source": "internet" },
+    { "key": "serrin_roble", "name": "Serrín roble/haya + salvado trigo (para Reishi)", "qty": 5, "unit": "kg", "category": "importante", "approxPrice": "10-20€" },
+    { "key": "arroz_grano", "name": "Arroz integral grano largo (para Cordyceps)", "qty": 2, "unit": "kg", "category": "importante", "approxPrice": "5-10€" },
+    { "key": "camara_humedad", "name": "Cámara fructificación o tienda cultivo", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-40€" },
+    { "key": "olla_presion", "name": "Olla a presión 6-10L (esterilizar sustrato)", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "40-80€" }
+  ],
+  "prepChecklist": [
+    { "id": "elegir_especie", "title": "Elegir especie según objetivo y nivel", "description": "Principiante: Lion's Mane kit (más fácil). Intermedio: Cordyceps en arroz. Avanzado: Reishi en tronco/serrín. Chaga no se cultiva (solo forrajeo/compra).", "blocking": true, "estimatedMinutes": 30 },
+    { "id": "espacio_fructificacion", "title": "Preparar espacio de fructificación", "description": "Temperatura 18-24°C, humedad 80-95%, luz difusa 12h/día. Cámara SGFC, tienda de cultivo o monotub adaptado.", "blocking": true, "estimatedMinutes": 60 },
+    { "id": "equipo_esteril", "title": "Equipo estéril listo", "description": "Alcohol 70%, guantes nitrilo, mascarilla FFP2, mechero/llama. Técnica aséptica obligatoria.", "blocking": true, "estimatedMinutes": 15 }
+  ],
+  "consumables": [],
+  "recurringTasks": []
+}

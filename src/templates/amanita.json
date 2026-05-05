@@ -13,7 +13,7 @@
     { "id": "recoleccion_amanita", "name": "Recolección bosque", "emoji": "🍂", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "recoleccion_amanita" },
     { "id": "secado_amanita", "name": "Secado + decarbox", "emoji": "🌬️", "startDayOffset": 1, "endDayOffset": 7, "wikiPhase": "secado_amanita" },
     { "id": "preparacion_amanita", "name": "Preparación té", "emoji": "🍵", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "preparacion_amanita" },
-    { "id": "conservacion_amanita", "name": "Conservación", "emoji": "🫙", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "conservacion_amanita" }
+    { "id": "conservacion_amanita", "name": "Conservación", "emoji": "🫙", "startDayOffset": 14, "endDayOffset": 365, "wikiPhase": "conservacion_amanita" }
   ],
   "events": [
     { "id": "salir_bosque", "title": "🌲 Salida forrajeo (otoño bosque conífera/abedul)", "emoji": "🌲", "type": "milestone", "offsetDays": 0, "durationMin": 240, "description": "Otoño octubre-noviembre. Bosques abedules y coníferas. Identificar correctamente: sombrero rojo + verrugas blancas + láminas blancas + anillo. CUIDADO: confusión con A.phalloides MORTAL.", "checklistInline": ["Identificar 100% antes de coger", "Sin contacto si dudas", "Foto + verificar con experto"], "warningIf": ["A.phalloides hepatotóxica MORTAL — verde-oliva sin verrugas"], "wikiPhase": "recoleccion_amanita", "notify": true },
@@ -59,6 +59,30 @@
       ],
       "wikiPhase": "conservacion_amanita",
       "notify": false
+    },
+    {
+      "id": "estudiar_identificacion",
+      "title": "🔬 Estudiar identificación A.muscaria vs mortales",
+      "emoji": "🔬",
+      "type": "preparation",
+      "offsetDays": -1,
+      "durationMin": 120,
+      "description": "ANTES de salir al bosque: estudiar identificación. A.muscaria: sombrero ROJO BRILLANTE (10-25cm) con verrugas BLANCAS, láminas blancas libres, pie blanco con anillo y bulbo. CONFUSIONES MORTALES: A.phalloides (verde-oliva, SIN verrugas rojas, hepatotóxica mortal), A.virosa (blanca total, Destroying Angel), A.pantherina (marrón con verrugas, más tóxica). VERIFICAR: foto múltiples ángulos + foro micológico + si es primera vez: sociedad micológica local.",
+      "checklistInline": ["Sombrero ROJO con verrugas BLANCAS", "Láminas blancas libres", "Pie blanco con anillo + bulbo", "SIEMPRE bajo abedul/pino/abeto", "NUNCA verde-oliva (A.phalloides MORTAL)", "NUNCA blanco total (A.virosa MORTAL)", "Subir fotos a foro micológico para verificación"],
+      "warningIf": ["A.phalloides = verde-oliva = MUERTE en 5-10 días sin tratamiento hepático", "En duda: NO RECOLECTAR, NO CONSUMIR"],
+      "wikiPhase": "identificacion_amanita",
+      "notify": true
+    },
+    {
+      "id": "verificar_conservacion",
+      "title": "🫙 Verificar conservación (cada 3 meses)",
+      "emoji": "🫙",
+      "type": "monitoring",
+      "offsetDays": 90,
+      "durationMin": 15,
+      "description": "Cada 3 meses: abrir frasco de conservación, verificar olor (seta seca, NUNCA a podrido/moho), consistencia (crujiente, no flexible), color (puede oscurecer ligeramente, NUNCA negro/verde/borroso blanco = MOHO → desechar todo). Reemplazar silica gel si está saturada.",
+      "wikiPhase": "conservacion_amanita",
+      "notify": true
     }
   ],
   "recurringTasks": [],

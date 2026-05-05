@@ -10,12 +10,12 @@
 
   "phases": [
     { "id": "compra_ext", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_ext" },
-    { "id": "semillas_ext", "name": "Elegir semillas", "emoji": "🌰", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "semillas_ext" },
+    { "id": "semillas_ext", "name": "Semillas", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "semillas_ext" },
     { "id": "germinacion_ext", "name": "Germinación interior", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "germinacion_ext" },
-    { "id": "ubicacion", "name": "Elegir ubicación", "emoji": "🗺️", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "ubicacion" },
+    { "id": "ubicacion", "name": "Spot", "emoji": "🗺️", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "ubicacion" },
     { "id": "fases_ext", "name": "Crecimiento exterior", "emoji": "🌳", "startDayOffset": 14, "endDayOffset": 180, "wikiPhase": "fases_ext" },
-    { "id": "riego_ext", "name": "Riego exterior", "emoji": "💧", "startDayOffset": 14, "endDayOffset": 200, "wikiPhase": "riego_ext" },
-    { "id": "plagas", "name": "Prevención plagas", "emoji": "🐛", "startDayOffset": 14, "endDayOffset": 200, "wikiPhase": "plagas" },
+    { "id": "riego_ext", "name": "Riego", "emoji": "💧", "startDayOffset": 7, "endDayOffset": 210, "wikiPhase": "riego_ext" },
+    { "id": "plagas", "name": "Plagas ext", "emoji": "🛡️", "startDayOffset": 30, "endDayOffset": 210, "wikiPhase": "plagas" },
     { "id": "cosecha_ext", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 180, "endDayOffset": 200, "wikiPhase": "cosecha_ext" }
   ],
 
@@ -27,7 +27,11 @@
     { "id": "trasplante_final", "title": "🪴 Trasplante a maceta final / suelo", "emoji": "🪴", "type": "milestone", "offsetDays": 45, "durationMin": 60, "description": "Maceta 30-50L o tierra preparada. Más espacio raíces = planta más grande.", "wikiPhase": "fases_ext", "notify": true },
     { "id": "floracion_ext", "title": "🌸 Inicio floración natural", "emoji": "🌸", "type": "milestone", "offsetDays": 120, "durationMin": 0, "description": "Acortamiento horas luz dispara floración (julio-agosto). Plantas mostrarán pelitos blancos.", "wikiPhase": "fases_ext", "notify": false },
     { "id": "cosecha_ext_event", "title": "✂️ Cosecha exterior", "emoji": "✂️", "type": "harvest", "offsetDays": 180, "durationMin": 180, "description": "Septiembre-octubre. Tricomas lechosos. Cortar y manicurar. Secar en sitio interior protegido.", "wikiPhase": "cosecha_ext", "notify": true },
-    { "id": "plaga_botrytis", "title": "⚠️ Alerta Botrytis (moho gris) en floración avanzada", "emoji": "⚠️", "type": "monitoring", "offsetDays": 150, "durationMin": 10, "description": "Septiembre: revisar cogollos cada 2-3 días. Buscar pelusa gris-marrón dentro de los cogollos más gordos. Botrytis destruye cogollos desde dentro. Si detectas: cortar cogollo entero 2cm por debajo de la zona afectada. Sacar de la zona y desechar (NO compostar).", "warningIf": ["Botrytis avanza rápido con lluvias otoñales y rocío matutino", "Cogollo marrón que se deshace al tocarlo = BOTRYTIS"], "wikiPhase": "plagas", "notify": false }
+    { "id": "plaga_botrytis", "title": "⚠️ Alerta Botrytis (moho gris) en floración avanzada", "emoji": "⚠️", "type": "monitoring", "offsetDays": 150, "durationMin": 10, "description": "Septiembre: revisar cogollos cada 2-3 días. Buscar pelusa gris-marrón dentro de los cogollos más gordos. Botrytis destruye cogollos desde dentro. Si detectas: cortar cogollo entero 2cm por debajo de la zona afectada. Sacar de la zona y desechar (NO compostar).", "warningIf": ["Botrytis avanza rápido con lluvias otoñales y rocío matutino", "Cogollo marrón que se deshace al tocarlo = BOTRYTIS"], "wikiPhase": "plagas", "notify": false },
+    { "id": "evaluar_spot", "title": "🗺️ Evaluar y preparar spot de cultivo", "emoji": "🗺️", "type": "preparation", "offsetDays": -7, "durationMin": 240, "description": "Elegir spot: sol directo >6h/día, acceso a agua, suelo profundo drenado, protegido del viento, discreto (>100m de caminos). Cavar hoyo 50x50x50cm. Mezclar tierra con Light Mix 50/50. Regar abundantemente 24-48h antes de plantar. Rodear con plantas aromáticas (romero, lavanda) para enmascarar olor.", "checklistInline": ["Sol directo >6h/día comprobado", "Hoyo 50x50x50cm cavado", "Sustrato mezclado y regado 24h antes", "Discreto: >100m de senderos", "Plantas aromáticas alrededor"], "wikiPhase": "ubicacion", "notify": true },
+    { "id": "aplicar_bt", "title": "🛡️ Aplicar Bacillus thuringiensis (Bt)", "emoji": "🛡️", "type": "treatment", "offsetDays": 45, "durationMin": 30, "description": "Aplicar Bt en spray sobre todas las hojas. PREVENCIÓN de orugas: la plaga más destructiva en exterior. Repetir CADA 2 SEMANAS desde junio hasta cosecha. Imprescindible en clima mediterráneo.", "wikiPhase": "plagas", "notify": true },
+    { "id": "entutorar_plantas", "title": "🪵 Entutorar ramas (agosto)", "emoji": "🪵", "type": "training", "offsetDays": 100, "durationMin": 60, "description": "En floración los cogollos pesan y las ramas se doblan o rompen. Clavar estacas a 5cm del tallo. Atar ramas con cuerda suave en lazo de 8. Alternativa: ramas largas del bosque.", "wikiPhase": "riego_ext", "notify": true },
+    { "id": "check_botrytis", "title": "🔍 Revisión Botrytis (moho gris)", "emoji": "🔍", "type": "monitoring", "offsetDays": 130, "durationMin": 30, "description": "Septiembre: MÁXIMO RIESGO de Botrytis. Abrir cogollos con cuidado y buscar manchas grises/marrones. Si se detecta: cortar rama afectada 5cm por debajo con tijeras limpias. Meter en bolsa hermética sin tocar otras partes. Desinfectar tijeras entre cortes. Actuar el mismo día.", "checklistInline": ["Abrir cogollos con cuidado", "Buscar manchas grises/marrones", "Si hay: cortar 5cm por debajo", "Bolsa hermética, no tocar otras partes", "Desinfectar tijeras con alcohol entre cortes"], "warningIf": ["Botrytis puede destruir cosecha entera en 5-7 días si no se actúa"], "wikiPhase": "plagas", "notify": true }
   ],
 
   "recurringTasks": [
@@ -36,13 +40,13 @@
     { "id": "fert_ext", "title": "🌿 Fertilizar exterior", "emoji": "🌿", "type": "feeding", "startDayOffset": 45, "endDayOffset": 165, "cadence": { "everyDays": 14, "volumeMl": "5-10ml/L" }, "description": "Cada 2 semanas. Cambiar a Bloom (P+K alto) en floración. Bajar dosis 10d antes cosecha.", "consumes": [{ "stockKey": "biobizz_grow", "qty": 30, "unit": "ml", "trigger": "per_event" }], "wikiPhase": "fases_ext", "notify": false },
     {
       "id": "inspeccion_plagas_ext",
-      "title": "🔍 Inspección plagas exterior (semanal)",
-      "emoji": "🔍",
+      "title": "🔍 Inspección plagas exterior",
+      "emoji": "🛡️",
       "type": "monitoring",
-      "startDayOffset": 30,
-      "endDayOffset": 180,
-      "cadence": { "everyDays": 7, "notes": "Revisar todo: hojas, tallos, cogollos, suelo" },
-      "description": "Buscar: orugas (agujeros en hojas, excrementos negros), araña roja (puntos amarillos + telaraña fina en envés), pulgón (colonias en brotes tiernos), oídio (polvo blanco en hojas). Aplicar Bt (Bacillus thuringiensis) preventivo cada 2 semanas contra orugas. Jabón potásico contra araña y pulgón.",
+      "startDayOffset": 60,
+      "endDayOffset": 210,
+      "cadence": { "everyDays": 14, "notes": "Cada 2 semanas" },
+      "description": "En cada visita: revisar envés hojas (pulgones, ácaros), buscar agujeros (orugas), base del tallo (caracoles). Septiembre: abrir cogollos buscar Botrytis. Aplicar Bt si hace >2 semanas.",
       "wikiPhase": "plagas",
       "notify": false
     }

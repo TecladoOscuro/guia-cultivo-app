@@ -13,8 +13,8 @@
     { "id": "inoculacion_trufas", "name": "Inoculación", "emoji": "💉", "startDayOffset": 0, "endDayOffset": 3, "wikiPhase": "inoculacion_trufas" },
     { "id": "incubacion_trufas", "name": "Incubación", "emoji": "🔮", "startDayOffset": 3, "endDayOffset": 90, "wikiPhase": "incubacion_trufas" },
     { "id": "cosecha_trufas", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 90, "endDayOffset": 110, "wikiPhase": "cosecha_trufas" },
-    { "id": "preparacion_trufas", "name": "Preparación", "emoji": "🍵", "startDayOffset": 95, "endDayOffset": 110, "wikiPhase": "preparacion_trufas" },
-    { "id": "conservacion_trufas", "name": "Conservación", "emoji": "🫙", "startDayOffset": 95, "endDayOffset": 110, "wikiPhase": "conservacion_trufas" }
+    { "id": "preparacion_trufas", "name": "Preparación", "emoji": "🍵", "startDayOffset": 90, "endDayOffset": 110, "wikiPhase": "preparacion_trufas" },
+    { "id": "conservacion_trufas", "name": "Conservación", "emoji": "🫙", "startDayOffset": 90, "endDayOffset": 365, "wikiPhase": "conservacion_trufas" }
   ],
 
   "events": [
@@ -123,6 +123,17 @@
       ],
       "wikiPhase": "conservacion_trufas",
       "notify": false
+    },
+    {
+      "id": "preparar_consumo",
+      "title": "🍵 Preparar trufas para consumo/conservación",
+      "emoji": "🍵",
+      "type": "preparation",
+      "offsetDays": 96,
+      "durationMin": 60,
+      "description": "Opciones de preparación: 1) FRESCAS: guardar en nevera frasco con papel (4-8 sem). 2) SECAS: pre-secar 24h + silica gel 48h hasta cracker dry. Guardar frasco oscuro (1-2 años). 3) MIEL: trocear trufas frescas + miel cruda en frasco estéril. Reposar 2 sem oscuridad, luego nevera (6-12 meses). 4) LEMON TEK: moler dosis seca + zumo 1-2 limones, reposar 20min. Onset 15min, más intenso pero más corto. DOSIS: 5-10g frescas (test), 10-15g (media), 15-25g (fuerte). 1g seco = ~5g frescas.",
+      "wikiPhase": "preparacion_trufas",
+      "notify": true
     }
   ],
 
@@ -137,6 +148,18 @@
       "cadence": { "everyDays": 7, "notes": "Inspección visual semanal sin abrir" },
       "description": "Mirar frasco semanalmente. Buscar: micelio blanco expandiendo, esclerocios marrones formándose. Alarma: manchas verdes/negras = contaminación.",
       "wikiPhase": "incubacion_trufas",
+      "notify": false
+    },
+    {
+      "id": "check_conservacion_trufas",
+      "title": "🫙 Verificar conservación trufas",
+      "emoji": "🫙",
+      "type": "monitoring",
+      "startDayOffset": 180,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 90, "notes": "Cada 3 meses" },
+      "description": "Verificar estado trufas almacenadas: olor (neutro/avellana, no a podrido), textura (secas = crujientes, miel = consistencia normal), color (sin moho). Si humedad: re-secar + nueva silica.",
+      "wikiPhase": "conservacion_trufas",
       "notify": false
     }
   ],

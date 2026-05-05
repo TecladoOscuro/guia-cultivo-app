@@ -56,6 +56,7 @@ import hongoLionsMane from "./hongo-lions-mane.json";
 import hongoReishi from "./hongo-reishi.json";
 import hongoChaga from "./hongo-chaga.json";
 import hongoCordyceps from "./hongo-cordyceps.json";
+import hongosMedicinales from "./hongos-medicinales.json";
 import toxicaBrugmansia from "./toxica-brugmansia.json";
 import toxicaAdelfa from "./toxica-adelfa.json";
 import toxicaDedalera from "./toxica-dedalera.json";
@@ -130,6 +131,7 @@ export const templates: Record<string, CultivoTemplate> = {
   "hongo-reishi": hongoReishi as CultivoTemplate,
   "hongo-chaga": hongoChaga as CultivoTemplate,
   "hongo-cordyceps": hongoCordyceps as CultivoTemplate,
+  "hongos-medicinales": hongosMedicinales as CultivoTemplate,
   "toxica-brugmansia": toxicaBrugmansia as CultivoTemplate,
   "toxica-adelfa": toxicaAdelfa as CultivoTemplate,
   "toxica-dedalera": toxicaDedalera as CultivoTemplate,

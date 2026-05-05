@@ -10,14 +10,14 @@
 
   "phases": [
     { "id": "compra", "name": "Compra", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra" },
-    { "id": "semillas_int", "name": "Elegir semillas", "emoji": "🌰", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "semillas_int" },
-    { "id": "antes", "name": "Setup armario", "emoji": "🔧", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "antes" },
+    { "id": "semillas_int", "name": "Semillas", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "semillas_int" },
+    { "id": "antes", "name": "Setup armario", "emoji": "🔧", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "antes" },
     { "id": "germinacion", "name": "Germinación", "emoji": "🥚", "startDayOffset": 0, "endDayOffset": 7, "wikiPhase": "germinacion" },
     { "id": "vegetativa", "name": "Vegetativa", "emoji": "🌱", "startDayOffset": 7, "endDayOffset": 35, "wikiPhase": "vegetativa" },
-    { "id": "poda", "name": "Poda y entrenamiento", "emoji": "✂️", "startDayOffset": 14, "endDayOffset": 70, "wikiPhase": "poda" },
-    { "id": "goteo", "name": "Riego automático", "emoji": "💧", "startDayOffset": 21, "endDayOffset": 80, "wikiPhase": "goteo" },
+    { "id": "poda", "name": "Poda & LST", "emoji": "✂️", "startDayOffset": 7, "endDayOffset": 35, "wikiPhase": "poda" },
+    { "id": "goteo", "name": "Riego auto", "emoji": "💧", "startDayOffset": 14, "endDayOffset": 80, "wikiPhase": "goteo" },
     { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 35, "endDayOffset": 80, "wikiPhase": "floracion" },
-    { "id": "plagas_int", "name": "Prevención plagas", "emoji": "🐛", "startDayOffset": 0, "endDayOffset": 90, "wikiPhase": "plagas_int" },
+    { "id": "plagas_int", "name": "Plagas", "emoji": "🛡️", "startDayOffset": 7, "endDayOffset": 80, "wikiPhase": "plagas_int" },
     { "id": "cosecha", "name": "Cosecha", "emoji": "✂️", "startDayOffset": 80, "endDayOffset": 90, "wikiPhase": "cosecha" }
   ],
 
@@ -216,67 +216,44 @@
       "notify": true
     },
     {
-      "id": "lst_inicio",
-      "title": "🌿 Iniciar LST (Low Stress Training)",
+      "id": "lst_begin",
+      "title": "🌿 Iniciar LST — doblar rama principal",
       "emoji": "🌿",
-      "type": "monitoring",
+      "type": "training",
       "offsetDays": 14,
       "durationMin": 20,
-      "description": "Semana 2 de vegetativa: iniciar LST para controlar altura y maximizar copa horizontal. Atar ramas principales hacia los lados con alambre blando o bridas. Objetivo: copa plana y ancha en vez de vertical.",
-      "checklistInline": [
-        "Usar alambre blando recubierto o bridas",
-        "Doblar tallo principal 45-90° gradualmente",
-        "Fijar ramas en maceta (agujeros o clips)",
-        "Re-ajustar cada 4-7 días según crecimiento"
-      ],
-      "warningIf": [
-        "No doblar más de 90° de golpe — puede romper el tallo",
-        "Tallos gruesos: doblar tras riego (más flexibles)"
-      ],
+      "description": "Semana 2-3 vegetativa: cuando planta tenga 4-5 nudos y ~15cm. Doblar suavemente la rama principal hacia un lado ~45°. Fijar con clip de bonsái o cuerda suave a la maceta. En 24-48h las ramas laterales crecen hacia arriba buscando luz.",
+      "checklistInline": ["Planta con 4-5 nudos (~15cm)", "Doblar suave, no forzar", "Fijar con clip bonsái o cuerda", "Repetir con laterales cuando crezcan"],
+      "warningIf": ["Ramas leñosas se rompen — hacer LST solo en ramas jóvenes flexibles"],
       "wikiPhase": "poda",
       "notify": true
     },
     {
-      "id": "lst_ajuste",
-      "title": "🌿 Re-ajustar LST y defoliación baja",
-      "emoji": "🌿",
-      "type": "monitoring",
+      "id": "defoliacion_veg",
+      "title": "✂️ Defoliación ligera (quitar hojas tapón)",
+      "emoji": "✂️",
+      "type": "training",
       "offsetDays": 21,
-      "durationMin": 15,
-      "description": "Semana 3: re-ajustar ataduras LST. Eliminar 1-2 hojas bajas que tocan el sustrato (riesgo de hongos). NO defoliar agresivamente en vegetativa temprana.",
+      "durationMin": 30,
+      "description": "Quitar solo hojas grandes (fan leaves) que tapen completamente un punto de crecimiento. Máximo 2-3 hojas por sesión. Cortar desde la base del peciolo con tijeras limpias. Esperar 3-4 días antes de siguiente sesión. NO hacer topping ni FIM en autos.",
+      "checklistInline": ["Solo hojas que tapan puntos de crecimiento", "Máximo 2-3 hojas esta sesión", "Tijeras limpias, corte limpio", "NO topping/FIM en autoflorecientes"],
+      "warningIf": ["Quitar demasiadas hojas = estrés severo, planta para crecimiento varios días"],
       "wikiPhase": "poda",
       "notify": true
     },
     {
-      "id": "instalar_goteo",
-      "title": "💧 Instalar sistema de riego por goteo (opcional)",
+      "id": "setup_goteo",
+      "title": "💧 Instalar sistema riego automático (opcional)",
       "emoji": "💧",
-      "type": "milestone",
-      "offsetDays": 14,
+      "type": "preparation",
+      "offsetDays": 21,
       "durationMin": 120,
-      "description": "OPCIONAL pero recomendado para segundo cultivo. Kit goteo con timer digital (~50€). Instalar: depósito fuera del armario → tubo principal → conector Y → 2 goteros por maceta. Calibrar: medir caudal real de cada gotero (5 min test en vaso). Programar: 3 min/día semana 3-4, 5-7 min/día semana 5-6.",
+      "description": "Sistema opcional pero recomendado. Depósito 15-20L fuera del armario → tubo principal → temporizador → goteros regulables (1 por maceta). Colocar goteros en BORDE de maceta (no centro). Programar: 1 riego/día 3-5min mañana. Calibrar: 5min test con vaso medidor bajo cada gotero.",
+      "checklistInline": ["Depósito 15-20L fuera del armario", "Tubo dentro, ramales a cada maceta", "Goteros en borde, no centro", "Temporizador programado 1x/día mañana", "CALIBRAR: test 5min con vaso medidor"],
       "wikiPhase": "goteo",
-      "notify": false
-    },
-    {
-      "id": "inspeccion_semanal_plagas",
-      "title": "🔍 Inspección semanal de plagas",
-      "emoji": "🔍",
-      "type": "monitoring",
-      "offsetDays": 7,
-      "durationMin": 10,
-      "description": "Revisar TODAS las hojas, especialmente el envés. Buscar: mosquitos (fungus gnats), telarañas finas (araña roja), rayitas plateadas (trips), manchas blancas (oidio). Trampas amarillas pegajosas como alerta temprana.",
-      "checklistInline": [
-        "Examinar envés de hojas jóvenes",
-        "Revisar base del tallo y sustrato",
-        "Verificar trampas amarillas",
-        "Anotar cualquier señal en journal"
-      ],
-      "wikiPhase": "plagas_int",
-      "notify": false
+      "notify": true
     }
   ],
-
   "recurringTasks": [
     {
       "id": "riego_veg",
@@ -324,15 +301,68 @@
       "notify": false
     },
     {
+      "id": "fertilizar_flora",
+      "title": "🌸 Fertilizar floración (BioBizz Bloom)",
+      "emoji": "🌸",
+      "type": "feeding",
+      "startDayOffset": 35,
+      "endDayOffset": 70,
+      "cadence": { "everyDays": 7, "volumeMl": "2-4ml/L" },
+      "description": "BioBizz Bloom o equivalente. P+K alto, N bajo. Estimula flores. Última fertilización ~10-14 días antes cosecha.",
+      "consumes": [
+        { "stockKey": "biobizz_bloom", "qty": 8, "unit": "ml", "trigger": "per_event" }
+      ],
+      "wikiPhase": "floracion",
+      "notify": false
+    },
+    {
+      "id": "goteo_veg",
+      "title": "💧 Goteo vegetativa",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 21,
+      "endDayOffset": 35,
+      "cadence": { "everyDays": 1, "volumeMl": "200-500", "notes": "1x/día 3-7 min. Sem 3: 3min(200ml). Sem 4-5: 5-7min(400-500ml)." },
+      "description": "Goteo automático 1x/día por la mañana. Ajustar duración según fase (3-7 min). Verificar que todos los goteros emiten.",
+      "consumes": [{ "stockKey": "agua_dechlorada", "qty": 400, "unit": "ml", "trigger": "per_event" }],
+      "wikiPhase": "goteo",
+      "notify": false
+    },
+    {
+      "id": "goteo_flora",
+      "title": "💧 Goteo floración",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 35,
+      "endDayOffset": 70,
+      "cadence": { "everyDays": 1, "volumeMl": "600-1500", "notes": "2x/día 5-7 min. Total 700ml-1.5L/día en pico floración." },
+      "description": "Goteo 2x/día (mañana + tarde) en floración. Plantas grandes consumen más. Verificar drenaje funciona.",
+      "consumes": [{ "stockKey": "agua_dechlorada", "qty": 1000, "unit": "ml", "trigger": "per_event" }],
+      "wikiPhase": "goteo",
+      "notify": false
+    },
+    {
       "id": "inspeccion_plagas",
-      "title": "🔍 Inspección plagas (semanal)",
+      "title": "🔍 Inspección plagas semanal",
       "emoji": "🔍",
       "type": "monitoring",
       "startDayOffset": 7,
       "endDayOffset": 80,
-      "cadence": { "everyDays": 7, "notes": "Revisión semanal de hojas y trampas" },
-      "description": "Revisar envés de hojas, trampas amarillas, base del tallo. Alertas: mosquitos pequeños (fungus gnats), puntos amarillos + telaraña (araña roja), rayas plateadas (trips). Actuar inmediato si se detecta.",
+      "cadence": { "everyDays": 7, "notes": "Revisión visual semanal" },
+      "description": "Revisar envés de hojas jóvenes (ácaros, trips). Comprobar base del tallo y sustrato (fungus gnats). Buscar agujeros irregulares en hojas. Trampas amarillas pegajosas cerca de plantas. Ante señal: actuar mismo día.",
       "wikiPhase": "plagas_int",
+      "notify": false
+    },
+    {
+      "id": "limpiar_deposito_goteo",
+      "title": "🧹 Limpiar depósito goteo",
+      "emoji": "🧹",
+      "type": "monitoring",
+      "startDayOffset": 14,
+      "endDayOffset": 80,
+      "cadence": { "everyDays": 14, "notes": "Vaciar, limpiar, rellenar con agua fresca" },
+      "description": "Cada 2 semanas: vaciar depósito, limpiar paredes (se acumulan algas y bacterias), rellenar con agua fresca. Verificar pH del depósito (6.2-6.5).",
+      "wikiPhase": "goteo",
       "notify": false
     }
   ],

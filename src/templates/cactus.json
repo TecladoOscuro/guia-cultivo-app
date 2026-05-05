@@ -120,6 +120,29 @@
       ],
       "wikiPhase": "preparacion_cactus",
       "notify": false
+    },
+    {
+      "id": "crecimiento_anual",
+      "title": "📏 Checkpoint crecimiento anual",
+      "emoji": "📏",
+      "type": "monitoring",
+      "offsetDays": 365,
+      "durationMin": 15,
+      "description": "Año 1 desde plantación: el esqueje debería haber crecido 15-30cm (San Pedro) o 10-15cm (Bolivian Torch). Medir altura total y anotar. Si crecimiento <10cm: verificar sol (mínimo 4-6h directo), nutrientes, tamaño de maceta.",
+      "wikiPhase": "crecimiento_cactus",
+      "notify": true
+    },
+    {
+      "id": "procesar_cosecha",
+      "title": "⚗️ Procesar columna cosechada",
+      "emoji": "⚗️",
+      "type": "preparation",
+      "offsetDays": 732,
+      "durationMin": 120,
+      "description": "Procesar columna tras cosecha: 1) Lavar con agua fría. 2) Quitar espinas (mechero o tijeras). 3) Cortar en rodajas 1-2cm. 4) Pelar piel verde exterior (donde está la mescalina), descartar núcleo blanco. 5) Secar tiras 1-3 semanas en lugar oscuro ventilado hasta quebradizas. 6) Moler a polvo fino. Guardar en frasco opaco sellado (dura 2-5 años).",
+      "checklistInline": ["Lavar columna con agua fría", "Quitar espinas (mechero flame o tijeras)", "Cortar rodajas 1-2cm", "Pelar piel verde, descartar núcleo blanco", "Secar 1-3 sem oscuro ventilado", "Moler a polvo fino", "Frasco opaco sellado"],
+      "wikiPhase": "preparacion_cactus",
+      "notify": true
     }
   ],
 

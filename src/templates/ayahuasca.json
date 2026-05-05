@@ -11,9 +11,10 @@
     { "id": "compra_aya", "name": "Compra plantas", "emoji": "🛒", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "compra_aya" },
     { "id": "cultivo_caapi", "name": "Cultivo Caapi", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 730, "wikiPhase": "cultivo_caapi" },
     { "id": "cultivo_chacruna", "name": "Cultivo Chacruna", "emoji": "🍃", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "cultivo_chacruna" },
-    { "id": "cuidados_aya", "name": "Cuidados y clima", "emoji": "🌡️", "startDayOffset": 0, "endDayOffset": 1095, "wikiPhase": "cuidados_aya" },
+    { "id": "cuidados_aya", "name": "Cuidados", "emoji": "💧", "startDayOffset": 30, "endDayOffset": 1095, "wikiPhase": "cuidados_aya" },
     { "id": "preparacion_brebaje", "name": "Preparación brebaje", "emoji": "🍵", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "preparacion_brebaje" },
-    { "id": "ceremonia_aya", "name": "Ceremonia y protocolo", "emoji": "🕯️", "startDayOffset": 1095, "endDayOffset": 1095, "wikiPhase": "ceremonia_aya" }
+    { "id": "ceremonia_aya", "name": "Ceremonia", "emoji": "🌀", "startDayOffset": 1095, "endDayOffset": 1100, "wikiPhase": "ceremonia_aya" },
+    { "id": "harm_reduction_aya", "name": "Harm Reduction", "emoji": "🛡️", "startDayOffset": 1095, "endDayOffset": 1100, "wikiPhase": "harm_reduction_aya" }
   ],
   "events": [
     { "id": "plantar_caapi", "title": "🌿 Plantar esquejes Caapi", "emoji": "🌿", "type": "milestone", "offsetDays": 0, "durationMin": 60, "description": "Banisteriopsis caapi. Trepadora tropical. Maceta 25-30L con tutor o pared. Sustrato rico bien drenado. Necesita >18°C constante (interior España).", "wikiPhase": "cultivo_caapi", "notify": true },
@@ -71,6 +72,30 @@
         "NO tomar si: embarazo, lactancia, diagnóstico psiquiátrico",
         "NO mezclar con: alcohol, otras drogas, medicación SSRI/IMAO"
       ],
+      "wikiPhase": "ceremonia_aya",
+      "notify": true
+    },
+    {
+      "id": "cuidados_mensuales",
+      "title": "💧 Cuidados mensuales Caapi + Chacruna",
+      "emoji": "💧",
+      "type": "maintenance",
+      "offsetDays": 60,
+      "durationMin": 60,
+      "description": "Rutina mensual: 1) Verificar humedad sustrato — Caapi: regar cuando 2cm secos. Chacruna: nunca dejar secar. 2) Pulverizar hojas 1-2x/día con agua tibia. 3) Inspeccionar plagas: cochinillas (manchas blancas algodonosas envés), araña roja (telarañas finas, puntos amarillos), trips (rayones plateados). 4) Rotar maceta 90° cada 2 semanas. 5) Fertilizar cada 2-3 sem (marzo-septiembre, NO en invierno).",
+      "wikiPhase": "cuidados_aya",
+      "notify": true
+    },
+    {
+      "id": "prep_ceremonia",
+      "title": "🌀 Preparar ceremonia — dieta 1 semana",
+      "emoji": "🌀",
+      "type": "preparation",
+      "offsetDays": 365,
+      "durationMin": 30,
+      "description": "Pre-dieta 1 SEMANA ANTES de la ceremonia. EVITAR: quesos curados, embutidos, pescados ahumados, vino/cerveza, salsa soja/miso, kimchi, plátanos muy maduros, aguacate maduro, café (24h antes), chocolate negro, antidepresivos SSRI/IMAO (mínimo 4-6 semanas off-med). DIETA: verduras frescas, carne fresca, frutas frescas, arroz/quinoa, agua/infusiones suaves. Definir intención escrita.",
+      "checklistInline": ["1 semana antes: evitar alimentos prohibidos (tiramina)", "4-6 semanas off-med SSRI/IMAO", "Definir intención escrita", "Última comida 6-8h antes del brebaje", "Tener sitter sobrio presente", "Espacio: oscuro, cómodo, sin distracciones", "Preparar: cubo vómito, pañuelos, agua, manta"],
+      "warningIf": ["SSRI/MAOI + ayahuasca = SÍNDROME SEROTONINÉRGICO potencialmente fatal"],
       "wikiPhase": "ceremonia_aya",
       "notify": true
     }
