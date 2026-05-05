@@ -65,11 +65,17 @@ export default function NewCultivation() {
     }
   };
 
+  const scaleLabel = template
+    ? template.category === "fermento" ? "lote/fermentación"
+    : template.category === "hongo" ? "kit/cultivo"
+    : "planta"
+    : "";
+
   return (
     <div>
       <h1 className="text-2xl font-bold text-text-bright mb-1">➕ Nuevo cultivo</h1>
       <p className="text-xs text-text-muted mb-4">
-        El cultivo se crea en estado <strong>planeado</strong>. Cuando tengas todo listo, podrás iniciarlo desde Mis Cultivos.
+        Se crea en estado <strong>planeado</strong>. Cuando tengas todo listo, podrás iniciarlo desde Mis Cultivos.
       </p>
 
       {errMsg && (
@@ -173,7 +179,7 @@ export default function NewCultivation() {
                 className="w-20 bg-bg-2 border border-border rounded px-3 py-2 text-text-bright text-center"
               />
               <span className="text-xs text-text-muted">
-                {scale > 1 ? `×${scale} — todas las cantidades se multiplican` : "×1 — cantidades del template"}
+                {scale > 1 ? `×${scale} = ${scale} ${scaleLabel}${scale > 1 ? "s" : ""}` : `×1 = 1 ${scaleLabel}`}
               </span>
             </div>
           </label>

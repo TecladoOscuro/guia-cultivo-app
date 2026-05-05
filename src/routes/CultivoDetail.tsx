@@ -367,10 +367,13 @@ function ShoppingSection({ items, stocks }: { items: ShoppingItem[]; stocks: Sto
             <div className="flex justify-between items-center gap-2">
               <div className="flex-1 min-w-0">
                 <div className="text-sm text-text-bright">{it.name}</div>
-                <div className="text-xs text-text-muted">
-                  {it.qty}{it.unit}{it.approxPrice ? ` · ${it.approxPrice}` : ""}
-                  {inStock ? ` · 📦 tienes ${inStock.qty}${inStock.unit}` : " · no tienes en stock"}
-                </div>
+              <div className="text-xs text-text-muted">
+                {it.qty}{it.unit}{it.approxPrice ? ` · ${it.approxPrice}` : ""}
+                {inStock ? ` · 📦 tienes ${inStock.qty}${inStock.unit}` : " · no tienes en stock"}
+              </div>
+              {it.notes && !it.notes.startsWith("stock_id:") && (
+                <div className="text-xs text-text-muted mt-0.5 opacity-70">{it.notes}</div>
+              )}
               </div>
               <div className="flex gap-1 shrink-0">
                 {stocks.length > 0 && (
@@ -454,12 +457,28 @@ function LinkToStock({ item, stocks, onLink }: { item: ShoppingItem; stocks: Sto
 
 function guessStockCategory(item: ShoppingItem): StockCategory | null {
   const name = (item.name + " " + item.itemKey).toLowerCase();
-  if (name.includes("semilla") || name.includes("espora") || name.includes("spore")) return "semilla";
-  if (name.includes("esqueje") || name.includes("clone")) return "esqueje";
-  if (name.includes("sustrato") || name.includes("tierra") || name.includes("coco") || name.includes("perlita") || name.includes("verm")) return "sustrato";
-  if (name.includes("kit") && !name.includes("kitchen")) return "kit";
-  if (name.includes("fertilizante") || name.includes("nutriente") || name.includes("abono") || name.includes("biobizz") || name.includes("bloom") || name.includes("grow") || name.includes("feeding")) return "nutriente";
-  if (name.includes("maceta") || name.includes("luz") || name.includes("ventilador") || name.includes("medidor") || name.includes("tijera") || name.includes("pulverizador") || name.includes("alcohol")) return "equipo";
+
+  // Semilla: seeds, spores, liquid cultures, tubers, rhizomes, nursery plants
+  if (/semilla|espora|spore|rizoma|tub[eé]rculo|cormo|planta .*vivero|pl[aá]nton|plant[oó]n|cultura liquida|lc syring|jeringa espora|in[oó]culo/.test(name)) return "semilla";
+
+  // Esqueje: cuttings, clones
+  if (/esqueje|clon|clone|corte enraizado/.test(name)) return "esqueje";
+
+  // Kit: complete bundles
+  if (/kit cultivo|kit seta|kit cerveza|kit completo|pan \+ c[aá]mara|bloque pre-colonizado|spawn_reishi/.test(name)) return "kit";
+
+  // Sustrato: soils, substrates, grain spawn, drainage, coco, perlite
+  if (/sustrato|tierra|suelo|coir|coco|perlita|vermiculita|grano.*kg|grano centeno|arroz.*sustrato|arroz.*grano|serr[ií]n|compost|humus|turba|turboso|arena.*grava|drenante|drenaje|gypsum/.test(name)) return "sustrato";
+
+  // Nutriente: fertilizers, plant nutrients, pest treatments, yeast nutrients for brew
+  if (/fertilizante|nutriente|abono|biobizz|bloom|grow|npk|jab[oó]n pot[aá]sico|bacillus|bt insecticida|dap |fermaid|nutriente levadura/.test(name)) return "nutriente";
+
+  // Equipo: reusable hardware, tools, pots, lights, instruments
+  if (/maceta|macet[oó]n|airpot|lst|alambre|botella|botellas|tap[oó]n|tapones|c[aá]mara fructi|sgfc|tienda|cesta|forrajeo|cuba|estanque|deshidratador|fermentador|airlock|fitolux|led|frasco|frascos|sab |still air|term[oó]metro|termohigr[oó]metro|ph[ -]?metro|hidr[oó]metro|prensa|humidificador|invernadero|tutor|enrejado|espaldera|olla |olla a |nebulizador|pulverizador|guante|kit goteo|goteo/.test(name)) return "equipo";
+
+  // Fungible: water, sanitizers, tape, yeast, brewing ingredients, single-use
+  if (/agua|osmosis|reposo|destilada|desmineralizada|sin cloro|dechlorada|filtrada|mineral|lluvia|alcohol|star san|sanitizante|micropore|cinta|trampa.*adhesiva|trampa.*amarilla|silica|desecante|bolsa.*pre[ -]?ester|levadura|yeast|miel|panela|az[uú]car|manzana|corteza|especia|jora|ma[ií]z|malteado|kefir|pulque|aguamiel|chaga|priming/.test(name)) return "fungible";
+
   return null;
 }
 
