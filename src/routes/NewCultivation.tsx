@@ -160,17 +160,16 @@ export default function NewCultivation() {
             <span className="text-xs text-text-muted">Escala — ¿cuántas plantas/kits/unidades?</span>
             <div className="flex items-center gap-2">
               <input
-                type="number"
-                min={1}
-                max={99}
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={scale}
                 onChange={(e) => {
-                  const v = e.target.value;
+                  const v = e.target.value.replace(/[^0-9]/g, "");
                   if (v === "") { setScale(1); return; }
                   const n = parseInt(v, 10);
                   if (!isNaN(n)) setScale(Math.max(1, Math.min(99, n)));
                 }}
-                onFocus={(e) => e.target.select()}
                 className="w-20 bg-bg-2 border border-border rounded px-3 py-2 text-text-bright text-center"
               />
               <span className="text-xs text-text-muted">

@@ -371,9 +371,7 @@ function LinkToStock({ item, stocks, onLink }: { item: ShoppingItem; stocks: Sto
   const [open, setOpen] = useState(false);
 
   const guessedCategory = guessCategory(item);
-  const relevant = stocks.filter((s) => s.category === guessedCategory);
-  const others = stocks.filter((s) => s.category !== guessedCategory);
-  const sorted = [...relevant, ...others];
+  const relevant = guessedCategory ? stocks.filter((s) => s.category === guessedCategory) : stocks;
 
   return (
     <div className="relative">
@@ -391,14 +389,14 @@ function LinkToStock({ item, stocks, onLink }: { item: ShoppingItem; stocks: Sto
             <div className="px-3 py-1.5 text-xs text-text-muted border-b border-border">
               Tu stock{guessedCategory ? ` (${guessedCategory})` : ""}:
             </div>
-            {relevant.length === 0 && guessedCategory && (
-              <div className="px-3 py-1.5 text-xs text-text-muted">Nada en {guessedCategory}</div>
+            {relevant.length === 0 && (
+              <div className="px-3 py-1.5 text-xs text-text-muted">Nada en esta categoría</div>
             )}
-            {sorted.map((s) => (
+            {relevant.map((s) => (
               <button
                 key={s.id}
                 onClick={() => { onLink(s.id!); setOpen(false); }}
-                className={`block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3 ${s.category !== guessedCategory ? "opacity-40" : ""}`}
+                className="block w-full text-left px-3 py-1.5 text-xs hover:bg-bg-3"
               >
                 {s.name} ({s.qty}{s.unit})
               </button>

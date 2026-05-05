@@ -67,23 +67,6 @@ export default function Calendar() {
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editing, setEditing] = useState<AppEvent | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [resizeKey, setResizeKey] = useState(0);
-
-  // Reset calendar on orientation change (iPhone rotation zoom bug)
-  useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    const onResize = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => setResizeKey((k) => k + 1), 300);
-    };
-    window.addEventListener("orientationchange", onResize);
-    window.addEventListener("resize", onResize);
-    return () => {
-      window.removeEventListener("orientationchange", onResize);
-      window.removeEventListener("resize", onResize);
-      clearTimeout(timeout);
-    };
-  }, []);
 
   const cultivations = useLiveQuery(() => db.cultivations.toArray(), []) ?? [];
   const events = useLiveQuery(() => db.events.toArray(), []) ?? [];
@@ -200,7 +183,7 @@ export default function Calendar() {
           <p className="text-text-muted">Sin eventos. Crea un cultivo en ➕ Nuevo o un evento manual con el botón de arriba.</p>
         </div>
       ) : (
-        <div className="sx-wrapper" style={{ height: "calc(100vh - 220px)", minHeight: 500 }} key={resizeKey}>
+        <div className="sx-wrapper" style={{ height: "calc(100vh - 220px)", minHeight: 500 }}>
           <ScheduleXCalendar calendarApp={calendar} />
         </div>
       )}
@@ -278,11 +261,11 @@ function EventDetailModal({
 
   return (
     <div
-      className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50"
+      className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[100]"
       onClick={onClose}
     >
       <div
-        className="bg-bg-2 border border-border rounded-lg p-6 max-w-lg w-full max-h-[90vh] overflow-y-auto"
+        className="bg-bg-2 border border-border rounded-lg p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-start mb-3">
@@ -474,7 +457,7 @@ function EventForm({
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50" onClick={onClose}>
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-[100]" onClick={onClose}>
       <div
         className="bg-bg-2 border border-border rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
