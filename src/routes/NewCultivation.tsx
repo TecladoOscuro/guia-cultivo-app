@@ -67,8 +67,7 @@ export default function NewCultivation() {
 
   const scaleLabel = template
     ? template.category === "fermento" ? "lote"
-    : template.category === "hongo" ? "kit"
-    : "planta"
+    : "cultivo"
     : "";
 
   const typeLabel = template?.category === "fermento" ? "elaboración" : "cultivo";

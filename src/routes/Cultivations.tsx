@@ -24,7 +24,7 @@ export default function Cultivations() {
         <h1 className="text-2xl font-bold text-text-bright">🌱 Cultivos y elaboraciones</h1>
         <Link
           to="/new"
-          className="px-4 py-2 bg-accent text-bg rounded-lg font-bold text-sm"
+          className="px-3 py-2 bg-accent text-bg rounded-lg font-bold text-sm shrink-0"
         >
           ➕ Nuevo
         </Link>
