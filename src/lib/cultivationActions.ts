@@ -43,7 +43,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
   const availableStock = await getStockAvailable();
   const shoppingItems: Omit<ShoppingItem, "id">[] = template.shoppingList.map(
     (s) => {
-      const qtyNeeded = s.qty * (input.scale ?? 1);
+      const qtyNeeded = s.scaleQuantity === false ? s.qty : s.qty * (input.scale ?? 1);
       const haveAvailable = availableStock[s.key] ?? 0;
       const covered = haveAvailable >= qtyNeeded;
       return {
@@ -72,7 +72,7 @@ export async function createCultivation(input: CreateCultivationInput): Promise<
       await db.stockReservations.add({
         stockKey: c.stockKey,
         cultivationId,
-        qty: c.qty * (input.scale ?? 1),
+        qty: c.scaleQuantity === false ? c.qty : c.qty * (input.scale ?? 1),
         unit: c.unit,
         status: "reserved",
         createdAt: new Date(),
@@ -147,7 +147,7 @@ export async function startCultivation(cultivationId: number): Promise<{
             stockKey: c.stockKey,
             cultivationId,
             eventId: event.id,
-            qty: c.qty * scale,
+            qty: c.scaleQuantity === false ? c.qty : c.qty * scale,
             unit: c.unit,
             status: "reserved",
             createdAt: new Date(),
@@ -165,7 +165,7 @@ export async function startCultivation(cultivationId: number): Promise<{
             stockKey: c.stockKey,
             cultivationId,
             eventId: event.id,
-            qty: c.qty * scale,
+            qty: c.scaleQuantity === false ? c.qty : c.qty * scale,
             unit: c.unit,
             status: "reserved",
             createdAt: new Date(),

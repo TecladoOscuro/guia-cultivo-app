@@ -168,7 +168,8 @@
       "category": "esencial",
       "approxPrice": "10-15€",
       "source": "internet",
-      "notes": "Imprescindible para medir DI/DF y calcular ABV."
+      "notes": "Imprescindible para medir DI/DF y calcular ABV.",
+      "scaleQuantity": false
     },
     {
       "key": "star_san",
@@ -187,7 +188,8 @@
       "unit": "ud",
       "category": "esencial",
       "approxPrice": "15-25€",
-      "notes": "Reusar botellas vino con tapón corcho o rosca."
+      "notes": "Reusar botellas vino con tapón corcho o rosca.",
+    "scaleQuantity": false
     }
   ],
 
@@ -210,11 +212,11 @@
 
   "consumables": [
     { "stockKey": "miel_cruda", "qty": 1.5, "unit": "kg", "trigger": "once" },
-    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "levadura_hidromiel", "qty": 1, "unit": "ud", "trigger": "once" },
     { "stockKey": "nutriente_levadura", "qty": 5, "unit": "g", "trigger": "once" },
     { "stockKey": "star_san", "qty": 30, "unit": "ml", "trigger": "once" },
-    { "stockKey": "botellas_750ml", "qty": 6, "unit": "ud", "trigger": "once" }
+    { "stockKey": "botellas_750ml", "qty": 6, "unit": "ud", "trigger": "once", "scaleQuantity": false }
   ],
 
   "harvestable": true,

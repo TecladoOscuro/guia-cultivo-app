@@ -61,6 +61,18 @@ export interface ShoppingItemTemplate {
   source?: "internet" | "tienda_fisica";
   notes?: string;
   wikiPhase?: string;
+  scaleQuantity?: boolean;
+}
+
+export interface ConsumableUsage {
+  stockKey: string;
+  qty: number;
+  unit: string;
+  trigger: "once" | "per_event" | "per_phase";
+  refEventId?: string;
+  refPhase?: string;
+  description?: string;
+  scaleQuantity?: boolean;
 }
 
 export interface ChecklistItemTemplate {

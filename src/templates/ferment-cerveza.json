@@ -26,11 +26,11 @@
   ],
   "shoppingList": [
     { "key": "kit_cerveza_inicio", "name": "Kit cerveza inicio (malta + lúpulo + levadura)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Brewferm, Coopers o equivalente. Estilo Pale Ale o Pilsner.", "wikiPhase": "compra_cerveza" },
-    { "key": "olla_25L", "name": "Olla 25L para hervor", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
-    { "key": "fermentador_cerveza", "name": "Fermentador 23L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
-    { "key": "hidrometro", "name": "Hidrómetro + probeta", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "olla_25L", "name": "Olla 25L para hervor", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€", "scaleQuantity": false },
+    { "key": "fermentador_cerveza", "name": "Fermentador 23L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "30-50€", "scaleQuantity": false },
+    { "key": "hidrometro", "name": "Hidrómetro + probeta", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€", "scaleQuantity": false },
     { "key": "star_san", "name": "Star San", "qty": 250, "unit": "ml", "category": "esencial", "approxPrice": "10-15€" },
-    { "key": "botellas_cerveza", "name": "Botellas + tapones corona (50)", "qty": 50, "unit": "ud", "category": "esencial", "approxPrice": "30-50€" },
+    { "key": "botellas_cerveza", "name": "Botellas + tapones corona (50)", "qty": 50, "unit": "ud", "category": "esencial", "approxPrice": "30-50€", "scaleQuantity": false },
     { "key": "priming_sugar", "name": "Priming sugar (azúcar carbonatación)", "qty": 200, "unit": "g", "category": "importante", "approxPrice": "3-5€" }
   ],
   "prepChecklist": [
@@ -40,9 +40,9 @@
   ],
   "consumables": [
     { "stockKey": "kit_cerveza_inicio", "qty": 1, "unit": "ud", "trigger": "once" },
-    { "stockKey": "fermentador_cerveza", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "fermentador_cerveza", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "star_san", "qty": 50, "unit": "ml", "trigger": "once" },
-    { "stockKey": "botellas_cerveza", "qty": 30, "unit": "ud", "trigger": "once" },
+    { "stockKey": "botellas_cerveza", "qty": 30, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "priming_sugar", "qty": 130, "unit": "g", "trigger": "once" }
   ],
   "harvestable": true,

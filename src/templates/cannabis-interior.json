@@ -397,7 +397,8 @@
       "category": "esencial",
       "approxPrice": "100-300€",
       "source": "internet",
-      "notes": "Mars Hydro, Spider Farmer. Full spectrum. Mínimo 100W para 1 planta, 300W para 2-3."
+      "notes": "Mars Hydro, Spider Farmer. Full spectrum. Mínimo 100W para 1 planta, 300W para 2-3.",
+    "scaleQuantity": false
     },
     {
       "key": "macetas_cultivo",
@@ -407,7 +408,8 @@
       "category": "esencial",
       "approxPrice": "10-20€",
       "source": "internet",
-      "notes": "Smart pots tela permite mejor oxigenación raíces."
+      "notes": "Smart pots tela permite mejor oxigenación raíces.",
+    "scaleQuantity": false
     },
     {
       "key": "biobizz_grow",
@@ -437,7 +439,8 @@
       "category": "importante",
       "approxPrice": "15-30€",
       "source": "internet",
-      "notes": "Imprescindible para verificar agua riego pH 6.0-6.5."
+      "notes": "Imprescindible para verificar agua riego pH 6.0-6.5.",
+    "scaleQuantity": false
     },
     {
       "key": "agua_dechlorada",
@@ -457,7 +460,8 @@
       "approxPrice": "20-35€",
       "source": "internet",
       "notes": "Gardena, ELGo, Rainpoint. Incluye timer, tubo 6mm, goteros. Depósito 15-20L aparte (10-15€).",
-      "wikiPhase": "goteo"
+      "wikiPhase": "goteo",
+      "scaleQuantity": false
     },
     {
       "key": "trampas_amarillas",
@@ -479,7 +483,8 @@
       "approxPrice": "3-5€",
       "source": "tienda_fisica",
       "notes": "Alternativa: bridas pequeñas o hilo de jardinería.",
-      "wikiPhase": "poda"
+      "wikiPhase": "poda",
+      "scaleQuantity": false
     }
   ],
 

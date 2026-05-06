@@ -54,7 +54,15 @@
 
   "shoppingList": [
     { "key": "semillas_cannabis_ext", "name": "Semillas exterior (autoflowers o sativas largas)", "qty": 3, "unit": "ud", "category": "esencial", "approxPrice": "20-50€", "source": "internet", "notes": "Para clima mediterráneo: autoflowers o variedades sativas. Skunk, Critical+, Auto Northern.", "wikiPhase": "compra_ext" },
-    { "key": "macetas_grandes", "name": "Macetas tela 30-50L", "qty": 3, "unit": "ud", "category": "esencial", "approxPrice": "15-30€", "source": "internet" },
+    { "key": "macetas_grandes",
+      "name": "Macetas tela 30-50L",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-30€",
+      "source": "internet",
+      "scaleQuantity": false
+    },
     { "key": "sustrato_outdoor", "name": "Sustrato outdoor + compost (50L)", "qty": 50, "unit": "L", "category": "esencial", "approxPrice": "20-30€", "source": "tienda_fisica" },
     { "key": "biobizz_grow", "name": "Bio·Bizz Grow", "qty": 1, "unit": "L", "category": "importante", "approxPrice": "20-25€" },
     { "key": "bt_insecticida", "name": "Bt (Bacillus thuringiensis) 250ml", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "10-20€", "source": "tienda_fisica", "notes": "Insecticida biológico contra orugas. Aplicar cada 2 semanas en floración.", "wikiPhase": "compra_ext" },
@@ -71,7 +79,7 @@
 
   "consumables": [
     { "stockKey": "semillas_cannabis_ext", "qty": 3, "unit": "ud", "trigger": "once" },
-    { "stockKey": "macetas_grandes", "qty": 3, "unit": "ud", "trigger": "once" },
+    { "stockKey": "macetas_grandes", "qty": 3, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "sustrato_outdoor", "qty": 50, "unit": "L", "trigger": "once" },
     { "stockKey": "biobizz_grow", "qty": 250, "unit": "ml", "trigger": "once" },
     { "stockKey": "biobizz_bloom", "qty": 400, "unit": "ml", "trigger": "once" },

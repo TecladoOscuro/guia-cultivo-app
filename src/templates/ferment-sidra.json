@@ -26,12 +26,12 @@
   ],
   "shoppingList": [
     { "key": "manzanas_sidra", "name": "Manzanas sidra (10kg)", "qty": 10, "unit": "kg", "category": "esencial", "approxPrice": "10-25€", "source": "tienda_fisica", "notes": "Mercado o frutería. Mezcla dulces + ácidas + amargas. NO solo postre (low ácido).", "wikiPhase": "compra_sidra" },
-    { "key": "garrafa_5L", "name": "Garrafa cristal 5L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "garrafa_5L", "name": "Garrafa cristal 5L con airlock", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€", "scaleQuantity": false },
     { "key": "levadura_champagne", "name": "Levadura champagne EC-1118 (opcional)", "qty": 1, "unit": "ud", "category": "importante", "approxPrice": "3-6€" },
-    { "key": "hidrometro", "name": "Hidrómetro", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€" },
+    { "key": "hidrometro", "name": "Hidrómetro", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€", "scaleQuantity": false },
     { "key": "star_san", "name": "Star San", "qty": 250, "unit": "ml", "category": "esencial", "approxPrice": "10-15€" },
-    { "key": "botellas_sidra", "name": "Botellas vidrio 750ml (8)", "qty": 8, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" },
-    { "key": "prensa_DIY", "name": "Bolsa tela + peso (DIY prensa)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "notes": "O alquilar prensa fruta a vecino. Sin prensa = mucho desperdicio." }
+    { "key": "botellas_sidra", "name": "Botellas vidrio 750ml (8)", "qty": 8, "unit": "ud", "category": "esencial", "approxPrice": "10-20€", "scaleQuantity": false },
+    { "key": "prensa_DIY", "name": "Bolsa tela + peso (DIY prensa)", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "5-15€", "notes": "O alquilar prensa fruta a vecino. Sin prensa = mucho desperdicio.", "scaleQuantity": false }
   ],
   "prepChecklist": [
     { "id": "epoca_otono", "title": "Otoño (sept-nov) cuando manzanas están de temporada", "description": "Sidra tradicional otoño. Manzanas frescas locales mejor.", "blocking": true, "estimatedMinutes": 5 },
@@ -39,10 +39,10 @@
   ],
   "consumables": [
     { "stockKey": "manzanas_sidra", "qty": 10, "unit": "kg", "trigger": "once" },
-    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "garrafa_5L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "levadura_champagne", "qty": 1, "unit": "ud", "trigger": "once" },
     { "stockKey": "star_san", "qty": 30, "unit": "ml", "trigger": "once" },
-    { "stockKey": "botellas_sidra", "qty": 8, "unit": "ud", "trigger": "once" }
+    { "stockKey": "botellas_sidra", "qty": 8, "unit": "ud", "trigger": "once", "scaleQuantity": false }
   ],
   "harvestable": true,
   "harvestType": "main_batch",

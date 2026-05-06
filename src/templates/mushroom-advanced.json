@@ -29,12 +29,12 @@
   ],
   "shoppingList": [
     { "key": "esporada_cubensis", "name": "Esporada Psilocybe cubensis", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-40€", "source": "internet" },
-    { "key": "olla_presion", "name": "Olla a presión 6-10L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "40-80€" },
+    { "key": "olla_presion", "name": "Olla a presión 6-10L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "40-80€", "scaleQuantity": false },
     { "key": "frascos_filtro_adv", "name": "Frascos 1L con filtro (5-10ud)", "qty": 5, "unit": "ud", "category": "esencial", "approxPrice": "20-40€" },
     { "key": "centeno_grano", "name": "Grano centeno 2kg", "qty": 2, "unit": "kg", "category": "esencial", "approxPrice": "5-10€" },
-    { "key": "sab_box", "name": "SAB (still air box) DIY caja transparente", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€" },
+    { "key": "sab_box", "name": "SAB (still air box) DIY caja transparente", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-20€", "scaleQuantity": false },
     { "key": "coco_coir", "name": "Coco coir + vermiculita + gypsum", "qty": 10, "unit": "L", "category": "esencial", "approxPrice": "15-25€" },
-    { "key": "monotub", "name": "Monotub 100L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€" },
+    { "key": "monotub", "name": "Monotub 100L", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "20-30€", "scaleQuantity": false },
     { "key": "agua_destilada", "name": "Agua destilada", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "2-5€" },
     { "key": "alcohol_70", "name": "Alcohol 70%", "qty": 500, "unit": "ml", "category": "esencial", "approxPrice": "5-8€" }
   ],
@@ -48,7 +48,7 @@
     { "stockKey": "frascos_filtro_adv", "qty": 5, "unit": "ud", "trigger": "once" },
     { "stockKey": "centeno_grano", "qty": 1.5, "unit": "kg", "trigger": "once" },
     { "stockKey": "coco_coir", "qty": 8, "unit": "L", "trigger": "once" },
-    { "stockKey": "monotub", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "monotub", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "agua_destilada", "qty": 4, "unit": "L", "trigger": "once" },
     { "stockKey": "alcohol_70", "qty": 200, "unit": "ml", "trigger": "once" }
   ],

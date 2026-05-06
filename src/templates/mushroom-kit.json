@@ -202,7 +202,8 @@
       "category": "util",
       "approxPrice": "8-15€",
       "source": "internet",
-      "notes": "Para verificar 24-26°C + 90% humedad. Útil pero no imprescindible."
+      "notes": "Para verificar 24-26°C + 90% humedad. Útil pero no imprescindible.",
+    "scaleQuantity": false
     }
   ],
 

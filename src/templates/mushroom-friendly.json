@@ -37,7 +37,9 @@
     { "key": "frasco_LC", "name": "Frasco LC con puerto inyección 500ml", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "10-15€", "source": "internet" },
     { "key": "bolsas_grano_preester", "name": "Bolsas grano pre-esterilizadas (3-5kg)", "qty": 4, "unit": "kg", "category": "esencial", "approxPrice": "30-60€", "source": "internet", "notes": "Avalon, Mondo. Listas para inocular. Ahorra olla a presión." },
     { "key": "coco_coir", "name": "Coco coir + vermiculita + gypsum", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "10-15€" },
-    { "key": "monotub", "name": "Monotub plástico 50-100L con tapa", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-25€", "source": "tienda_fisica", "notes": "Caja plástica IKEA o similar + agujeros con cinta micropore." },
+    { "key": "monotub", "name": "Monotub plástico 50-100L con tapa", "qty": 1, "unit": "ud", "category": "esencial", "approxPrice": "15-25€", "source": "tienda_fisica", "notes": "Caja plástica IKEA o similar + agujeros con cinta micropore.",
+    "scaleQuantity": false
+    },
     { "key": "agua_destilada", "name": "Agua destilada", "qty": 5, "unit": "L", "category": "esencial", "approxPrice": "2-5€" },
     { "key": "alcohol_70", "name": "Alcohol 70%", "qty": 250, "unit": "ml", "category": "esencial", "approxPrice": "3-5€" }
   ],
@@ -53,7 +55,7 @@
     { "stockKey": "frasco_LC", "qty": 1, "unit": "ud", "trigger": "once" },
     { "stockKey": "bolsas_grano_preester", "qty": 3, "unit": "kg", "trigger": "once" },
     { "stockKey": "coco_coir", "qty": 5, "unit": "L", "trigger": "once" },
-    { "stockKey": "monotub", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "monotub", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
     { "stockKey": "agua_destilada", "qty": 3, "unit": "L", "trigger": "once" },
     { "stockKey": "alcohol_70", "qty": 100, "unit": "ml", "trigger": "once" }
   ],
