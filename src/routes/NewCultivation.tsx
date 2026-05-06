@@ -132,7 +132,26 @@ export default function NewCultivation() {
             <span className="text-lg mr-2">{template.emoji}</span>
             <span className="font-bold text-text-bright">{template.name}</span>
             <div className="text-xs text-text-muted mt-1">
-              {template.totalDuration.days} días · {template.events.length + template.recurringTasks.length} eventos totales
+              {template.totalDuration.days} días · {template.events.length + template.recurringTasks.length} eventos
+            </div>
+          </div>
+
+          {/* Show what 1 unidad means in this template */}
+          <div className="p-3 border border-border rounded text-xs">
+            <div className="text-text-muted mb-1">1 {scaleLabel} incluye:</div>
+            <div className="grid gap-0.5">
+              {template.shoppingList.filter(s => s.category === "esencial").slice(0, 5).map(s => (
+                <div key={s.key} className="flex justify-between">
+                  <span className="text-text-bright">{s.name}</span>
+                  <span className="text-text-muted">
+                    {s.qty}{s.unit}
+                    {scale > 1 && <span className="text-accent ml-1">→ {s.qty * scale}{s.unit}</span>}
+                  </span>
+                </div>
+              ))}
+              {template.shoppingList.length > 5 && (
+                <div className="text-text-muted">+{template.shoppingList.length - 5} items más</div>
+              )}
             </div>
           </div>
 
