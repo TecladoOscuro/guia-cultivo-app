@@ -1,0 +1,309 @@
+{
+  "id": "ferment-kombucha",
+  "name": "Kombucha",
+  "emoji": "🫧",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 21 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=kombucha",
+  "theme": { "primary": "#d4a574", "bg": "#1a1208" },
+
+  "phases": [
+    { "id": "preparacion_kombucha", "name": "Preparación", "emoji": "🍵", "startDayOffset": 0, "endDayOffset": 1, "wikiPhase": "preparacion_kombucha" },
+    { "id": "fermentacion_kombucha", "name": "Fermentación 1ª", "emoji": "🫧", "startDayOffset": 1, "endDayOffset": 14, "wikiPhase": "fermentacion_kombucha" },
+    { "id": "aromatizado_kombucha", "name": "Aromatizado (2ªF)", "emoji": "🍓", "startDayOffset": 14, "endDayOffset": 17, "wikiPhase": "aromatizado_kombucha" },
+    { "id": "carbonatacion_kombucha", "name": "Carbonatación", "emoji": "🍾", "startDayOffset": 17, "endDayOffset": 21, "wikiPhase": "carbonatacion_kombucha" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_te",
+      "title": "🍵 Preparar té dulce base",
+      "emoji": "🍵",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 45,
+      "description": "Hervir 1L agua. Añadir 4-6g té negro (o verde). Infusionar 10-15 min. Retirar hojas. Disolver 70g azúcar blanco (el SCOBY lo consume). Añadir 2L agua fría para enfriar a temperatura ambiente (< 30°C). Volumen total ~3L.",
+      "checklistInline": [
+        "Hervir 1L agua en olla limpia",
+        "Añadir 4-6g té negro/verde (NO aromatizado)",
+        "Infusionar 10-15 min, retirar hojas",
+        "Disolver 70g azúcar completamente",
+        "Añadir 2L agua fría, enfriar a < 30°C"
+      ],
+      "expectedSignals": [
+        "Temperatura < 30°C antes de añadir SCOBY",
+        "Té de color ámbar oscuro"
+      ],
+      "warningIf": [
+        "Temperatura > 35°C al añadir SCOBY → mata cultivo",
+        "Té con aromas/aceites (Earl Grey) → daña SCOBY",
+        "Azúcar sin disolver → fermentación irregular"
+      ],
+      "wikiPhase": "preparacion_kombucha",
+      "notify": true
+    },
+    {
+      "id": "anadir_scoby",
+      "title": "🫧 Añadir SCOBY + líquido iniciador",
+      "emoji": "🫧",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 15,
+      "description": "Verter té enfriado en jarra de vidrio 3L. Añadir SCOBY + 200ml de kombucha anterior (líquido iniciador que acidifica y protege). Cubrir con tela transpirable + goma. NO usar tapón hermético (necesita oxígeno).",
+      "checklistInline": [
+        "Té a temperatura ambiente (< 30°C)",
+        "Jarra vidrio limpia (no enjuagar con jabón — residuos matan cultivo)",
+        "SCOBY con lado liso arriba",
+        "Añadir 200ml kombucha anterior (starter)",
+        "Cubrir con tela + goma elástica",
+        "Etiquetar fecha"
+      ],
+      "expectedSignals": [
+        "SCOBY flota (normal). Si se hunde, subirá en 2-3 días cuando produzca CO₂",
+        "Nueva capa (baby SCOBY) se forma en superficie día 3-5"
+      ],
+      "warningIf": [
+        "Moho (pelusa verde, blanca o negra) en superficie → desechar TODO",
+        "Sin SCOBY de respaldo → pedir o comprar otro antes de empezar"
+      ],
+      "wikiPhase": "preparacion_kombucha",
+      "notify": true
+    },
+    {
+      "id": "monitorizar_ph_first",
+      "title": "📊 Verificar progreso fermentación (día 3)",
+      "emoji": "📊",
+      "type": "monitoring",
+      "offsetDays": 3,
+      "durationMin": 10,
+      "description": "Primera verificación: probar con pajita o cucharilla limpia. Debe estar empezando a acidificarse (menos dulce, ligero toque avinagrado). pH ideal bajando de 5 a 3.5-3.0. Si muy dulce aún, necesita más días.",
+      "expectedSignals": [
+        "Menos dulce que día 0",
+        "Ligero sabor avinagrado agradable",
+        "Baby SCOBY visible en superficie"
+      ],
+      "warningIf": [
+        "Sabor a podrido o queso → contaminación, desechar",
+        "Sin cambio de sabor día 5 → temperatura demasiado baja (< 20°C)"
+      ],
+      "wikiPhase": "fermentacion_kombucha",
+      "notify": false
+    },
+    {
+      "id": "tasting",
+      "title": "👅 Cata de seguimiento",
+      "emoji": "👅",
+      "type": "monitoring",
+      "offsetDays": 7,
+      "durationMin": 10,
+      "description": "Probar la kombucha. Equilibrio dulce-ácido. Si te gusta el sabor (ligeramente ácido, aún algo dulce), pasar a aromatizado. Si prefieres más ácido, dejar 2-4 días más. Máximo 21 días en 1ª fermentación (se convierte en vinagre).",
+      "checklistInline": [
+        "Probar con cucharilla limpia",
+        "Evaluar equilibrio dulce-ácido",
+        "Decidir si pasar a 2ªF o esperar",
+        "Anotar días y temperatura ambiente"
+      ],
+      "expectedSignals": [
+        "Sabor: ligeramente ácido con dulzor residual",
+        "Aroma: avinagrado suave, afrutado"
+      ],
+      "wikiPhase": "fermentacion_kombucha",
+      "notify": true
+    },
+    {
+      "id": "aromatizar",
+      "title": "🍓 Aromatizar y embotellar para 2ª fermentación",
+      "emoji": "🍓",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 45,
+      "description": "Retirar SCOBY + 200ml líquido (reservar para próximo lote). Añadir aromatizante: 10-20% fruta/zumo/jengibre. Embotellar en botellas de cierre hermético (llenar 90%, dejar espacio cabeza). La 2ªF produce CO₂ → carbonatación.",
+      "checklistInline": [
+        "Retirar SCOBY con manos limpias a bol con kombucha",
+        "Reservar 200ml starter para próximo lote",
+        "Añadir aromatizante (fruta triturada, zumo, jengibre)",
+        "Embotellar dejando 3-4cm espacio cabeza",
+        "Cerrar hermético — ¡ATENCIÓN presión!"
+      ],
+      "expectedSignals": [
+        "SCOBY grueso y sano (color beige-marrón)",
+        "Líquido base ligeramente turbio, color té"
+      ],
+      "warningIf": [
+        "Botellas NO aptas presión (cuadradas, finas) → explotan",
+        "Demasiada fruta/azúcar añadida → sobrepresión → abrir con cuidado sobre fregadero"
+      ],
+      "wikiPhase": "aromatizado_kombucha",
+      "notify": true
+    },
+    {
+      "id": "embotellar",
+      "title": "🍾 Carbonatación — 2ª fermentación en botella",
+      "emoji": "🍾",
+      "type": "milestone",
+      "offsetDays": 17,
+      "durationMin": 10,
+      "description": "Dejar botellas a temperatura ambiente 3-4 días para carbonatar. Probar una botella: debe estar burbujeante. Si suficiente gas → nevera (frena fermentación). Si aún plana → 1-2 días más. Refrigerar al gusto.",
+      "checklistInline": [
+        "Botellas a temperatura ambiente 20-25°C",
+        "Abrir con cuidado (puede estar muy gasificada)",
+        "Probar carbonatación",
+        "Refrigerar cuando alcance gas deseado"
+      ],
+      "expectedSignals": [
+        "Botella dura al tacto = presión CO₂",
+        "Al abrir: efervescencia y burbujas"
+      ],
+      "wikiPhase": "carbonatacion_kombucha",
+      "notify": true
+    },
+    {
+      "id": "disfrutar",
+      "title": "🧊 Kombucha lista — refrigerar y disfrutar",
+      "emoji": "🧊",
+      "type": "milestone",
+      "offsetDays": 21,
+      "durationMin": 5,
+      "description": "Kombucha carbonatada, aromatizada y fría. Lista para beber. Conservar en nevera (dura 2-3 semanas). NO agitar antes de abrir (gas). El SCOBY reservado puede empezar nuevo lote inmediatamente.",
+      "checklistInline": [
+        "Refrigerar todas las botellas",
+        "¡Cuidado al abrir! Abrir sobre fregadero",
+        "Anotar sabor/gas/cambios para próximo lote",
+        "SCOBY ya puede empezar nuevo lote"
+      ],
+      "wikiPhase": "carbonatacion_kombucha",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "monitorizar_ph",
+      "title": "📊 Verificar progreso fermentación",
+      "emoji": "📊",
+      "type": "monitoring",
+      "startDayOffset": 3,
+      "endDayOffset": 14,
+      "cadence": { "everyDays": 2, "notes": "Probar sabor cada 2 días. La fermentación avanza más rápido en verano (24-28°C) que en invierno" },
+      "description": "Probar kombucha con pajita limpia cada 2 días. Evaluar acidez y dulzor. En verano puede estar lista en 7-10 días. En invierno puede necesitar 14-21 días. Buscar equilibrio agradable dulce-ácido.",
+      "wikiPhase": "fermentacion_kombucha",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "scoby",
+      "name": "SCOBY + líquido iniciador (starter)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "internet",
+      "notes": "Comprar SCOBY vivo con 200ml starter. O conseguir de alguien que haga kombucha. Guardar siempre SCOBY de reserva (hotel SCOBY) por si contaminación.",
+      "wikiPhase": "preparacion_kombucha"
+    },
+    {
+      "key": "te_negro",
+      "name": "Té negro o verde sin aromas (100g)",
+      "qty": 100,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Té negro (más nutrientes para SCOBY) o verde. Evitar té con aromas/aceites (Earl Grey, chai). Mejor té a granel que bolsitas."
+    },
+    {
+      "key": "azucar",
+      "name": "Azúcar blanco (500g)",
+      "qty": 500,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "1-2€",
+      "source": "tienda_fisica",
+      "notes": "Azúcar blanco refinado (el SCOBY lo metaboliza mejor). No usar miel, panela ni edulcorantes (matan o debilitan el cultivo)."
+    },
+    {
+      "key": "jarra_vidrio_3L",
+      "name": "Jarra de vidrio 3-5L boca ancha",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Vidrio, boca ancha (cabe SCOBY). Sin grifo metálico (el ácido corroe metales). Evitar cerámica con esmaltes no alimentarios.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "tela_transpirable",
+      "name": "Tela transpirable + goma elástica",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "1-3€",
+      "source": "tienda_fisica",
+      "notes": "Tela de algodón, gasa doble o filtro café. Permite respirar, bloquea moscas de vinagre y polvo. NO usar tela muy tupida.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "botellas_cierre_hermetico",
+      "name": "Botellas cierre hermético (swing-top) 500ml",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Botellas vidrio con tapa mecánica (swing-top). Resisten presión carbonatación. Reciclar botellas de cerveza artesana funciona.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fruta_aromatizar",
+      "name": "Fruta/zumo/jengibre para aromatizar (opcional)",
+      "qty": 200,
+      "unit": "g",
+      "category": "util",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Fresas, frambuesas, mango, jengibre fresco, maracuyá. Triturar o hacer zumo. ~50-70g fruta por botella 500ml."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "limpiar_equipo_kombucha",
+      "title": "Esterilizar jarra, utensilios y botellas",
+      "description": "Lavar con agua caliente y vinagre blanco. NO usar jabón (residuos matan SCOBY). Enjuagar bien con agua. Secar al aire.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "espacio_templado",
+      "title": "Reservar espacio 22-28°C estable",
+      "description": "Temperatura ideal fermentación: 24-26°C. Encimera cocina en verano. En invierno: armario con calefacción indirecta. Sin sol directo (UV inhibe).",
+      "blocking": true,
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "scoby_respaldo",
+      "title": "Tener SCOBY de respaldo (hotel SCOBY)",
+      "description": "Reservar siempre 1 SCOBY extra en un bote con kombucha en nevera. Si el lote principal se contamina, tienes respaldo sin tener que comprar otro.",
+      "blocking": false,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "te_negro", "qty": 10, "unit": "g", "trigger": "once", "description": "4-6g por lote de 3L" },
+    { "stockKey": "azucar", "qty": 70, "unit": "g", "trigger": "once", "description": "70g por lote de 3L" },
+    { "stockKey": "scoby", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "jarra_vidrio_3L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "batch",
+  "expectedYield": {
+    "description": "3L de kombucha por lote ~ 6 botellas de 500ml. Ciclo completo: 10-21 días según temperatura. Producción continua posible escalonando lotes."
+  },
+  "produces": { "kind": "kombucha", "unit": "L" }
+}

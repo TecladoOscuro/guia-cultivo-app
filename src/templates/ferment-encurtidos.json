@@ -1,0 +1,296 @@
+{
+  "id": "ferment-encurtidos",
+  "name": "Encurtidos",
+  "emoji": "🥒",
+  "category": "fermento",
+  "version": 1,
+  "totalDuration": { "days": 30 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=encurtidos",
+  "theme": { "primary": "#8fbc5c", "bg": "#0f1408" },
+
+  "phases": [
+    { "id": "preparacion_encurtidos", "name": "Preparación", "emoji": "🔪", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "preparacion_encurtidos" },
+    { "id": "fermentacion_encurtidos", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "fermentacion_encurtidos" },
+    { "id": "maduracion_encurtidos", "name": "Maduración", "emoji": "🧊", "startDayOffset": 21, "endDayOffset": 30, "wikiPhase": "maduracion_encurtidos" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_vegetales",
+      "title": "🔪 Preparar vegetales — lavar y cortar",
+      "emoji": "🔪",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Lavar bien los vegetales (sin jabón, solo agua). Cortar según preferencia: pepinillos enteros, zanahoria bastones, coliflor arbolitos, cebolla aros. Frescos y firmes (no pasados). Verduras de buena calidad = mejor fermentación.",
+      "checklistInline": [
+        "Lavar vegetales solo con agua (sin jabón)",
+        "Eliminar partes dañadas o blandas",
+        "Cortar en tamaños uniformes (fermentan parejo)",
+        "Dejar enteros pepinillos pequeños"
+      ],
+      "expectedSignals": [
+        "Vegetales crujientes y firmes",
+        "Sin moho ni zonas blandas"
+      ],
+      "wikiPhase": "preparacion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "preparar_salmuera",
+      "title": "🧂 Preparar salmuera (2-3% sal)",
+      "emoji": "🧂",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 15,
+      "description": "Disolver sal marina SIN yodo ni antiaglomerantes en agua sin cloro. Proporción: 20-30g sal por litro (2-3%). Pesar la sal, no usar cuchara (densidad varía). Salmuera al 2% para fermentación rápida, 3% para lenta y crujiente.",
+      "checklistInline": [
+        "Sal marina o sal kosher (SIN yodo, SIN antiaglomerantes)",
+        "20g/L (2%) → fermentación rápida, menos sal",
+        "30g/L (3%) → más crujiente, fermentación lenta",
+        "Agua sin cloro (filtrada o reposada 24h)",
+        "Disolver completamente"
+      ],
+      "expectedSignals": [
+        "Salmuera transparente, sal completamente disuelta"
+      ],
+      "warningIf": [
+        "Sal con yodo → inhibe bacterias lácticas, color oscuro",
+        "Sal con antiaglomerantes → salmuera turbia, sabor extraño"
+      ],
+      "wikiPhase": "preparacion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "llenar_botes",
+      "title": "🫙 Llenar botes — compactar sin aire",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "Colocar vegetales en bote vidrio esterilizado. Añadir aromáticos (ajo, eneldo, pimienta, laurel). Compactar bien (sin aplastar) para que no floten. Cubrir completamente con salmuera (2-3cm sobre vegetales). Dejar 2-3cm espacio cabeza.",
+      "checklistInline": [
+        "Bote vidrio limpio (agua caliente, sin jabón)",
+        "Aromáticos al fondo y entre capas",
+        "Compactar vegetales (no deben flotar)",
+        "Salmuera cubre 2-3cm por encima",
+        "Dejar 2-3cm espacio cabeza",
+        "Peso fermentación o bolsa zip con agua para sumergir"
+      ],
+      "expectedSignals": [
+        "Todos los vegetales sumergidos",
+        "Sin burbujas de aire grandes atrapadas"
+      ],
+      "warningIf": [
+        "Vegetales flotando → contacto con oxígeno = moho",
+        "Bote demasiado lleno → desborda al fermentar (presión CO₂)"
+      ],
+      "wikiPhase": "preparacion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "verificar_fermentacion",
+      "title": "🫧 Verificar inicio fermentación — burbujas día 3",
+      "emoji": "🫧",
+      "type": "monitoring",
+      "offsetDays": 3,
+      "durationMin": 5,
+      "description": "Revisar botes: pequeñas burbujas subiendo = fermentación activa. Salmuera se enturbia (normal, son bacterias lácticas). Olor ligeramente ácido/avainillado agradable. NO abrir si tiene airlock (entra oxígeno).",
+      "checklistInline": [
+        "Observar burbujas subiendo (actividad)",
+        "Notar enturbiamiento (normal)",
+        "Oler alrededor de la tapa (sin abrir)"
+      ],
+      "expectedSignals": [
+        "Burbujas pequeñas y constantes",
+        "Salmuera turbia (no cristalina)",
+        "Aroma ácido suave, limpio"
+      ],
+      "warningIf": [
+        "Moho en superficie (pelusa blanca/verde) → Kahm yeast o moho. Si es pelusa → desechar",
+        "Olor a podrido/putrefacto → desechar",
+        "Sin burbujas día 5 → temperatura baja o sal insuficiente"
+      ],
+      "wikiPhase": "fermentacion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "cata_encurtidos",
+      "title": "👅 Primera cata — probar a los 7 días",
+      "emoji": "👅",
+      "type": "monitoring",
+      "offsetDays": 7,
+      "durationMin": 10,
+      "description": "Probar un trozo con utensilio limpio (nunca dedos). Debe estar ácido, ligeramente salado y crujiente. Si te gusta → pasar a nevera. Si prefieres más ácido → dejar fermentar hasta 21 días. La nevera frena la fermentación.",
+      "checklistInline": [
+        "Usar utensilio limpio para sacar",
+        "Probar textura (crujiente) y sabor (ácido-salado)",
+        "Decidir si dejar fermentar más o refrigerar",
+        "Cerrar bote inmediatamente después"
+      ],
+      "expectedSignals": [
+        "Sabor ácido agradable (ácido láctico)",
+        "Textura crujiente (no blanda)",
+        "Aroma limpio sin notas desagradables"
+      ],
+      "wikiPhase": "fermentacion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "refrigerar",
+      "title": "🧊 Refrigerar — fin fermentación activa",
+      "emoji": "🧊",
+      "type": "preparation",
+      "offsetDays": 21,
+      "durationMin": 5,
+      "description": "Cuando el sabor es de tu agrado, pasar botes a nevera (4-8°C). El frío ralentiza la fermentación casi a cero. Los encurtidos se conservan 3-6 meses en nevera. El sabor sigue evolucionando lentamente.",
+      "checklistInline": [
+        "Mover botes a nevera",
+        "Etiquetar con fecha y contenido",
+        "Verificar que vegetales siguen sumergidos"
+      ],
+      "expectedSignals": [
+        "Fermentación visible se detiene",
+        "Sabor se mantiene estable"
+      ],
+      "wikiPhase": "maduracion_encurtidos",
+      "notify": true
+    },
+    {
+      "id": "disfrutar_encurtidos",
+      "title": "🥒 Encurtidos listos — disfrutar",
+      "emoji": "🥒",
+      "type": "milestone",
+      "offsetDays": 30,
+      "durationMin": 5,
+      "description": "Encurtidos en su punto óptimo de sabor. Usar como guarnición, en ensaladas, bocadillos o solos. Probióticos naturales (bacterias lácticas vivas). Siempre usar utensilios limpios al sacar del bote.",
+      "checklistInline": [
+        "Usar utensilios limpios al servir",
+        "Mantener vegetales sumergidos tras servir",
+        "Anotar sabor y textura para ajustar próximo lote"
+      ],
+      "wikiPhase": "maduracion_encurtidos",
+      "notify": false
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "purgar_gas",
+      "title": "💨 Purgar gas (si bote cerrado sin airlock)",
+      "emoji": "💨",
+      "type": "monitoring",
+      "startDayOffset": 1,
+      "endDayOffset": 14,
+      "cadence": { "everyDays": 2, "notes": "Abrir tapa ligeramente para liberar CO₂. Cerrar inmediatamente" },
+      "description": "Si usas bote con tapa normal (sin airlock), abrir ligeramente cada 2 días para liberar presión de CO₂ acumulada. Cerrar rápido para minimizar entrada de oxígeno. Con airlock no es necesario.",
+      "wikiPhase": "fermentacion_encurtidos",
+      "notify": false
+    },
+    {
+      "id": "revision_encurtidos",
+      "title": "🔍 Revisión visual del bote",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 1,
+      "endDayOffset": 21,
+      "cadence": { "everyDays": 3, "notes": "Revisar sin abrir: nivel salmuera, color, posible moho superficie" },
+      "description": "Revisar visualmente: vegetales sumergidos (si alguno flota, re-sumergir), nivel salmuera (añadir si baja), color normal, sin moho ni película extraña en superficie.",
+      "wikiPhase": "fermentacion_encurtidos",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "vegetales_encurtir",
+      "name": "Vegetales frescos de temporada",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "3-8€",
+      "source": "tienda_fisica",
+      "notes": "Pepino (clásico), zanahoria, coliflor, cebolla, rabanitos, judías verdes, ajo. Elegir 2-3 variedades. Bien frescos y firmes. Mejor ecológicos (sin pesticidas que inhiben fermentación).",
+      "wikiPhase": "preparacion_encurtidos"
+    },
+    {
+      "key": "sal_marina",
+      "name": "Sal marina sin yodo ni antiaglomerantes (500g)",
+      "qty": 500,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Sal marina pura, sal kosher o sal de roca. SIN yodo, SIN antiaglomerantes (E-536). El yodo y aditivos inhiben bacterias lácticas deseadas."
+    },
+    {
+      "key": "botes_vidrio_fermentacion",
+      "name": "Botes vidrio 1L con airlock o tapa hermética",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Botes de conserva con airlock (ideal) o tapa rosca normal + abrir para purgar. Reutilizar botes de conserva comprada (bien lavados).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "aromaticos_encurtidos",
+      "name": "Aromáticos: eneldo, ajo, pimienta, laurel, mostaza en grano",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Eneldo fresco (clásico pepinillo), ajo laminado, granos pimienta negra, hoja laurel, semillas mostaza. Opcional: chile, jengibre, cúrcuma."
+    },
+    {
+      "key": "peso_fermentacion",
+      "name": "Peso de fermentación (vidrio o cerámica)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "5-10€",
+      "source": "internet",
+      "notes": "Pesa de vidrio que mantiene vegetales sumergidos. Alternativa casera: bolsa zip con agua limpia dentro.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_vegetales",
+      "title": "Elegir vegetales de temporada y firmes",
+      "description": "Los mejores encurtidos salen de vegetales recién cosechados o comprados muy frescos. Evitar vegetales mustios, golpeados o pasados de madurez.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "esterilizar_botes",
+      "title": "Esterilizar botes y utensilios",
+      "description": "Lavar botes y utensilios con agua muy caliente. NO usar jabón (residuos inhiben fermentación). Secar al aire boca abajo. Alternativa: hervir botes 10 min.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "espacio_templado_encurtidos",
+      "title": "Reservar espacio 18-24°C",
+      "description": "Temperatura ideal lactofermentación: 18-22°C. Encimera cocina alejada de fuentes calor directo. Más calor (>26°C) = más rápido pero más riesgo moho.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "vegetales_encurtir", "qty": 1, "unit": "kg", "trigger": "once" },
+    { "stockKey": "sal_marina", "qty": 30, "unit": "g", "trigger": "once", "description": "~30g por litro de salmuera" },
+    { "stockKey": "aromaticos_encurtidos", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "batch",
+  "expectedYield": {
+    "description": "1kg vegetales frescos rinde ~2 botes de 500ml. Listos a partir de 7 días, mejor sabor a 21-30 días. Se conservan 3-6 meses en nevera."
+  },
+  "produces": { "kind": "encurtidos", "unit": "ud" }
+}

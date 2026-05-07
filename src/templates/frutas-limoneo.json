@@ -1,0 +1,250 @@
+{
+  "id": "frutas-limoneo",
+  "name": "Limonero",
+  "emoji": "🍋",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=limonero",
+  "theme": { "primary": "#f4d03f", "bg": "#1a1608" },
+
+  "phases": [
+    { "id": "plantacion_limonero", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "plantacion_limonero" },
+    { "id": "crecimiento_limonero", "name": "Crecimiento vegetativo", "emoji": "🌿", "startDayOffset": 0, "endDayOffset": 180, "wikiPhase": "crecimiento_limonero" },
+    { "id": "floracion_limonero", "name": "Floración", "emoji": "🌸", "startDayOffset": 180, "endDayOffset": 240, "wikiPhase": "floracion_limonero" },
+    { "id": "fructificacion_limonero", "name": "Fructificación", "emoji": "🍋", "startDayOffset": 240, "endDayOffset": 365, "wikiPhase": "fructificacion_limonero" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_limonero",
+      "title": "🌱 Plantar limonero injertado",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Plantar árbol injertado (1-2 años) en maceta grande (40L mínimo) o suelo directo. Punto de injerto debe quedar 5-10cm sobre nivel suelo. Riego copioso inicial. Tutor si zona ventosa.",
+      "checklistInline": [
+        "Maceta 40L mínimo o hoyo 60x60x60cm en suelo",
+        "Sustrato cítricos o universal + arena (drenaje)",
+        "Punto de injerto 5-10cm sobre suelo",
+        "Riego copioso (20-30L) post-plantación",
+        "Tutor si necesario"
+      ],
+      "expectedSignals": [
+        "Brote nuevo en 2-4 semanas",
+        "Hojas verdes firmes (no amarillean)"
+      ],
+      "warningIf": [
+        "Hojas amarillas con nervios verdes → clorosis férrica (pH alto)",
+        "Punto de injerto enterrado → el patrón puede brotar y dominar"
+      ],
+      "wikiPhase": "plantacion_limonero",
+      "notify": true
+    },
+    {
+      "id": "abonado_primavera",
+      "title": "🌿 Abonado de primavera (inicio crecimiento)",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Primer abonado fuerte de la temporada. Fertilizante específico cítricos (NPK 8-4-10 + microelementos). Esparcir en corona (borde maceta/copa, no en tronco). Regar después. Repetir cada 6-8 semanas en crecimiento.",
+      "checklistInline": [
+        "Fertilizante cítricos con Fe, Mg, Zn",
+        "Aplicar en borde de copa (donde terminan raíces)",
+        "No tocar tronco con fertilizante",
+        "Regar inmediatamente después"
+      ],
+      "wikiPhase": "crecimiento_limonero",
+      "notify": true
+    },
+    {
+      "id": "tratamiento_cobre",
+      "title": "🛡️ Tratamiento preventivo con cobre",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 180,
+      "durationMin": 20,
+      "description": "Pulverizar con cobre (oxicloruro o caldo bordelés) al inicio de floración y después de lluvias. Previene hongos (alternaria, botrytis). Aplicar en días sin lluvia ni viento.",
+      "checklistInline": [
+        "Diluir cobre según etiqueta",
+        "Pulverizar todo el árbol (hojas, ramas)",
+        "Aplicar en día seco y sin viento",
+        "Repetir cada 30 días si lluvias frecuentes"
+      ],
+      "wikiPhase": "floracion_limonero",
+      "notify": true
+    },
+    {
+      "id": "cosecha_limones",
+      "title": "🍋 Inicio cosecha de limones",
+      "emoji": "🍋",
+      "type": "harvest",
+      "offsetDays": 240,
+      "durationMin": 20,
+      "description": "Cosechar limones cuando alcanzan color amarillo uniforme y tamaño de la variedad. Cortar con tijeras dejando 0.5cm de pedúnculo (no tirar). El limonero puede tener flores y frutos a la vez. Cosecha escalonada durante 2-3 meses.",
+      "checklistInline": [
+        "Color amarillo uniforme (variedad)",
+        "Cortar con tijeras, no arrancar",
+        "Dejar 0.5cm de pedúnculo",
+        "Cosechar seco (sin rocío)"
+      ],
+      "expectedSignals": [
+        "Piel lisa y brillante",
+        "Ligera cesión al apretar"
+      ],
+      "warningIf": [
+        "Frutos caídos al suelo → recoger pronto (pudren y atraen plagas)",
+        "Piel marrón y rugosa → ácaro de las maravillas (tratar con azufre)"
+      ],
+      "wikiPhase": "fructificacion_limonero",
+      "notify": true
+    },
+    {
+      "id": "poda_invernal",
+      "title": "✂️ Poda invernal de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 270,
+      "durationMin": 45,
+      "description": "Podar tras cosecha principal (final invierno). Eliminar: ramas secas, chupones verticales, ramas que cruzan o van hacia dentro. Abrir centro para que entre luz y aire. No podar más de 20-25% de la copa.",
+      "checklistInline": [
+        "Eliminar ramas secas o enfermas primero",
+        "Cortar chupones verticales desde la base",
+        "Aclarar centro (entrada luz)",
+        "Herramientas limpias (alcohol entre cortes)",
+        "Sellar cortes >3cm con pasta cicatrizante"
+      ],
+      "wikiPhase": "fructificacion_limonero",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_limonero",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 4, "volumeMl": "5000-15000", "notes": "Maceta 40L: 5-10L/riego. Suelo: 15-20L/riego. Más frecuente en verano, menos en invierno" },
+      "description": "Riego profundo y espaciado. Dejar secar capa superficial entre riegos. En maceta: regar hasta que drene. En suelo: 1-2 riegos/semana verano, cada 10-14 días invierno. Agua sin cal (mejor lluvia).",
+      "wikiPhase": "crecimiento_limonero",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_limonero",
+      "title": "🌿 Fertilización periódica cítricos",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 300,
+      "cadence": { "everyDays": 42, "notes": "Cada 6 semanas en temporada crecimiento (primavera-otoño). Suspender en invierno" },
+      "description": "Aplicar fertilizante específico cítricos. Rico en N y K, con microelementos (Fe, Mg, Zn, Mn). Seguir dosis del fabricante. No fertilizar en invierno (árbol en reposo parcial).",
+      "wikiPhase": "crecimiento_limonero",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas_limonero",
+      "title": "🔍 Inspección plagas cítricos",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 90,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 14, "notes": "Revisión quincenal. Atención a cochinilla, pulgón, minador de hojas, ácaros" },
+      "description": "Revisar envés hojas (cochinilla algodonosa, ácaros), brotes tiernos (pulgón), hojas nuevas (galerías = minador). Ante plaga: aceite neem + jabón potásico como primer recurso.",
+      "wikiPhase": "crecimiento_limonero",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "arbol_limonero",
+      "name": "Limonero injertado (1-2 años)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-45€",
+      "source": "tienda_fisica",
+      "notes": "Variedades: Eureka (todo el año, pocas espinas), Meyer (más dulce, compacto para maceta), Verna (cosecha verano). Comprar injertado sobre patrón resistente (Citrange, Macrophylla).",
+      "wikiPhase": "plantacion_limonero",
+      "scaleQuantity": false
+    },
+    {
+      "key": "maceta_40L",
+      "name": "Maceta grande 40L o contenedor",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-40€",
+      "source": "tienda_fisica",
+      "notes": "Barro cocido (pesada, estable) o plástico grueso. Mínimo 45cm diámetro y profundidad. Agujeros drenaje abundantes.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "sustrato_citricos",
+      "name": "Sustrato específico cítricos (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato para cítricos pH 6-7. Si usas universal, mezclar con 20% arena de río y añadir quelato de hierro."
+    },
+    {
+      "key": "fertilizante_citricos",
+      "name": "Fertilizante cítricos granulado (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "12-18€",
+      "source": "tienda_fisica",
+      "notes": "NPK 8-4-10 + microelementos (Fe, Mg, Zn). Liberación lenta ideal. Alternativa: abono orgánico (humus lombriz + guano)."
+    },
+    {
+      "key": "cobre_preventivo",
+      "name": "Oxicloruro de cobre o caldo bordelés (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Fungicida preventivo ecológico. Aplicar tras lluvias o al inicio de floración."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_variedad_limonero",
+      "title": "Elegir variedad según clima y espacio",
+      "description": "Meyer: compacto, ideal maceta, fruto más dulce. Eureka: productivo todo el año. Verna: cosecha concentrada verano. Limonero 4 estaciones: frutos todo el año. Elegir según espacio disponible y heladas zona.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "ubicacion_sol_limonero",
+      "title": "Reservar ubicación soleada y protegida",
+      "description": "Mínimo 6h sol directo. Protegido de viento fuerte. Si zona con heladas (< -2°C): maceta para poder resguardar en invierno o manta térmica.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "arbol_limonero", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "maceta_40L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "sustrato_citricos", "qty": 50, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_citricos", "qty": 100, "unit": "g", "trigger": "per_event", "refEventId": "fertilizar_limonero" },
+    { "stockKey": "cobre_preventivo", "qty": 15, "unit": "ml", "trigger": "per_event", "refEventId": "tratamiento_cobre" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Árbol joven (2-3 años): 10-20 limones/año. Árbol adulto (5+ años): 50-100 limones/año. Limonero 4 estaciones produce continuamente."
+  },
+  "produces": { "kind": "limon_fresco", "unit": "ud" }
+}

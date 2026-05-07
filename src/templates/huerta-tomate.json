@@ -1,0 +1,323 @@
+{
+  "id": "huerta-tomate",
+  "name": "Tomate",
+  "emoji": "🍅",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 150 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=tomate",
+  "theme": { "primary": "#c0392b", "bg": "#1a0a08" },
+
+  "phases": [
+    { "id": "semillero", "name": "Semillero", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 42, "wikiPhase": "semillero" },
+    { "id": "trasplante", "name": "Trasplante", "emoji": "🪴", "startDayOffset": 42, "endDayOffset": 42, "wikiPhase": "trasplante" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 42, "endDayOffset": 70, "wikiPhase": "crecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 70, "endDayOffset": 90, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🍅", "startDayOffset": 90, "endDayOffset": 150, "wikiPhase": "fructificacion" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_semillero",
+      "title": "🌱 Siembra en semillero",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Siembra semillas de tomate en bandeja semillero con sustrato ligero. Cubrir con 5mm de sustrato. Mantener húmedo no encharcado. Temperatura 20-25°C.",
+      "checklistInline": [
+        "Llenar semillero con sustrato ligero",
+        "Sembrar 2-3 semillas por alveolo",
+        "Cubrir con 5mm sustrato fino",
+        "Regar con pulverizador suave",
+        "Etiquetar variedad y fecha"
+      ],
+      "expectedSignals": [
+        "Germinación visible en 5-10 días",
+        "Cotiledones (primeras hojas) abren"
+      ],
+      "warningIf": [
+        "Sin germinación día 12 → semillas viejas o frío excesivo",
+        "Tallos finos y alargados → poca luz (ahilado)"
+      ],
+      "wikiPhase": "semillero",
+      "notify": true
+    },
+    {
+      "id": "trasplantar_tomate",
+      "title": "🪴 Trasplante a maceta definitiva (15L)",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 42,
+      "durationMin": 60,
+      "description": "Cuando planta tiene 4-6 hojas verdaderas y 15-20cm de altura, trasplantar a maceta 15L o suelo. Enterrar tallo hasta las primeras hojas (desarrolla más raíces). Riego copioso post-trasplante.",
+      "checklistInline": [
+        "Maceta 15L o bancal preparado con sustrato rico",
+        "Enterrar tallo hasta cotiledones",
+        "Riego copioso post-trasplante",
+        "Tutor provisional si planta alta"
+      ],
+      "expectedSignals": [
+        "Planta se adapta en 3-5 días",
+        "Nuevo crecimiento visible semana 1"
+      ],
+      "wikiPhase": "trasplante",
+      "notify": true
+    },
+    {
+      "id": "entutorado",
+      "title": "🪵 Entutorado con cañas",
+      "emoji": "🪵",
+      "type": "milestone",
+      "offsetDays": 49,
+      "durationMin": 30,
+      "description": "Colocar tutores de caña (1.5-2m) firmemente en la maceta. Atar tallo principal con rafia en forma de 8 (sin apretar). El tomate necesita soporte antes de cargar fruto.",
+      "checklistInline": [
+        "Clavar 1-3 cañas firmes en maceta",
+        "Atar con rafia en forma de 8 (holgado)",
+        "Revisar ataduras cada 7 días"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "poda_chupones_first",
+      "title": "✂️ Poda de chupones — inicio",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 56,
+      "durationMin": 15,
+      "description": "Eliminar chupones (brotes que salen entre tallo principal y ramas laterales) pellizcando con dedos limpios. Concentra energía en frutos. Hacer semanalmente hasta día 120.",
+      "checklistInline": [
+        "Identificar chupones en axilas",
+        "Pellizcar con dedos limpios",
+        "NO cortar ramas con flores"
+      ],
+      "expectedSignals": [
+        "Chupón = brote en V entre tallo y rama"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_first",
+      "title": "🌿 Primera fertilización post-trasplante",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 42,
+      "durationMin": 10,
+      "description": "Aplicar fertilizante equilibrado (NPK 7-5-8) o específico tomate. Diluir según etiqueta. Aplicar en riego, no sobre hojas. Repetir cada 14 días.",
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_floracion_tomate",
+      "title": "🌺 Fertilización floración (NPK bajo en N)",
+      "emoji": "🌺",
+      "type": "feeding",
+      "offsetDays": 70,
+      "durationMin": 10,
+      "description": "Cambiar a fertilizante rico en P-K (ej. NPK 4-6-8) cuando aparecen primeras flores. Favorece cuajado y engorde de frutos. Mantener cada 14 días hasta fin cosecha.",
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "cosecha_inicio",
+      "title": "🍅 Inicio cosecha — primeros frutos maduros",
+      "emoji": "🍅",
+      "type": "harvest",
+      "offsetDays": 90,
+      "durationMin": 20,
+      "description": "Cosechar cuando tomate alcance color rojo uniforme (o color de la variedad). Girar suavemente el fruto o cortar con tijeras. Cosecha escalonada durante 2 meses.",
+      "checklistInline": [
+        "Color uniforme en todo el fruto",
+        "Ligera firmeza al tacto",
+        "Girar o cortar sin dañar rama",
+        "Pesar y registrar"
+      ],
+      "expectedSignals": [
+        "Tomate cede ligeramente al apretar",
+        "Color rojo intenso (o variedad)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin del cultivo de tomate",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 150,
+      "durationMin": 30,
+      "description": "Últimos frutos. Arrancar plantas, limpiar macetas, guardar tutores para próxima temporada. Registrar rendimiento total.",
+      "checklistInline": [
+        "Cosechar frutos verdes restantes (maduran en interior)",
+        "Arrancar plantas y compostar",
+        "Limpiar y guardar tutores + macetas",
+        "Anotar variedad, rendimiento y lecciones"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_tomate",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 150,
+      "cadence": { "everyDays": 2, "volumeMl": "500-2000", "notes": "Según fase: 500ml semillero, 2L/maceta en fructificación" },
+      "description": "Riego profundo cada 2-3 días. Mejor regar por la mañana temprano. Evitar mojar hojas (hongos). En maceta: regar hasta que drene por abajo.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "poda_chupones",
+      "title": "✂️ Eliminar chupones",
+      "emoji": "✂️",
+      "type": "preparation",
+      "startDayOffset": 56,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 14, "notes": "Revisar cada 2 semanas. En verano puede ser necesario cada semana." },
+      "description": "Pellizcar chupones de las axilas. Revisar también hojas amarillas o enfermas en la base. Desinfectar manos entre plantas.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_tomate_recurring",
+      "title": "🌿 Fertilización periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 56,
+      "endDayOffset": 140,
+      "cadence": { "everyDays": 14, "notes": "Fertilizante equilibrado, alternar cada 2-3 aplicaciones con solo agua" },
+      "description": "Aplicar fertilizante líquido en riego. Dosis según etiqueta (normalmente 5ml/L). Alternar riego solo agua para evitar acumulación sales.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_tomate",
+      "name": "Semillas de tomate (variedad elegida)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Variedades: Cherry (fácil, productiva), Marmande (grande, ensalada), Pera (salsas). Sobre suele traer 20-50 semillas.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_semillero",
+      "name": "Sustrato semillero (5L)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato fino, bajo en nutrientes. Específico semilleros o turba + perlita."
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta universal (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato rico en materia orgánica. Mezclar con compost propio si disponible."
+    },
+    {
+      "key": "macetas_15L",
+      "name": "Maceta 15L o contenedor equivalente",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Maceta textil o plástico duro con buen drenaje. Mínimo 30cm diámetro."
+    },
+    {
+      "key": "tutores_caña",
+      "name": "Tutores caña bambú 1.8m",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Caña de bambú o tutor metálico. Enterrar 30cm para estabilidad."
+    },
+    {
+      "key": "fertilizante_tomate",
+      "name": "Fertilizante específico tomate (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Fórmula equilibrada NPK. Alternativa: humus de lombriz + guano."
+    },
+    {
+      "key": "rafia",
+      "name": "Rafia o hilo de jardinería",
+      "qty": 1,
+      "unit": "rollo",
+      "category": "util",
+      "approxPrice": "2-3€",
+      "source": "tienda_fisica",
+      "notes": "Para atar planta al tutor sin dañar tallo.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_variedad",
+      "title": "Elegir variedad de tomate",
+      "description": "Cherry: fácil, productivo, maceta. Marmande: grande, ensalada. Pera: salsas. Corazón de buey: sabor intenso. Adaptar a clima local.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "comprar_semillas",
+      "title": "Comprar semillas y sustrato",
+      "description": "Adquirir semillas de variedad elegida + sustrato semillero. Comprobar fecha de caducidad en sobre.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "preparar_semillero",
+      "title": "Preparar bandeja semillero",
+      "description": "Bandeja de alveolos 6-12 celdas. Llenar con sustrato fino. Tener pulverizador y etiquetas listos.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "espacio_sol",
+      "title": "Reservar espacio con 6-8h sol directo",
+      "description": "El tomate necesita pleno sol. Balcón orientado S/SO ideal. Mínimo 6h de sol directo al día.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_tomate", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_semillero", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_tomate", "qty": 10, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_tomate_recurring" },
+    { "stockKey": "macetas_15L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "3-6 kg por planta en exterior. Cherry: 200-300 frutos. Variedades grandes: 15-30 frutos."
+  },
+  "produces": { "kind": "tomate_fresco", "unit": "kg" }
+}

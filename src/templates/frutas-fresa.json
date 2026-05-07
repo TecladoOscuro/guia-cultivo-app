@@ -1,0 +1,306 @@
+{
+  "id": "frutas-fresa",
+  "name": "Fresas",
+  "emoji": "🍓",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=fresa",
+  "theme": { "primary": "#e63946", "bg": "#1a080a" },
+
+  "phases": [
+    { "id": "plantacion", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 30, "wikiPhase": "plantacion" },
+    { "id": "establecimiento", "name": "Establecimiento", "emoji": "🌿", "startDayOffset": 30, "endDayOffset": 90, "wikiPhase": "establecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 90, "endDayOffset": 150, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🍓", "startDayOffset": 150, "endDayOffset": 210, "wikiPhase": "fructificacion" },
+    { "id": "reposo", "name": "Reposo invernal", "emoji": "❄️", "startDayOffset": 210, "endDayOffset": 365, "wikiPhase": "reposo" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_plantones",
+      "title": "🌱 Plantar plantones de fresa",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Plantar plantones de fresa (raíz desnuda o maceta pequeña). Distancia: 30cm entre plantas, 40cm entre hileras. Corona (cuello) a ras de suelo — ni enterrada ni expuesta. Riego copioso post-plantación.",
+      "checklistInline": [
+        "Preparar bancal elevado o macetas 30cm profundidad",
+        "Sustrato ácido pH 5.5-6.5",
+        "Colocar planta con corona a nivel suelo",
+        "Riego copioso inicial",
+        "Etiquetar variedad"
+      ],
+      "expectedSignals": [
+        "Hojas nuevas en 10-14 días",
+        "Planta se mantiene erguida (no marchita)"
+      ],
+      "warningIf": [
+        "Corona enterrada → pudrición",
+        "Corona muy alta → raíces expuestas, se seca"
+      ],
+      "wikiPhase": "plantacion",
+      "notify": true
+    },
+    {
+      "id": "acolchado_fresa",
+      "title": "🛡️ Acolchado con paja",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 7,
+      "durationMin": 30,
+      "description": "Cubrir suelo alrededor de plantas con paja limpia (5cm capa). Mantiene frutos limpios (sin contacto tierra), retiene humedad, suprime malas hierbas. Esencial en fresas.",
+      "checklistInline": [
+        "Paja limpia sin semillas de malas hierbas",
+        "Capa 5cm uniforme",
+        "No cubrir corona de la planta",
+        "Reemplazar si se descompone"
+      ],
+      "wikiPhase": "plantacion",
+      "notify": false
+    },
+    {
+      "id": "eliminar_primeras_flores",
+      "title": "✂️ Eliminar primeras flores (día 30-60)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 45,
+      "durationMin": 15,
+      "description": "Eliminar las primeras flores que aparecen. La planta debe concentrar energía en desarrollar raíces y follaje antes de fructificar. Mejor cosecha futura a cambio de retrasar primeras fresas.",
+      "checklistInline": [
+        "Cortar flores con tijeras limpias",
+        "No arrancar — dañarías la planta",
+        "Mantener durante primeras 4-6 semanas"
+      ],
+      "wikiPhase": "establecimiento",
+      "notify": false
+    },
+    {
+      "id": "eliminar_estolones",
+      "title": "✂️ Control de estolones (hijuelos)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Las fresas emiten estolones (tallos rastreros con hijuelos). Cortarlos para que la energía vaya a frutos. Si quieres propagar, dejar 1-2 estolones por planta y enraizarlos en macetita.",
+      "checklistInline": [
+        "Identificar estolones (tallos largos horizontales)",
+        "Cortar cerca de la planta madre",
+        "Opcional: enraizar los mejores en maceta"
+      ],
+      "wikiPhase": "establecimiento",
+      "notify": true
+    },
+    {
+      "id": "instalar_malla",
+      "title": "🕸️ Instalar malla anti-pájaros",
+      "emoji": "🕸️",
+      "type": "preparation",
+      "offsetDays": 140,
+      "durationMin": 30,
+      "description": "Antes de que maduren primeros frutos, instalar malla o red anti-pájaros sobre estructura de arcos. Los pájaros detectan el rojo antes que nosotros. Sin malla perderás 50-80% cosecha.",
+      "checklistInline": [
+        "Malla fina (no atrapa pájaros, solo excluye)",
+        "Estructura arcos o túneles 30-40cm alto",
+        "Bordes bien fijados al suelo",
+        "Verificar que no haya huecos"
+      ],
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "inicio_cosecha",
+      "title": "🍓 Inicio cosecha — primeras fresas maduras",
+      "emoji": "🍓",
+      "type": "harvest",
+      "offsetDays": 150,
+      "durationMin": 15,
+      "description": "Cosechar cuando fresa está completamente roja (sin puntas blancas). Cortar con tijeras dejando 1cm de pedúnculo. Cosechar cada 2-3 días en temporada. No tirar del fruto (daña planta).",
+      "checklistInline": [
+        "Fresa 100% roja, sin zonas blancas",
+        "Cortar con tijeras, dejar 1cm tallo",
+        "Cosechar por la mañana (más firmes)",
+        "No lavar hasta consumir (se estropean antes)"
+      ],
+      "expectedSignals": [
+        "Rojo uniforme y brillante",
+        "Aroma dulce perceptible",
+        "Ligera firmeza al tacto"
+      ],
+      "warningIf": [
+        "Fresas con moho gris (Botrytis) → retirar inmediatamente para evitar contagio",
+        "Frutos deformes → posible falta de polinización"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "limpieza_invernal",
+      "title": "❄️ Limpieza y protección invernal",
+      "emoji": "❄️",
+      "type": "preparation",
+      "offsetDays": 210,
+      "durationMin": 45,
+      "description": "Tras última cosecha: cortar hojas viejas (dejar 5cm), eliminar hojas enfermas, renovar acolchado. En climas fríos (< -5°C), cubrir con manta térmica o más paja. La planta entra en reposo.",
+      "checklistInline": [
+        "Cortar follaje a 5cm de la corona",
+        "Eliminar hojas con manchas o enfermas",
+        "Renovar acolchado de paja (capa 10cm)",
+        "En zona fría: manta térmica sobre estructura"
+      ],
+      "wikiPhase": "reposo",
+      "notify": true
+    },
+    {
+      "id": "despertar_primavera",
+      "title": "🌱 Despertar primaveral — retirar protección",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 330,
+      "durationMin": 30,
+      "description": "Cuando riesgo de heladas pasa y temperatura supera 10°C estable, retirar protección invernal. Aplicar fertilizante rico en N para estimular nuevo crecimiento. ¡Comienza un nuevo ciclo!",
+      "checklistInline": [
+        "Retirar manta o exceso de paja",
+        "Aplicar fertilizante nitrogenado",
+        "Verificar estado de coronas (firmes, no podridas)",
+        "Replantar huecos si alguna planta no sobrevivió"
+      ],
+      "wikiPhase": "reposo",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_fresa",
+      "title": "💧 Riego regular (goteo ideal)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 210,
+      "cadence": { "everyDays": 2, "volumeMl": "300-500", "notes": "Riego por goteo ideal (evita mojar hojas y frutos). Más frecuente en floración/fructificación" },
+      "description": "Riego regular sin encharcar. Goteo preferido: mantiene hojas y frutos secos (previene Botrytis). 2-3 riegos/semana. Aumentar frecuencia en verano.",
+      "wikiPhase": "establecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_fresa",
+      "title": "🌿 Fertilización ligera",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 180,
+      "cadence": { "everyDays": 21, "notes": "Fertilizante rico en K para frutos. Bajo en N durante fructificación" },
+      "description": "Aplicar fertilizante rico en potasio (K) cada 3 semanas durante floración y fructificación. Evitar exceso de nitrógeno (produce muchas hojas, pocos frutos).",
+      "wikiPhase": "floracion",
+      "notify": false
+    },
+    {
+      "id": "revision_plagas_fresa",
+      "title": "🔍 Revisión plagas y enfermedades",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 210,
+      "cadence": { "everyDays": 7, "notes": "Revisión visual semanal. Atención a oidio (polvo blanco), Botrytis (moho gris), ácaros" },
+      "description": "Revisar hojas (manchas, polvo blanco = oidio), frutos (moho gris = Botrytis), envés (ácaros). Actuar rápido: eliminar partes afectadas. Azufre mojable para oidio.",
+      "wikiPhase": "establecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "plantones_fresa",
+      "name": "Plantones de fresa (variedad elegida)",
+      "qty": 12,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Variedades: Reina de los valles (temprana), Selva (remontante, 2 cosechas/año), Camarosa (grande, dulce). Comprar plantones certificados libres de virus.",
+      "wikiPhase": "plantacion"
+    },
+    {
+      "key": "sustrato_acido",
+      "name": "Sustrato ácido o pH neutro (20L)",
+      "qty": 20,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Fresa prefiere pH 5.5-6.5. Sustrato para acidófilas o universal + turba rubia. Buen drenaje esencial."
+    },
+    {
+      "key": "acolchado_paja",
+      "name": "Acolchado de paja limpia",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Paja de trigo sin semillas. Mantiene frutos limpios y humedad. Renovar cada temporada.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "malla_anti_pajaros",
+      "name": "Malla anti-pájaros (2x3m)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Imprescindible. Sin malla, pájaros comen frutos maduros antes que tú. Malla fina que no atrape pájaros.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_fresa",
+      "name": "Fertilizante rico en potasio (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Fertilizante líquido para frutos rojos. Alto en K, bajo en N durante fructificación."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_variedad_fresa",
+      "title": "Elegir variedad de fresa",
+      "description": "Remontante (varias cosechas al año) vs no remontante (una cosecha grande). Variedades día neutro (fructifican independientemente de horas luz). Adaptar a clima local.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_bancal_fresa",
+      "title": "Preparar bancal elevado o macetas grandes",
+      "description": "Bancal elevado 30cm altura ideal (buen drenaje). O macetas mínimo 25cm diámetro x 25cm profundidad por planta. Sustrato ácido pH 5.5-6.5.",
+      "blocking": true,
+      "estimatedMinutes": 60
+    },
+    {
+      "id": "espacio_sol_fresa",
+      "title": "Reservar espacio con 6-8h sol directo",
+      "description": "Fresas necesitan pleno sol para frutos dulces. Orientación S o SO. Proteger de viento fuerte.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "plantones_fresa", "qty": 12, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acido", "qty": 20, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_fresa", "qty": 15, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_fresa" },
+    { "stockKey": "acolchado_paja", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "300-500g por planta por temporada. 12 plantas = 3.5-6kg total. Variedades remontantes producen en 2-3 oleadas. Planta productiva 2-3 años."
+  },
+  "produces": { "kind": "fresa_fresca", "unit": "kg" }
+}

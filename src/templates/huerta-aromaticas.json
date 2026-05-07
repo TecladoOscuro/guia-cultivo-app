@@ -1,0 +1,201 @@
+{
+  "id": "huerta-aromaticas",
+  "name": "Hierbas Aromáticas",
+  "emoji": "🌿",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 120 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=albahaca",
+  "theme": { "primary": "#5d8a3c", "bg": "#0f1408" },
+
+  "phases": [
+    { "id": "siembra_aromaticas", "name": "Siembra", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "siembra_aromaticas" },
+    { "id": "crecimiento_aromaticas", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 14, "endDayOffset": 45, "wikiPhase": "crecimiento_aromaticas" },
+    { "id": "cosecha_aromaticas", "name": "Cosecha y poda", "emoji": "✂️", "startDayOffset": 30, "endDayOffset": 120, "wikiPhase": "cosecha_aromaticas" }
+  ],
+
+  "events": [
+    {
+      "id": "sembrar_aromaticas",
+      "title": "🌱 Siembra de aromáticas",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Siembra semillas en maceta o suelo directo. Profundidad: 2-3 veces el tamaño de la semilla. Albahaca y cilantro en primavera-verano. Perejil todo el año. Regar fino y mantener húmedo.",
+      "checklistInline": [
+        "Preparar sustrato fino y aireado",
+        "Sembrar a profundidad correcta según especie",
+        "Regar con pulverizador suave",
+        "Etiquetar especie y fecha"
+      ],
+      "expectedSignals": [
+        "Germinación: albahaca 5-10 días, perejil 15-21 días, cilantro 7-14 días"
+      ],
+      "warningIf": [
+        "Sin germinación en 21 días → semilla vieja o enterrada demasiado profundo",
+        "Perejil necesita más tiempo — no descartar antes de 3 semanas"
+      ],
+      "wikiPhase": "siembra_aromaticas",
+      "notify": true
+    },
+    {
+      "id": "raleo_aromaticas",
+      "title": "✂️ Raleo — dejar plantas más fuertes",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 21,
+      "durationMin": 15,
+      "description": "Cuando plantas tienen 3-4 hojas verdaderas, eliminar las más débiles. Albahaca: 20cm entre plantas. Cilantro: 15cm. Perejil: 15cm. Menta: necesita maceta propia (es invasiva).",
+      "wikiPhase": "crecimiento_aromaticas",
+      "notify": true
+    },
+    {
+      "id": "primer_corte",
+      "title": "✂️ Primer corte de hojas",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 30,
+      "durationMin": 10,
+      "description": "Cuando planta alcanza 10-15cm, primer corte ligero. Cortar puntas superiores (estimula ramificación). NO cortar más de 1/3 de la planta. Albahaca: pellizcar puntas florales para prolongar cosecha.",
+      "checklistInline": [
+        "Cortar puntas superiores con tijeras limpias",
+        "No quitar más de 1/3 de la planta",
+        "Cortar por la mañana (máximo aroma)"
+      ],
+      "expectedSignals": [
+        "Nuevas ramas laterales aparecen en 3-5 días",
+        "Planta más frondosa tras cada corte"
+      ],
+      "wikiPhase": "cosecha_aromaticas",
+      "notify": true
+    },
+    {
+      "id": "floracion_control",
+      "title": "🌸 Control de floración — pellizcar flores",
+      "emoji": "🌸",
+      "type": "monitoring",
+      "offsetDays": 45,
+      "durationMin": 10,
+      "description": "Cuando albahaca o cilantro intentan florecer, pellizcar botones florales inmediatamente. La floración desvía energía de hojas y cambia el sabor (amargo en albahaca).",
+      "checklistInline": [
+        "Identificar botones florales (albahaca: espigas blancas, cilantro: umbelas)",
+        "Pellizcar o cortar botones",
+        "Repetir semanalmente"
+      ],
+      "warningIf": [
+        "Si no se controla floración, planta produce semilla y muere (ciclo anual completado)"
+      ],
+      "wikiPhase": "cosecha_aromaticas",
+      "notify": false
+    },
+    {
+      "id": "conservacion",
+      "title": "🧊 Conservación de excedente",
+      "emoji": "🧊",
+      "type": "harvest",
+      "offsetDays": 60,
+      "durationMin": 30,
+      "description": "Si producción supera consumo fresco: secar o congelar. Secado: colgar ramilletes boca abajo en lugar oscuro y ventilado 1-2 semanas. Congelar: picar y poner en cubitera con aceite.",
+      "checklistInline": [
+        "Secado: ramilletes colgados, lugar oscuro y seco",
+        "Congelado: picar fino, cubitera + aceite oliva",
+        "Etiquetar con fecha y especie"
+      ],
+      "wikiPhase": "cosecha_aromaticas",
+      "notify": false
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_aromaticas",
+      "title": "💧 Riego moderado",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 2, "volumeMl": "100-300", "notes": "Más frecuente en maceta pequeña, menos en suelo directo" },
+      "description": "Riego moderado. La mayoría de aromáticas prefieren suelo ligeramente seco entre riegos. Excepción: albahaca y cilantro necesitan más humedad. Regar base, no hojas.",
+      "wikiPhase": "crecimiento_aromaticas",
+      "notify": false
+    },
+    {
+      "id": "corte_recurrente",
+      "title": "✂️ Corte de mantenimiento",
+      "emoji": "✂️",
+      "type": "harvest",
+      "startDayOffset": 30,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 14, "notes": "Corte ligero cada 2 semanas para estimular crecimiento" },
+      "description": "Cortar puntas superiores para mantener planta compacta y productiva. Retirar hojas amarillas o dañadas. No dejar que planta espigue.",
+      "wikiPhase": "cosecha_aromaticas",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_aromaticas",
+      "name": "Semillas de aromáticas (pack o individuales)",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Albahaca genovesa (fácil), Cilantro (rápido), Perejil (lento pero constante), Menta (en maceta propia). Compra sobres individuales o pack variedades.",
+      "wikiPhase": "siembra_aromaticas"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta universal (20L)",
+      "qty": 20,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "5-8€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato universal con buen drenaje. Añadir perlita (10-20%) para aromáticas mediterráneas."
+    },
+    {
+      "key": "macetas_aromaticas",
+      "name": "Macetas 15-20cm diámetro (pack 3)",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Barro cocido mejor (transpira). Plástico con agujeros drenaje suficiente. Platillo debajo.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especies",
+      "title": "Elegir especies según uso y espacio",
+      "description": "Cocina diaria: albahaca, perejil, cilantro. Tés: menta, melisa, manzanilla. Aromáticas leñosas (romero, tomillo) necesitan más sol y menos agua. Elegir 2-3 para empezar.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "espacio_soleado",
+      "title": "Reservar espacio soleado (4-6h sol)",
+      "description": "La mayoría de aromáticas necesitan mínimo 4h sol directo. Ventana orientada S/SO o balcón. Albahaca y perejil toleran semisombra.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_aromaticas", "qty": 3, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 20, "unit": "L", "trigger": "once" },
+    { "stockKey": "macetas_aromaticas", "qty": 3, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Cosecha continua desde semana 4 hasta fin de temporada. 50-200g/semana según especie y tamaño planta."
+  },
+  "produces": { "kind": "hierbas_aromaticas_frescas", "unit": "g" }
+}
