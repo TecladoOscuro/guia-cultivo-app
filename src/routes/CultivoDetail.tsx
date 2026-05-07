@@ -247,7 +247,7 @@ function ActionsMenu({
       <button
         onClick={() => setOpen(!open)}
         disabled={busy}
-        className="px-3 py-2 border border-border rounded text-sm hover:border-accent"
+        className="px-3 py-2 border border-border rounded text-sm hover:border-accent whitespace-nowrap"
       >
         ⋮ Acciones
       </button>
