@@ -120,9 +120,10 @@ export default function Calendar() {
   const sxEvents = useMemo(() => {
     return visibleEvents.map((e) => {
       const date = toPlainDate(e.scheduledDate);
+      const statusPrefix = e.status === "done" ? "✅ " : e.status === "skipped" ? "⏭️ " : "";
       return {
         id: String(e.id),
-        title: `${e.emoji} ${e.title}`,
+        title: `${statusPrefix}${e.emoji} ${e.title}`,
         start: date,
         end: date,
         calendarId: `cult-${e.cultivationId}`,
