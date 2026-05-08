@@ -1,0 +1,380 @@
+{
+  "id": "huerta-aliáceas",
+  "name": "Aliáceas",
+  "emoji": "🧅",
+  "category": "planta",
+  "version": 1,
+  "notes": "Ajo se planta en noviembre (invierno). Cebolla y puerro en maceta 10L+ o terreno.",
+  "scale": "plantas",
+  "totalDuration": { "days": 200 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=aliaceas",
+  "theme": { "primary": "#d4a844", "bg": "#1a1408" },
+
+  "phases": [
+    { "id": "siembra", "name": "Siembra / plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "siembra" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 21, "endDayOffset": 90, "wikiPhase": "crecimiento" },
+    { "id": "formacion_bulbo", "name": "Formación bulbo", "emoji": "🧅", "startDayOffset": 90, "endDayOffset": 150, "wikiPhase": "formacion_bulbo" },
+    { "id": "secado", "name": "Secado y curado", "emoji": "☀️", "startDayOffset": 150, "endDayOffset": 200, "wikiPhase": "secado" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_ajo",
+      "title": "🧄 Plantar dientes de ajo",
+      "emoji": "🧄",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Separar dientes de la cabeza de ajo. Elegir los dientes más grandes. Plantar a 4-5cm de profundidad, con la punta hacia arriba. Distancia: 10-15cm entre dientes. El ajo necesita frío invernal para formar cabeza (plantar en noviembre-diciembre). En maceta 10L caben 4-6 dientes.",
+      "checklistInline": [
+        "Dientes grandes y sanos (sin moho)",
+        "Plantar punta hacia arriba a 4-5cm",
+        "Distancia 10-15cm entre dientes",
+        "Maceta profunda (mínimo 20cm)",
+        "Regar suavemente tras plantar",
+        "Etiquetar variedad y fecha"
+      ],
+      "expectedSignals": [
+        "Brotes verdes emergen en 15-30 días",
+        "Planta resiste heladas (-10°C)"
+      ],
+      "warningIf": [
+        "Dientes pequeños = cabeza pequeña",
+        "Plantar en primavera = cabeza pequeña (necesita frío)"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "plantar_cebolla",
+      "title": "🧅 Plantar cebolla (bulbo o plantel)",
+      "emoji": "🧅",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Opción 1: bulbillos (más fácil). Enterrar a 2cm, punta fuera, 10cm entre plantas. Opción 2: plantel a raíz desnuda. Opción 3: semilla en semillero (más lento). Cebolla necesita días largos para formar bulbo. Maceta 10L mínimo, 15-20cm profundidad.",
+      "checklistInline": [
+        "Bulbillos: 2cm profundo, punta asomando",
+        "Distancia 10cm entre plantas",
+        "Maceta 10L mínimo (caben 4-6 cebollas)",
+        "Sustrato suelto y rico",
+        "Regar suavemente"
+      ],
+      "expectedSignals": [
+        "Brotes verdes en 7-14 días",
+        "Hojas tubulares y erectas"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "plantar_puerro",
+      "title": "🌱 Plantar plantel de puerro",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Puerro se planta de plantel (más práctico que semilla). Hacer hoyo de 15cm con palo, meter plantel. NO rellenar con tierra: el riego irá rellenando solo. Así se blanquea el tallo. Distancia: 15cm entre plantas. Maceta 10L mínimo, profunda (25cm+).",
+      "checklistInline": [
+        "Plantel de puerro (10-15cm altura)",
+        "Hoyo 15cm profundo, meter plantel",
+        "NO rellenar (el riego asienta la tierra)",
+        "Distancia 15cm entre plantas",
+        "Maceta profunda 25cm+"
+      ],
+      "expectedSignals": [
+        "Plantel se endereza en 1 semana",
+        "Nuevo crecimiento verde en 2 semanas"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "aclareo_cebolla",
+      "title": "✂️ Aclareo cebolla si es necesario",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 30,
+      "durationMin": 15,
+      "description": "Si sembraste semillas de cebolla, aclarar dejando 10cm entre plantas cuando tengan 10-15cm. Las plántulas arrancadas se pueden comer como cebolleta tierna. Si usaste bulbillos, no necesita aclareo.",
+      "checklistInline": [
+        "Dejar planta más vigorosa cada 10cm",
+        "Arrancar las débiles (aprovechar como cebolleta)",
+        "Regar después del aclareo"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "aporcar_puerro",
+      "title": "⛰️ Aporcar puerro (blanquear tallo)",
+      "emoji": "⛰️",
+      "type": "preparation",
+      "offsetDays": 60,
+      "durationMin": 20,
+      "description": "Cuando puerro engorda, aportar tierra alrededor del tallo para blanquear (parte blanca = más tierna y valor culinario). Cubrir 5-10cm del tallo. Repetir a los 90 días. También sirve envolver con cartón o tubo de papel.",
+      "checklistInline": [
+        "Puerro con tallo de 1-2cm grosor",
+        "Añadir tierra alrededor del tallo",
+        "Cubrir 5-10cm del tallo (parte blanca)",
+        "No tapar el centro de crecimiento"
+      ],
+      "wikiPhase": "formacion_bulbo",
+      "notify": true
+    },
+    {
+      "id": "cortar_escapo_ajo",
+      "title": "✂️ Cortar escapos florales del ajo",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 120,
+      "durationMin": 10,
+      "description": "El ajo emite un tallo floral rizado (escapo). Cortarlo cuando empieza a curvarse. Si no se corta, la energía va a la flor y no a engordar la cabeza. Los escapos son comestibles (ajo tierno suave).",
+      "checklistInline": [
+        "Escapo rizado visible",
+        "Cortar en la base del rizo",
+        "Aprovechar escapos en cocina (salteados)"
+      ],
+      "wikiPhase": "formacion_bulbo",
+      "notify": true
+    },
+    {
+      "id": "reducir_riego",
+      "title": "💧 Reducir riego (maduración)",
+      "emoji": "💧",
+      "type": "milestone",
+      "offsetDays": 130,
+      "durationMin": 5,
+      "description": "Cuando hojas empiezan a amarillear y doblarse: reducir riego drásticamente. Ajo y cebolla necesitan secarse en tierra para buen curado y conservación. Dejar de regar por completo 2-3 semanas antes de cosecha.",
+      "checklistInline": [
+        "Hojas amarilleando y doblándose",
+        "Reducir riego a mínimo",
+        "Dejar de regar 2-3 semanas antes de cosecha"
+      ],
+      "expectedSignals": [
+        "Cebolla: cuello blando, planta se tumba",
+        "Ajo: 3-5 hojas basales secas"
+      ],
+      "wikiPhase": "formacion_bulbo",
+      "notify": true
+    },
+    {
+      "id": "cosecha_ajo",
+      "title": "🧄 Cosecha ajos (mayo-junio)",
+      "emoji": "🧄",
+      "type": "harvest",
+      "offsetDays": 160,
+      "durationMin": 30,
+      "description": "Cosechar cuando 3-5 hojas inferiores están secas y las superiores aún verdes. Arrancar con cuidado usando horquilla (no tirar). Sacudir tierra, NO lavar. Dejar curar al aire en lugar seco y ventilado 3-4 semanas.",
+      "checklistInline": [
+        "3-5 hojas secas, resto verdes",
+        "Aflojar tierra con horquilla",
+        "Arrancar con cuidado",
+        "NO lavar, sacudir tierra",
+        "Colgar en ristra o extender en lugar seco"
+      ],
+      "expectedSignals": [
+        "Cabeza firme, dientes marcados",
+        "Hojas parcialmente secas"
+      ],
+      "wikiPhase": "secado",
+      "notify": true
+    },
+    {
+      "id": "cosecha_cebolla",
+      "title": "🧅 Cosecha cebollas (junio-julio)",
+      "emoji": "🧅",
+      "type": "harvest",
+      "offsetDays": 160,
+      "durationMin": 30,
+      "description": "Cosechar cuando 50-80% de las plantas tienen el cuello blando y se tumban solas. Si no se tumban, doblar el cuello manualmente 1-2 semanas antes de cosecha. Sacar bulbos, dejar secar al sol 2-3 días, luego curar a la sombra 2-3 semanas.",
+      "checklistInline": [
+        "Cuello blando, planta tumbada",
+        "Doblar cuello si no se tumba solo",
+        "Sacar bulbos, NO lavar",
+        "Secar al sol 2-3 días (capa exterior)",
+        "Curar a la sombra 2-3 semanas"
+      ],
+      "expectedSignals": [
+        "Bulbo firme y formado",
+        "Piel exterior seca y crujiente"
+      ],
+      "wikiPhase": "secado",
+      "notify": true
+    },
+    {
+      "id": "cosecha_puerro",
+      "title": "🌱 Cosecha puerros (escalonada)",
+      "emoji": "🌱",
+      "type": "harvest",
+      "offsetDays": 120,
+      "durationMin": 15,
+      "description": "Puerro se cosecha cuando alcanza grosor deseado (2-3cm). Se puede cosechar escalonadamente desde día 120 hasta día 200. Aguanta bien en tierra. Arrancar con cuidado o cortar a ras de suelo (la base puede rebrotar).",
+      "checklistInline": [
+        "Grosor 2-3cm en base",
+        "Arrancar con horquilla o cortar a ras",
+        "Cosechar según necesidad (aguanta en tierra)",
+        "Lavar bien antes de consumir"
+      ],
+      "expectedSignals": [
+        "Tallo blanco de 15-20cm",
+        "Hojas verdes erectas y sanas"
+      ],
+      "wikiPhase": "formacion_bulbo",
+      "notify": true
+    },
+    {
+      "id": "curar_almacenar",
+      "title": "📦 Curar y almacenar cosecha",
+      "emoji": "📦",
+      "type": "preparation",
+      "offsetDays": 175,
+      "durationMin": 20,
+      "description": "Ajo y cebolla: tras secado, limpiar raíces y hojas secas. Trenzar ajos en ristras, cebollas en mallas. Almacenar en lugar fresco, seco y oscuro. Bien curados duran 6-12 meses. Puerro: consumo fresco o congelar.",
+      "checklistInline": [
+        "Cortar raíces y hojas secas",
+        "Ajos: trenzar en ristras",
+        "Cebollas: guardar en mallas o cajas ventiladas",
+        "Lugar fresco, seco y oscuro",
+        "Puerros: consumo fresco o congelar picado"
+      ],
+      "wikiPhase": "secado",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego moderado",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 130,
+      "cadence": { "everyDays": 3, "volumeMl": "300-800", "notes": "Riego moderado, sin encharcar. Aliáceas odian el exceso de agua (pudrición). Reducir drásticamente al final" },
+      "description": "Riego moderado: cada 3-4 días. Dejar secar capa superficial entre riegos. Exceso de agua pudre bulbos. Ajo: el más sensible. Reducir y cortar riego en fase final de maduración.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_nitrogeno",
+      "title": "🌿 Fertilización nitrogenada (crecimiento)",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 21,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 21, "notes": "Nitrógeno para crecimiento foliar. Suspender cuando empieza formación bulbo" },
+      "description": "Abonado rico en nitrógeno durante fase de crecimiento de hojas. Cada 3 semanas. Suspender cuando empieza a formarse el bulbo (las hojas dejan de crecer). Exceso de N tardío = bulbos que no se conservan bien.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "escarda",
+      "title": "🌾 Escarda suave",
+      "emoji": "🌾",
+      "type": "preparation",
+      "startDayOffset": 14,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Aliáceas compiten mal con malas hierbas. Arrancar a mano" },
+      "description": "Eliminar malas hierbas manualmente. Aliáceas tienen raíces superficiales y sufren competencia. Arrancar hierbas con cuidado para no dañar raíces/bulbos. Acolchado ligero ayuda.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "dientes_ajo",
+      "name": "Cabeza de ajo para siembra",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Ajo morado (más sabor, mejor conservación) o blanco (más productivo). Comprar ajos locales, adaptados al clima. NO ajo de supermercado (tratado).",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "bulbillos_cebolla",
+      "name": "Bulbillos de cebolla (bolsa 50uds)",
+      "qty": 12,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Bulbillos: más fáciles que semilla. Variedades: dulce (consumo fresco), recas (secas, guardan bien), roja (ensaladas). Elegir según uso.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "plantel_puerro",
+      "name": "Plantel de puerro (6-12 uds)",
+      "qty": 6,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Comprar plantel en vivero (más práctico). Variedades: largo de invierno (resistente), grueso de verano (rápido).",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta con buen drenaje (30L)",
+      "qty": 30,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato universal + 20% arena. Buen drenaje imprescindible (no encharcar). Ajo prefiere suelo más pobre que cebolla.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "fertilizante_nitrogenado",
+      "name": "Fertilizante rico en N (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Nitrógeno para fase de crecimiento foliar. Humus de lombriz o fertilizante líquido. Suspender al formar bulbo."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie",
+      "title": "Elegir especies según temporada y espacio",
+      "description": "Ajo: plantar en otoño (nov-dic), cosecha en verano. Cebolla: plantar en invierno-primavera. Puerro: plantar en primavera-verano. Maceta mínimo 10L y 20-25cm profundidad.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_sustrato_drenaje",
+      "title": "Preparar sustrato con buen drenaje",
+      "description": "Mezclar sustrato universal con arena (20%). Añadir un poco de compost. Aliáceas no toleran encharcamiento. Macetas con agujeros abundantes. Capa de grava en fondo.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "espacio_sol",
+      "title": "Reservar espacio soleado",
+      "description": "Mínimo 6h sol directo. Ajo y cebolla toleran algo menos de sol que otras hortalizas. Orientación S, SE, SO.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "dientes_ajo", "qty": 6, "unit": "ud", "trigger": "once" },
+    { "stockKey": "bulbillos_cebolla", "qty": 12, "unit": "ud", "trigger": "once" },
+    { "stockKey": "plantel_puerro", "qty": 6, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_nitrogenado", "qty": 8, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_nitrogeno" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Ajo: 1 cabeza por diente plantado (6-8 dientes = 6-8 cabezas). Cebolla: 1 bulbo por planta (12 bulbillos = 12 cebollas). Puerro: 1 tallo por plantel. Cosecha conservable 6-12 meses bien curada."
+  },
+  "produces": { "kind": "aliacea_fresca", "unit": "kg" }
+}

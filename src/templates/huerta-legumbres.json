@@ -1,0 +1,292 @@
+{
+  "id": "huerta-legumbres",
+  "name": "Legumbres",
+  "emoji": "🫘",
+  "category": "planta",
+  "version": 1,
+  "notes": "Judía enana en maceta 10L. Guisante y haba en maceta profunda 15L+ o terreno. Fijan nitrógeno: mejoran el suelo.",
+  "scale": "plantas",
+  "totalDuration": { "days": 100 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=legumbres",
+  "theme": { "primary": "#6b8e4e", "bg": "#0a1a08" },
+
+  "phases": [
+    { "id": "siembra", "name": "Siembra directa", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "siembra" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 14, "endDayOffset": 45, "wikiPhase": "crecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 45, "endDayOffset": 60, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🫘", "startDayOffset": 60, "endDayOffset": 100, "wikiPhase": "fructificacion" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_directa",
+      "title": "🌱 Siembra directa de legumbres",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Siembra directa: no necesitan semillero (raíces sensibles). Judía: 2-3cm profundo, 15cm entre plantas (enana) o 30cm (enrame). Guisante: 2-3cm profundo, 10cm entre plantas. Haba: 4-5cm profundo, 20cm entre plantas. Remojar semillas 12-24h antes acelera germinación.",
+      "checklistInline": [
+        "Remojar semillas 12-24h antes (acelera)",
+        "Judía: 2-3cm, 15cm entre plantas",
+        "Guisante: 2-3cm, 10cm entre plantas",
+        "Haba: 4-5cm, 20cm entre plantas",
+        "Regar tras sembrar",
+        "Etiquetar especie y variedad"
+      ],
+      "expectedSignals": [
+        "Judía: germina 5-10 días",
+        "Guisante: germina 7-14 días",
+        "Haba: germina 10-20 días",
+        "Cotiledones grandes y carnosos"
+      ],
+      "warningIf": [
+        "Suelo frío < 10°C → pudrición antes de germinar",
+        "Semilla vieja de guisante → baja germinación",
+        "Pájaros se comen brotes → cubrir con malla primeros días"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "instalar_tutores",
+      "title": "🪜 Instalar tutores y soportes",
+      "emoji": "🪜",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 30,
+      "description": "Judía de enrame: cañas de 2m en tipi o hilera con hilo. Guisante: malla o ramas secas (se agarran con zarcillos). Haba: tutor colectivo (hilo alrededor del grupo). Judía enana: no necesita tutor. Instalar ANTES de que la planta lo necesite.",
+      "checklistInline": [
+        "Judía enrame: tipi de cañas 2m o malla vertical",
+        "Guisante: malla o ramaje (se enredan solos)",
+        "Haba: hilo perimetral a 50cm altura",
+        "Instalar pronto (semana 2-3)",
+        "Fijar bien contra viento"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "guia_tallos",
+      "title": "🧭 Guiar tallos hacia soporte",
+      "emoji": "🧭",
+      "type": "preparation",
+      "offsetDays": 28,
+      "durationMin": 15,
+      "description": "Judía de enrame: guiar tallos hacia el tutor cuando miden 20-30cm (se enredan solos después). Guisante: guiar primeros zarcillos hacia la malla. Haba: pasar hilo exterior cuando miden 40cm. Una vez guiados, crecen solos.",
+      "checklistInline": [
+        "Guiar tallos principales hacia soporte",
+        "Enrollar suavemente sin romper",
+        "Judía: sentido antihorario natural",
+        "Una vez agarrados, suben solos"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "cosecha_judia_tierna",
+      "title": "🫘 Cosecha judía verde (tierna)",
+      "emoji": "🫘",
+      "type": "harvest",
+      "offsetDays": 55,
+      "durationMin": 20,
+      "description": "Cosechar vainas cuando están tiernas (las semillas apenas se marcan). Si se dejan madurar, la planta deja de producir. Judía enana: producción concentrada 3-4 semanas. Judía enrame: producción escalonada 2-3 meses. Cortar con tijeras o uña.",
+      "checklistInline": [
+        "Vainas tiernas, semillas sin marcar",
+        "Judía enana: 12-15cm largo",
+        "Judía enrame: 15-20cm largo",
+        "Cortar, no arrancar",
+        "Cosechar cada 3-4 días"
+      ],
+      "expectedSignals": [
+        "Vaina crujiente, se parte limpiamente",
+        "Sin hilos laterales duros"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "cosecha_guisante",
+      "title": "🟢 Cosecha guisantes",
+      "emoji": "🟢",
+      "type": "harvest",
+      "offsetDays": 70,
+      "durationMin": 20,
+      "description": "Guisante tirabeque: cosechar cuando vaina es plana y tierna (se come entera). Guisante desgranado: esperar a que se marquen los guisantes en la vaina. Cosechar escalonadamente cada 3-4 días. No dejar madurar (la planta para).",
+      "checklistInline": [
+        "Tirabeque: vaina plana, tierna",
+        "Desgranado: guisantes marcados en vaina",
+        "Cortar con tijeras",
+        "Cosechar cada 3-4 días",
+        "Consumir pronto (pierden dulzor)"
+      ],
+      "expectedSignals": [
+        "Guisante: vaina verde brillante, llena pero no dura",
+        "Sabor dulce (se convierte en almidón si madura)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "cosecha_haba",
+      "title": "🟤 Cosecha habas",
+      "emoji": "🟤",
+      "type": "harvest",
+      "offsetDays": 80,
+      "durationMin": 20,
+      "description": "Haba: cosechar cuando vainas están hinchadas y la cicatriz del grano (parte clara) aún no se ha oscurecido. Para haba seca (conservar): esperar a que vainas se sequen y ennegrezcan completamente. Planta entera a compost (fija nitrógeno).",
+      "checklistInline": [
+        "Haba tierna: vaina hinchada, grano claro",
+        "Haba seca: vainas negras y secas",
+        "Cortar vainas con tijeras",
+        "Arrancar planta y compostar (raíces con nódulos de N)"
+      ],
+      "expectedSignals": [
+        "Vaina que cede al apretar (tierna)",
+        "Vaina crujiente y negra (seca)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "incorporar_raices_suelo",
+      "title": "🌿 Incorporar raíces al suelo (fijación N)",
+      "emoji": "🌿",
+      "type": "preparation",
+      "offsetDays": 100,
+      "durationMin": 15,
+      "description": "Al final del cultivo, cortar la parte aérea y dejar raíces en tierra. Los nódulos de nitrógeno en las raíces fertilizan el suelo para el siguiente cultivo. Comienzo ideal de rotación: legumbre → hoja → fruto → raíz.",
+      "checklistInline": [
+        "Cortar parte aérea (compost)",
+        "DEJAR raíces en tierra",
+        "No arrancar (los nódulos de N quedan en suelo)",
+        "Plantar cultivo exigente después (ej. tomate)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego regular",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 2, "volumeMl": "500-1500", "notes": "Regular pero sin encharcar. Más agua en floración/fructificación. Guisante y haba toleran más frío y humedad" },
+      "description": "Riego regular, más frecuente en floración y fructificación. Evitar encharcar (pudrición raíz). Judía: sensible a sequía en floración (aborta flores). Guisante/haba: más tolerantes a humedad.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "cosechar_frecuente",
+      "title": "🫘 Cosechar vainas (cada 3-4 días)",
+      "emoji": "🫘",
+      "type": "harvest",
+      "startDayOffset": 55,
+      "endDayOffset": 100,
+      "cadence": { "everyDays": 4, "notes": "Cosecha frecuente estimula más flores y vainas. No dejar madurar semillas si quieres cosecha continua" },
+      "description": "Cosechar cada 3-4 días. Cuanto más cosechas, más produce la planta. Si dejas madurar vainas, la planta entiende que cumplió su ciclo y para de producir. Judía enana: ventana de 3-4 semanas. Enrame: 2-3 meses.",
+      "wikiPhase": "fructificacion",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas",
+      "title": "🔍 Revisión plagas (pulgón, araña roja)",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 21,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 7, "notes": "Semanal. Pulgón negro (haba), pulgón verde (guisante), araña roja (judía en verano)" },
+      "description": "Haba: especial atención a pulgón negro en brotes tiernos. Guisante: pulgón verde. Judía: araña roja en verano seco. Prevenir con jabón potásico semanal. Asociar con aromáticas (menta, ajedrea) repele pulgones.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_legumbres",
+      "name": "Semillas de legumbres",
+      "qty": 1,
+      "unit": "sobre",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Judía enana: fácil y rápida, ideal maceta. Judía enrame: más productiva, necesita soporte. Guisante: tirabeque (vaina entera) o desgranado. Haba: para invierno, necesita frío.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta (30L)",
+      "qty": 30,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Legumbres no necesitan sustrato muy rico (fijan su propio N). Sustrato universal con buen drenaje. No fertilizar en exceso.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "tutores_legumbres",
+      "name": "Cañas o malla para entutorado",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-8€",
+      "source": "tienda_fisica",
+      "notes": "Cañas bambú 2m para judías enrame o tipi. Malla plástico para guisantes. Hilo para habas. Judía enana no necesita.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "jabon_potasico",
+      "name": "Jabón potásico (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "5-8€",
+      "source": "tienda_fisica",
+      "notes": "Preventivo y curativo contra pulgón. Aplicar diluido 1-2% cada 7-10 días. Especial para habas (pulgón negro)."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especies",
+      "title": "Elegir especies según temporada y espacio",
+      "description": "Judía enana: ideal maceta 10L, rápida. Judía enrame: más producción, necesita soporte alto. Guisante: otoño-invierno (clima suave). Haba: invierno (tolera heladas). Fijan nitrógeno: ideales como cultivo inicial en sustrato nuevo.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_macetas",
+      "title": "Preparar macetas y soportes",
+      "description": "Maceta 10L judía enana, 15L guisante/haba. Profundidad mínima 20cm. Instalar tutores desde el principio. Sustrato no demasiado rico (exceso N = mucha hoja, poca vaina).",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "remojar_semillas",
+      "title": "Remojar semillas 12-24h antes de sembrar",
+      "description": "Poner semillas en agua tibia 12-24h. Acelera germinación de 2-3 días. Judía y guisante especialmente responden bien. Descartar semillas que flotan (vanas).",
+      "blocking": false,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_legumbres", "qty": 1, "unit": "sobre", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 20, "unit": "L", "trigger": "once" },
+    { "stockKey": "jabon_potasico", "qty": 5, "unit": "ml", "trigger": "per_event", "refEventId": "inspeccion_plagas" },
+    { "stockKey": "tutores_legumbres", "qty": 3, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Judía enana: 300-500g/planta (producción concentrada). Judía enrame: 500-800g/planta (escalonada). Guisante: 200-400g/planta. Haba: 500-1000g/planta. Cosecha escalonada durante 3-8 semanas según especie."
+  },
+  "produces": { "kind": "legumbre_fresca", "unit": "kg" }
+}

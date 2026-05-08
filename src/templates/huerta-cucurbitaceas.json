@@ -1,0 +1,359 @@
+{
+  "id": "huerta-cucurbitaceas",
+  "name": "Cucurbitáceas",
+  "emoji": "🥒",
+  "category": "planta",
+  "version": 1,
+  "notes": "Calabacín y pepino en maceta 20L+. Melón y sandía solo terreno (necesitan espacio).",
+  "scale": "plantas",
+  "totalDuration": { "days": 100 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=cucurbitaceas",
+  "theme": { "primary": "#4a8c3f", "bg": "#0a1a08" },
+
+  "phases": [
+    { "id": "semillero", "name": "Semillero", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 21, "wikiPhase": "semillero" },
+    { "id": "trasplante", "name": "Trasplante", "emoji": "🪴", "startDayOffset": 21, "endDayOffset": 21, "wikiPhase": "trasplante" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 21, "endDayOffset": 45, "wikiPhase": "crecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 45, "endDayOffset": 55, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🥒", "startDayOffset": 55, "endDayOffset": 100, "wikiPhase": "fructificacion" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_semillero",
+      "title": "🌱 Siembra en semillero o directa",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "Siembra en semillero individual (alveolo grande o macetita biodegradable, no les gusta el trasplante). 2 semillas por alveolo a 1-2cm profundidad. Calor 22-28°C. O siembra directa en maceta definitiva si temperatura suelo > 18°C. Germinación rápida: 4-8 días.",
+      "checklistInline": [
+        "Llenar alveolos grandes con sustrato ligero",
+        "Sembrar 2 semillas por alveolo a 1-2cm",
+        "Regar con pulverizador suave",
+        "Calor de fondo acelera (22-28°C)",
+        "Etiquetar especie y variedad"
+      ],
+      "expectedSignals": [
+        "Germinación en 4-8 días (rápida)",
+        "Cotiledones grandes y redondos",
+        "Crecimiento muy vigoroso desde el inicio"
+      ],
+      "warningIf": [
+        "Sin germinación día 10 → semilla vieja o suelo frío",
+        "Tallos largos y finos → poca luz (se estiran mucho)"
+      ],
+      "wikiPhase": "semillero",
+      "notify": true
+    },
+    {
+      "id": "trasplantar",
+      "title": "🪴 Trasplante a ubicación definitiva",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 21,
+      "durationMin": 45,
+      "description": "Trasplantar cuando planta tiene 2-3 hojas verdaderas (3-4 semanas). Hacer con cuidado: raíces de cucurbitáceas son sensibles. Maceta: 20L+ calabacín/pepino. Terreno: melón/sandía necesitan 1m² por planta. Enterrar al mismo nivel. Riego copioso.",
+      "checklistInline": [
+        "Trasplantar con cepellón intacto",
+        "Calabacín/pepino: maceta 20L+",
+        "Melón/sandía: terreno, 1m² por planta",
+        "Mismo nivel que en semillero",
+        "Riego copioso post-trasplante"
+      ],
+      "expectedSignals": [
+        "Adaptación rápida (3-5 días)",
+        "Nuevo crecimiento vigoroso visible"
+      ],
+      "wikiPhase": "trasplante",
+      "notify": true
+    },
+    {
+      "id": "entutorado_pepino",
+      "title": "🪜 Entutorado pepino (vertical)",
+      "emoji": "🪜",
+      "type": "preparation",
+      "offsetDays": 35,
+      "durationMin": 30,
+      "description": "Pepino: colocar malla o cañas para crecimiento vertical (ahorra espacio y frutos rectos). Melón/sandía: dejar rastrero en suelo o instalar soporte para frutos (redes o hamacas). Calabacín: no necesita tutor (crece arbustivo).",
+      "checklistInline": [
+        "Pepino: malla de 1.5-2m o cañas en tipi",
+        "Melón/sandía: preparar acolchado de paja en suelo",
+        "Calabacín: espacio para crecimiento arbustivo (~1m²)",
+        "Guía inicial de tallos hacia soporte"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "identificar_flores",
+      "title": "🌸 Identificar flores macho y hembra",
+      "emoji": "🌸",
+      "type": "monitoring",
+      "offsetDays": 45,
+      "durationMin": 10,
+      "description": "Cucurbitáceas tienen flores macho (salen primero, solo tallo) y hembra (tienen mini-fruto detrás). Si no hay flores hembra aún, es normal. Primero aparecen muchas macho. La hembra necesita ser polinizada para cuajar fruto.",
+      "checklistInline": [
+        "Flor macho: tallo fino, sin engrosamiento",
+        "Flor hembra: mini calabacín/pepino detrás de la flor",
+        "Si solo hay machos → esperar, las hembras llegan después"
+      ],
+      "expectedSignals": [
+        "9-10 flores macho por cada hembra al principio",
+        "Hembra se abre solo 1 día → polinizar pronto"
+      ],
+      "wikiPhase": "floracion",
+      "notify": false
+    },
+    {
+      "id": "polinizacion_manual",
+      "title": "🖌️ Polinización manual (si faltan insectos)",
+      "emoji": "🖌️",
+      "type": "preparation",
+      "offsetDays": 50,
+      "durationMin": 10,
+      "description": "En balcón sin abejas, polinizar manualmente. Por la mañana temprano (flores abiertas): arrancar flor macho, quitar pétalos, frotar el centro sobre el centro de la flor hembra. O usar pincel fino. Una flor macho poliniza 3-4 hembras.",
+      "checklistInline": [
+        "Hacer por la mañana (6-10h, flores abiertas)",
+        "Flor macho: quitar pétalos, queda el estambre",
+        "Frotar estambre sobre estigma de flor hembra",
+        "Repetir cada vez que haya hembras abiertas"
+      ],
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "aclareo_frutos",
+      "title": "✂️ Aclareo de frutos (melón/sandía)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Melón y sandía: dejar solo 2-3 frutos por planta. Eliminar el resto cuando tengan tamaño de nuez. Concentra energía en pocos frutos de calidad. Calabacín y pepino: no necesitan aclareo (cosecha continua cuanto más cortas, más produce).",
+      "checklistInline": [
+        "Melón/sandía: elegir 2-3 frutos mejor formados",
+        "Eliminar el resto",
+        "Calabacín/pepino: NO aclarar, cosechar frecuentemente"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "cosecha_calabacin",
+      "title": "🥒 Cosecha calabacín y pepino",
+      "emoji": "🥒",
+      "type": "harvest",
+      "offsetDays": 55,
+      "durationMin": 15,
+      "description": "Calabacín: cosechar cuando mide 15-20cm (tierno). Si crece más, se vuelve fibroso y la planta deja de producir. Pepino: 15-20cm, firme y verde uniforme. Cortar con cuchillo dejando 2cm de pedúnculo. Cosechar cada 2-3 días estimula más producción.",
+      "checklistInline": [
+        "Calabacín: 15-20cm máximo (más pequeño = más tierno)",
+        "Pepino: firme, verde uniforme, 15-20cm",
+        "Cortar con cuchillo, no arrancar",
+        "Cosechar frecuentemente (cada 2-3 días)"
+      ],
+      "expectedSignals": [
+        "Calabacín: piel brillante, se raya con uña",
+        "Pepino: espinas blandas (NO duras)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "cosecha_melonsandia",
+      "title": "🍈 Cosecha melón y sandía (madurez)",
+      "emoji": "🍈",
+      "type": "harvest",
+      "offsetDays": 85,
+      "durationMin": 15,
+      "description": "Melón: se desprende solo del pedúnculo (maduro) o huele dulce en la base. Sandía: el zarcillo más cercano al fruto se seca, y la mancha de apoyo en suelo pasa de blanca a amarilla. Sonido hueco al golpear. Cosechar en su punto justo.",
+      "checklistInline": [
+        "Melón: pedúnculo se agrieta/suelta solo",
+        "Melón: aroma dulce en la base",
+        "Sandía: zarcillo seco junto al fruto",
+        "Sandía: mancha amarilla en base (no blanca)",
+        "Cortar con tijeras, dejar 2cm pedúnculo"
+      ],
+      "expectedSignals": [
+        "Melón: cambio de color, grieta circular en pedúnculo",
+        "Sandía: sonido hueco al golpear con nudillos"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin del cultivo — limpieza",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 100,
+      "durationMin": 30,
+      "description": "Recoger últimos frutos. Arrancar plantas y compostar. Limpiar soportes, macetas y terreno. Las cucurbitáceas dejan mucho material vegetal para compost. Registrar rendimiento y variedades.",
+      "checklistInline": [
+        "Recoger frutos verdes restantes (algunos maduran en interior)",
+        "Arrancar plantas y picar para compost",
+        "Limpiar tutores, mallas y macetas",
+        "Anotar rendimiento y lecciones"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego abundante y frecuente",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 100,
+      "cadence": { "everyDays": 1, "volumeMl": "500-3000", "notes": "Cucurbitáceas = mucha agua. 500ml semillero, 2-3L/maceta en fructificación. Melón/sandía: riego profundo cada 2-3 días" },
+      "description": "Riego diario en maceta (se secan rápido). Terreno: riego profundo cada 2-3 días. Mejor por la mañana. Evitar mojar hojas (mildiu). No dejar secar durante fructificación (frutos amargos o se abortan).",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar",
+      "title": "🌿 Fertilización periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 28,
+      "endDayOffset": 90,
+      "cadence": { "everyDays": 14, "notes": "Cucurbitáceas muy exigentes. Fertilizante rico en K durante fructificación" },
+      "description": "Aplicar fertilizante equilibrado cada 2 semanas. Cambiar a fórmula rica en K cuando empiezan frutos. Son plantas muy hambrientas. En maceta, fertilización imprescindible (sustrato limitado).",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "cosechar_frecuente",
+      "title": "🥒 Cosechar calabacín/pepino (cada 2-3 días)",
+      "emoji": "🥒",
+      "type": "harvest",
+      "startDayOffset": 55,
+      "endDayOffset": 100,
+      "cadence": { "everyDays": 3, "notes": "Cosechar pronto y frecuente. Fruto grande = planta deja de producir" },
+      "description": "Calabacín y pepino: cosechar cada 2-3 días sin falta. Si dejas que un calabacín se haga enorme, la planta entiende que ya cumplió su misión y deja de producir. Fruto pequeño = más tierno y más cosecha total.",
+      "wikiPhase": "fructificacion",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_mildiu",
+      "title": "🔍 Revisión mildiu y oidio",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 21,
+      "endDayOffset": 100,
+      "cadence": { "everyDays": 7, "notes": "Cucurbitáceas muy sensibles a hongos. Mildiu (manchas amarillas/marrón). Oidio (polvo blanco)" },
+      "description": "Revisar hojas: manchas amarillas que se vuelven marrones = mildiu. Polvo blanco en haz = oidio. Prevenir con riego al pie (no mojar hojas) y buena ventilación. Tratar pronto con cola de caballo o azufre mojable.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_cucurbitaceas",
+      "name": "Semillas de cucurbitáceas",
+      "qty": 1,
+      "unit": "sobre",
+      "category": "esencial",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Calabacín: negro beauty, verde claro. Pepino: marketmore, holandés. Melón: piel de sapo, cantalupo. Sandía: sugar baby, crimson. Elegir según espacio.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_semillero",
+      "name": "Sustrato semillero (5L)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato fino. Usar alveolos grandes o macetitas biodegradables (raíces sensibles al trasplante).",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta o compost (80L)",
+      "qty": 80,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Cucurbitáceas muy exigentes. Sustrato rico en materia orgánica. Para terreno: añadir 5kg compost/m²."
+    },
+    {
+      "key": "maceta_20L",
+      "name": "Maceta grande 20L+",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Mínimo 20L calabacín/pepino. Mínimo 35cm diámetro. Buen drenaje. Para melón/sandía: en terreno (no maceta).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "entutorado_malla",
+      "name": "Malla o cañas para entutorado pepino",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Malla de plástico 1.5-2m o cañas bambú. Pepino necesita soporte vertical. Calabacín no necesita. Melón/sandía solo si se quiere guiar.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_huerta",
+      "name": "Fertilizante líquido huerta (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Fertilizante rico en K. Las cucurbitáceas consumen muchos nutrientes. En maceta, esencial."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie",
+      "title": "Elegir especie según espacio",
+      "description": "Balcón/terraza: calabacín (arbustivo, productivo) o pepino (vertical). Huerto terreno: añadir melón y sandía (necesitan 1m² por planta). Elegir variedades compactas para maceta.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_contenedor",
+      "title": "Preparar maceta grande o bancal",
+      "description": "Maceta 20L mínimo con buen drenaje. Sustrato rico (50% sustrato universal + 30% compost + 20% perlita). En terreno: preparar hoyo 40x40x40cm con compost.",
+      "blocking": true,
+      "estimatedMinutes": 45
+    },
+    {
+      "id": "espacio_sol",
+      "title": "Reservar espacio con pleno sol",
+      "description": "Mínimo 6-8h sol directo. Cuanto más sol, más producción. Proteger de viento fuerte (hojas grandes se rasgan). Preparar sistema de soporte si es pepino.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_cucurbitaceas", "qty": 1, "unit": "sobre", "trigger": "once" },
+    { "stockKey": "sustrato_semillero", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_huerta", "qty": 10, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar" },
+    { "stockKey": "maceta_20L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Calabacín: 10-20 frutos/planta. Pepino: 15-25 frutos/planta. Melón: 2-3 frutos/planta. Sandía: 1-3 frutos/planta. Cosecha total: 5-15 kg según especie."
+  },
+  "produces": { "kind": "cucurbitacea_fresca", "unit": "kg" }
+}

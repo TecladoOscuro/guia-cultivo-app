@@ -1,0 +1,289 @@
+{
+  "id": "ferment-masa-madre",
+  "name": "Masa madre",
+  "emoji": "🍞",
+  "category": "fermento",
+  "version": 1,
+  "notes": "Harina + agua + paciencia. Alimentar cada 24h la primera semana, luego nevera con mantenimiento semanal.",
+  "totalDuration": { "days": 14 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=masa-madre",
+  "theme": { "primary": "#d4a354", "bg": "#1a1208" },
+
+  "phases": [
+    { "id": "creacion_masa", "name": "Creación (días 1-3)", "emoji": "🌾", "startDayOffset": 0, "endDayOffset": 3, "wikiPhase": "creacion_masa" },
+    { "id": "establecimiento_masa", "name": "Establecimiento (días 4-7)", "emoji": "🫧", "startDayOffset": 3, "endDayOffset": 7, "wikiPhase": "establecimiento_masa" },
+    { "id": "madurracion_masa", "name": "Maduración (días 8-14)", "emoji": "💪", "startDayOffset": 7, "endDayOffset": 14, "wikiPhase": "madurracion_masa" },
+    { "id": "mantenimiento_masa", "name": "Mantenimiento", "emoji": "❄️", "startDayOffset": 14, "endDayOffset": 14, "wikiPhase": "mantenimiento_masa" }
+  ],
+
+  "events": [
+    {
+      "id": "crear_masa_madre_dia1",
+      "title": "🌾 Día 1: mezclar harina y agua",
+      "emoji": "🌾",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 10,
+      "description": "Mezclar 50g de harina integral (centeno o trigo integral — más microorganismos que la harina blanca) con 50g de agua sin cloro. Mezclar bien en bote de vidrio. Consistencia: pasta espesa. Tapar con tela o tapa floja (respira). Dejar a temperatura ambiente 20-25°C 24h.",
+      "checklistInline": [
+        "Bote vidrio limpio (sin jabón, solo agua caliente)",
+        "50g harina integral (centeno mejor)",
+        "50g agua sin cloro a temperatura ambiente",
+        "Mezclar bien hasta pasta homogénea",
+        "Tapar con tela o tapa apoyada (NO hermético)",
+        "Reposar 24h a 20-25°C",
+        "Etiquetar con fecha y hora"
+      ],
+      "expectedSignals": [
+        "Día 2: puede no haber cambios visibles aún",
+        "Posible burbuja pequeña (buena señal)"
+      ],
+      "warningIf": [
+        "Agua con cloro → inhibe microorganismos",
+        "Bote cerrado hermético → se asfixia (necesita oxígeno primeros días)"
+      ],
+      "wikiPhase": "creacion_masa",
+      "notify": true
+    },
+    {
+      "id": "alimentar_dia3",
+      "title": "🥣 Día 3: primer refresco (1:1:1)",
+      "emoji": "🥣",
+      "type": "feeding",
+      "offsetDays": 3,
+      "durationMin": 10,
+      "description": "Descartar la mitad de la masa (~50g). Añadir 50g harina + 50g agua. Mezclar bien. Este es el primer refresco 1:1:1 (1 parte masa madre : 1 harina : 1 agua). A partir de aquí, alimentar cada 24h. La masa empieza a burbujear y oler ligeramente ácido.",
+      "checklistInline": [
+        "Descartar la mitad (~50g)",
+        "Añadir 50g harina + 50g agua",
+        "Mezclar bien",
+        "Tapar y reposar 24h",
+        "Proporción 1:1:1"
+      ],
+      "expectedSignals": [
+        "Burbujas más visibles después de alimentar",
+        "Olor ácido suave (como yogur)"
+      ],
+      "wikiPhase": "creacion_masa",
+      "notify": true
+    },
+    {
+      "id": "alimentar_diario",
+      "title": "🥣 Alimentar cada 24h (días 4-7)",
+      "emoji": "🥣",
+      "type": "feeding",
+      "offsetDays": 4,
+      "durationMin": 10,
+      "description": "Continuar descartando la mitad y alimentando 1:1:1 cada 24h. Día 4-5: la masa debería doblar volumen en 4-8h después de alimentar. Día 5-6: puede haber un bajón de actividad (normal — cambio de población bacteriana). Continuar alimentando, no desesperar.",
+      "checklistInline": [
+        "Descartar la mitad",
+        "Añadir 50g harina + 50g agua",
+        "Mezclar bien, consistencia uniforme",
+        "Marcar nivel en el bote (ver crecimiento)",
+        "Día 5-6 posible bajón de actividad → NORMAL, continuar"
+      ],
+      "expectedSignals": [
+        "Día 4-5: empieza a doblar volumen tras alimentar",
+        "Burbujeo visible y aroma más complejo",
+        "Día 5-7: posible bajón temporal (paciencia)"
+      ],
+      "wikiPhase": "establecimiento_masa",
+      "notify": true
+    },
+    {
+      "id": "prueba_flotacion",
+      "title": "🫧 Prueba de flotación (test actividad)",
+      "emoji": "🫧",
+      "type": "monitoring",
+      "offsetDays": 7,
+      "durationMin": 5,
+      "description": "Test sencillo para ver si la masa madre está lista para panificar. Tomar 1 cucharadita de masa y ponerla en un vaso de agua. Si FLOTA → está activa y lista para usar en pan. Si se hunde → necesita más alimentación o más tiempo. La masa madre activa retiene gas suficiente para flotar.",
+      "checklistInline": [
+        "Tomar 1 cucharadita de masa madre (4-8h después de alimentar)",
+        "Poner en vaso de agua fría",
+        "Si FLOTA: lista para pan",
+        "Si se HUNDE: seguir alimentando 1-2 días más"
+      ],
+      "expectedSignals": [
+        "Flota = masa madre activa y con gas",
+        "Se hunde = necesita más tiempo o temperatura más cálida"
+      ],
+      "wikiPhase": "madurracion_masa",
+      "notify": true
+    },
+    {
+      "id": "primer_pan",
+      "title": "🍞 Primer pan con masa madre (día 10-14)",
+      "emoji": "🍞",
+      "type": "milestone",
+      "offsetDays": 10,
+      "durationMin": 240,
+      "description": "La masa madre está lista para panificar cuando dobla volumen en 4-6h tras alimentar a 22-25°C y pasa la prueba de flotación. Primer pan sencillo: 500g harina, 350g agua, 100g masa madre, 10g sal. Autolisis 60min → amasado suave → pliegues cada 30min × 4 → fermentación 4-6h → formado → nevera noche → hornear.",
+      "checklistInline": [
+        "Masa madre activa (doble volumen en 4-6h)",
+        "500g harina panadera + 350g agua tibia",
+        "100g masa madre + 10g sal",
+        "Autolisis 60 min (harina + agua solas)",
+        "Añadir masa madre y sal, amasar suave",
+        "Pliegues cada 30 min × 3-4",
+        "Fermentar hasta doblar (4-6h a 22-25°C)",
+        "Formar, banetón, nevera 12-18h",
+        "Hornear 230°C con vapor 20min + 200°C sin vapor 25min"
+      ],
+      "expectedSignals": [
+        "Pan con buen volumen y oreja",
+        "Alveolo irregular (agujeros en miga)",
+        "Corteza crujiente"
+      ],
+      "wikiPhase": "madurracion_masa",
+      "notify": true
+    },
+    {
+      "id": "mantenimiento_nevera",
+      "title": "❄️ Mantenimiento semanal en nevera",
+      "emoji": "❄️",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 10,
+      "description": "Una vez establecida (día 14+), la masa madre se guarda en nevera. Alimentar 1 vez por semana: sacar, descartar mayor parte, alimentar 1:2:2 o 1:3:3, dejar 2h a temperatura ambiente (para que arranque), y volver a nevera. Si no se usa, aguanta 2-3 semanas sin alimentar (aunque se debilita).",
+      "checklistInline": [
+        "Guardar en nevera en bote cerrado (no hermético)",
+        "Alimentar 1 vez/semana: descartar, añadir harina+agua",
+        "Proporción 1:2:2 o 1:3:3 más resistente",
+        "Dejar 2h a temp ambiente antes de nevera",
+        "Etiquetar última alimentación",
+        "Si no usas en semanas: alimentar y congelar"
+      ],
+      "expectedSignals": [
+        "Masa madre burbujea al sacar de nevera tras alimentar",
+        "Olor ácido agradable y complejo",
+        "Sin moho ni olores extraños (si sale moho: desechar)"
+      ],
+      "wikiPhase": "mantenimiento_masa",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "alimentar_diario_primera_semana",
+      "title": "🥣 Alimentar masa madre (diario)",
+      "emoji": "🥣",
+      "type": "feeding",
+      "startDayOffset": 3,
+      "endDayOffset": 7,
+      "cadence": { "everyDays": 1, "notes": "Cada 24h durante la primera semana. Descartar mitad + añadir 50g harina + 50g agua (1:1:1)" },
+      "description": "Alimentar cada 24h durante la primera semana (días 3-7). Ritual diario: descartar mitad (o usar en recetas de descarte), añadir partes iguales de harina y agua. Marcar nivel en bote para ver crecimiento.",
+      "wikiPhase": "establecimiento_masa",
+      "notify": true
+    },
+    {
+      "id": "alimentar_semanal_mantenimiento",
+      "title": "🥣 Alimentar masa madre (semanal)",
+      "emoji": "🥣",
+      "type": "feeding",
+      "startDayOffset": 14,
+      "endDayOffset": 14,
+      "cadence": { "everyDays": 7, "notes": "Cada 7 días en nevera. Sacar, alimentar 1:2:2, dejar 2h fuera, volver a nevera" },
+      "description": "Una vez madura (día 14+): alimentar 1 vez por semana. Sacar de nevera, descartar dejando ~25g, añadir 50g harina + 50g agua (1:2:2). Mezclar, dejar 2h a temperatura ambiente para reactivar, volver a nevera. Aguanta 2-3 semanas sin alimentar si es necesario.",
+      "wikiPhase": "mantenimiento_masa",
+      "notify": true
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "harina_integral_centeno",
+      "name": "Harina integral de centeno (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Centeno integral: la mejor para iniciar masa madre (más microorganismos y enzimas). Si no, trigo integral. La harina blanca sola no funciona bien para crear la masa madre (pocos microbios).",
+      "wikiPhase": "creacion_masa"
+    },
+    {
+      "key": "harina_panadera",
+      "name": "Harina panadera W180-W250 (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Harina de fuerza para pan. W180-W250. La harina floja (bizcochos) no aguanta fermentaciones largas. ~500g por pan.",
+      "wikiPhase": "madurracion_masa"
+    },
+    {
+      "key": "bote_vidrio_masa",
+      "name": "Bote de vidrio 500ml-1L",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-8€",
+      "source": "tienda_fisica",
+      "notes": "Vidrio, boca ancha. Paredes rectas mejor (para marcar nivel). No cerrar hermético al principio (respira).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "balanza_cocina",
+      "name": "Balanza de cocina (precisión 1g)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Imprescindible. La masa madre y la panadería van por peso, no por volumen. Precisión 1g mínimo.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "baneton",
+      "name": "Banetón o bol para fermentación (opcional)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "10-20€",
+      "source": "internet",
+      "notes": "Cesta de mimbre para fermentación final. Alternativa: bol con paño enharinado. Para pan de masa madre es muy útil.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "harina_agua_sin_cloro",
+      "title": "Preparar harina integral y agua sin cloro",
+      "description": "Harina integral de centeno o trigo (fresca, sin bichos). Agua sin cloro: filtrada, reposada 24h o mineral. El cloro inhibe los microorganismos que quieres cultivar. Si tu agua tiene cloro: dejarla reposar 24h en jarra abierta.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "espacio_templado_masa",
+      "title": "Reservar espacio 20-25°C estable",
+      "description": "La masa madre se desarrolla bien a 20-25°C. Más frío = más lento (pero posible). Más calor = más rápido pero riesgo de sobrefermentación. Encimera cocina suele ser ideal. Evitar cambios bruscos de temperatura.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "compromiso_primer_semana",
+      "title": "Planificar rutina diaria primera semana",
+      "description": "La primera semana requiere atención diaria (10 min/día). Alimentar cada 24h aproximadamente a la misma hora. Si te saltas 1-2 días, normalmente no pasa nada (la masa es resistente). Marca en el calendario.",
+      "blocking": false,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "harina_integral_centeno", "qty": 50, "unit": "g", "trigger": "once", "description": "50g iniciales para crear la masa madre" },
+    { "stockKey": "harina_integral_centeno", "qty": 50, "unit": "g", "trigger": "per_event", "refEventId": "alimentar_diario_primera_semana", "description": "50g por alimentación diaria primera semana" },
+    { "stockKey": "harina_panadera", "qty": 50, "unit": "g", "trigger": "per_event", "refEventId": "alimentar_semanal_mantenimiento", "description": "50g por alimentación semanal de mantenimiento" },
+    { "stockKey": "bote_vidrio_masa", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "continua",
+  "expectedYield": {
+    "description": "1 masa madre produce infinitos panes mientras se mantenga alimentada. Rendimiento pan: ~800g de pan por 500g de harina. Masa madre madura lista para panificar en 7-14 días. Una vez establecida, dura años con mantenimiento semanal."
+  },
+  "produces": { "kind": "masa_madre", "unit": "ud" }
+}

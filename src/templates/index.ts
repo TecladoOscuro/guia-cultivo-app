@@ -79,6 +79,21 @@ import frutasFresa from "./frutas-fresa.json";
 import frutasLimoneo from "./frutas-limoneo.json";
 import fermentKombucha from "./ferment-kombucha.json";
 import fermentEncurtidos from "./ferment-encurtidos.json";
+import huertaSolanaceas from "./huerta-solanaceas.json";
+import huertaCucurbitaceas from "./huerta-cucurbitaceas.json";
+import huertaRaices from "./huerta-raices.json";
+import huertaAliaceas from "./huerta-aliáceas.json";
+import huertaLegumbres from "./huerta-legumbres.json";
+import huertaCruciferas from "./huerta-cruciferas.json";
+import frutasBayas from "./frutas-bayas.json";
+import frutasCitricos from "./frutas-citricos.json";
+import frutasHueso from "./frutas-hueso.json";
+import frutasPepita from "./frutas-pepita.json";
+import frutasMediterraneas from "./frutas-mediterraneas.json";
+import fermentKefir from "./ferment-kefir.json";
+import fermentLactofermentados from "./ferment-lactofermentados.json";
+import fermentTempeh from "./ferment-tempeh.json";
+import fermentMasaMadre from "./ferment-masa-madre.json";
 
 export const templates: Record<string, CultivoTemplate> = {
   "mushroom-kit": mushroomKit as CultivoTemplate,
@@ -161,6 +176,21 @@ export const templates: Record<string, CultivoTemplate> = {
   "frutas-limoneo": frutasLimoneo as CultivoTemplate,
   "ferment-kombucha": fermentKombucha as CultivoTemplate,
   "ferment-encurtidos": fermentEncurtidos as CultivoTemplate,
+  "huerta-solanaceas": huertaSolanaceas as CultivoTemplate,
+  "huerta-cucurbitaceas": huertaCucurbitaceas as CultivoTemplate,
+  "huerta-raices": huertaRaices as CultivoTemplate,
+  "huerta-aliáceas": huertaAliaceas as CultivoTemplate,
+  "huerta-legumbres": huertaLegumbres as CultivoTemplate,
+  "huerta-cruciferas": huertaCruciferas as CultivoTemplate,
+  "frutas-bayas": frutasBayas as CultivoTemplate,
+  "frutas-citricos": frutasCitricos as CultivoTemplate,
+  "frutas-hueso": frutasHueso as CultivoTemplate,
+  "frutas-pepita": frutasPepita as CultivoTemplate,
+  "frutas-mediterraneas": frutasMediterraneas as CultivoTemplate,
+  "ferment-kefir": fermentKefir as CultivoTemplate,
+  "ferment-lactofermentados": fermentLactofermentados as CultivoTemplate,
+  "ferment-tempeh": fermentTempeh as CultivoTemplate,
+  "ferment-masa-madre": fermentMasaMadre as CultivoTemplate,
 };
 
 export function getTemplate(id: string): CultivoTemplate | undefined {

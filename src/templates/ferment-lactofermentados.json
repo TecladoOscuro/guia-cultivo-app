@@ -1,0 +1,284 @@
+{
+  "id": "ferment-lactofermentados",
+  "name": "Lacto-fermentados",
+  "emoji": "🥬",
+  "category": "fermento",
+  "version": 1,
+  "notes": "Chucrut (2-6 semanas), kimchi (3-7 días), encurtidos (1-4 semanas). Solo necesitas verdura, sal y un tarro.",
+  "totalDuration": { "days": 21 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=lactofermentados",
+  "theme": { "primary": "#8fbc8f", "bg": "#0a1a0a" },
+
+  "phases": [
+    { "id": "preparacion_lacto", "name": "Preparación", "emoji": "🔪", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "preparacion_lacto" },
+    { "id": "fermentacion_lacto", "name": "Fermentación", "emoji": "🫙", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "fermentacion_lacto" },
+    { "id": "madurracion_lacto", "name": "Maduración", "emoji": "⏳", "startDayOffset": 14, "endDayOffset": 21, "wikiPhase": "madurracion_lacto" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_chucrut",
+      "title": "🥬 Preparar chucrut (col fermentada)",
+      "emoji": "🥬",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 45,
+      "description": "Cortar 1kg de col blanca en tiras finas (2-3mm). Añadir 20g de sal (2% del peso de la col). Masajear con las manos limpias 5-10 minutos hasta que la col suelte mucho líquido. Compactar en tarro de vidrio, presionando fuerte para que el líquido cubra. Peso encima (bolsa agua o plato).",
+      "checklistInline": [
+        "Col blanca 1kg, cortada fina (2-3mm)",
+        "Sal: 2% del peso (20g por 1kg col)",
+        "Masajear 5-10 min hasta que suelte líquido",
+        "Compactar fuerte en tarro (sin burbujas aire)",
+        "Líquido debe cubrir la col (añadir salmuera 2% si falta)",
+        "Peso encima para mantener sumergido",
+        "Tapar con tela + goma (o tapa floja)"
+      ],
+      "expectedSignals": [
+        "Burbujas subiendo día 2-3",
+        "Aroma ácido agradable (no podrido)",
+        "Color pasa de blanco a amarillo pálido"
+      ],
+      "warningIf": [
+        "Verdura expuesta al aire → moho (desechar capa superior)",
+        "Sin burbujas día 5 → temperatura muy baja o poca sal",
+        "Olor a podrido (no ácido) → desechar"
+      ],
+      "wikiPhase": "preparacion_lacto",
+      "notify": true
+    },
+    {
+      "id": "preparar_kimchi",
+      "title": "🌶️ Preparar kimchi",
+      "emoji": "🌶️",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Cortar 1 col china en cuartos, salar con 40g sal entre las hojas y dejar 2h. Enjuagar y escurrir. Preparar pasta: ajo (5 dientes), jengibre (2cm), gochugaru (3-4 cucharadas), salsa pescado (2 cucharadas) o sal para vegano, cebolleta, zanahoria rallada. Mezclar bien y compactar en tarro.",
+      "checklistInline": [
+        "Col china 1 unidad, salar 2h con 40g sal",
+        "Enjuagar bien y escurrir",
+        "Pasta: ajo + jengibre + gochugaru + salsa pescado",
+        "Añadir cebolleta y zanahoria rallada",
+        "Mezclar todo y compactar en tarro",
+        "Presionar para que líquido cubra",
+        "Dejar espacio cabeza (sube al fermentar)"
+      ],
+      "expectedSignals": [
+        "Fermentación activa día 1-3 (burbujas)",
+        "Aroma picante y ácido",
+        "Listo para probar día 3-5"
+      ],
+      "wikiPhase": "preparacion_lacto",
+      "notify": true
+    },
+    {
+      "id": "preparar_encurtidos",
+      "title": "🥒 Preparar encurtidos (pepinos, zanahorias, etc.)",
+      "emoji": "🥒",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Preparar salmuera: disolver 30g de sal en 1L de agua (3% para pepinos, 2% para otras verduras). Meter verduras enteras o en trozos con especias (ajo, eneldo, mostaza en grano, pimienta). Cubrir completamente con salmuera. Peso encima. Fermentar 1-4 semanas según verdura y temperatura.",
+      "checklistInline": [
+        "Salmuera: 20-30g sal por litro de agua",
+        "Verduras limpias y frescas",
+        "Añadir especias al gusto",
+        "Cubrir completamente con salmuera",
+        "Peso encima (todo sumergido)",
+        "No llenar hasta arriba (espacio cabeza)"
+      ],
+      "expectedSignals": [
+        "Fermentación visible día 2-4",
+        "Verduras mantienen textura crujiente",
+        "Sabor ácido progresivo"
+      ],
+      "wikiPhase": "preparacion_lacto",
+      "notify": true
+    },
+    {
+      "id": "monitorizar_lacto",
+      "title": "🔍 Verificar fermentación y probar (día 3-5)",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "offsetDays": 3,
+      "durationMin": 10,
+      "description": "Probar con utensilio limpio cada pocos días. Chucrut: empieza a acidificar día 3-5, listo en 2-6 semanas según gusto. Kimchi: listo en 3-7 días (más rápido). Encurtidos: 1-4 semanas. Buscar equilibrio ácido-agradable. Refrigerar cuando te guste el sabor.",
+      "checklistInline": [
+        "Probar con tenedor limpio (sin contaminar)",
+        "Chucrut: probar semanalmente",
+        "Kimchi: probar cada 1-2 días",
+        "Encurtidos: probar desde día 7",
+        "Refrigerar cuando alcance sabor deseado"
+      ],
+      "expectedSignals": [
+        "Chucrut: sabor ácido agradable, textura crujiente",
+        "Kimchi: picante-ácido equilibrado",
+        "Encurtidos: crujientes, ácido al gusto"
+      ],
+      "wikiPhase": "fermentacion_lacto",
+      "notify": true
+    },
+    {
+      "id": "presionar_compactar",
+      "title": "🫙 Compactar verdura sumergida",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 7,
+      "durationMin": 5,
+      "description": "Revisar que la verdura sigue sumergida bajo el líquido. Si flota: presionar con cuchara limpia. Añadir salmuera 2% si el nivel baja. La verdura expuesta a oxígeno desarrolla moho. Todo debe estar bajo líquido.",
+      "checklistInline": [
+        "Verificar que verdura esté sumergida",
+        "Compactar si necesario (cuchara limpia)",
+        "Añadir salmuera 2% si falta líquido",
+        "Retirar cualquier trozo que flote y esté blando"
+      ],
+      "wikiPhase": "fermentacion_lacto",
+      "notify": false
+    },
+    {
+      "id": "refrigerar_lacto",
+      "title": "❄️ Refrigerar — fermento listo",
+      "emoji": "❄️",
+      "type": "milestone",
+      "offsetDays": 14,
+      "durationMin": 10,
+      "description": "Cuando el sabor ácido te gusta, cerrar el tarro y refrigerar. El frío frena la fermentación pero sigue evolucionando lentamente. Chucrut y encurtidos duran 3-6 meses en nevera. Kimchi: 1-3 meses. Siempre usar utensilios limpios al sacar para no contaminar.",
+      "checklistInline": [
+        "Sabor ácido que te gusta",
+        "Cerrar tarro (hermético en nevera)",
+        "Etiquetar con fecha y tipo",
+        "Usar utensilios limpios al servir",
+        "Dura 3-6 meses refrigerado"
+      ],
+      "expectedSignals": [
+        "Chucrut crujiente y ácido",
+        "Kimchi burbujeante al abrir (gas CO₂)",
+        "Aroma: ácido, no podrido"
+      ],
+      "wikiPhase": "madurracion_lacto",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "verificar_lacto",
+      "title": "🔍 Verificar fermentación y burbujas",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 2,
+      "endDayOffset": 14,
+      "cadence": { "everyDays": 3, "notes": "Cada 3 días. Verificar burbujeo, olor y que verdura esté sumergida. Probar para seguir evolución" },
+      "description": "Cada 2-3 días: verificar que hay actividad (burbujas). Probar evolución del sabor ácido. Confirmar que todo está sumergido. Retirar posible formación superficial (kahm yeast = velo blanco fino, inofensivo, retirar). No abrir innecesariamente (entra oxígeno).",
+      "wikiPhase": "fermentacion_lacto",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "col_chucrut",
+      "name": "Col blanca (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "1-3€",
+      "source": "tienda_fisica",
+      "notes": "Col blanca o repollo. Fresca y firme. 1kg produce ~1 tarro de 1.5L de chucrut. También sirve col lombarda (color rosa espectacular).",
+      "wikiPhase": "preparacion_lacto"
+    },
+    {
+      "key": "col_china_kimchi",
+      "name": "Col china (1ud ~ 1kg)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Col china (Napa cabbage). En tiendas asiáticas o grandes supermercados. Buscar firme y con hojas sin manchas.",
+      "wikiPhase": "preparacion_lacto"
+    },
+    {
+      "key": "sal_sin_yodo",
+      "name": "Sal sin yodo ni antiaglomerantes (500g)",
+      "qty": 500,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Sal marina o sal kosher. IMPORTANTE: sin yodo ni antiaglomerantes (inhiben fermentación). NO usar sal de mesa refinada. ~20-30g sal por kg de verdura o litro de agua."
+    },
+    {
+      "key": "gochugaru",
+      "name": "Gochugaru (chile coreano en copos)",
+      "qty": 200,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "internet",
+      "notes": "Chile coreano en copos. Pilar del kimchi. Se puede sustituir parcialmente con pimentón picante + cayena, pero no es igual.",
+      "wikiPhase": "preparacion_lacto"
+    },
+    {
+      "key": "tarros_vidrio_lacto",
+      "name": "Tarros de vidrio 1-2L boca ancha",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Vidrio, boca ancha. Tipo Mason jar o tarros reciclados. Tapa no metálica (el ácido corroe) o usar tapa plástica.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "peso_fermentacion",
+      "name": "Peso para fermentación (vidrio o cerámica)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "8-15€",
+      "source": "internet",
+      "notes": "Pesa de vidrio que encaja en tarro. Alternativa: bolsa zip con agua (cierre hermético) o plato pequeño. Mantiene verdura sumergida.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_fermento",
+      "title": "Elegir tipo de lacto-fermentado",
+      "description": "Chucrut: el más fácil (solo col y sal). Kimchi: más complejo pero rápido (listo en 3-7 días). Encurtidos: versátil (cualquier verdura). Empezar con chucrut para coger confianza. La clave: 2% sal y mantener sumergido.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "esterilizar_tarros_lacto",
+      "title": "Esterilizar tarros y utensilios",
+      "description": "Lavar tarros con agua caliente y jabón. Enjuagar muy bien (sin residuos jabón). Opcional: hervir 5 min. Secar al aire. Todo limpio: la lacto-fermentación es bastante tolerante pero mejor prevenir.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "espacio_templado_lacto",
+      "title": "Reservar espacio 18-22°C",
+      "description": "Temperatura ideal fermentación: 18-22°C. Más frío = más lento pero sabores más complejos. Más calor = más rápido pero textura más blanda. Encimera cocina en otoño/invierno ideal.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "col_chucrut", "qty": 1, "unit": "kg", "trigger": "once", "description": "1 kg para chucrut" },
+    { "stockKey": "col_china_kimchi", "qty": 1, "unit": "ud", "trigger": "once", "description": "1 col para kimchi" },
+    { "stockKey": "sal_sin_yodo", "qty": 20, "unit": "g", "trigger": "once", "description": "20g sal por kg de verdura" },
+    { "stockKey": "gochugaru", "qty": 50, "unit": "g", "trigger": "once", "description": "3-4 cucharadas para kimchi" },
+    { "stockKey": "tarros_vidrio_lacto", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "batch",
+  "expectedYield": {
+    "description": "Chucrut: ~1.5L por kg de col. Kimchi: ~1.5L por col china. Encurtidos: variable según verdura. Conservación: 3-6 meses refrigerado. Se puede comer desde día 3 hasta 6 meses."
+  },
+  "produces": { "kind": "lacto_fermentado", "unit": "L" }
+}

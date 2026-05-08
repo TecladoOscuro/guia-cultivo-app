@@ -1,0 +1,330 @@
+{
+  "id": "frutas-pepita",
+  "name": "Frutales de pepita",
+  "emoji": "🍎",
+  "category": "planta",
+  "version": 1,
+  "notes": "Terreno o maceta 50L+ (portainjerto enano). Necesitan polinizador o variedad autofértil. Horas-frío: elegir variedades bajo requerimiento para BCN.",
+  "scale": "plantas",
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=pepita",
+  "theme": { "primary": "#c0392b", "bg": "#1a0a06" },
+
+  "phases": [
+    { "id": "plantacion_pepita", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 30, "wikiPhase": "plantacion_pepita" },
+    { "id": "crecimiento_pepita", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 30, "endDayOffset": 120, "wikiPhase": "crecimiento_pepita" },
+    { "id": "floracion_pepita", "name": "Floración", "emoji": "🌸", "startDayOffset": 120, "endDayOffset": 160, "wikiPhase": "floracion_pepita" },
+    { "id": "fructificacion_pepita", "name": "Fructificación", "emoji": "🍎", "startDayOffset": 160, "endDayOffset": 280, "wikiPhase": "fructificacion_pepita" },
+    { "id": "reposo_pepita", "name": "Reposo invernal", "emoji": "❄️", "startDayOffset": 280, "endDayOffset": 365, "wikiPhase": "reposo_pepita" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_frutal_pepita",
+      "title": "🌱 Plantar frutal de pepita (manzano o peral)",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 90,
+      "description": "Plantar árbol injertado sobre portainjerto enano (M9 o M26 para manzano, membrillero para peral). Opción maceta: 50L mínimo con portainjerto enano. Terreno: hoyo 60x60x60cm. Punto de injerto 5-10cm sobre suelo. Tutor firme. Riego copioso (30-50L).",
+      "checklistInline": [
+        "Portainjerto enano (M9, M26 manzano / membrillero peral)",
+        "Maceta 50L mínimo o hoyo 60x60x60cm",
+        "Punto de injerto 5-10cm sobre suelo",
+        "Tutor firme 2m",
+        "Riego copioso (30-50L) post-plantación"
+      ],
+      "expectedSignals": [
+        "Brotes nuevos en 3-5 semanas",
+        "Hojas sanas y verdes"
+      ],
+      "warningIf": [
+        "Portainjerto franco (no enano) en maceta → árbol enorme, raíces estranguladas",
+        "Sin polinizador → sin frutos (salvo variedades autofértiles)"
+      ],
+      "wikiPhase": "plantacion_pepita",
+      "notify": true
+    },
+    {
+      "id": "poda_formacion_pepita",
+      "title": "✂️ Poda de formación (eje central o vaso)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 30,
+      "durationMin": 60,
+      "description": "Manzano: formar eje central con pisos de ramas cada 40-60cm. Peral: dejar eje central y ramas laterales en espiral. Eliminar ramas con ángulo muy cerrado (<45°). Seleccionar 4-5 ramas principales por piso. Podar en invierno (sin hojas).",
+      "checklistInline": [
+        "Manzano: eje central + ramas laterales en pisos",
+        "Peral: pirámide con eje central",
+        "Eliminar ramas con ángulo <45°",
+        "Abrir ángulos con palillos si necesario",
+        "Sellar cortes >2cm",
+        "Herramientas limpias"
+      ],
+      "wikiPhase": "crecimiento_pepita",
+      "notify": true
+    },
+    {
+      "id": "abonado_primavera_pepita",
+      "title": "🌿 Abonado primaveral",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Aplicar fertilizante equilibrado (NPK 10-10-10) + compost en corona. Manzano y peral necesitan K para calidad de fruto. Extender hasta línea de goteo. Regar después. Repetir tras floración y tras cosecha.",
+      "checklistInline": [
+        "Fertilizante equilibrado + K extra",
+        "Extender hasta línea de goteo",
+        "No tocar tronco",
+        "Regar inmediatamente"
+      ],
+      "wikiPhase": "crecimiento_pepita",
+      "notify": true
+    },
+    {
+      "id": "aclareo_frutos_pepita",
+      "title": "✂️ Aclareo de frutos",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 155,
+      "durationMin": 30,
+      "description": "Cuando frutos tienen 1-2cm: aclarar dejando 1 fruto por ramillete (manzano) o 2-3 por grupo (peral). Eliminar fruto central (más pequeño). Distancia: 15-20cm entre frutos. Evita vecería (alternancia años de carga/descarga).",
+      "checklistInline": [
+        "Frutos de 1-2cm",
+        "Dejar 1 fruto por racimo (manzano)",
+        "Distancia 15-20cm entre frutos",
+        "Eliminar fruto central (rey de la manzana)",
+        "Eliminar frutos deformes o dañados"
+      ],
+      "wikiPhase": "fructificacion_pepita",
+      "notify": true
+    },
+    {
+      "id": "tratamiento_moteado",
+      "title": "🛡️ Tratamiento moteado y oidio",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 130,
+      "durationMin": 20,
+      "description": "Moteado (Venturia): manchas negras en hojas y frutos. Prevenir con cola de caballo o cobre en primavera. Oidio: polvo blanco en hojas, tratar con azufre mojable. Ambos son frecuentes en clima húmedo primaveral.",
+      "checklistInline": [
+        "Cola de caballo (decoction) pulverizada cada 15 días",
+        "O azufre mojable si oidio",
+        "Aplicar en días secos",
+        "Recoger hojas caídas (fuente de esporas)"
+      ],
+      "wikiPhase": "floracion_pepita",
+      "notify": true
+    },
+    {
+      "id": "cosecha_pepita",
+      "title": "🍎 Cosecha frutales de pepita",
+      "emoji": "🍎",
+      "type": "harvest",
+      "offsetDays": 190,
+      "durationMin": 30,
+      "description": "Manzana: cosechar cuando color de fondo pasa de verde a amarillento. Giro suave: si el pedúnculo se desprende fácil, está lista. Pera: cosechar aún verde y firme (madura fuera del árbol). Si esperas a que pera esté blanda en árbol, está pasada por dentro.",
+      "checklistInline": [
+        "Manzana: color de fondo (no solo el rojo) amarillea",
+        "Manzana: giro suave, pedúnculo se suelta",
+        "Manzana: semillas marrones al cortar",
+        "Pera: cosechar verde y firme",
+        "Pera: madurar en frutero 3-7 días",
+        "Manipular con cuidado (no golpear)"
+      ],
+      "expectedSignals": [
+        "Manzana: pepitas marrones = madura",
+        "Pera: aún verde, firme. Madura en casa"
+      ],
+      "wikiPhase": "fructificacion_pepita",
+      "notify": true
+    },
+    {
+      "id": "abonado_postcosecha_pepita",
+      "title": "🌿 Abonado post-cosecha",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 250,
+      "durationMin": 15,
+      "description": "Tras cosecha, árbol agotado. Aplicar fertilizante rico en N y K + compost generoso. Ayuda a formar yemas florales para próximo año. Regar después. Este abonado es crítico para evitar vecería.",
+      "checklistInline": [
+        "Fertilizante con N y K",
+        "Compost generoso en corona",
+        "Regar para asimilar"
+      ],
+      "wikiPhase": "fructificacion_pepita",
+      "notify": true
+    },
+    {
+      "id": "poda_invernal_pepita",
+      "title": "✂️ Poda invernal de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 310,
+      "durationMin": 60,
+      "description": "Podar en invierno (sin hojas). Eliminar: ramas secas, chupones verticales, ramas que cruzan. Renovar madera fructífera: las ramas de 3-4 años pierden productividad. Acortar ramas largas. Mantener forma escalonada (pisos). No podar > 25% de copa.",
+      "checklistInline": [
+        "Podar en reposo (sin hojas)",
+        "Eliminar ramas secas y enfermas",
+        "Chupones: cortar desde base",
+        "Renovar ramas viejas (4+ años)",
+        "Acortar laterales a 3-4 yemas",
+        "Mantener estructura en pisos"
+      ],
+      "wikiPhase": "reposo_pepita",
+      "notify": true
+    },
+    {
+      "id": "tratamiento_invernal_pepita",
+      "title": "🛡️ Tratamiento invernal preventivo",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 330,
+      "durationMin": 20,
+      "description": "Pulverizar árbol sin hojas con cobre (caldo bordelés) para eliminar esporas de hongos invernantes. Aplicar también en suelo alrededor. Segunda aplicación justo antes de brotar en primavera. Previene moteado, chancro y otras enfermedades.",
+      "checklistInline": [
+        "Árbol sin hojas (reposo)",
+        "Cobre o caldo bordelés según dosis",
+        "Mojar bien tronco y ramas",
+        "También suelo bajo copa",
+        "Segunda aplicación al hinchar yemas"
+      ],
+      "wikiPhase": "reposo_pepita",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_pepita",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 7, "volumeMl": "10000-40000", "notes": "Maceta 50L: 10-15L/riego. Suelo: 20-40L/riego. Más frecuente en verano. Invierno casi nada" },
+      "description": "Riego profundo semanal en crecimiento activo. Maceta: regar hasta que drene, más frecuente que en suelo. Reducir en invierno. Manzano y peral necesitan riego regular para buen calibre de fruto.",
+      "wikiPhase": "crecimiento_pepita",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_pepita",
+      "title": "🌿 Fertilización periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 250,
+      "cadence": { "everyDays": 45, "notes": "Cada 6-8 semanas. Equilibrado con K extra. Suspender en invierno" },
+      "description": "Aplicar fertilizante equilibrado con K extra cada 6-8 semanas. En maceta: más frecuente (cada 4-6 semanas, sustrato limitado). Complementar con compost en superficie. Calcio previene bitter pit en manzano.",
+      "wikiPhase": "crecimiento_pepita",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas_pepita",
+      "title": "🔍 Inspección plagas y enfermedades",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Carpocapsa (gusano manzana), moteado, oidio, pulgón lanígero, araña roja" },
+      "description": "Carpocapsa (gusano de la manzana): principal plaga, agujero y galería en fruto. Trampas feromona + confusión sexual. Pulgón lanígero: masas blancas algodonosas en ramas. Moteado: manchas negras. Actuar preventivamente.",
+      "wikiPhase": "crecimiento_pepita",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "arbol_frutal_pepita",
+      "name": "Manzano o peral injertado sobre portainjerto enano",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-50€",
+      "source": "tienda_fisica",
+      "notes": "Manzano: variedades bajo frío (<300h) para BCN: Anna, Dorsett Golden, Fuji. Peral: Conference (autofértil), Williams. Siempre portainjerto enano para maceta. Verificar polinización (necesitas 2 variedades compatibles o autofértil).",
+      "wikiPhase": "plantacion_pepita",
+      "scaleQuantity": false
+    },
+    {
+      "key": "maceta_50L",
+      "name": "Maceta grande 50L (opción maceta)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-45€",
+      "source": "tienda_fisica",
+      "notes": "Solo con portainjerto enano. Mínimo 50L y 50cm diámetro/profundidad. Barro o plástico grueso. Agujeros drenaje generosos.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "compost_pepita",
+      "name": "Compost maduro (40kg)",
+      "qty": 40,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Para mezclar en plantación y aportes anuales. Compost propio o comprado. Generoso en corona cada año."
+    },
+    {
+      "key": "fertilizante_pepita",
+      "name": "Fertilizante frutales (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "12-20€",
+      "source": "tienda_fisica",
+      "notes": "NPK equilibrado con K extra. Alternativa: humus lombriz + ceniza madera (rica en K) + harina huesos."
+    },
+    {
+      "key": "trampas_carpocapsa",
+      "name": "Trampas feromona carpocapsa (pack 3)",
+      "qty": 3,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "12-18€",
+      "source": "internet",
+      "notes": "Carpocapsa es el gusano de la manzana. Plaga principal. Trampas para monitoreo + confusión sexual si hay más árboles."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_variedad_pepita",
+      "title": "Elegir variedad con bajas horas-frío",
+      "description": "BCN tiene ~300-500 horas-frío. Manzano: Anna, Dorsett Golden (<300h). Peral: Conference, Williams. Verificar autofértil o necesidad de polinizador. Si necesita polinizador, plantar 2 árboles compatibles.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "preparar_maceta_grande",
+      "title": "Preparar maceta 50L+ o terreno",
+      "description": "Maceta: mínimo 50L, 50cm profundidad. Sustrato universal + 20% compost + 10% arena. Terreno: hoyo 60x60x60cm, verificar drenaje. pH 6.0-7.0. Portainjerto enano obligatorio para maceta.",
+      "blocking": true,
+      "estimatedMinutes": 60
+    },
+    {
+      "id": "espacio_pepita",
+      "title": "Reservar espacio soleado",
+      "description": "Mínimo 6-8h sol directo. Buena circulación de aire (reduce enfermedades). Si maceta: ubicación protegida de viento. Si 2 árboles: distancia 3-4m (portainjerto enano) o 5-7m (franco).",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "arbol_frutal_pepita", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "maceta_50L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "compost_pepita", "qty": 40, "unit": "kg", "trigger": "once" },
+    { "stockKey": "fertilizante_pepita", "qty": 100, "unit": "g", "trigger": "per_event", "refEventId": "fertilizar_pepita" },
+    { "stockKey": "trampas_carpocapsa", "qty": 1, "unit": "ud", "trigger": "once" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Manzano sobre M9: 10-30 kg/árbol adulto (controlado con poda). Peral sobre membrillero: 15-35 kg. Primeros frutos: año 2-3. Producción plena: año 5-6. Manzano tiende a vecería sin aclareo (alterna años de mucha y poca cosecha)."
+  },
+  "produces": { "kind": "fruta_pepita", "unit": "kg" }
+}

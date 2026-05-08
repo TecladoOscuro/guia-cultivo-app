@@ -1,0 +1,324 @@
+{
+  "id": "huerta-raices",
+  "name": "Raíces y tubérculos",
+  "emoji": "🥕",
+  "category": "planta",
+  "version": 1,
+  "notes": "Zanahoria y rábano: siembra directa (NO trasplantar). Patata en saco 40L o terreno.",
+  "scale": "plantas",
+  "totalDuration": { "days": 90 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=raices",
+  "theme": { "primary": "#e07b39", "bg": "#1a0e06" },
+
+  "phases": [
+    { "id": "siembra", "name": "Siembra directa", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "siembra" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 14, "endDayOffset": 50, "wikiPhase": "crecimiento" },
+    { "id": "engorde", "name": "Engorde raíz", "emoji": "🥕", "startDayOffset": 50, "endDayOffset": 80, "wikiPhase": "engorde" },
+    { "id": "cosecha", "name": "Cosecha", "emoji": "⛏️", "startDayOffset": 80, "endDayOffset": 90, "wikiPhase": "cosecha" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_directa",
+      "title": "🌱 Siembra directa en suelo o maceta",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 45,
+      "description": "SIEMBRA DIRECTA: no trasplantar. Zanahoria: sustrato suelto y arenoso (sin piedras ni terrones → raíces deformes). Sembrar a voleo superficial (0.5cm). Rábano: 1cm profundo, 5cm entre plantas. Remolacha: 2cm profundo, 10cm entre plantas. Patata: enterrar tubérculo-semilla a 10-15cm, brotes hacia arriba, en saco 40L o terreno.",
+      "checklistInline": [
+        "Sustrato suelto y profundo (mínimo 25cm zanahoria, 40cm patata)",
+        "Sin piedras ni terrones duros",
+        "Zanahoria/rábano: superficial (0.5-1cm)",
+        "Remolacha: 2cm profundo",
+        "Patata: tubérculo-semilla a 10-15cm",
+        "Regar con pulverizador fino",
+        "Etiquetar especie y fecha"
+      ],
+      "expectedSignals": [
+        "Zanahoria: germina 10-21 días (lenta)",
+        "Rábano: germina 3-7 días (muy rápido)",
+        "Remolacha: germina 7-14 días",
+        "Patata: brotes emergen 15-25 días"
+      ],
+      "warningIf": [
+        "Sustrato compacto = raíces bifurcadas o deformes",
+        "Siembra demasiado profunda = no emerge",
+        "Semillas viejas de zanahoria = baja germinación"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "aclareo_plantulas",
+      "title": "✂️ Aclareo de plántulas (zanahoria, rábano, remolacha)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 20,
+      "description": "Cuando plántulas tienen 3-5cm: aclarar dejando espacio correcto. Zanahoria: 5cm entre plantas. Rábano: 5cm. Remolacha: 8-10cm. Arrancar las más débiles con cuidado. No apelmazar el suelo al hacerlo.",
+      "checklistInline": [
+        "Identificar plántulas más vigorosas",
+        "Zanahoria/rábano: dejar 5cm entre plantas",
+        "Remolacha: dejar 8-10cm",
+        "Arrancar suavemente sin dañar vecinas",
+        "Regar después del aclareo"
+      ],
+      "expectedSignals": [
+        "Plántulas con 2-3 hojas verdaderas",
+        "Espacio adecuado visible entre plantas"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "aporcar_patatas",
+      "title": "⛰️ Aporcar patatas (cubrir tallos con tierra)",
+      "emoji": "⛰️",
+      "type": "preparation",
+      "offsetDays": 35,
+      "durationMin": 20,
+      "description": "Cuando la planta de patata alcanza 20-25cm, aportar tierra/sustrato alrededor del tallo hasta cubrir los primeros 15cm. Esto estimula más tubérculos y evita que los superficiales se pongan verdes (tóxicos). Repetir cada 3-4 semanas si la planta sigue creciendo.",
+      "checklistInline": [
+        "Planta de patata de 20-25cm altura",
+        "Añadir sustrato/tierra hasta 15cm del tallo",
+        "No dañar raíces",
+        "Repetir en 3-4 semanas si sigue creciendo"
+      ],
+      "expectedSignals": [
+        "Tallo cubierto produce más estolones = más patatas"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_potasio",
+      "title": "🥕 Fertilización rica en K (engorde raíz)",
+      "emoji": "🥕",
+      "type": "feeding",
+      "offsetDays": 50,
+      "durationMin": 10,
+      "description": "Aplicar fertilizante rico en potasio (K) para engorde de raíces. Bajo en nitrógeno (demasiado N = mucha hoja, poca raíz). Especialmente importante para zanahoria y remolacha. Patata también responde al K.",
+      "wikiPhase": "engorde",
+      "notify": true
+    },
+    {
+      "id": "cosecha_rabano",
+      "title": "⛏️ Cosecha rábano (día 25-35)",
+      "emoji": "⛏️",
+      "type": "harvest",
+      "offsetDays": 30,
+      "durationMin": 15,
+      "description": "Rábano es el más rápido: 25-35 días desde siembra. Cosechar cuando el hombro asoma del suelo (2-3cm diámetro). Si se deja demasiado, se vuelve fibroso y pica. Tirar suavemente de las hojas. Cosecha escalonada según tamaño.",
+      "checklistInline": [
+        "Rábano: hombro visible sobre suelo",
+        "Diámetro 2-3cm",
+        "Tirar suavemente de hojas",
+        "Cosechar pronto (no dejar que pase)"
+      ],
+      "expectedSignals": [
+        "Hombro rojo/blanco visible en superficie",
+        "Firme al tacto, no esponjoso"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "cosecha_zanahoria_remolacha",
+      "title": "🥕 Cosecha zanahoria y remolacha (día 70-90)",
+      "emoji": "🥕",
+      "type": "harvest",
+      "offsetDays": 75,
+      "durationMin": 30,
+      "description": "Zanahoria: 70-90 días. Hombro visible en superficie, diámetro 2-3cm. Aflojar tierra con horquilla antes de tirar (si no, se parte). Remolacha: 60-90 días, diámetro 5-8cm. Mismo método. Cosechar antes de que se pongan leñosas.",
+      "checklistInline": [
+        "Zanahoria: hombro visible, ~2-3cm diámetro",
+        "Remolacha: 5-8cm diámetro, asoma del suelo",
+        "Aflojar tierra alrededor con horquilla",
+        "Tirar de hojas firmemente",
+        "Lavar y secar antes de guardar"
+      ],
+      "expectedSignals": [
+        "Zanahoria: color naranja intenso en hombro",
+        "Remolacha: color rojo/morado visible"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "cosecha_patata",
+      "title": "🥔 Cosecha patatas (día 80-100)",
+      "emoji": "🥔",
+      "type": "harvest",
+      "offsetDays": 85,
+      "durationMin": 45,
+      "description": "Patata: cuando la parte aérea se seca y amarillea (80-100 días). Dejar de regar 1-2 semanas antes. Cavar con cuidado desde el borde (no clavar herramienta en tubérculos). Dejar secar al aire 2-3h antes de guardar. Conservar en lugar oscuro y fresco.",
+      "checklistInline": [
+        "Parte aérea amarilla/seca",
+        "Dejar de regar 1-2 semanas antes",
+        "Cavar con horquilla desde el borde",
+        "Recolectar todos los tubérculos",
+        "Secar al aire 2-3h (NO lavar)",
+        "Guardar en oscuridad (la luz las pone verdes)"
+      ],
+      "expectedSignals": [
+        "Plantas amarillas y mustias = tubérculos listos",
+        "Piel de patata firme (no se pela al frotar)"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin del cultivo — limpieza",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 90,
+      "durationMin": 30,
+      "description": "Recolectar raíces/tubérculos restantes. Limpiar macetas o bancal. Sustrato de raíces puede reutilizarse para otros cultivos (no repetir raíces en mismo sitio 3 años). Registrar rendimiento y variedades.",
+      "checklistInline": [
+        "Cosechar todo lo pendiente",
+        "Limpiar macetas/sacos/suelo",
+        "Anotar rendimiento y variedades",
+        "Planificar rotación (no repetir raíces)"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego regular sin encharcar",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 85,
+      "cadence": { "everyDays": 2, "volumeMl": "500-1500", "notes": "Sustrato uniformemente húmedo, no encharcado. Riego irregular = raíces que se rajan o bifurcan" },
+      "description": "Riego regular y constante. La irregularidad (sequía → riego abundante) causa raíces rajadas o bifurcadas. Mejor riego frecuente y poco que inundar. Reducir riego en patata 2 semanas antes de cosecha.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_ligero",
+      "title": "🌿 Fertilización ligera periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 21,
+      "endDayOffset": 70,
+      "cadence": { "everyDays": 21, "notes": "Poco nitrógeno. Rico en K y P. Fertilización ligera cada 3 semanas" },
+      "description": "Abonado ligero, rico en P y K. Evitar exceso de N (demasiada hoja, raíz pequeña). En maceta, fertilización más importante (sustrato limitado). Diluir bien para no quemar raíces.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "escarda_malas_hierbas",
+      "title": "🌾 Escarda de malas hierbas",
+      "emoji": "🌾",
+      "type": "preparation",
+      "startDayOffset": 14,
+      "endDayOffset": 80,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Zanahoria compite mal con hierbas. Arrancar a mano para no dañar raíces" },
+      "description": "Eliminar malas hierbas manualmente. Zanahoria es mala competidora (crece lento al principio). Arrancar hierbas con cuidado para no perturbar raíces. Acolchado ligero ayuda a suprimir hierbas y mantener humedad.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_raices",
+      "name": "Semillas raíces (zanahoria, rábano o remolacha)",
+      "qty": 1,
+      "unit": "sobre",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Zanahoria: nantesa (cilíndrica, fácil), baby (maceta). Rábano: redondo (rápido), largo. Remolacha: roja, chioggia (rayada). Comprar semillas frescas (zanahoria pierde viabilidad rápido).",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "patata_semilla",
+      "name": "Patata de siembra certificada (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Usar patata certificada (libre de virus). No usar patatas de supermercado (tratadas anti-brote). Variedades: kennebec (versátil), spunta (temprana), monalisa (productiva).",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "sustrato_arenoso",
+      "name": "Sustrato suelto y arenoso (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato universal + 20-30% arena de río para mejorar drenaje. Sin piedras ni terrones. Profundidad: 25cm zanahoria, 40cm patata.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "saco_patatas",
+      "name": "Saco de cultivo 40L para patatas",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Saco textil o maceta profunda 40L. Con solapa lateral para cosechar fácil. Alternativa: bidón reciclado con agujeros.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_raices",
+      "name": "Fertilizante rico en P-K (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Bajo en N, alto en P y K. Favorece desarrollo radicular. En zanahoria, exceso de N produce raíces peludas y bifurcadas."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie",
+      "title": "Elegir especies según espacio y temporada",
+      "description": "Rábano: el más rápido y fácil (25-35 días). Zanahoria: necesita suelo profundo y suelto. Remolacha: maceta profunda o terreno. Patata: saco 40L o bancal. Rotar cultivos (no repetir raíces en mismo sitio).",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_sustrato_profundo",
+      "title": "Preparar sustrato profundo y suelto",
+      "description": "Mezclar sustrato universal con 20-30% arena. Sin piedras, terrones ni palos. Mínimo 25cm profundidad (zanahoria), 40cm (patata). Buen drenaje esencial.",
+      "blocking": true,
+      "estimatedMinutes": 45
+    },
+    {
+      "id": "espacio_sol",
+      "title": "Reservar espacio con sol directo",
+      "description": "Mínimo 6h sol directo. Raíces toleran algo de semisombra pero producen menos. Orientación S o SO. Proteger de viento fuerte.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_raices", "qty": 1, "unit": "sobre", "trigger": "once" },
+    { "stockKey": "patata_semilla", "qty": 0.25, "unit": "kg", "trigger": "once" },
+    { "stockKey": "sustrato_arenoso", "qty": 30, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_raices", "qty": 8, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_ligero" },
+    { "stockKey": "saco_patatas", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Rábano: 1 ud por semilla (~20-30 por metro lineal). Zanahoria: ~1kg por metro lineal. Remolacha: 1 ud por planta. Patata: 1-2 kg por planta en saco 40L (multiplica ×5-10 la semilla sembrada)."
+  },
+  "produces": { "kind": "raiz_fresca", "unit": "kg" }
+}

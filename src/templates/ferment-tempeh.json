@@ -1,0 +1,278 @@
+{
+  "id": "ferment-tempeh",
+  "name": "Tempeh",
+  "emoji": "🫘",
+  "category": "fermento",
+  "version": 1,
+  "notes": "Soja fermentada con Rhizopus. Necesita temperatura controlada 30°C. Proteína vegetal completa.",
+  "totalDuration": { "days": 3 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=tempeh",
+  "theme": { "primary": "#c4a882", "bg": "#1a140a" },
+
+  "phases": [
+    { "id": "preparacion_tempeh", "name": "Preparación", "emoji": "🫘", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "preparacion_tempeh" },
+    { "id": "inoculacion_tempeh", "name": "Inoculación", "emoji": "🧫", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "inoculacion_tempeh" },
+    { "id": "incubacion_tempeh", "name": "Incubación", "emoji": "🌡️", "startDayOffset": 0, "endDayOffset": 2, "wikiPhase": "incubacion_tempeh" },
+    { "id": "cosecha_tempeh", "name": "Cosecha", "emoji": "🔪", "startDayOffset": 2, "endDayOffset": 3, "wikiPhase": "cosecha_tempeh" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_soja",
+      "title": "🫘 Preparar soja (remojo + descascarillado + cocción)",
+      "emoji": "🫘",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 90,
+      "description": "Remojar 250g de soja amarilla seca 12-24h. Escurrir. Descascarillar: frotar entre las manos bajo agua para que las pieles floten y retirarlas (es tedioso pero importante: las pieles bloquean el micelio). Cocer 30-45 min hasta que estén al dente (no blandas). Escurrir y secar bien (superficie seca = evita bacterias).",
+      "checklistInline": [
+        "Soja amarilla seca 250g",
+        "Remojar 12-24h (cambiar agua 1-2 veces)",
+        "Descascarillar frotando bajo agua (quitar pieles)",
+        "Cocer 30-45 min (al dente, NO blandas)",
+        "Escurrir y secar BIEN (extender en paño)",
+        "Enfriar a temperatura ambiente (< 35°C)"
+      ],
+      "expectedSignals": [
+        "Soja al dente: se aplasta con los dedos pero ofrece resistencia",
+        "Granos secos en superficie (no húmedos)"
+      ],
+      "warningIf": [
+        "Soja demasiado blanda → tempeh pastoso (no fermenta bien)",
+        "Granos húmedos al inocular → riesgo de bacterias (putrefacción)",
+        "Pieles no retiradas → micelio no penetra, tempeh irregular"
+      ],
+      "wikiPhase": "preparacion_tempeh",
+      "notify": true
+    },
+    {
+      "id": "inocular_rhizopus",
+      "title": "🧫 Inocular con Rhizopus + vinagre",
+      "emoji": "🧫",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 15,
+      "description": "Mezclar la soja cocida y seca con 1-2 cucharaditas de vinagre (acidifica y previene bacterias competitivas). Espolvorear 1 cucharadita de esporas de Rhizopus oligosporus (aprox 1g por 250g soja seca). Mezclar muy bien para distribuir esporas uniformemente. Repartir en bolsas zip perforadas o bandeja.",
+      "checklistInline": [
+        "Soja cocida, seca y templada (< 35°C)",
+        "Añadir 1-2 cucharaditas vinagre y mezclar",
+        "Espolvorear 1 cucharadita esporas Rhizopus",
+        "Mezclar MUY bien (distribución uniforme)",
+        "Repartir en bolsas zip (2-3cm grosor)",
+        "Perforar bolsas cada 2cm (aguja) para que respire"
+      ],
+      "expectedSignals": [
+        "Micelio blanco visible 24-36h después",
+        "Olor a champiñón/nuez (no amoniaco)"
+      ],
+      "warningIf": [
+        "Temperatura > 35°C al inocular → mata Rhizopus",
+        "Sin micelio 48h → esporas inviables o temperatura baja",
+        "Manchas negras/verdes → contaminación, desechar"
+      ],
+      "wikiPhase": "inoculacion_tempeh",
+      "notify": true
+    },
+    {
+      "id": "incubar_tempeh",
+      "title": "🌡️ Incubar a 30°C (36-48h)",
+      "emoji": "🌡️",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 10,
+      "description": "Colocar las bolsas/bandeja en un lugar a 30°C constante. Opciones: yogurtera, deshidratador a 30°C, horno con luz piloto, caja con manta calefactora, o al lado del router (produce ~28-32°C). El Rhizopus genera su propio calor (después de 12-24h puede subir a 35°C — vigilar que no pase de 38°C).",
+      "checklistInline": [
+        "Temperatura estable 30°C (±2°C)",
+        "Ventilación (NO cerrar hermético — necesita oxígeno)",
+        "Vigilar temperatura tras 12-24h (genera calor propio)",
+        "Si sube de 38°C: abrir/ventilar/enfriar",
+        "Micelio visible a las 24-36h (pelusa blanca)"
+      ],
+      "expectedSignals": [
+        "12-24h: empieza a verse micelio blanco",
+        "24-36h: micelio cubre ~50%",
+        "36-48h: micelio blanco denso cubre todo (pastel compacto)"
+      ],
+      "warningIf": [
+        "Temperatura baja (< 25°C) → fermentación muy lenta o falla",
+        "Temperatura alta (> 40°C) → muere Rhizopus",
+        "Sin ventilación → se asfixia (necesita O₂)"
+      ],
+      "wikiPhase": "incubacion_tempeh",
+      "notify": true
+    },
+    {
+      "id": "verificar_tempeh",
+      "title": "🔍 Verificar tempeh (24-36h)",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "offsetDays": 1,
+      "durationMin": 5,
+      "description": "Verificar progreso: micelio blanco cubriendo los granos. Olor a champiñón y nuez. La temperatura puede estar subiendo (el Rhizopus genera calor metabólico). Si pasa de 37°C, ventilar o mover a lugar más fresco. El tempeh debe ser un pastel firme unido por micelio blanco.",
+      "checklistInline": [
+        "Verificar micelio blanco cubriendo granos",
+        "Comprobar temperatura (no > 38°C)",
+        "Olor agradable a champiñón/nuez",
+        "NO olor a amoniaco (signo de sobrefermentación)"
+      ],
+      "expectedSignals": [
+        "Pastel firme al tacto (los granos están unidos por micelio)",
+        "Color blanco uniforme con algunas manchas grises (normal = esporulación)"
+      ],
+      "wikiPhase": "incubacion_tempeh",
+      "notify": false
+    },
+    {
+      "id": "cosechar_tempeh",
+      "title": "🔪 Cosechar tempeh (48h)",
+      "emoji": "🔪",
+      "type": "harvest",
+      "offsetDays": 2,
+      "durationMin": 15,
+      "description": "Tempeh listo cuando es un pastel compacto unido por micelio blanco. Debe oler a champiñón y nuez, ligeramente dulce. Manchas grises o negras cerca de perforaciones = normal (esporulación). Retirar de bolsa. Cocinar SIEMPRE antes de consumir (freír, saltear, hornear). Refrigerar (dura 1-2 semanas) o congelar (meses).",
+      "checklistInline": [
+        "Pastel compacto unido por micelio blanco",
+        "Olor a champiñón, nuez, ligeramente dulce",
+        "Manchas grises/negras = esporulación (NORMAL)",
+        "NO olor a amoniaco o podrido",
+        "Refrigerar o cocinar inmediatamente",
+        "SIEMPRE cocinar antes de consumir"
+      ],
+      "expectedSignals": [
+        "Micelio blanco denso uniendo todos los granos",
+        "Textura firme, no se desmorona",
+        "Olor característico agradable"
+      ],
+      "wikiPhase": "cosecha_tempeh",
+      "notify": true
+    },
+    {
+      "id": "conservar_tempeh",
+      "title": "❄️ Conservar y cocinar tempeh",
+      "emoji": "❄️",
+      "type": "milestone",
+      "offsetDays": 2,
+      "durationMin": 15,
+      "description": "Tempeh fresco: cocinar y consumir en 1-2 días. Nevera: 1-2 semanas. Congelador: 3-6 meses (cortar en porciones antes de congelar). Ideas: filetes empanados, salteado con salsa soja, al curry, en sandwich, desmenuzado como boloñesa vegana. Cocinar siempre (nunca crudo).",
+      "checklistInline": [
+        "Cocinar SIEMPRE (nunca crudo)",
+        "Cortar en porciones antes de congelar",
+        "Filetes de 1cm: freír 3-4 min por lado",
+        "Marinar con salsa soja, jengibre y ajo",
+        "Refrigerar: 1-2 semanas. Congelar: 3-6 meses"
+      ],
+      "wikiPhase": "cosecha_tempeh",
+      "notify": false
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "monitorizar_temperatura_tempeh",
+      "title": "🌡️ Monitorizar temperatura incubación",
+      "emoji": "🌡️",
+      "type": "monitoring",
+      "startDayOffset": 0,
+      "endDayOffset": 2,
+      "cadence": { "everyDays": 1, "notes": "Cada 8-12h las primeras 48h. Ajustar fuente calor/ventilación para mantener 30°C (±3°C)" },
+      "description": "Verificar temperatura cada 8-12h durante la incubación. El tempeh genera calor a partir de las 12-24h. Mantener 30-33°C ideal. Si sube de 37°C: ventilar, separar bolsas o mover a lugar más fresco. No dejar desatendido en horas críticas (24-36h).",
+      "wikiPhase": "incubacion_tempeh",
+      "notify": true
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "soja_amarilla_seca",
+      "name": "Soja amarilla seca (500g)",
+      "qty": 500,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Soja amarilla ecológica seca. También se puede hacer tempeh con garbanzos, lentejas, altramuces. 250g seco = ~500g tempeh fresco.",
+      "wikiPhase": "preparacion_tempeh"
+    },
+    {
+      "key": "esporas_rhizopus",
+      "name": "Esporas de Rhizopus oligosporus (10g)",
+      "qty": 10,
+      "unit": "g",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "internet",
+      "notes": "Comprar esporas específicas para tempeh. Tiendas online de fermentación. Un sobrecito de 10g rinde muchos lotes (~1g por 250g soja). Conservar en nevera.",
+      "wikiPhase": "preparacion_tempeh"
+    },
+    {
+      "key": "vinagre_tempeh",
+      "name": "Vinagre blanco o de manzana (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "1-3€",
+      "source": "tienda_fisica",
+      "notes": "Acidifica el medio y previene bacterias no deseadas. 1-2 cucharaditas por lote. Cualquier vinagre sirve."
+    },
+    {
+      "key": "bolsas_zip",
+      "name": "Bolsas zip o bandeja incubación",
+      "qty": 4,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "2-3€",
+      "source": "tienda_fisica",
+      "notes": "Bolsas zip medianas (perforadas cada 2cm con aguja) o bandeja poco profunda. Debe dejar circular aire (Rhizopus es aerobio).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "termometro_tempeh",
+      "name": "Termómetro cocina",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "5-15€",
+      "source": "tienda_fisica",
+      "notes": "Imprescindible para controlar temperatura de incubación. Termómetro digital con sonda ideal. Sin control de temperatura, el tempeh falla.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "fuente_calor_tempeh",
+      "title": "Preparar fuente de calor constante 30°C",
+      "description": "Necesitas mantener 30°C durante 48h. Opciones: yogurtera (ideal), deshidratador ajustable, horno con luz encendida, caja con esterilla calefactora para reptiles, o incluso al lado del router. Probar antes con termómetro para verificar estabilidad.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "remojar_soja",
+      "title": "Remojar soja 12-24h antes",
+      "description": "Planificar con antelación: el remojo necesita 12-24h. Cambiar agua 1-2 veces. La soja triplica volumen. Usar recipiente grande.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    },
+    {
+      "id": "esterilizar_utensilios_tempeh",
+      "title": "Esterilizar utensilios y bolsas",
+      "description": "Lavar todo con agua caliente y vinagre. Las bolsas zip nuevas vienen limpias. Utensilios limpios y secos. El tempeh es más sensible a contaminación que otros fermentos (temperatura cálida = riesgo bacteriano).",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "soja_amarilla_seca", "qty": 250, "unit": "g", "trigger": "once", "description": "250g soja seca → 500g tempeh" },
+    { "stockKey": "esporas_rhizopus", "qty": 1, "unit": "g", "trigger": "once", "description": "1g esporas por 250g soja seca" },
+    { "stockKey": "vinagre_tempeh", "qty": 10, "unit": "ml", "trigger": "once", "description": "1-2 cucharaditas por lote" },
+    { "stockKey": "bolsas_zip", "qty": 2, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "batch",
+  "expectedYield": {
+    "description": "250g de soja seca producen ~500g de tempeh fresco. Suficiente para 4-6 raciones. Proteína vegetal completa (~19g proteína/100g). Ciclo total: 3 días (incluyendo remojo)."
+  },
+  "produces": { "kind": "tempeh_fresco", "unit": "g" }
+}

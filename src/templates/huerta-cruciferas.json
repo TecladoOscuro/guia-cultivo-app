@@ -1,0 +1,348 @@
+{
+  "id": "huerta-cruciferas",
+  "name": "Crucíferas",
+  "emoji": "🥦",
+  "category": "planta",
+  "version": 1,
+  "notes": "Maceta 20L+ o terreno rico. Necesitan nitrógeno. Cosecha escalonada.",
+  "scale": "plantas",
+  "totalDuration": { "days": 120 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=cruciferas",
+  "theme": { "primary": "#3d7a4f", "bg": "#081a0a" },
+
+  "phases": [
+    { "id": "semillero", "name": "Semillero", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 35, "wikiPhase": "semillero" },
+    { "id": "trasplante", "name": "Trasplante", "emoji": "🪴", "startDayOffset": 35, "endDayOffset": 35, "wikiPhase": "trasplante" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 35, "endDayOffset": 70, "wikiPhase": "crecimiento" },
+    { "id": "formacion_cabeza", "name": "Formación cabeza", "emoji": "🥦", "startDayOffset": 70, "endDayOffset": 110, "wikiPhase": "formacion_cabeza" },
+    { "id": "cosecha", "name": "Cosecha", "emoji": "🔪", "startDayOffset": 110, "endDayOffset": 120, "wikiPhase": "cosecha" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_semillero",
+      "title": "🌱 Siembra en semillero",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 20,
+      "description": "Sembrar en bandeja semillero: 2-3 semillas por alveolo, cubrir con 5mm sustrato fino. Mantener húmedo. Temperatura 15-20°C (crucíferas prefieren fresco, NO calor excesivo). Germinación: brócoli/coliflor 5-10 días, col 3-7 días.",
+      "checklistInline": [
+        "Llenar semillero con sustrato ligero",
+        "Sembrar 2-3 semillas por alveolo",
+        "Cubrir con 5mm sustrato",
+        "Regar con pulverizador",
+        "Temperatura fresca 15-20°C",
+        "Etiquetar especie y variedad"
+      ],
+      "expectedSignals": [
+        "Germinación 5-10 días",
+        "Cotiledones en forma de corazón (crucíferas)"
+      ],
+      "warningIf": [
+        "Calor excesivo > 25°C → plántulas se espigan",
+        "Sin germinación día 10 → semilla vieja"
+      ],
+      "wikiPhase": "semillero",
+      "notify": true
+    },
+    {
+      "id": "trasplantar",
+      "title": "🪴 Trasplante a ubicación definitiva",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 35,
+      "durationMin": 45,
+      "description": "Trasplantar cuando planta tiene 4-5 hojas verdaderas (10-15cm altura). Maceta: 20L mínimo por planta (brócoli/coliflor son grandes). Terreno: 50cm entre plantas. Sustrato muy rico en materia orgánica. Riego copioso post-trasplante.",
+      "checklistInline": [
+        "Planta con 4-5 hojas verdaderas",
+        "Maceta 20L+ o terreno con 50cm espaciado",
+        "Sustrato MUY rico (compost + humus)",
+        "Misma profundidad que en semillero",
+        "Riego copioso post-trasplante"
+      ],
+      "expectedSignals": [
+        "Adaptación visible en 5-7 días",
+        "Nuevo crecimiento vigoroso"
+      ],
+      "wikiPhase": "trasplante",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_nitrogeno",
+      "title": "🌿 Fertilización nitrogenada fuerte",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 42,
+      "durationMin": 10,
+      "description": "Crucíferas son MUY exigentes en nitrógeno. Aplicar fertilizante rico en N (humus de lombriz, guano, o NPK alto en N). Dosis generosa. Repetir cada 2-3 semanas durante todo el cultivo. Sin N suficiente, cabezas pequeñas.",
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "control_plagas",
+      "title": "🛡️ Revisión y control de orugas",
+      "emoji": "🛡️",
+      "type": "monitoring",
+      "offsetDays": 42,
+      "durationMin": 15,
+      "description": "Crucíferas = imán de orugas (mariposa blanca de la col). Revisar envés de hojas cada 3-4 días buscando huevos amarillos (aplastar) y orugas verdes (retirar manualmente). Cubrir con malla anti-insectos desde el trasplante previene.",
+      "checklistInline": [
+        "Revisar envés hojas: huevos amarillos en grupo",
+        "Retirar orugas verdes manualmente",
+        "Cubrir con malla anti-insectos (ideal)",
+        "Bacillus thuringiensis si plaga establecida"
+      ],
+      "expectedSignals": [
+        "Agujeros en hojas = orugas presentes",
+        "Mariposas blancas revoloteando = van a poner huevos"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "anillar_coliflor",
+      "title": "🔒 Anillar/atado coliflor (blanquear)",
+      "emoji": "🔒",
+      "type": "preparation",
+      "offsetDays": 80,
+      "durationMin": 15,
+      "description": "Coliflor: cuando cabeza empieza a formarse (10-15cm), atar hojas exteriores sobre la cabeza para protegerla del sol. Esto mantiene la coliflor blanca y tierna. Si no se cubre, amarillea y toma sabor fuerte. Variedades autoblanqueantes no necesitan.",
+      "checklistInline": [
+        "Cabeza de coliflor 10-15cm visible",
+        "Atar hojas exteriores sobre la cabeza con rafia o goma",
+        "Proteger de sol directo y lluvia",
+        "Revisar cada pocos días"
+      ],
+      "wikiPhase": "formacion_cabeza",
+      "notify": true
+    },
+    {
+      "id": "cosecha_brocoli",
+      "title": "🥦 Cosecha brócoli",
+      "emoji": "🥦",
+      "type": "harvest",
+      "offsetDays": 85,
+      "durationMin": 15,
+      "description": "Cosechar la cabeza principal cuando está compacta, verde oscuro y antes de que las flores empiecen a abrirse (bultitos amarillos = pasándose). Cortar tallo principal a 15cm de la cabeza. La planta emitirá brotes laterales (cosecha secundaria) durante 4-6 semanas más.",
+      "checklistInline": [
+        "Cabeza compacta, verde oscuro",
+        "ANTES de que flores amarillas se abran",
+        "Cortar tallo a 15cm de cabeza",
+        "Dejar planta para brotes laterales"
+      ],
+      "expectedSignals": [
+        "Cabeza firme al tacto",
+        "Sin bultitos amarillos visibles"
+      ],
+      "wikiPhase": "formacion_cabeza",
+      "notify": true
+    },
+    {
+      "id": "cosecha_coliflor",
+      "title": "⚪ Cosecha coliflor",
+      "emoji": "⚪",
+      "type": "harvest",
+      "offsetDays": 95,
+      "durationMin": 15,
+      "description": "Cosechar cuando cabeza está blanca, compacta y de tamaño adecuado (15-20cm). Si se deja demasiado, las flores se abren y amarillea. Cortar con cuchillo dejando unas hojas que protejan la cabeza. No produce brotes laterales (planta entera a compost).",
+      "checklistInline": [
+        "Cabeza blanca y compacta, 15-20cm",
+        "Cortar con cuchillo afilado",
+        "Dejar 3-4 hojas protegiendo cabeza",
+        "Consumir en 3-5 días"
+      ],
+      "expectedSignals": [
+        "Cabeza firme, sin separación entre flores",
+        "Color blanco o crema uniforme"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "cosecha_col",
+      "title": "🥬 Cosecha col / repollo",
+      "emoji": "🥬",
+      "type": "harvest",
+      "offsetDays": 100,
+      "durationMin": 15,
+      "description": "Cosechar cuando la cabeza está firme al apretar y ha alcanzado tamaño de la variedad. Cortar en la base con cuchillo afilado. Si dejas el tallo y raíces, puede brotar coles pequeñas laterales. La col aguanta bien en tierra (no urgente cosechar).",
+      "checklistInline": [
+        "Cabeza firme al apretar",
+        "Tamaño según variedad (1-3 kg)",
+        "Cortar en base del tallo",
+        "Puede esperar en tierra varias semanas"
+      ],
+      "expectedSignals": [
+        "Cabeza dura, no cede al apretar",
+        "Hojas exteriores empiezan a abrirse"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin del cultivo — limpieza",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 120,
+      "durationMin": 30,
+      "description": "Recolectar cabezas restantes y brotes laterales. Arrancar plantas y compostar. Crucíferas agotan mucho el suelo: rotar con legumbres que fijen nitrógeno. No repetir crucíferas en mismo sitio 3-4 años.",
+      "checklistInline": [
+        "Cosechar brotes laterales de brócoli",
+        "Recolectar coles restantes",
+        "Arrancar plantas y compostar",
+        "Planificar rotación de cultivos",
+        "Anotar rendimiento y lecciones"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego profundo y regular",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 2, "volumeMl": "500-2000", "notes": "Regular y abundante. Crucíferas necesitan humedad constante. En maceta, riego casi diario en verano" },
+      "description": "Riego abundante y regular. No dejar secar (estresa la planta y produce cabezas pequeñas o sabor amargo). Mejor riego por goteo o al pie (evitar mojar cabeza de coliflor). Maceta: regar hasta que drene.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_recurring",
+      "title": "🌿 Fertilización nitrogenada periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 42,
+      "endDayOffset": 100,
+      "cadence": { "everyDays": 14, "notes": "Cada 2 semanas. Mucho nitrógeno. Humus de lombriz, guano o fertilizante líquido rico en N" },
+      "description": "Aplicar fertilizante rico en nitrógeno cada 2 semanas. Crucíferas son las hortalizas más exigentes en N. Sin suficiente nitrógeno, cabezas pequeñas y amargas. Humus de lombriz o fertilizante líquido NPK alto en N.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "revision_orugas",
+      "title": "🔍 Revisión de orugas y huevos",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 35,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 4, "notes": "Cada 3-4 días. Revisar envés hojas: huevos amarillos (aplastar), orugas verdes (retirar). Malla anti-insectos previene" },
+      "description": "Revisar cada 3-4 días el envés de las hojas. Huevos amarillos de mariposa: aplastar. Orugas verdes: retirar manualmente. Agujeros en hojas = orugas activas. Bacillus thuringiensis (BT) como control biológico si plaga.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_cruciferas",
+      "name": "Semillas de crucíferas",
+      "qty": 1,
+      "unit": "sobre",
+      "category": "esencial",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Brócoli: calabrese (cabeza grande + laterales). Coliflor: blanca, romanesco, morada. Col: repollo liso, rizado, lombarda. Elegir variedades adaptadas al clima.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_semillero",
+      "name": "Sustrato semillero (5L)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato fino para semillero.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_rico",
+      "name": "Sustrato muy rico en orgánica (60L)",
+      "qty": 60,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato universal + 30% compost maduro + humus de lombriz. Crucíferas necesitan suelo MUY fértil.",
+      "wikiPhase": "trasplante"
+    },
+    {
+      "key": "maceta_20L",
+      "name": "Maceta grande 20L+",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Mínimo 20L por planta. 35cm diámetro. Brócoli y coliflor se hacen grandes (60-90cm diámetro).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "malla_antiinsectos",
+      "name": "Malla anti-insectos (2x3m)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "10-20€",
+      "source": "tienda_fisica",
+      "notes": "Previene mariposa de la col que pone huevos. Cubrir desde el trasplante. Malla fina que deje pasar luz y agua.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_nitrogenado",
+      "name": "Fertilizante rico en nitrógeno (1L)",
+      "qty": 1000,
+      "unit": "ml",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Humus de lombriz, guano líquido o NPK alto en N. Crucíferas consumen mucho nitrógeno."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie",
+      "title": "Elegir especie según espacio y temporada",
+      "description": "Brócoli: 1 planta en maceta 20L, produce cabeza + laterales. Coliflor: 1 planta en maceta 20L, cosecha única. Col: ocupa mucho (50-70cm diámetro). Plantar en otoño o primavera (no verano pleno, prefieren fresco).",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "preparar_sustrato_rico",
+      "title": "Preparar sustrato muy rico",
+      "description": "Mezclar sustrato universal con 30% compost maduro y humus de lombriz. Añadir puñado de guano. pH 6.5-7.0. Maceta grande con buen drenaje.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "instalar_malla",
+      "title": "Instalar malla anti-insectos desde el trasplante",
+      "description": "Crucíferas son imán de mariposa blanca. Cubrir con malla desde el día 1 tras trasplante. Estructura de arcos para que no toque las hojas. Sellar bordes contra el suelo.",
+      "blocking": false,
+      "estimatedMinutes": 30
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_cruciferas", "qty": 1, "unit": "sobre", "trigger": "once" },
+    { "stockKey": "sustrato_semillero", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "sustrato_rico", "qty": 25, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_nitrogenado", "qty": 15, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_recurring" },
+    { "stockKey": "maceta_20L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Brócoli: cabeza principal 300-500g + 200-400g en brotes laterales. Coliflor: 1 cabeza 500-1000g. Col: 1 cabeza 1-3 kg. Cosecha escalonada de brotes laterales en brócoli durante 4-6 semanas."
+  },
+  "produces": { "kind": "crucifera_fresca", "unit": "kg" }
+}

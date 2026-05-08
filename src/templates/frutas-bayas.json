@@ -1,0 +1,367 @@
+{
+  "id": "frutas-bayas",
+  "name": "Bayas y frutos rojos",
+  "emoji": "🫐",
+  "category": "planta",
+  "version": 1,
+  "notes": "Fresas en maceta colgante o terreno con acolchado. Arándanos SOLO en maceta con sustrato ácido. Frambuesas en terreno o maceta 30L+ con tutor.",
+  "scale": "plantas",
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=bayas",
+  "theme": { "primary": "#b34180", "bg": "#1a0812" },
+
+  "phases": [
+    { "id": "plantacion", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 60, "wikiPhase": "plantacion" },
+    { "id": "establecimiento", "name": "Establecimiento", "emoji": "🌿", "startDayOffset": 60, "endDayOffset": 150, "wikiPhase": "establecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 150, "endDayOffset": 195, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🫐", "startDayOffset": 195, "endDayOffset": 270, "wikiPhase": "fructificacion" },
+    { "id": "reposo", "name": "Reposo invernal", "emoji": "❄️", "startDayOffset": 270, "endDayOffset": 365, "wikiPhase": "reposo" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_bayas",
+      "title": "🌱 Plantar plantas de baya",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 90,
+      "description": "Fresa: plantar plantones con corona a ras de suelo, 30cm entre plantas. Frambuesa: plantar en hilera, 40cm entre plantas, tutor post-plantación. Arándano: SOLO en maceta con sustrato ácido (pH 4.5-5.5) — mezcla turba rubia + corteza pino. Zarzamora: maceta 30L+ o terreno.",
+      "checklistInline": [
+        "Fresa: corona a nivel de suelo, 30cm entre plantas",
+        "Frambuesa: 40cm entre plantas, raíz superficial",
+        "Arándano: sustrato ácido pH 4.5-5.5 (turba rubia + corteza)",
+        "Zarzamora: maceta 30L o terreno rico",
+        "Riego copioso post-plantación",
+        "Etiquetar variedad"
+      ],
+      "expectedSignals": [
+        "Brotes nuevos en 2-4 semanas",
+        "Planta se mantiene erguida"
+      ],
+      "warningIf": [
+        "Arándano con hojas amarillas → pH demasiado alto (necesita ácido)",
+        "Corona de fresa enterrada → pudrición",
+        "Frambuesa plantada profunda → no brota"
+      ],
+      "wikiPhase": "plantacion",
+      "notify": true
+    },
+    {
+      "id": "acolchado_paja",
+      "title": "🛡️ Acolchado de paja o corteza",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 7,
+      "durationMin": 30,
+      "description": "Cubrir suelo alrededor de plantas con paja (fresa) o corteza de pino (arándano, frambuesa). Capa 5-7cm. Retiene humedad, suprime malas hierbas, mantiene frutos limpios. Arándano especialmente: mantiene raíces frescas (son superficiales).",
+      "checklistInline": [
+        "Fresa: paja limpia 5cm",
+        "Arándano/frambuesa: corteza pino 5-7cm",
+        "No cubrir corona (fresa) ni tallo (frambuesa)",
+        "Renovar cuando se descomponga"
+      ],
+      "wikiPhase": "plantacion",
+      "notify": false
+    },
+    {
+      "id": "instalar_tutores_frambuesa",
+      "title": "🪜 Instalar tutores y soporte frambuesa/zarzamora",
+      "emoji": "🪜",
+      "type": "preparation",
+      "offsetDays": 60,
+      "durationMin": 45,
+      "description": "Frambuesa: sistema de postes con alambres a 60cm y 120cm altura. Zarzamora: espaldera horizontal. Atar varas fructíferas a los alambres en abanico. Mantener ordenadas para facilitar cosecha y circulación de aire.",
+      "checklistInline": [
+        "Postes 1.5-2m cada 3m de hilera",
+        "Alambres a 60cm y 120cm altura",
+        "Atar varas fructíferas en abanico",
+        "Varales nuevos (no fructíferos) guiados aparte"
+      ],
+      "wikiPhase": "establecimiento",
+      "notify": true
+    },
+    {
+      "id": "eliminar_primeras_flores",
+      "title": "✂️ Eliminar flores primer año (frambuesa/zarzamora)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 100,
+      "durationMin": 15,
+      "description": "Primer año tras plantar: eliminar flores de frambuesa y zarzamora. La energía debe ir a establecer raíces y sistema vegetativo. Parece sacrificio pero asegura cosechas abundantes en años 2-3. Fresa y arándano: no necesario.",
+      "checklistInline": [
+        "Identificar botones florales",
+        "Cortar flores con tijeras limpias",
+        "Solo primer año, años siguientes NO"
+      ],
+      "wikiPhase": "establecimiento",
+      "notify": false
+    },
+    {
+      "id": "acidificar_arandano",
+      "title": "🟦 Acidificar sustrato arándano",
+      "emoji": "🟦",
+      "type": "feeding",
+      "offsetDays": 120,
+      "durationMin": 10,
+      "description": "Aplicar azufre granulado o sulfato de hierro para mantener pH ácido (4.5-5.5). Arándano es muy sensible: si pH sube, hojas amarillean y no fructifica. Repetir cada 2-3 meses. Regar SIEMPRE con agua sin cal (lluvia o filtrada).",
+      "checklistInline": [
+        "Aplicar azufre granulado según dosis",
+        "O sulfato de hierro (más rápido)",
+        "Regar con agua sin cal (lluvia o ósmosis)",
+        "Repetir cada 2-3 meses"
+      ],
+      "wikiPhase": "establecimiento",
+      "notify": true
+    },
+    {
+      "id": "instalar_malla_pajaros",
+      "title": "🕸️ Instalar malla anti-pájaros",
+      "emoji": "🕸️",
+      "type": "preparation",
+      "offsetDays": 185,
+      "durationMin": 30,
+      "description": "Antes de que maduren los frutos, instalar malla sobre estructura de arcos. Pájaros aman las bayas. Sin protección perderás 60-90% de la cosecha. Malla fina que no atrape pájaros. Bordes bien sellados al suelo.",
+      "checklistInline": [
+        "Malla fina anti-pájaros",
+        "Estructura arcos 50-80cm alto",
+        "Bordes sellados al suelo (sin huecos)",
+        "Permite paso de luz y agua"
+      ],
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "inicio_cosecha",
+      "title": "🫐 Inicio cosecha — primeras bayas maduras",
+      "emoji": "🫐",
+      "type": "harvest",
+      "offsetDays": 195,
+      "durationMin": 20,
+      "description": "Fresa: roja uniforme, cada 2-3 días. Frambuesa: se desprende sola del receptáculo (roja/amarilla según variedad). Arándano: azul oscuro, se desprende con giro suave. Zarzamora: negra brillante, se desprende fácil. Cosechar por la mañana (más firmes).",
+      "checklistInline": [
+        "Fresa: 100% roja, cortar dejando pedúnculo",
+        "Frambuesa: color uniforme, se suelta sola",
+        "Arándano: azul oscuro, giro suave",
+        "Zarzamora: negro brillante, sin zonas rojas",
+        "Cosechar en seco, por la mañana",
+        "No lavar hasta consumir"
+      ],
+      "expectedSignals": [
+        "Frambuesa: color intenso y se desprende del centro blanco",
+        "Arándano: azul uniforme, sin tonos rojizos"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "poda_frambuesa_invierno",
+      "title": "✂️ Poda invernal de frambuesa y zarzamora",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 280,
+      "durationMin": 45,
+      "description": "Frambuesa no remontante: cortar a ras de suelo TODAS las varas que fructificaron (son marrones/leñosas). Dejar varas verdes nuevas (darán fruto año siguiente). Frambuesa remontante: cortar todo a ras en invierno (produce en varas nuevas en otoño). Zarzamora: eliminar varas viejas, guiar nuevas.",
+      "checklistInline": [
+        "Identificar varas que fructificaron (marrones, secas)",
+        "Cortar a ras de suelo varas viejas",
+        "Dejar 6-8 varas nuevas vigorosas por planta",
+        "Atar varas nuevas a alambres",
+        "Herramientas limpias entre plantas"
+      ],
+      "wikiPhase": "reposo",
+      "notify": true
+    },
+    {
+      "id": "limpieza_invernal_fresa",
+      "title": "❄️ Limpieza invernal de fresas",
+      "emoji": "❄️",
+      "type": "preparation",
+      "offsetDays": 280,
+      "durationMin": 30,
+      "description": "Cortar follaje viejo a 5cm de la corona. Eliminar hojas enfermas. Renovar acolchado de paja (capa 10cm). En zona fría: cubrir con manta térmica. Aprovechar para arrancar estolones no deseados.",
+      "checklistInline": [
+        "Cortar hojas a 5cm corona",
+        "Eliminar hojas con manchas",
+        "Renovar acolchado 10cm paja",
+        "Retirar estolones no deseados"
+      ],
+      "wikiPhase": "reposo",
+      "notify": true
+    },
+    {
+      "id": "despertar_primavera_bayas",
+      "title": "🌱 Despertar primaveral",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 330,
+      "durationMin": 30,
+      "description": "Retirar protección invernal cuando pasa riesgo de heladas. Aplicar fertilizante rico en N para estimular crecimiento. Verificar estado de plantas (reponer bajas). ¡Comienza nuevo ciclo productivo!",
+      "checklistInline": [
+        "Retirar manta o exceso de paja",
+        "Aplicar fertilizante nitrogenado",
+        "Verificar plantas (reponer si hay bajas)",
+        "Renovar tutores dañados"
+      ],
+      "wikiPhase": "reposo",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_bayas",
+      "title": "💧 Riego regular (goteo ideal)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 270,
+      "cadence": { "everyDays": 2, "volumeMl": "500-3000", "notes": "Fresa: 300-500ml/día. Frambuesa/zarzamora: 2-3L/riego. Arándano: riego sin cal (lluvia)" },
+      "description": "Riego regular, mejor goteo. Bayas necesitan humedad constante (raíces superficiales). Arándano: SOLO agua sin cal (lluvia, destilada, filtrada). Reducir riego en reposo invernal. Macetas: regar hasta que drene (más frecuente que en suelo).",
+      "wikiPhase": "establecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_bayas",
+      "title": "🌿 Fertilización para frutos rojos",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 240,
+      "cadence": { "everyDays": 30, "notes": "Mensual. Fertilizante rico en K, bajo en Cl. Arándano: fertilizante específico acidófilas" },
+      "description": "Aplicar fertilizante para frutos rojos cada 4-6 semanas en temporada de crecimiento. Arándano: fertilizante específico para acidófilas. Frambuesa: rico en K. Suspender 1 mes antes de reposo invernal.",
+      "wikiPhase": "establecimiento",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas_bayas",
+      "title": "🔍 Revisión plagas y enfermedades",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 270,
+      "cadence": { "everyDays": 7, "notes": "Semanal. Botrytis (moho gris), oidio, pulgón, araña roja, Drosophila suzukii" },
+      "description": "Revisar frutos (moho gris = Botrytis), hojas (polvo blanco = oidio, manchas), brotes (pulgón). Retirar frutos afectados inmediatamente. Drosophila suzukii: plaga emergente, ataca frutos maduros. Malla fina previene.",
+      "wikiPhase": "establecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "plantones_bayas",
+      "name": "Plantones de bayas (variedad elegida)",
+      "qty": 4,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-30€",
+      "source": "tienda_fisica",
+      "notes": "Fresa: Reina de los valles, Selva. Frambuesa: Heritage (remontante), Tulameen. Arándano: Bluecrop, Legacy. Zarzamora: Triple Crown, Loch Ness. Comprar certificados libres de virus.",
+      "wikiPhase": "plantacion"
+    },
+    {
+      "key": "sustrato_acido_arandano",
+      "name": "Sustrato ácido para arándano (40L)",
+      "qty": 40,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Turba rubia 70% + corteza pino 30%. pH 4.5-5.5. IMPRESCINDIBLE para arándano. No usar sustrato universal.",
+      "wikiPhase": "plantacion"
+    },
+    {
+      "key": "sustrato_bayas",
+      "name": "Sustrato rico para bayas (40L)",
+      "qty": 40,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "12-18€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato universal + 20% compost. Para fresa, frambuesa, zarzamora. Buen drenaje. pH 6-7.",
+      "wikiPhase": "plantacion"
+    },
+    {
+      "key": "maceta_30L",
+      "name": "Maceta grande 30L+",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "12-20€",
+      "source": "tienda_fisica",
+      "notes": "Para frambuesa y zarzamora. Arándano: maceta 25L+ con plato (mantiene humedad). Fresa: maceta colgante o varios maceteros.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "acolchado_paja_bayas",
+      "name": "Acolchado (paja o corteza pino)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Paja para fresa. Corteza de pino para arándano/frambuesa (acidifica y retiene humedad).",
+      "scaleQuantity": false
+    },
+    {
+      "key": "malla_antipajaros_bayas",
+      "name": "Malla anti-pájaros (3x4m)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Imprescindible. Pájaros detectan el color antes que nosotros. Malla fina que no atrape.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_frutos_rojos",
+      "name": "Fertilizante frutos rojos (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Rico en K, bajo en cloro. Arándano: fertilizante específico acidófilas."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_bayas",
+      "title": "Elegir bayas según clima y espacio",
+      "description": "Fresa: fácil, cualquier espacio con sol. Frambuesa: necesita soporte y espacio. Arándano: maceta obligatoria (sustrato ácido). Zarzamora: vigorosa, controlar expansión. Elegir variedades adaptadas a clima mediterráneo y horas-frío.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "preparar_sustrato_especifico",
+      "title": "Preparar sustrato específico para cada tipo",
+      "description": "Arándano: pH 4.5-5.5 (turba rubia + corteza). Frambuesa/zarzamora: sustrato rico, bien drenado. Fresa: sustrato universal + compost. Preparar macetas o bancales con profundidad mínima 30cm.",
+      "blocking": true,
+      "estimatedMinutes": 60
+    },
+    {
+      "id": "sistema_riego_sin_cal",
+      "title": "Sistema riego sin cal para arándano",
+      "description": "Arándano NO tolera agua del grifo (cal sube pH). Necesitas agua de lluvia, filtrada por ósmosis o destilada. Planificar recogida de agua lluvia o comprar filtro.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "plantones_bayas", "qty": 4, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_acido_arandano", "qty": 40, "unit": "L", "trigger": "once" },
+    { "stockKey": "sustrato_bayas", "qty": 20, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_frutos_rojos", "qty": 10, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_bayas" },
+    { "stockKey": "maceta_30L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Fresa: 300-500g/planta/temporada. Frambuesa: 1-2 kg/planta. Arándano: 2-4 kg/arbusto adulto. Zarzamora: 3-5 kg/planta. Plantas productivas 3-10 años según especie y cuidados."
+  },
+  "produces": { "kind": "bayas_frescas", "unit": "kg" }
+}

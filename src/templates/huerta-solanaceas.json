@@ -1,0 +1,363 @@
+{
+  "id": "huerta-solanaceas",
+  "name": "Solanáceas de verano",
+  "emoji": "🍆",
+  "category": "planta",
+  "version": 1,
+  "notes": "Válido para maceta (mínimo 15-25L) y terreno. En terreno, espaciar 50cm entre plantas.",
+  "scale": "plantas",
+  "totalDuration": { "days": 160 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=solanaceas",
+  "theme": { "primary": "#8b3a62", "bg": "#1a0a10" },
+
+  "phases": [
+    { "id": "semillero", "name": "Semillero", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 42, "wikiPhase": "semillero" },
+    { "id": "trasplante", "name": "Trasplante", "emoji": "🪴", "startDayOffset": 42, "endDayOffset": 42, "wikiPhase": "trasplante" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 42, "endDayOffset": 75, "wikiPhase": "crecimiento" },
+    { "id": "floracion", "name": "Floración", "emoji": "🌸", "startDayOffset": 75, "endDayOffset": 95, "wikiPhase": "floracion" },
+    { "id": "fructificacion", "name": "Fructificación", "emoji": "🍆", "startDayOffset": 95, "endDayOffset": 160, "wikiPhase": "fructificacion" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra_semillero",
+      "title": "🌱 Siembra en semillero",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Siembra semillas en bandeja semillero con sustrato ligero. Cubrir con 5mm de sustrato fino. Mantener húmedo no encharcado. Temperatura 22-28°C (germinan más rápido con calor de fondo). El berenjena y pimiento necesitan más calor que el tomate.",
+      "checklistInline": [
+        "Llenar semillero con sustrato ligero",
+        "Sembrar 2-3 semillas por alveolo",
+        "Cubrir con 3-5mm sustrato fino",
+        "Regar con pulverizador suave",
+        "Etiquetar especie y variedad"
+      ],
+      "expectedSignals": [
+        "Germinación: tomate 5-10 días, pimiento 10-21 días, berenjena 7-14 días",
+        "Cotiledones abiertos"
+      ],
+      "warningIf": [
+        "Sin germinación día 14 (tomate) o día 21 (pimiento) → semillas viejas o frío",
+        "Tallos finos y alargados → poca luz (ahilado)"
+      ],
+      "wikiPhase": "semillero",
+      "notify": true
+    },
+    {
+      "id": "trasplantar",
+      "title": "🪴 Trasplante a maceta definitiva o terreno",
+      "emoji": "🪴",
+      "type": "milestone",
+      "offsetDays": 42,
+      "durationMin": 60,
+      "description": "Cuando planta tiene 4-6 hojas verdaderas (tomate 15-20cm, pimiento/berenjena 10-15cm). Maceta: 15-25L mínimo. Terreno: espaciar 50cm entre plantas. Enterrar tallo de tomate hasta cotiledones (más raíces). Pimiento y berenjena: a misma profundidad que en semillero.",
+      "checklistInline": [
+        "Maceta 15-25L o bancal preparado",
+        "Sustrato rico en materia orgánica",
+        "Tomate: enterrar tallo. Pimiento/berenjena: misma profundidad",
+        "Riego copioso post-trasplante",
+        "Tutor provisional si planta alta"
+      ],
+      "expectedSignals": [
+        "Adaptación visible en 3-7 días",
+        "Nuevo crecimiento en semana 1-2"
+      ],
+      "wikiPhase": "trasplante",
+      "notify": true
+    },
+    {
+      "id": "entutorado",
+      "title": "🪵 Entutorado y soporte",
+      "emoji": "🪵",
+      "type": "preparation",
+      "offsetDays": 49,
+      "durationMin": 30,
+      "description": "Colocar tutores firmes. Tomate: cañas 1.5-2m con atado en 8. Pimiento: varas 60-80cm (carga frutos y se parten). Berenjena: tutor 1-1.2m. Atar sin apretar con rafia o hilo de jardinería.",
+      "checklistInline": [
+        "Clavar tutores firmes sin dañar raíces",
+        "Atar en forma de 8 (holgado)",
+        "Revisar ataduras cada 7-10 días",
+        "Añadir más tutores si carga frutos pesada"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "poda_chupones",
+      "title": "✂️ Poda de chupones (tomate) / despunte (pimiento)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 56,
+      "durationMin": 20,
+      "description": "Tomate: eliminar chupones (brotes en V entre tallo y rama) semanalmente. Pimiento: despuntar primeros botones florales si planta es pequeña (favorece desarrollo). Berenjena: eliminar brotes bajeros y hojas que tocan suelo.",
+      "checklistInline": [
+        "Tomate: pellizcar chupones con dedos limpios",
+        "Pimiento: quitar primera flor si planta < 20cm",
+        "Berenjena: podar hojas bajeras",
+        "Desinfectar manos entre plantas"
+      ],
+      "expectedSignals": [
+        "Chupón = brote en V entre tallo principal y rama lateral",
+        "El tomate responde bien a poda, pimiento/berenjena menos agresiva"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_crecimiento",
+      "title": "🌿 Fertilización crecimiento vegetativo",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 42,
+      "durationMin": 10,
+      "description": "Aplicar fertilizante equilibrado (NPK 7-5-8) o humus de lombriz. Diluir según etiqueta. Aplicar en riego, no sobre hojas. Solanáceas son exigentes en nutrientes. Repetir cada 14 días.",
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "fertilizar_floracion",
+      "title": "🌺 Fertilización floración (NPK bajo N)",
+      "emoji": "🌺",
+      "type": "feeding",
+      "offsetDays": 75,
+      "durationMin": 10,
+      "description": "Cambiar a fertilizante rico en P-K (ej. NPK 4-6-8) cuando aparecen primeras flores. Favorece cuajado y engorde. Pimiento/berenjena son especialmente sensibles al exceso de N en floración (aborto floral).",
+      "wikiPhase": "floracion",
+      "notify": true
+    },
+    {
+      "id": "polinizacion_berenjena",
+      "title": "🖌️ Polinización manual (berenjena en interior)",
+      "emoji": "🖌️",
+      "type": "preparation",
+      "offsetDays": 80,
+      "durationMin": 10,
+      "description": "Berenjena y pimiento son autógamas pero en balcón sin viento/insectos puede fallar el cuajado. Sacudir suavemente las flores o usar pincel fino para transferir polen entre flores. Hacer cada 2-3 días durante floración.",
+      "checklistInline": [
+        "Sacudir planta suavemente por la mañana",
+        "Opcional: pincel fino flor a flor",
+        "Mejor entre 10-14h (flores abiertas)",
+        "Ventilar si es interior"
+      ],
+      "wikiPhase": "floracion",
+      "notify": false
+    },
+    {
+      "id": "cosecha_inicio",
+      "title": "🍆 Inicio cosecha escalonada",
+      "emoji": "🍆",
+      "type": "harvest",
+      "offsetDays": 95,
+      "durationMin": 20,
+      "description": "Tomate: cuando color uniforme según variedad. Pimiento: cuando alcanza tamaño y color (verde, rojo, amarillo). Berenjena: piel brillante, cede ligeramente al apretar (si se pone opaca y dura = pasada, semillas amargas). Cortar con tijeras.",
+      "checklistInline": [
+        "Tomate: color uniforme, cede al tacto",
+        "Pimiento: tamaño de variedad, color deseado",
+        "Berenjena: piel brillante (NO opaca), cede un poco",
+        "Cortar con tijeras, no arrancar",
+        "Pesar y registrar"
+      ],
+      "expectedSignals": [
+        "Berenjena: brillo intenso = punto óptimo. Opacidad = demasiado madura",
+        "Pimiento verde = inmaduro (más amargo). Rojo/amarillo = maduro (dulce)"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin del cultivo — limpieza y registro",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 160,
+      "durationMin": 30,
+      "description": "Últimos frutos. Arrancar plantas, compostar material sano. Limpiar macetas y tutores para reutilizar. Registrar rendimiento total y lecciones aprendidas para la próxima temporada.",
+      "checklistInline": [
+        "Cosechar frutos verdes restantes (maduran en interior)",
+        "Arrancar plantas y compostar (si sanas)",
+        "Limpiar y guardar tutores + macetas",
+        "Anotar variedades, rendimiento y lecciones"
+      ],
+      "wikiPhase": "fructificacion",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 160,
+      "cadence": { "everyDays": 2, "volumeMl": "500-2000", "notes": "Según fase: 500ml semillero, 2L/maceta en fructificación. Más frecuente en maceta que en terreno" },
+      "description": "Riego profundo cada 2-3 días. Mejor por la mañana. Evitar mojar hojas (hongos). En maceta: regar hasta que drene. En terreno: 1-2 riegos/semana profundos. Aumentar en ola de calor.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "poda_mantenimiento",
+      "title": "✂️ Poda de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "startDayOffset": 56,
+      "endDayOffset": 140,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Tomate: eliminar chupones. Pimiento/berenjena: hojas amarillas y brotes bajeros" },
+      "description": "Tomate: quitar chupones y hojas bajeras amarillas. Pimiento: ramas que no producen. Berenjena: hojas que tocan suelo (previene hongos). Desinfectar herramientas entre plantas.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_recurring",
+      "title": "🌿 Fertilización periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 56,
+      "endDayOffset": 150,
+      "cadence": { "everyDays": 14, "notes": "Fertilizante equilibrado. Alternar cada 2-3 aplicaciones con solo agua para evitar acumulación de sales" },
+      "description": "Aplicar fertilizante líquido en riego. Dosis según etiqueta (normalmente 5ml/L). Usar fertilizante equilibrado. Alternar con riegos de solo agua para evitar acumulación de sales en sustrato.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas",
+      "title": "🔍 Revisión plagas y enfermedades",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 160,
+      "cadence": { "everyDays": 7, "notes": "Semanal. Pulgón, araña roja, mosca blanca, mildiu, oidio" },
+      "description": "Revisar envés de hojas (pulgón, araña roja), hojas nuevas (mosca blanca), manchas (mildiu, oidio). Ante plaga: jabón potásico + aceite neem. Ante hongos: cola de caballo o azufre mojable.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_solanaceas",
+      "name": "Semillas solanáceas (tomate, pimiento o berenjena)",
+      "qty": 1,
+      "unit": "sobre",
+      "category": "esencial",
+      "approxPrice": "2-5€",
+      "source": "tienda_fisica",
+      "notes": "Tomate: Cherry (fácil), Marmande (grande), Pera (salsas). Pimiento: italiano, padrón, morrón. Berenjena: negra, rayada, blanca. Elegir según clima.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_semillero",
+      "name": "Sustrato semillero (5L)",
+      "qty": 5,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato fino y ligero. Específico semilleros o mezcla turba + perlita. Bajo en nutrientes.",
+      "wikiPhase": "semillero"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta universal (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato rico en materia orgánica. Para terreno: mezclar con tierra y compost. Para maceta: usar directamente.",
+      "wikiPhase": "trasplante"
+    },
+    {
+      "key": "maceta_15L",
+      "name": "Maceta 15-25L",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-15€",
+      "source": "tienda_fisica",
+      "notes": "15L mínimo tomate/pimiento, 25L ideal berenjena. Maceta textil o plástico con buen drenaje. Para terreno: no necesita.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "tutores",
+      "name": "Tutores (caña bambú o varillas)",
+      "qty": 3,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "3-6€",
+      "source": "tienda_fisica",
+      "notes": "Caña bambú 1.5-2m tomate, 60-80cm pimiento, 1-1.2m berenjena. Enterrar 30cm para estabilidad.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "fertilizante_solanaceas",
+      "name": "Fertilizante solanáceas (500ml)",
+      "qty": 500,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "8-15€",
+      "source": "tienda_fisica",
+      "notes": "Fórmula equilibrada NPK. Rico en K para fructificación. Alternativa: humus de lombriz + guano."
+    },
+    {
+      "key": "rafia",
+      "name": "Rafia o hilo de jardinería",
+      "qty": 1,
+      "unit": "rollo",
+      "category": "util",
+      "approxPrice": "2-3€",
+      "source": "tienda_fisica",
+      "notes": "Para atar planta al tutor sin dañar tallo.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especies",
+      "title": "Elegir especies y variedades",
+      "description": "Tomate para principiantes (rápido, productivo). Pimiento para balcones (compacto). Berenjena necesita más calor. Elegir según espacio y sol disponible. Variedades adaptadas a clima mediterráneo.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "comprar_insumos",
+      "title": "Comprar semillas, sustrato y tutores",
+      "description": "Adquirir semillas de calidad + sustrato semillero + sustrato huerta. Comprobar fecha caducidad en sobres. Elegir fertilizante adecuado.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "preparar_semillero",
+      "title": "Preparar bandeja semillero",
+      "description": "Bandeja de alveolos 6-12 celdas. Llenar con sustrato fino. Tener pulverizador, etiquetas y calor de fondo (esterilla calefactora opcional pero recomendada para pimiento/berenjena).",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "espacio_sol",
+      "title": "Reservar espacio con 6-8h sol directo",
+      "description": "Solanáceas necesitan pleno sol. Balcón orientado S/SO ideal. Mínimo 6h sol directo. Proteger de viento fuerte. En terreno: rotar cultivo (no repetir solanáceas en mismo sitio 3-4 años).",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_solanaceas", "qty": 1, "unit": "sobre", "trigger": "once" },
+    { "stockKey": "sustrato_semillero", "qty": 5, "unit": "L", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 15, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_solanaceas", "qty": 10, "unit": "ml", "trigger": "per_event", "refEventId": "fertilizar_recurring" },
+    { "stockKey": "maceta_15L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Tomate: 3-6 kg/planta. Pimiento: 1-2 kg/planta. Berenjena: 2-4 kg/planta. Rendimiento variable según variedad, sol y cuidados."
+  },
+  "produces": { "kind": "solanacea_fresca", "unit": "kg" }
+}

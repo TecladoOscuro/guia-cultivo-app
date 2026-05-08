@@ -1,0 +1,341 @@
+{
+  "id": "frutas-mediterraneas",
+  "name": "Frutales mediterráneos",
+  "emoji": "🫒",
+  "category": "planta",
+  "version": 1,
+  "notes": "Los más fáciles para BCN. Higuera y granado: casi indestructibles, poca agua. Vid: emparrado o espaldera. Níspero: florece en otoño, fruto en primavera.",
+  "scale": "plantas",
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=mediterraneas",
+  "theme": { "primary": "#8b6914", "bg": "#1a1206" },
+
+  "phases": [
+    { "id": "plantacion_med", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 60, "wikiPhase": "plantacion_med" },
+    { "id": "crecimiento_med", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 60, "endDayOffset": 150, "wikiPhase": "crecimiento_med" },
+    { "id": "floracion_med", "name": "Floración", "emoji": "🌸", "startDayOffset": 150, "endDayOffset": 200, "wikiPhase": "floracion_med" },
+    { "id": "fructificacion_med", "name": "Fructificación", "emoji": "🫒", "startDayOffset": 200, "endDayOffset": 320, "wikiPhase": "fructificacion_med" },
+    { "id": "reposo_med", "name": "Reposo invernal", "emoji": "❄️", "startDayOffset": 320, "endDayOffset": 365, "wikiPhase": "reposo_med" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_mediterraneo",
+      "title": "🌱 Plantar frutal mediterráneo",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Higuera: plantar en maceta 50L+ o terreno. Granado: maceta 40L+ o terreno. Vid: maceta 30L+ profunda o terreno. Níspero: terreno o maceta 50L+. Todos necesitan pleno sol y buen drenaje. NO necesitan sustrato rico (se adaptan a suelos pobres). Riego inicial copioso.",
+      "checklistInline": [
+        "Higuera: maceta 50L o terreno (controla raíces)",
+        "Granado: maceta 40L+ o terreno",
+        "Vid: maceta 30L profunda o terreno con soporte",
+        "Níspero: árbol grande, mejor terreno",
+        "Sustrato con buen drenaje (no rico)",
+        "Riego copioso post-plantación",
+        "Etiquetar variedad"
+      ],
+      "expectedSignals": [
+        "Higuera/granado: brotan rápido (2-3 semanas)",
+        "Vid: brotes de yemas en 3-4 semanas",
+        "Níspero: crecimiento lento pero constante"
+      ],
+      "wikiPhase": "plantacion_med",
+      "notify": true
+    },
+    {
+      "id": "instalar_soporte_vid",
+      "title": "🪜 Instalar emparrado o espaldera para vid",
+      "emoji": "🪜",
+      "type": "preparation",
+      "offsetDays": 30,
+      "durationMin": 90,
+      "description": "Vid: instalar estructura de soporte. Espaldera: postes + alambres horizontales a 40cm, 80cm y 120cm. Emparrado: pérgola o arco. Guiar tronco principal vertical, luego brazos horizontales. La vid necesita soporte sólido (carga mucho peso en fruto).",
+      "checklistInline": [
+        "Postes firmes cada 2-3m",
+        "Alambres a 40, 80, 120cm (espaldera)",
+        "Guiar tronco principal vertical",
+        "Seleccionar 1-2 brazos horizontales",
+        "Atar sin estrangular"
+      ],
+      "wikiPhase": "crecimiento_med",
+      "notify": true
+    },
+    {
+      "id": "poda_formacion_higuera",
+      "title": "✂️ Poda formación higuera y granado",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 60,
+      "durationMin": 45,
+      "description": "Higuera: formar en vaso abierto (3-4 ramas principales). Granado: arbusto o árbol con 3-5 troncos. Ambos soportan poda fuerte. Podar en reposo invernal. Higuera: cuidado con látex (irrita piel). Usar guantes.",
+      "checklistInline": [
+        "Higuera: 3-4 ramas principales, vaso abierto",
+        "Granado: 3-5 troncos, eliminar chupones",
+        "Podar en reposo (sin hojas)",
+        "Guantes con higuera (látex irritante)",
+        "Herramientas limpias"
+      ],
+      "wikiPhase": "crecimiento_med",
+      "notify": true
+    },
+    {
+      "id": "aclareo_higuera_brevas",
+      "title": "🍈 Identificar brevas e higos (higuera)",
+      "emoji": "🍈",
+      "type": "monitoring",
+      "offsetDays": 200,
+      "durationMin": 10,
+      "description": "Higuera produce 2 cosechas: brevas (junio-julio) en madera del año anterior, e higos (agosto-septiembre) en madera nueva. Las brevas son más grandes. Identificar cuáles tienes. Bífera = las 2 cosechas. Unífera = solo higos.",
+      "expectedSignals": [
+        "Brevas: frutos en madera vieja (sin hojas al inicio)",
+        "Higos: frutos en madera del año (con hojas)"
+      ],
+      "wikiPhase": "floracion_med",
+      "notify": false
+    },
+    {
+      "id": "reducir_riego_higuera",
+      "title": "💧 Reducir riego al madurar fruto",
+      "emoji": "💧",
+      "type": "preparation",
+      "offsetDays": 230,
+      "durationMin": 5,
+      "description": "Higuera y granado: reducir riego cuando frutos empiezan a madurar. Exceso de agua en maduración diluye sabor y puede hacer que frutos se rajen. Estos árboles toleran muy bien la sequía (son mediterráneos).",
+      "wikiPhase": "fructificacion_med",
+      "notify": true
+    },
+    {
+      "id": "cosecha_higuera",
+      "title": "🍈 Cosecha higuera (brevas e higos)",
+      "emoji": "🍈",
+      "type": "harvest",
+      "offsetDays": 210,
+      "durationMin": 20,
+      "description": "Cosechar cuando fruto está blando, la piel cede y el cuello se dobla (gotita de néctar en el ojo). Color según variedad (verde, morado, negro). Cosechar con cuidado (se magullan). Consumir en 24-48h (no se conservan). Brevas: junio-julio. Higos: agosto-septiembre.",
+      "checklistInline": [
+        "Cuello doblado, fruto blando",
+        "Posible gotita de néctar en el ojo",
+        "Color de la variedad (verde/morado)",
+        "Cortar o girar suave (deja pedúnculo)",
+        "Consumir rápido (no conservan)"
+      ],
+      "expectedSignals": [
+        "Piel ligeramente arrugada = punto óptimo de dulzor",
+        "Aroma dulce intenso"
+      ],
+      "wikiPhase": "fructificacion_med",
+      "notify": true
+    },
+    {
+      "id": "cosecha_granado",
+      "title": "🔴 Cosecha granado",
+      "emoji": "🔴",
+      "type": "harvest",
+      "offsetDays": 240,
+      "durationMin": 20,
+      "description": "Cosechar cuando el fruto tiene color rojo intenso (o amarillo según variedad) y la piel se vuelve más fina. Se puede dejar en el árbol hasta que la piel empieza a agrietarse (señal de máxima madurez). Cortar con tijeras. Se conservan semanas en lugar fresco.",
+      "checklistInline": [
+        "Color rojo/amarillo intenso",
+        "Piel más fina y brillante",
+        "Cortar con tijeras, dejar pedúnculo",
+        "Se conservan bien (semanas en fresco)"
+      ],
+      "expectedSignals": [
+        "Ligero agrietamiento de la piel = madurez máxima",
+        "Sonido metálico al golpear"
+      ],
+      "wikiPhase": "fructificacion_med",
+      "notify": true
+    },
+    {
+      "id": "cosecha_vid",
+      "title": "🍇 Cosecha uva (vid)",
+      "emoji": "🍇",
+      "type": "harvest",
+      "offsetDays": 260,
+      "durationMin": 45,
+      "description": "Cosechar racimos cuando uvas están completamente coloreadas, dulces y el raspón (tallo del racimo) empieza a lignificarse (marrón). Probar una uva: pepitas marrones (no verdes). Cortar racimos enteros con tijeras. Cosechar en seco por la mañana.",
+      "checklistInline": [
+        "Uvas coloreadas uniformemente",
+        "Raspón marrón (lignificado)",
+        "Pepitas marrones (no verdes)",
+        "Sabor dulce agradable",
+        "Cortar racimo entero con tijeras",
+        "Cosechar en seco"
+      ],
+      "expectedSignals": [
+        "Pruina (polvillo blanco) en uvas = frescura",
+        "Disminución de acidez, aumento de dulzor"
+      ],
+      "wikiPhase": "fructificacion_med",
+      "notify": true
+    },
+    {
+      "id": "cosecha_nispero",
+      "title": "🟠 Cosecha níspero",
+      "emoji": "🟠",
+      "type": "harvest",
+      "offsetDays": 280,
+      "durationMin": 20,
+      "description": "Níspero: florece en otoño (octubre-noviembre) y fruto madura en primavera (abril-mayo). Único frutal que madura en primavera temprana. Cosechar cuando están naranja intenso y ceden al tacto. Cortar racimos con tijeras. No tirar (se daña la piel).",
+      "checklistInline": [
+        "Color naranja intenso uniforme",
+        "Cede ligeramente al tacto",
+        "Cortar racimo con tijeras",
+        "No amontonar (se magullan)",
+        "Consumir en pocos días"
+      ],
+      "expectedSignals": [
+        "Piel lisa y brillante",
+        "Aroma dulce y floral"
+      ],
+      "wikiPhase": "fructificacion_med",
+      "notify": true
+    },
+    {
+      "id": "poda_invernal_med",
+      "title": "✂️ Poda invernal de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 330,
+      "durationMin": 60,
+      "description": "Podar en reposo invernal. Higuera: eliminar ramas secas, aclarar centro. Granado: eliminar chupones, mantener 3-5 troncos. Vid: poda de fructificación (dejar varas con 4-6 yemas y pulgares con 2 yemas). Níspero: poda ligera (aclarar).",
+      "checklistInline": [
+        "Higuera: poda ligera, eliminar ramas cruzadas",
+        "Granado: eliminar chupones base",
+        "Vid: elegir varas y pulgares (poda mixta)",
+        "Níspero: poda muy ligera (solo aclarar)",
+        "Guantes con higuera (látex)"
+      ],
+      "wikiPhase": "reposo_med",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_med",
+      "title": "💧 Riego mínimo (xerojardinería)",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 14, "volumeMl": "5000-20000", "notes": "Mediterráneos = poca agua. Verano: cada 10-14 días. Invierno: casi nada. Vid: sequía controlada mejora uva" },
+      "description": "Riego escaso. Son árboles adaptados a sequía mediterránea. Higuera y granado: casi indestructibles con poca agua. Vid: sequía controlada concentra azúcares en uva. Exceso de agua = frutos insípidos. Maceta: riego más frecuente que en suelo.",
+      "wikiPhase": "crecimiento_med",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_minimo_med",
+      "title": "🌿 Fertilización mínima",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 280,
+      "cadence": { "everyDays": 90, "notes": "Cada 3 meses. Poco fertilizante. Estos árboles prefieren suelos pobres. Exceso N = mucho verde, poco fruto" },
+      "description": "Fertilización muy ligera. Mediterráneos son frugales: exceso de nutrientes (especialmente N) produce mucho crecimiento vegetativo y pocos frutos de baja calidad. Un puñado de compost en primavera suele bastar.",
+      "wikiPhase": "crecimiento_med",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_med",
+      "title": "🔍 Inspección general",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 21, "notes": "Cada 3 semanas. Generalmente sin problemas graves. Mosca fruta en higuera. Oidio en vid" },
+      "description": "Revisar estado general. Higuera: mosca de la fruta (frutos con gusanos). Vid: oidio (polvo blanco) y mildiu (manchas aceitosas). Granado y níspero: pocos problemas en clima mediterráneo. Generalmente estos árboles son muy resistentes.",
+      "wikiPhase": "crecimiento_med",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "arbol_mediterraneo",
+      "name": "Frutal mediterráneo (plantón injertado)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-35€",
+      "source": "tienda_fisica",
+      "notes": "Higuera: variedades bíferas (2 cosechas): Colar, Cuello Dama. Granado: Wonderful, Mollar de Elche. Vid: uva de mesa (Red Globe, Moscatel) o vinificación. Níspero: Algerie, Tanaka. Elegir según uso.",
+      "wikiPhase": "plantacion_med",
+      "scaleQuantity": false
+    },
+    {
+      "key": "maceta_50L_med",
+      "name": "Maceta grande 40-50L",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-40€",
+      "source": "tienda_fisica",
+      "notes": "Higuera/granado: 40-50L. Vid: 30L profunda. Níspero: mejor en terreno. Barro o plástico grueso, buen drenaje.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "sustrato_drenante",
+      "name": "Sustrato con buen drenaje (40L)",
+      "qty": 40,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Universal + 30% arena. No necesitan sustrato rico. Buen drenaje es lo más importante. pH 6-8 (toleran amplio rango).",
+      "wikiPhase": "plantacion_med"
+    },
+    {
+      "key": "soporte_vid",
+      "name": "Postes y alambres para vid",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "15-30€",
+      "source": "tienda_fisica",
+      "notes": "Postes madera o metal 2m. Alambre galvanizado. Para espaldera o emparrado. Imprescindible para vid.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_fruta_med",
+      "title": "Elegir frutal según espacio y gusto",
+      "description": "Higuera: fácil, 2 cosechas, crecimiento controlable con maceta. Granado: ornamental + fruto, muy resistente. Vid: necesita soporte y poda experta. Níspero: fruto en primavera (único), árbol grande. Todos ideales para clima BCN.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "preparar_maceta_drenante",
+      "title": "Preparar maceta con excelente drenaje",
+      "description": "Capa de grava en fondo (5cm). Sustrato mezclado con 30% arena. Agujeros de drenaje abundantes. Mediterráneos odian el encharcamiento. NO usar plato debajo de la maceta (agua estancada).",
+      "blocking": true,
+      "estimatedMinutes": 45
+    },
+    {
+      "id": "espacio_sol_med",
+      "title": "Reservar espacio con pleno sol",
+      "description": "Mínimo 8h sol directo. Cuanto más sol, más dulzor en frutos. Orientación S ideal. Proteger higuera de viento marino (quema hojas). Vid: exposición S o SO para maduración óptima.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "arbol_mediterraneo", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "maceta_50L_med", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "sustrato_drenante", "qty": 40, "unit": "L", "trigger": "once" },
+    { "stockKey": "soporte_vid", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Higuera: 20-50 kg/árbol adulto (brevas + higos). Granado: 10-30 kg/árbol. Vid: 5-10 kg por cepa adulta. Níspero: 20-40 kg/árbol. Plantas muy longevas (20-50+ años productivas)."
+  },
+  "produces": { "kind": "fruta_mediterranea", "unit": "kg" }
+}

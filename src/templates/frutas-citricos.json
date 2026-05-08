@@ -1,0 +1,298 @@
+{
+  "id": "frutas-citricos",
+  "name": "Cítricos",
+  "emoji": "🍊",
+  "category": "planta",
+  "version": 1,
+  "notes": "Maceta 40L+ o terreno. En BCN clima ideal. Proteger del viento norte.",
+  "scale": "plantas",
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=citricos",
+  "theme": { "primary": "#f39c12", "bg": "#1a1408" },
+
+  "phases": [
+    { "id": "plantacion_citricos", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 30, "wikiPhase": "plantacion_citricos" },
+    { "id": "crecimiento_citricos", "name": "Crecimiento vegetativo", "emoji": "🌿", "startDayOffset": 30, "endDayOffset": 180, "wikiPhase": "crecimiento_citricos" },
+    { "id": "floracion_citricos", "name": "Floración", "emoji": "🌸", "startDayOffset": 180, "endDayOffset": 240, "wikiPhase": "floracion_citricos" },
+    { "id": "fructificacion_citricos", "name": "Fructificación", "emoji": "🍊", "startDayOffset": 240, "endDayOffset": 365, "wikiPhase": "fructificacion_citricos" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_citrico",
+      "title": "🌱 Plantar cítrico injertado",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 60,
+      "description": "Plantar árbol injertado (1-2 años) en maceta 40L mínimo o terreno. Punto de injerto debe quedar 5-10cm sobre el nivel del suelo (nunca enterrado). Sustrato específico cítricos o universal + 20% arena (drenaje). Riego copioso post-plantación. Tutor si zona ventosa.",
+      "checklistInline": [
+        "Maceta 40L mínimo o hoyo 60x60x60cm",
+        "Sustrato cítricos o universal + arena",
+        "Punto de injerto 5-10cm sobre suelo",
+        "Riego copioso (20-30L) post-plantación",
+        "Tutor si zona ventosa"
+      ],
+      "expectedSignals": [
+        "Brotes nuevos en 2-4 semanas",
+        "Hojas verdes firmes (no amarillean)"
+      ],
+      "warningIf": [
+        "Hojas amarillas con nervios verdes → clorosis férrica (pH alto o agua con cal)",
+        "Punto de injerto enterrado → patrón brota y domina"
+      ],
+      "wikiPhase": "plantacion_citricos",
+      "notify": true
+    },
+    {
+      "id": "abonado_primavera_citricos",
+      "title": "🌿 Abonado de primavera",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Primer abonado fuerte de temporada. Fertilizante específico cítricos (NPK 8-4-10 + Fe, Mg, Zn). Esparcir en corona (borde de copa, no junto al tronco). Regar después. Repetir cada 6-8 semanas durante crecimiento.",
+      "checklistInline": [
+        "Fertilizante cítricos con microelementos",
+        "Aplicar en borde de copa (zona raíces activas)",
+        "No tocar tronco con fertilizante",
+        "Regar inmediatamente después"
+      ],
+      "wikiPhase": "crecimiento_citricos",
+      "notify": true
+    },
+    {
+      "id": "correccion_clorosis",
+      "title": "🩺 Corrección clorosis férrica",
+      "emoji": "🩺",
+      "type": "feeding",
+      "offsetDays": 90,
+      "durationMin": 15,
+      "description": "Si hojas nuevas amarillean con nervios verdes (clorosis férrica): aplicar quelato de hierro en riego. En BCN con agua dura, es problema frecuente. Repetir cada 4-6 semanas si persiste. Prevenir acidificando ligeramente el sustrato.",
+      "checklistInline": [
+        "Identificar hojas amarillas con nervios verdes",
+        "Aplicar quelato de hierro según dosis",
+        "Regar sin cal (agua lluvia) si es posible",
+        "Acidificar sustrato con azufre si pH > 7"
+      ],
+      "expectedSignals": [
+        "Hojas nuevas verdes y sanas tras 2-3 semanas del tratamiento"
+      ],
+      "wikiPhase": "crecimiento_citricos",
+      "notify": false
+    },
+    {
+      "id": "tratamiento_cobre_citricos",
+      "title": "🛡️ Tratamiento preventivo con cobre",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 180,
+      "durationMin": 20,
+      "description": "Pulverizar con cobre (oxicloruro o caldo bordelés) al inicio de floración y después de lluvias. Previene hongos (alternaria, botrytis, phytophthora). Aplicar en día seco sin viento. Mojar bien todo el árbol.",
+      "checklistInline": [
+        "Diluir cobre según etiqueta",
+        "Pulverizar todo el árbol (hojas, ramas, tronco)",
+        "Aplicar en día seco y sin viento",
+        "Repetir cada 30-45 días si lluvias frecuentes"
+      ],
+      "wikiPhase": "floracion_citricos",
+      "notify": true
+    },
+    {
+      "id": "proteger_heladas",
+      "title": "🧣 Proteger de heladas (si aplica)",
+      "emoji": "🧣",
+      "type": "preparation",
+      "offsetDays": 200,
+      "durationMin": 30,
+      "description": "Si temperatura baja de 2°C: cubrir con manta térmica. Maceta: mover a resguardo (porche, interior luminoso). Cítricos sufren con heladas: daño en hojas, frutos y corteza. Limonero es el más sensible, mandarino el más resistente.",
+      "checklistInline": [
+        "Vigilar previsión de heladas",
+        "Cubrir copa con manta térmica (doble capa si < -2°C)",
+        "Maceta: mover a resguardo",
+        "No usar plástico directo (quema hojas)"
+      ],
+      "warningIf": [
+        "Temperatura < -2°C → riesgo alto de daño irreversible"
+      ],
+      "wikiPhase": "floracion_citricos",
+      "notify": true
+    },
+    {
+      "id": "cosecha_citricos",
+      "title": "🍊 Inicio cosecha de cítricos",
+      "emoji": "🍊",
+      "type": "harvest",
+      "offsetDays": 240,
+      "durationMin": 20,
+      "description": "Cosechar cuando fruto alcanza color y tamaño de la variedad. Naranja/mandarina: color naranja uniforme. Limón: amarillo. Lima: verde (se pone amarilla si madura mucho). Cortar con tijeras dejando 0.5cm de pedúnculo. NO arrancar. Cítricos pueden aguantar en el árbol semanas.",
+      "checklistInline": [
+        "Color uniforme según variedad",
+        "Cortar con tijeras, dejar 0.5cm pedúnculo",
+        "No arrancar (daña rama y fruto no conserva)",
+        "Cosechar en seco",
+        "Fruto puede esperar en árbol (no urgente)"
+      ],
+      "expectedSignals": [
+        "Naranja/mandarina: color naranja intenso",
+        "Limón: amarillo brillante, cede un poco",
+        "Lima: verde oscuro, cede al apretar"
+      ],
+      "wikiPhase": "fructificacion_citricos",
+      "notify": true
+    },
+    {
+      "id": "poda_invernal_citricos",
+      "title": "✂️ Poda de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 300,
+      "durationMin": 45,
+      "description": "Podar tras cosecha principal. Eliminar: ramas secas, chupones verticales, ramas que cruzan o van hacia dentro. Abrir centro para luz y aire. No podar más de 20-25% de copa. Limonero: poda ligera. Naranjo/mandarino: poda moderada.",
+      "checklistInline": [
+        "Eliminar ramas secas o enfermas primero",
+        "Cortar chupones verticales desde base",
+        "Aclarar centro (entrada luz)",
+        "Herramientas limpias (alcohol entre cortes)",
+        "Sellar cortes >3cm con pasta cicatrizante"
+      ],
+      "wikiPhase": "fructificacion_citricos",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_citricos",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 4, "volumeMl": "5000-15000", "notes": "Maceta 40L: 5-10L/riego. Suelo: 15-20L/riego. Más frecuente en verano. Agua sin cal mejor" },
+      "description": "Riego profundo y espaciado. Dejar secar capa superficial entre riegos. Verano: cada 3-4 días. Invierno: cada 10-15 días. Agua de lluvia o reposada (sin cloro). Evitar charcos (raíces se asfixian).",
+      "wikiPhase": "crecimiento_citricos",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_citricos",
+      "title": "🌿 Fertilización cítricos",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 300,
+      "cadence": { "everyDays": 42, "notes": "Cada 6 semanas en temporada de crecimiento. Fertilizante cítricos con microelementos" },
+      "description": "Aplicar fertilizante específico cítricos. Rico en N y K, con microelementos (Fe, Mg, Zn, Mn). Seguir dosis fabricante. No fertilizar en invierno (árbol en reposo parcial). En maceta: fertilización más frecuente (sustrato limitado).",
+      "wikiPhase": "crecimiento_citricos",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_plagas_citricos",
+      "title": "🔍 Inspección plagas cítricos",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 90,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Cochinilla, pulgón, minador de hojas, araña roja, mosca blanca" },
+      "description": "Revisar envés hojas (cochinilla algodonosa, ácaros), brotes tiernos (pulgón, minador), hojas (galerías minador, melaza). Ante plaga: aceite de neem + jabón potásico. Cochinilla: limpiar con algodón y alcohol.",
+      "wikiPhase": "crecimiento_citricos",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "arbol_citrico",
+      "name": "Cítrico injertado (1-2 años)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-50€",
+      "source": "tienda_fisica",
+      "notes": "Limonero: Eureka, Meyer (maceta). Naranjo: Valencia, Navelina. Mandarino: Clementino, Satsuma. Lima: Tahití, Bearss. Comprar injertado sobre patrón resistente (Citrange, Macrophylla).",
+      "wikiPhase": "plantacion_citricos",
+      "scaleQuantity": false
+    },
+    {
+      "key": "maceta_40L",
+      "name": "Maceta grande 40L o contenedor",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "20-40€",
+      "source": "tienda_fisica",
+      "notes": "Barro cocido (estable, respira) o plástico grueso. Mínimo 45cm diámetro y profundidad. Agujeros drenaje abundantes.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "sustrato_citricos",
+      "name": "Sustrato específico cítricos (50L)",
+      "qty": 50,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato para cítricos pH 6-7. Si usas universal: mezclar con 20% arena río y añadir quelato de hierro."
+    },
+    {
+      "key": "fertilizante_citricos",
+      "name": "Fertilizante cítricos (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "12-18€",
+      "source": "tienda_fisica",
+      "notes": "NPK 8-4-10 + microelementos. Liberación lenta o líquido. Alternativa orgánica: humus lombriz + guano + quelato hierro."
+    },
+    {
+      "key": "quelato_hierro",
+      "name": "Quelato de hierro (250g)",
+      "qty": 250,
+      "unit": "g",
+      "category": "importante",
+      "approxPrice": "8-12€",
+      "source": "tienda_fisica",
+      "notes": "Imprescindible en BCN con agua dura. Previene y corrige clorosis férrica (hojas amarillas).",
+      "wikiPhase": "crecimiento_citricos"
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie_citrico",
+      "title": "Elegir especie según espacio y clima",
+      "description": "Maceta < 40cm: limonero Meyer (compacto). Terreno amplio: naranjo o mandarino. Balcón: kumquat (pequeño, productivo). BCN no tiene heladas fuertes → apto para casi todos. Verificar horas-frío si hay opción.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "ubicacion_protegida_citrico",
+      "title": "Reservar ubicación soleada y protegida",
+      "description": "Mínimo 6h sol directo. Protegido de viento norte (daña hojas y frutos). Si zona con heladas: maceta para resguardar. Cítricos sufren con viento seco.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    },
+    {
+      "id": "agua_sin_cal",
+      "title": "Prever fuente de agua sin cal",
+      "description": "Agua del grifo BCN es muy dura (mucha cal) → clorosis. Ideal: recoger agua de lluvia. Alternativa: reposar agua 24h o acidificar con vinagre (5ml/L). El exceso de cal bloquea absorción de hierro.",
+      "blocking": true,
+      "estimatedMinutes": 15
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "arbol_citrico", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "maceta_40L", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "sustrato_citricos", "qty": 50, "unit": "L", "trigger": "once" },
+    { "stockKey": "fertilizante_citricos", "qty": 100, "unit": "g", "trigger": "per_event", "refEventId": "fertilizar_citricos" },
+    { "stockKey": "quelato_hierro", "qty": 5, "unit": "g", "trigger": "per_event", "refEventId": "correccion_clorosis" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Árbol joven (2-3 años): 10-30 frutos/año. Árbol adulto (5+ años): 50-150 frutos/año. Limonero 4 estaciones produce todo el año. Mandarino: cosecha concentrada en invierno."
+  },
+  "produces": { "kind": "citrico_fresco", "unit": "kg" }
+}

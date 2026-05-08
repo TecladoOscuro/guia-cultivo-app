@@ -1,0 +1,304 @@
+{
+  "id": "ferment-kefir",
+  "name": "Kéfir",
+  "emoji": "🫧",
+  "category": "fermento",
+  "version": 1,
+  "notes": "Kéfir de agua: 48h. Kéfir de leche: 24h. Ambos muy fáciles, buen punto de entrada a fermentaciones.",
+  "totalDuration": { "days": 3 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=ferment&phase=kefir",
+  "theme": { "primary": "#b8d4e3", "bg": "#0a161a" },
+
+  "phases": [
+    { "id": "preparacion_kefir", "name": "Preparación", "emoji": "🫙", "startDayOffset": 0, "endDayOffset": 0, "wikiPhase": "preparacion_kefir" },
+    { "id": "fermentacion_kefir", "name": "Fermentación", "emoji": "🫧", "startDayOffset": 0, "endDayOffset": 2, "wikiPhase": "fermentacion_kefir" },
+    { "id": "filtrado_kefir", "name": "Filtrado y disfrute", "emoji": "🥛", "startDayOffset": 2, "endDayOffset": 3, "wikiPhase": "filtrado_kefir" }
+  ],
+
+  "events": [
+    {
+      "id": "preparar_kefir_agua",
+      "title": "🫧 Preparar kéfir de agua",
+      "emoji": "🫧",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 15,
+      "description": "Disolver 50-70g de azúcar en 1L de agua filtrada (sin cloro). Añadir 2-3 cucharadas de gránulos de kéfir de agua + opcional: 1 higo seco o rodaja de limón (nutrientes extra). Tapar con tela transpirable + goma. Fermentar 24-48h a temperatura ambiente.",
+      "checklistInline": [
+        "Agua sin cloro (filtrada o reposada 24h)",
+        "Disolver 50-70g azúcar blanco en 1L agua",
+        "Añadir 2-3 cucharadas gránulos de kéfir",
+        "Opcional: 1 higo seco o rodaja limón",
+        "Tapar con tela + goma (NO hermético)",
+        "Temperatura ambiente 20-25°C",
+        "Etiquetar fecha"
+      ],
+      "expectedSignals": [
+        "Burbujas pequeñas subiendo (12-24h)",
+        "Ligero olor avinagrado/fermentado",
+        "Gránulos crecen visiblemente cada lote"
+      ],
+      "warningIf": [
+        "Agua con cloro → mata los gránulos",
+        "Temperatura > 30°C → fermentación demasiado rápida, sabor desagradable",
+        "Moho en superficie → desechar todo"
+      ],
+      "wikiPhase": "preparacion_kefir",
+      "notify": true
+    },
+    {
+      "id": "preparar_kefir_leche",
+      "title": "🥛 Preparar kéfir de leche",
+      "emoji": "🥛",
+      "type": "preparation",
+      "offsetDays": 0,
+      "durationMin": 10,
+      "description": "Añadir 1-2 cucharadas de gránulos de kéfir de leche en un bote de vidrio con 500ml de leche (entera, fresca, mejor sin homogeneizar). Tapar con tela + goma (respira). Dejar a temperatura ambiente 20-25°C durante 24h. NO usar leche UHT (pocos nutrientes para gránulos).",
+      "checklistInline": [
+        "Leche fresca entera (no UHT, mejor cruda)",
+        "1-2 cucharadas gránulos por 500ml leche",
+        "Bote vidrio limpio (no jabón, solo agua caliente)",
+        "Tapar con tela + goma (respira)",
+        "Temperatura 20-25°C, 24h",
+        "Etiquetar fecha"
+      ],
+      "expectedSignals": [
+        "Leche espesa y acidificada a las 24h",
+        "Separación en cuajada y suero = signo de fermentación",
+        "Gránulos crecen y se multiplican"
+      ],
+      "warningIf": [
+        "Leche UHT → gránulos se debilitan (menos nutrientes)",
+        "Temperatura < 15°C → fermentación muy lenta",
+        "Olor a podrido → contaminación, desechar"
+      ],
+      "wikiPhase": "preparacion_kefir",
+      "notify": true
+    },
+    {
+      "id": "filtrado_kefir_agua",
+      "title": "🫙 Filtrar kéfir de agua (48h)",
+      "emoji": "🫙",
+      "type": "preparation",
+      "offsetDays": 2,
+      "durationMin": 15,
+      "description": "Filtrar con colador de plástico (NO metálico) separando gránulos del líquido. Los gránulos van al siguiente lote inmediatamente. El líquido se embotella y refrigera. Opcional: 2ª fermentación 24h en botella cerrada para gasificar con fruta/zumo.",
+      "checklistInline": [
+        "Colador plástico (metal daña gránulos)",
+        "Separar gránulos (han crecido)",
+        "Gránulos a nuevo lote inmediatamente",
+        "Embotellar líquido y refrigerar",
+        "Opcional: 2ªF 24h con fruta para gas"
+      ],
+      "expectedSignals": [
+        "Líquido ligeramente turbio y burbujeante",
+        "Sabor ácido-dulce agradable",
+        "Gránulos más cantidad que al inicio"
+      ],
+      "wikiPhase": "filtrado_kefir",
+      "notify": true
+    },
+    {
+      "id": "filtrado_kefir_leche",
+      "title": "🥛 Filtrar kéfir de leche (24h)",
+      "emoji": "🥛",
+      "type": "preparation",
+      "offsetDays": 1,
+      "durationMin": 10,
+      "description": "Filtrar con colador plástico separando gránulos del kéfir. Remover suavemente con cuchara de madera/plástico. Gránulos al siguiente lote. Kéfir batido y refrigerado. Se puede hacer 2ª fermentación sin gránulos 12-24h para más sabor y cremosidad.",
+      "checklistInline": [
+        "Colador plástico (metal daña)",
+        "Remover suave para separar gránulos",
+        "Gránulos a nueva leche inmediatamente",
+        "Batir kéfir para homogeneizar",
+        "Refrigerar (dura 1-2 semanas)",
+        "Opcional: 2ªF 12-24h sin gránulos"
+      ],
+      "expectedSignals": [
+        "Kéfir espeso y cremoso",
+        "Sabor ácido característico (como yogur pero más intenso)",
+        "Gránulos blanquecinos y firmes"
+      ],
+      "wikiPhase": "filtrado_kefir",
+      "notify": true
+    },
+    {
+      "id": "segunda_fermentacion_kefir",
+      "title": "🍓 Aromatizar y gasificar (2ª fermentación opcional)",
+      "emoji": "🍓",
+      "type": "preparation",
+      "offsetDays": 2,
+      "durationMin": 10,
+      "description": "Tras filtrar: añadir fruta, zumo o aromatizante al kéfir de agua/leche. Embotellar en botella hermética 12-24h a temperatura ambiente (gasifica). Luego refrigerar. Cuidado al abrir (presión). El kéfir de leche queda más cremoso; el de agua, refrescante y burbujeante.",
+      "checklistInline": [
+        "Añadir fruta/zumo/jengibre al gusto",
+        "Botella hermética 12-24h a temp ambiente",
+        "Probar carbonatación: abrir con cuidado",
+        "Refrigerar para frenar fermentación",
+        "NO usar botellas no aptas presión"
+      ],
+      "expectedSignals": [
+        "Botella dura al tacto = gas CO₂",
+        "Burbujeo al abrir"
+      ],
+      "wikiPhase": "filtrado_kefir",
+      "notify": false
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "alimentar_kefir_agua",
+      "title": "🫧 Renovar lote kéfir de agua",
+      "emoji": "🫧",
+      "type": "feeding",
+      "startDayOffset": 2,
+      "endDayOffset": 2,
+      "cadence": { "everyDays": 2, "notes": "Cada 48h. Preparar nuevo lote. Los gránulos crecen → regalar, consumir en batidos o descartar excedente" },
+      "description": "Cada 48h: preparar nuevo agua azucarada y añadir los gránulos. Si te vas de vacaciones: nevera con agua azucarada (ralentiza, aguanta 1-2 semanas). O congelar gránulos con azúcar.",
+      "wikiPhase": "fermentacion_kefir",
+      "notify": true
+    },
+    {
+      "id": "alimentar_kefir_leche",
+      "title": "🥛 Renovar lote kéfir de leche",
+      "emoji": "🥛",
+      "type": "feeding",
+      "startDayOffset": 1,
+      "endDayOffset": 1,
+      "cadence": { "everyDays": 1, "notes": "Cada 24h. Nuevo lote con leche fresca. Gránulos crecen rápido → regalar o consumir excedente" },
+      "description": "Cada 24h: nueva leche fresca con los gránulos. Si no puedes atender diario: nevera con leche (aguanta 3-5 días ralentizado). Los gránulos crecen → compartir con amigos o consumir en batidos (son comestibles, llenos de probióticos).",
+      "wikiPhase": "fermentacion_kefir",
+      "notify": true
+    },
+    {
+      "id": "limpiar_utensilios_kefir",
+      "title": "🧹 Limpiar botes y utensilios",
+      "emoji": "🧹",
+      "type": "preparation",
+      "startDayOffset": 2,
+      "endDayOffset": 2,
+      "cadence": { "everyDays": 7, "notes": "Semanal. Lavar botes con agua caliente, NO jabón. El jabón deja residuos que dañan el cultivo" },
+      "description": "Lavar botes de vidrio y utensilios con agua caliente. No usar jabón ni detergentes (residuos matan el cultivo). Secar al aire. Tener al menos 2 botes para alternar limpios.",
+      "wikiPhase": "filtrado_kefir",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "granulos_kefir_agua",
+      "name": "Gránulos de kéfir de agua (Tíbicos)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-15€",
+      "source": "internet",
+      "notes": "Comprar a alguien que haga kéfir (más barato y frescos) o tiendas online. 2-3 cucharadas para empezar. Crecen rápido (regalarás excedente).",
+      "wikiPhase": "preparacion_kefir"
+    },
+    {
+      "key": "granulos_kefir_leche",
+      "name": "Gránulos de kéfir de leche",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-15€",
+      "source": "internet",
+      "notes": "Igual que los de agua: busca donantes locales o tiendas online. 1-2 cucharadas para 500ml leche. Se multiplican rápido.",
+      "wikiPhase": "preparacion_kefir"
+    },
+    {
+      "key": "azucar_kefir",
+      "name": "Azúcar blanco (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "1-2€",
+      "source": "tienda_fisica",
+      "notes": "Azúcar blanco refinado. Los gránulos lo metabolizan. No usar panela, miel, ni edulcorantes (no alimentan el cultivo). ~50-70g por litro."
+    },
+    {
+      "key": "leche_fresca",
+      "name": "Leche fresca entera (1L)",
+      "qty": 1,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "1-2€",
+      "source": "tienda_fisica",
+      "notes": "Leche entera fresca. Mejor sin homogeneizar (cruda o fresca de granja). Evitar UHT (pocos nutrientes). ~500ml por lote diario."
+    },
+    {
+      "key": "botes_vidrio_kefir",
+      "name": "Botes de vidrio 1L (2 uds)",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Botes boca ancha para facilitar filtrado. Tener 2 para alternar limpieza. NO usar metal.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "tela_kefir",
+      "name": "Tela transpirable + gomas",
+      "qty": 2,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "1-2€",
+      "source": "tienda_fisica",
+      "notes": "Tela algodón, gasa o filtro café. Permite respirar, bloquea moscas y polvo. NO tapar hermético.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "colador_plastico",
+      "name": "Colador de plástico",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "3-5€",
+      "source": "tienda_fisica",
+      "notes": "Plástico o silicona. NUNCA metálico (reacciona con la acidez y daña el cultivo).",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "conseguir_granulos_kefir",
+      "title": "Conseguir gránulos de kéfir vivos",
+      "description": "Buscar donante local (RRSS, grupos fermentación) o comprar online. Pide 2-3 cucharadas de cada tipo. Llegan en agua azucarada/leche, listos para usar. Conservar en nevera si no usas inmediatamente.",
+      "blocking": true,
+      "estimatedMinutes": 20
+    },
+    {
+      "id": "limpiar_botes_kefir",
+      "title": "Limpiar botes con agua caliente (sin jabón)",
+      "description": "Lavar botes vidrio y utensilios con agua caliente. Secar al aire. NO usar jabón (residuos matan cultivo). Todo limpio antes de empezar.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "agua_sin_cloro_kefir",
+      "title": "Preparar agua sin cloro",
+      "description": "Kéfir de agua: usar agua filtrada, reposada 24h o mineral. El cloro del grifo mata los gránulos. Dejar reposar agua en jarra abierta 24h evapora el cloro.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "granulos_kefir_agua", "qty": 0.1, "unit": "ud", "trigger": "once", "description": "2-3 cucharadas iniciales" },
+    { "stockKey": "granulos_kefir_leche", "qty": 0.1, "unit": "ud", "trigger": "once", "description": "1-2 cucharadas iniciales" },
+    { "stockKey": "azucar_kefir", "qty": 50, "unit": "g", "trigger": "per_event", "refEventId": "alimentar_kefir_agua", "description": "50-70g por litro y lote" },
+    { "stockKey": "leche_fresca", "qty": 500, "unit": "ml", "trigger": "per_event", "refEventId": "alimentar_kefir_leche", "description": "500ml por lote diario" },
+    { "stockKey": "botes_vidrio_kefir", "qty": 2, "unit": "ud", "trigger": "once", "scaleQuantity": false }
+  ],
+
+  "harvestable": true,
+  "harvestType": "continua",
+  "expectedYield": {
+    "description": "Kéfir de agua: ~1L cada 48h con 3 cucharadas de gránulos. Kéfir de leche: ~500ml cada 24h con 2 cucharadas. Producción continua. Los gránulos crecen ~10-20% por lote (regalar o consumir excedente)."
+  },
+  "produces": { "kind": "kefir", "unit": "L" }
+}

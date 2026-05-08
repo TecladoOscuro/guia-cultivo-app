@@ -1,0 +1,332 @@
+{
+  "id": "frutas-hueso",
+  "name": "Frutales de hueso",
+  "emoji": "🍑",
+  "category": "planta",
+  "version": 1,
+  "notes": "Solo en terreno (raíces profundas). Cerezo necesita polinizador. Melocotonero: poda en vaso.",
+  "scale": "plantas",
+  "totalDuration": { "days": 365 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=frutales&phase=hueso",
+  "theme": { "primary": "#e8967a", "bg": "#1a0e0a" },
+
+  "phases": [
+    { "id": "plantacion_hueso", "name": "Plantación", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 30, "wikiPhase": "plantacion_hueso" },
+    { "id": "crecimiento_hueso", "name": "Crecimiento", "emoji": "🌿", "startDayOffset": 30, "endDayOffset": 120, "wikiPhase": "crecimiento_hueso" },
+    { "id": "floracion_hueso", "name": "Floración", "emoji": "🌸", "startDayOffset": 120, "endDayOffset": 160, "wikiPhase": "floracion_hueso" },
+    { "id": "fructificacion_hueso", "name": "Fructificación", "emoji": "🍑", "startDayOffset": 160, "endDayOffset": 240, "wikiPhase": "fructificacion_hueso" },
+    { "id": "reposo_hueso", "name": "Reposo invernal", "emoji": "❄️", "startDayOffset": 240, "endDayOffset": 365, "wikiPhase": "reposo_hueso" }
+  ],
+
+  "events": [
+    {
+      "id": "plantar_frutal_hueso",
+      "title": "🌱 Plantar frutal de hueso",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 90,
+      "description": "Plantar árbol injertado (1-2 años) SOLO en terreno. Necesitan raíces profundas. Hoyo 80x80x80cm con mezcla: tierra + 30% compost. Punto de injerto 5-10cm sobre suelo. Tutor firme. NO plantar en maceta (raíces necesitan expandir). Riego copioso inicial (30-50L).",
+      "checklistInline": [
+        "Hoyo 80x80x80cm mínimo",
+        "Mezclar tierra con 30% compost maduro",
+        "Punto de injerto 5-10cm sobre suelo",
+        "Tutor firme (árbol joven inestable)",
+        "Riego copioso (30-50L) post-plantación",
+        "Alcorque para retener agua"
+      ],
+      "expectedSignals": [
+        "Brotes nuevos en 3-5 semanas",
+        "Hojas verdes sanas"
+      ],
+      "warningIf": [
+        "Terreno arcilloso con mal drenaje → pudrición raíz",
+        "Plantar en maceta → raíces se estrangulan, árbol muere en 2-3 años"
+      ],
+      "wikiPhase": "plantacion_hueso",
+      "notify": true
+    },
+    {
+      "id": "poda_formacion_vaso",
+      "title": "✂️ Poda de formación en vaso (melocotonero, ciruelo)",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 30,
+      "durationMin": 60,
+      "description": "Formar estructura en vaso abierto: 3-4 ramas principales a 60-80cm del suelo, equidistantes. Centro abierto (entra luz y aire). Melocotonero especialmente necesita vaso. Cerezo: dejar eje central (pirámide). Ciruelo: vaso o eje. Podar en invierno (reposo).",
+      "checklistInline": [
+        "Elegir 3-4 ramas principales a 60-80cm altura",
+        "Eliminar ramas centrales (abrir vaso)",
+        "Ramas a 45-60° del tronco",
+        "Herramientas limpias y afiladas",
+        "Sellar cortes >3cm con pasta cicatrizante"
+      ],
+      "wikiPhase": "crecimiento_hueso",
+      "notify": true
+    },
+    {
+      "id": "abonado_primavera_hueso",
+      "title": "🌿 Abonado primaveral",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Aplicar fertilizante equilibrado (NPK 8-8-8) + compost alrededor del árbol. Esparcir en zona de copa (hasta línea de goteo). Regar después. Frutales de hueso son exigentes en nutrientes. Repetir tras cosecha (recuperación).",
+      "checklistInline": [
+        "Fertilizante equilibrado + compost",
+        "Extender hasta línea de goteo (donde acaban ramas)",
+        "No tocar tronco",
+        "Regar inmediatamente"
+      ],
+      "wikiPhase": "crecimiento_hueso",
+      "notify": true
+    },
+    {
+      "id": "aclareo_frutos_hueso",
+      "title": "✂️ Aclareo de frutos",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 155,
+      "durationMin": 45,
+      "description": "Cuando frutos tienen tamaño de avellana: aclarar dejando 1 fruto cada 15-20cm en rama. Eliminar frutos pequeños, deformes o agrupados. Concentra energía en frutos de calidad (más tamaño, sabor). Melocotonero/ciruelo: imprescindible. Cerezo: menos necesario.",
+      "checklistInline": [
+        "Frutos tamaño avellana",
+        "Dejar 1 fruto cada 15-20cm",
+        "Eliminar frutos pequeños y deformes",
+        "Melocotonero: aclarar fuerte (frutos grandes)",
+        "Cerezo: aclareo ligero"
+      ],
+      "wikiPhase": "fructificacion_hueso",
+      "notify": true
+    },
+    {
+      "id": "instalar_trampas_mosca",
+      "title": "🪰 Instalar trampas mosca de la fruta",
+      "emoji": "🪰",
+      "type": "preparation",
+      "offsetDays": 160,
+      "durationMin": 20,
+      "description": "Colocar trampas cromotrópicas amarillas con feromona para mosca de la fruta (Ceratitis capitata). 2-3 trampas por árbol. Renovar cada 30-45 días. Principal plaga: frutos con gusanos = larvas de mosca. En BCN es plaga seria.",
+      "checklistInline": [
+        "Trampas amarillas con feromona",
+        "2-3 por árbol, en ramas soleadas",
+        "Cambiar cada 30-45 días",
+        "Alternativa: trampas caseras (vinagre + azúcar)"
+      ],
+      "wikiPhase": "fructificacion_hueso",
+      "notify": true
+    },
+    {
+      "id": "tratamiento_abolladura",
+      "title": "🛡️ Tratamiento abolladura melocotonero",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 240,
+      "durationMin": 20,
+      "description": "Abolladura o lepra (Taphrina deformans): hongos que deforman hojas (rojas, abolladas). Tratamiento preventivo con cobre en otoño (caída hojas) y final de invierno (antes de brotar). Especialmente en melocotonero. Si ya hay hojas, no aplicar cobre.",
+      "checklistInline": [
+        "Aplicar cobre (caldo bordelés) en otoño caída hojas",
+        "Segunda aplicación a final de invierno (yemas sin brotar)",
+        "NO aplicar con hojas (quema)",
+        "Recoger hojas caídas y eliminar (fuente de esporas)"
+      ],
+      "warningIf": [
+        "Abolladura establecida en hojas → retirar hojas afectadas y tratar próximo otoño"
+      ],
+      "wikiPhase": "reposo_hueso",
+      "notify": true
+    },
+    {
+      "id": "cosecha_hueso",
+      "title": "🍑 Cosecha frutales de hueso",
+      "emoji": "🍑",
+      "type": "harvest",
+      "offsetDays": 170,
+      "durationMin": 30,
+      "description": "Melocotón/ciruela: cosechar cuando cede suavemente al tacto y se desprende con giro. Cereza: color uniforme rojo oscuro, firme. Albaricoque: color naranja intenso, cede al tacto. Cosechar en seco por la mañana. NO tirar (fruto se magulla). Manipular con cuidado.",
+      "checklistInline": [
+        "Melocotón: cede al tacto, aroma dulce",
+        "Ciruela: color según variedad, cede un poco",
+        "Cereza: rojo oscuro, firme, con rabillo",
+        "Albaricoque: naranja intenso, no duro",
+        "Cosechar con giro suave, no tirar",
+        "Colocar en cesta sin apilar mucho"
+      ],
+      "expectedSignals": [
+        "Melocotón: zona alrededor pedúnculo cede",
+        "Ciruela: pruina (polvillo blanco) intacta = fresco"
+      ],
+      "wikiPhase": "fructificacion_hueso",
+      "notify": true
+    },
+    {
+      "id": "abonado_postcosecha",
+      "title": "🌿 Abonado post-cosecha (recuperación)",
+      "emoji": "🌿",
+      "type": "feeding",
+      "offsetDays": 210,
+      "durationMin": 15,
+      "description": "Tras la cosecha, el árbol está agotado. Aplicar fertilizante rico en N y K + compost en corona. Ayuda a recuperar reservas para floración del año siguiente. Regar después.",
+      "checklistInline": [
+        "Fertilizante equilibrado con algo más de N",
+        "Compost generoso en corona",
+        "Regar para asimilar nutrientes"
+      ],
+      "wikiPhase": "fructificacion_hueso",
+      "notify": true
+    },
+    {
+      "id": "poda_invernal_hueso",
+      "title": "✂️ Poda invernal de mantenimiento",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 250,
+      "durationMin": 60,
+      "description": "Podar en pleno invierno (reposo, sin hojas). Eliminar: ramas secas, chupones, ramas que cruzan, ramas hacia interior. Renovar ramas fructíferas (las que dieron fruto este año NO darán el próximo). Mantener forma vaso. No podar > 25% de copa.",
+      "checklistInline": [
+        "Esperar a que árbol esté sin hojas",
+        "Eliminar ramas secas y enfermas",
+        "Chupones verticales: cortar desde base",
+        "Ramas hacia interior: eliminar",
+        "Renovar madera fructífera (ramas de 2-3 años)",
+        "Herramientas limpias, sellar cortes >3cm"
+      ],
+      "wikiPhase": "reposo_hueso",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_hueso",
+      "title": "💧 Riego profundo",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 7, "volumeMl": "30000-80000", "notes": "Terreno: riego profundo semanal en verano, quincenal en primavera/otoño. Invierno: casi sin riego" },
+      "description": "Riego profundo y espaciado. Verano: 30-80L semanales. Invierno: apenas necesita (solo si sequía prolongada). Mejor riego por goteo o inundación de alcorque. Frutales de hueso temen el encharcamiento.",
+      "wikiPhase": "crecimiento_hueso",
+      "notify": false
+    },
+    {
+      "id": "fertilizar_hueso",
+      "title": "🌿 Fertilización periódica",
+      "emoji": "🌿",
+      "type": "feeding",
+      "startDayOffset": 60,
+      "endDayOffset": 240,
+      "cadence": { "everyDays": 45, "notes": "Cada 6-8 semanas en temporada. Fertilizante equilibrado + compost. Suspender en invierno" },
+      "description": "Aplicar fertilizante equilibrado cada 6-8 semanas durante temporada activa. Añadir compost en superficie. Frutales de hueso son exigentes. Calcio importante para prevenir hueso partido en melocotón.",
+      "wikiPhase": "crecimiento_hueso",
+      "notify": false
+    },
+    {
+      "id": "inspeccion_enfermedades_hueso",
+      "title": "🔍 Inspección plagas y enfermedades",
+      "emoji": "🔍",
+      "type": "monitoring",
+      "startDayOffset": 30,
+      "endDayOffset": 365,
+      "cadence": { "everyDays": 14, "notes": "Quincenal. Abolladura, monilia, pulgón, mosca fruta, oidio, gomosis" },
+      "description": "Revisar hojas (abolladura, manchas), frutos (monilia = podredumbre marrón, gusanos), tronco (gomosis = resina). Retirar frutos momificados (fuente de monilia año siguiente). Tratar según plaga detectada.",
+      "wikiPhase": "crecimiento_hueso",
+      "notify": false
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "arbol_frutal_hueso",
+      "name": "Frutal de hueso injertado (1-2 años)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "25-50€",
+      "source": "tienda_fisica",
+      "notes": "Melocotonero: variedades bajo requerimiento frío (BCN). Cerezo: necesita polinizador compatible (plantar 2 variedades). Ciruelo: autofértiles (Golden Japan). Albaricoque: autofértil. Elegir portainjerto adaptado a suelo local.",
+      "wikiPhase": "plantacion_hueso",
+      "scaleQuantity": false
+    },
+    {
+      "key": "compost_maduro",
+      "name": "Compost maduro (50kg)",
+      "qty": 50,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "15-25€",
+      "source": "tienda_fisica",
+      "notes": "Para mezclar en hoyo de plantación y aportes anuales. Compost propio o comprado. Añadir al plantar y cada año en corona."
+    },
+    {
+      "key": "fertilizante_frutales",
+      "name": "Fertilizante frutales (1kg)",
+      "qty": 1,
+      "unit": "kg",
+      "category": "esencial",
+      "approxPrice": "12-20€",
+      "source": "tienda_fisica",
+      "notes": "NPK equilibrado 8-8-8 o 10-10-10. Alternativa orgánica: humus lombriz + harina de huesos (P y Ca)."
+    },
+    {
+      "key": "trampas_mosca",
+      "name": "Trampas feromona mosca fruta (pack 5)",
+      "qty": 5,
+      "unit": "ud",
+      "category": "importante",
+      "approxPrice": "15-25€",
+      "source": "internet",
+      "notes": "Trampas cromotrópicas con feromona para Ceratitis capitata. Plaga principal en BCN.",
+      "wikiPhase": "fructificacion_hueso"
+    },
+    {
+      "key": "cobre_fungicida",
+      "name": "Caldo bordelés o cobre (250ml)",
+      "qty": 250,
+      "unit": "ml",
+      "category": "importante",
+      "approxPrice": "10-15€",
+      "source": "tienda_fisica",
+      "notes": "Preventivo para abolladura (melocotonero) y otras enfermedades fúngicas. Aplicar en otoño e invierno."
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_especie_hueso",
+      "title": "Elegir especie y verificar polinización",
+      "description": "Cerezo: la mayoría necesitan polinizador (plantar 2 variedades compatibles). Ciruelo: elegir autofértiles. Melocotonero: autofértil. Verificar horas-frío: BCN tiene ~300-500h frío (elegir variedades de bajo requerimiento < 500h).",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "preparar_terreno_hueso",
+      "title": "Preparar terreno: hoyo grande y drenaje",
+      "description": "Hoyo 80x80x80cm. Verificar drenaje (llenar de agua y debe drenar en < 24h). Mezclar tierra extraída con 30% compost. Si terreno arcilloso: añadir arena y grava en fondo.",
+      "blocking": true,
+      "estimatedMinutes": 120
+    },
+    {
+      "id": "espacio_arbol_hueso",
+      "title": "Reservar espacio suficiente (4-6m entre árboles)",
+      "description": "Frutales de hueso necesitan espacio. Melocotonero/ciruelo: 4-5m entre árboles. Cerezo: 5-6m. Pleno sol indispensable. Sin competencia de otros árboles o estructuras.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "arbol_frutal_hueso", "qty": 1, "unit": "ud", "trigger": "once", "scaleQuantity": false },
+    { "stockKey": "compost_maduro", "qty": 50, "unit": "kg", "trigger": "once" },
+    { "stockKey": "fertilizante_frutales", "qty": 100, "unit": "g", "trigger": "per_event", "refEventId": "fertilizar_hueso" },
+    { "stockKey": "trampas_mosca", "qty": 2, "unit": "ud", "trigger": "once" },
+    { "stockKey": "cobre_fungicida", "qty": 15, "unit": "ml", "trigger": "per_event", "refEventId": "tratamiento_abolladura" }
+  ],
+
+  "harvestable": true,
+  "harvestType": "escalonada",
+  "expectedYield": {
+    "description": "Árbol joven (3-4 años): 10-30 frutos. Árbol adulto (7+ años): 50-200 frutos/año. Melocotonero: 30-60 kg/árbol adulto. Cerezo: 20-40 kg. Ciruelo: 25-50 kg. Producción variable según poda y aclareo."
+  },
+  "produces": { "kind": "fruta_hueso", "unit": "kg" }
+}
