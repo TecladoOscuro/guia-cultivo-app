@@ -85,6 +85,7 @@ import huertaRaices from "./huerta-raices.json";
 import huertaAliaceas from "./huerta-aliáceas.json";
 import huertaLegumbres from "./huerta-legumbres.json";
 import huertaCruciferas from "./huerta-cruciferas.json";
+import huertaHojaVerde from "./huerta-hoja-verde.json";
 import frutasBayas from "./frutas-bayas.json";
 import frutasCitricos from "./frutas-citricos.json";
 import frutasHueso from "./frutas-hueso.json";
@@ -182,6 +183,7 @@ export const templates: Record<string, CultivoTemplate> = {
   "huerta-aliáceas": huertaAliaceas as CultivoTemplate,
   "huerta-legumbres": huertaLegumbres as CultivoTemplate,
   "huerta-cruciferas": huertaCruciferas as CultivoTemplate,
+  "huerta-hoja-verde": huertaHojaVerde as CultivoTemplate,
   "frutas-bayas": frutasBayas as CultivoTemplate,
   "frutas-citricos": frutasCitricos as CultivoTemplate,
   "frutas-hueso": frutasHueso as CultivoTemplate,

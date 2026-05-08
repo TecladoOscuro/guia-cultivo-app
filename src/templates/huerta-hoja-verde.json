@@ -1,0 +1,234 @@
+{
+  "id": "huerta-hoja-verde",
+  "name": "Hoja verde (espinaca, acelga, kale)",
+  "emoji": "🥬",
+  "category": "planta",
+  "version": 1,
+  "totalDuration": { "days": 120 },
+  "wikiBase": "https://tecladooscuro.github.io/guia-cultivo/?guide=huerta&phase=espinaca",
+  "theme": { "primary": "#3a7d44", "bg": "#0a1208" },
+  "scale": "plantas",
+
+  "phases": [
+    { "id": "siembra_directa", "name": "Siembra directa", "emoji": "🌱", "startDayOffset": 0, "endDayOffset": 14, "wikiPhase": "siembra" },
+    { "id": "crecimiento", "name": "Crecimiento", "emoji": "🥬", "startDayOffset": 14, "endDayOffset": 60, "wikiPhase": "crecimiento" },
+    { "id": "cosecha_continua", "name": "Cosecha continua", "emoji": "✂️", "startDayOffset": 60, "endDayOffset": 120, "wikiPhase": "cosecha" }
+  ],
+
+  "events": [
+    {
+      "id": "siembra",
+      "title": "🌱 Siembra directa — a golpes o a voleo",
+      "emoji": "🌱",
+      "type": "milestone",
+      "offsetDays": 0,
+      "durationMin": 30,
+      "description": "Siembra directa a 1-2cm profundidad. Espinaca: a golpes cada 15-20cm. Acelga: cada 30cm. Kale: cada 40cm. Mantener húmedo 7-14 días hasta germinación. No trasplantar — siembra directa siempre.",
+      "checklistInline": [
+        "Preparar suelo fino y mullido",
+        "Sembrar a 1-2cm, cubrir con sustrato fino",
+        "Regar con pulverizador o regadera fina",
+        "Etiquetar variedad y fecha"
+      ],
+      "expectedSignals": [
+        "Germinación visible día 7-14",
+        "Espinaca: cotiledones alargados",
+        "Acelga/kale: cotiledones redondeados"
+      ],
+      "warningIf": [
+        "Temperatura >25°C → espinaca no germina o se espiga rápido",
+        "Sin germinación día 14 → semilla vieja o sembrada muy profundo"
+      ],
+      "wikiPhase": "siembra",
+      "notify": true
+    },
+    {
+      "id": "raleo",
+      "title": "✂️ Raleo — aclarar plántulas",
+      "emoji": "✂️",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 20,
+      "description": "Cuando plantas tienen 4-6 hojas verdaderas, eliminar las más débiles. Espinaca: dejar 15-20cm entre plantas. Acelga: 30cm. Kale: 40-50cm. Las plantas raleadas de acelga y kale se pueden comer como microgreens.",
+      "checklistInline": [
+        "Eliminar plántulas débiles o apiñadas",
+        "Respetar distancia según especie",
+        "Aprovechar raleos tiernos en cocina"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": true
+    },
+    {
+      "id": "acolchado",
+      "title": "🛡️ Acolchado del suelo",
+      "emoji": "🛡️",
+      "type": "preparation",
+      "offsetDays": 14,
+      "durationMin": 20,
+      "description": "Cubrir suelo alrededor de plantas con paja, corteza o malla antihierbas. Mantiene humedad, protege raíces del frío (kale) y mantiene hojas limpias sin salpicaduras de tierra.",
+      "checklistInline": [
+        "Capa de 3-5cm de paja o corteza",
+        "No cubrir el cuello de la planta",
+        "Alternativa: malla antihierbas cortada"
+      ],
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "cosecha_inicio",
+      "title": "✂️ Inicio cosecha — hojas exteriores",
+      "emoji": "✂️",
+      "type": "harvest",
+      "offsetDays": 60,
+      "durationMin": 15,
+      "description": "Cosechar hojas exteriores dejando el centro intacto para cosecha continua (cut-and-come-again). Espinaca: cosechar hojas >10cm antes de que amarilleen. Acelga: cortar hojas con pecíolo a 2cm base. Kale: hojas inferiores primero, las superiores siguen creciendo. Cosechar por la mañana temprano.",
+      "checklistInline": [
+        "Cosechar por la mañana temprano",
+        "Hojas exteriores, dejando centro intacto",
+        "No cosechar >30% de la planta por vez",
+        "Lavar y secar antes de guardar"
+      ],
+      "expectedSignals": [
+        "Hojas firmes, color intenso",
+        "Espinaca: hojas >10cm",
+        "Acelga: pecíolos gruesos y crujientes",
+        "Kale: hojas rizadas firmes"
+      ],
+      "warningIf": [
+        "Espigado (tallo floral central) → espinaca/lechuga subida a flor, hoja se amarga",
+        "Hojas amarillentas → exceso de riego o falta de nitrógeno"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    },
+    {
+      "id": "fin_cultivo",
+      "title": "🏁 Fin cultivo — limpiar bancal",
+      "emoji": "🏁",
+      "type": "milestone",
+      "offsetDays": 120,
+      "durationMin": 30,
+      "description": "Arrancar restos de plantas. Compostar material sano. Limpiar acolchado. Preparar bancal para siguiente cultivo (rotación). Espinaca no repetir en mismo suelo (rotación 3 años). Registrar rendimiento total.",
+      "checklistInline": [
+        "Arrancar raíces y restos",
+        "Compostar materia vegetal sana",
+        "Limpiar zona de cultivo",
+        "Anotar rendimiento y lecciones"
+      ],
+      "wikiPhase": "cosecha",
+      "notify": true
+    }
+  ],
+
+  "recurringTasks": [
+    {
+      "id": "riego_ligero",
+      "title": "💧 Riego ligero frecuente",
+      "emoji": "💧",
+      "type": "watering",
+      "startDayOffset": 1,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 2, "volumeMl": "200-500", "notes": "Cada 2 días en general, diario en verano. Espinaca: mantener húmedo, no soporta sequía." },
+      "description": "Riego ligero pero constante. Raíces superficiales necesitan humedad regular. Mejor riego por goteo o regadera fina. Evitar mojar hojas para prevenir hongos. Aumentar frecuencia en verano.",
+      "wikiPhase": "crecimiento",
+      "notify": false
+    },
+    {
+      "id": "cosecha_hojas",
+      "title": "✂️ Cosecha de hojas — corte continuo",
+      "emoji": "✂️",
+      "type": "harvest",
+      "startDayOffset": 60,
+      "endDayOffset": 120,
+      "cadence": { "everyDays": 7, "notes": "Cosechar hojas exteriores cada semana. No dejar que espinaca envejezca (se amarga)." },
+      "description": "Cosecha semanal de hojas exteriores. Mantiene la planta productiva y estimula nuevo crecimiento. En temporada fría (kale) se puede espaciar a cada 10-14 días.",
+      "wikiPhase": "cosecha",
+      "notify": true
+    }
+  ],
+
+  "shoppingList": [
+    {
+      "key": "semillas_hoja_verde",
+      "name": "Semillas de hoja verde (sobre variedad)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "esencial",
+      "approxPrice": "2-4€",
+      "source": "tienda_fisica",
+      "notes": "Espinaca: variedades de otoño-invierno (no resisten calor). Acelga: variedad de penca blanca (más productiva) o amarilla. Kale: Nero di Toscana (más resistente) o Red Russian. Sobre trae 100-300 semillas.",
+      "wikiPhase": "siembra"
+    },
+    {
+      "key": "sustrato_huerta",
+      "name": "Sustrato huerta universal (20L)",
+      "qty": 20,
+      "unit": "L",
+      "category": "esencial",
+      "approxPrice": "5-8€",
+      "source": "tienda_fisica",
+      "notes": "Sustrato rico en materia orgánica. Espinaca y acelga son exigentes en nitrógeno. Kale más rústico. Mezclar con 20% compost si es posible."
+    },
+    {
+      "key": "maceta_10L",
+      "name": "Maceta 10L o superior",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "5-12€",
+      "source": "tienda_fisica",
+      "notes": "Mínimo 10L por planta. Acelga y kale necesitan más espacio (mejor 15-20L). Solo necesario si cultivas en maceta.",
+      "scaleQuantity": false
+    },
+    {
+      "key": "acolchado",
+      "name": "Acolchado (paja, corteza o malla)",
+      "qty": 1,
+      "unit": "ud",
+      "category": "util",
+      "approxPrice": "5-10€",
+      "source": "tienda_fisica",
+      "notes": "Paja de trigo limpia o malla antihierbas. Protege del frío en invierno y mantiene humedad en verano.",
+      "scaleQuantity": false
+    }
+  ],
+
+  "prepChecklist": [
+    {
+      "id": "elegir_variedades",
+      "title": "Elegir variedad según temporada",
+      "description": "Espinaca: otoño-invierno (no soporta calor). Acelga: todo el año en Barcelona. Kale: el más resistente, mejora con heladas. Elegir variedad adaptada a clima y estación.",
+      "blocking": true,
+      "estimatedMinutes": 10
+    },
+    {
+      "id": "preparar_suelo",
+      "title": "Preparar suelo o maceta",
+      "description": "Suelo profundo (30cm+), rico en materia orgánica, buen drenaje. Maceta mínimo 10L por planta. Incorporar compost maduro o humus de lombriz. pH 6.0-7.0.",
+      "blocking": true,
+      "estimatedMinutes": 30
+    },
+    {
+      "id": "espacio_sol_semi",
+      "title": "Ubicar en sol o semisombra",
+      "description": "Espinaca prefiere semisombra (se espiga con calor directo). Acelga y kale toleran sol pleno en clima suave. En verano proteger del sol de tarde. Orientación este o sureste ideal.",
+      "blocking": true,
+      "estimatedMinutes": 5
+    }
+  ],
+
+  "consumables": [
+    { "stockKey": "semillas_hoja_verde", "qty": 1, "unit": "ud", "trigger": "once" },
+    { "stockKey": "sustrato_huerta", "qty": 20, "unit": "L", "trigger": "once" },
+    { "stockKey": "agua_riego", "qty": 200, "unit": "ml", "trigger": "perRiego" }
+  ],
+
+  "notes": "Espinaca: otoño-invierno (no soporta calor). Acelga: todo el año en BCN. Kale: el más resistente, mejora con heladas. Todos en maceta 10L+ o terreno.",
+
+  "harvestable": true,
+  "harvestType": "continua",
+  "expectedYield": {
+    "description": "Espinaca: 200-400g por planta (cosecha escalonada). Acelga: 1-2kg por planta en temporada. Kale: 500g-1kg por planta. Cosecha continua: cortar y vuelve a crecer durante semanas."
+  },
+  "produces": { "kind": "hoja_verde_fresca", "unit": "kg" }
+}
