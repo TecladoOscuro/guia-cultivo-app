@@ -36,14 +36,18 @@ function App() {
     return () => { unsub(); };
   }, []);
 
+  // Auto-reload when update is available, with a brief delay
+  useEffect(() => {
+    if (updateState !== "available") return;
+    const t = setTimeout(() => applyUpdate(), 2000);
+    return () => clearTimeout(t);
+  }, [updateState]);
+
   return (
     <div className="min-h-screen flex flex-col bg-bg text-text pb-16">
       {updateState === "available" && (
-        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-50 bg-accent text-bg px-4 py-2 rounded-lg shadow-lg flex items-center gap-3">
-          <span className="text-sm font-bold">🔄 Nueva versión</span>
-          <button onClick={applyUpdate} className="px-3 py-1 bg-bg text-text-bright rounded text-xs font-bold">
-            Recargar
-          </button>
+        <div className="fixed bottom-16 left-1/2 -translate-x-1/2 z-[60] bg-accent text-bg px-4 py-2 rounded-full shadow-lg text-xs font-bold animate-pulse">
+          🔄 Actualizando...
         </div>
       )}
 

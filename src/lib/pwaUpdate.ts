@@ -1,6 +1,6 @@
 import { registerSW } from "virtual:pwa-register";
 
-export type UpdateState = "idle" | "available" | "updating";
+export type UpdateState = "idle" | "available";
 
 let updateAvailable = false;
 let updateSW: ((reload?: boolean) => Promise<void>) | null = null;
@@ -16,24 +16,33 @@ export function initPwaUpdate() {
     onOfflineReady() {
       console.log("[PWA] offline ready");
     },
-    onRegisteredSW(_swUrl, registration) {
+    onRegisteredSW(_, registration) {
       if (!registration) return;
-      // Poll cada 60s para nueva versión
-      setInterval(() => {
+      // Poll cada 30s
+      const pollInterval = setInterval(() => {
         registration.update().catch(() => {});
-      }, 60_000);
+      }, 30_000);
+
+      // Check on visibility change (user returns to app)
+      const onVisible = () => {
+        if (document.visibilityState === "visible") {
+          registration.update().catch(() => {});
+        }
+      };
+      document.addEventListener("visibilitychange", onVisible);
+      // Cleanup if needed (optional)
+      window.addEventListener("beforeunload", () => {
+        clearInterval(pollInterval);
+        document.removeEventListener("visibilitychange", onVisible);
+      });
     },
   });
 }
 
 export function applyUpdate() {
   if (!updateAvailable || !updateSW) return;
-  notify("updating");
+  // A small delay so the user can see the toast before reload
   updateSW(true);
-}
-
-export function isUpdateAvailable() {
-  return updateAvailable;
 }
 
 export function subscribeUpdate(fn: (state: UpdateState) => void) {
