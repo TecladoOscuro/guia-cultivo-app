@@ -72,6 +72,13 @@ import toxicaLaureola from "./toxica-laureola.json";
 import toxicaCurare from "./toxica-curare.json";
 import toxicaNuezVomica from "./toxica-nuez-vomica.json";
 import toxicaCalabarBean from "./toxica-calabar-bean.json";
+import huertaTomate from "./huerta-tomate.json";
+import huertaLechuga from "./huerta-lechuga.json";
+import huertaAromaticas from "./huerta-aromaticas.json";
+import frutasFresa from "./frutas-fresa.json";
+import frutasLimoneo from "./frutas-limoneo.json";
+import fermentKombucha from "./ferment-kombucha.json";
+import fermentEncurtidos from "./ferment-encurtidos.json";
 
 export const templates: Record<string, CultivoTemplate> = {
   "mushroom-kit": mushroomKit as CultivoTemplate,
@@ -147,6 +154,13 @@ export const templates: Record<string, CultivoTemplate> = {
   "toxica-curare": toxicaCurare as CultivoTemplate,
   "toxica-nuez-vomica": toxicaNuezVomica as CultivoTemplate,
   "toxica-calabar-bean": toxicaCalabarBean as CultivoTemplate,
+  "huerta-tomate": huertaTomate as CultivoTemplate,
+  "huerta-lechuga": huertaLechuga as CultivoTemplate,
+  "huerta-aromaticas": huertaAromaticas as CultivoTemplate,
+  "frutas-fresa": frutasFresa as CultivoTemplate,
+  "frutas-limoneo": frutasLimoneo as CultivoTemplate,
+  "ferment-kombucha": fermentKombucha as CultivoTemplate,
+  "ferment-encurtidos": fermentEncurtidos as CultivoTemplate,
 };
 
 export function getTemplate(id: string): CultivoTemplate | undefined {
